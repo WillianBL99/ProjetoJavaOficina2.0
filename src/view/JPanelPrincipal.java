@@ -50,7 +50,7 @@ public class JPanelPrincipal extends JPanel{
 	public JPanelPrincipal getJPanelPrincipal() {
 		this.setLayout(null);
 		this.setBackground(Cores.cinza2);
-		this.setPreferredSize(new Dimension(1280,720));
+		this.setSize(new Dimension(1280,720));
 		
 		return this;
 	}
@@ -100,7 +100,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonInicio.setIcon(Icones.getHome(this));
 			jButtonInicio.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonInicio.setBorder(null);
-			jButtonInicio.setSelected(false);
+			jButtonInicio.setFocusPainted(false);
 			jButtonInicio.setSize(250,36);
 			
 		}
@@ -117,6 +117,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonEstoque.setIcon(Icones.getEstoque(this));
 			jButtonEstoque.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonEstoque.setBorder(null);
+			jButtonEstoque.setFocusPainted(false);
 			jButtonEstoque.setSize(250,36);
 		}
 		return jButtonEstoque;
@@ -132,6 +133,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonVender.setIcon(Icones.getVender(this));
 			jButtonVender.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVender.setBorder(null);
+			jButtonVender.setFocusPainted(false);
 			jButtonVender.setSize(250,36);
 		}
 		return jButtonVender;
@@ -148,6 +150,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonVendas.setIcon(Icones.getVendas(this));
 			jButtonVendas.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVendas.setBorder(null);
+			jButtonVendas.setFocusPainted(false);
 			jButtonVendas.setSize(250,36);
 		}
 		return jButtonVendas;
@@ -164,6 +167,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonConfiguracao.setIcon(Icones.getConfiguracao(this));
 			jButtonConfiguracao.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonConfiguracao.setBorder(null);
+			jButtonConfiguracao.setFocusPainted(false);
 			jButtonConfiguracao.setSize(250,36);
 		}
 		return jButtonConfiguracao;

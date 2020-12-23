@@ -3,6 +3,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,12 +11,16 @@ import javax.swing.JPanel;
 
 public class JFramePrincipal extends JFrame {
 
-
+	//** Início declaração de variáveis **
 	private JPanel jPanelAnterior;
+	private Point local;
+	
+	//** Fim declaração de variáveis **
 	
 	public JFramePrincipal() {
 		this.setTitle("Contole Estoque");
-		this.getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().setLayout(null);
+		this.setUndecorated(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(new Dimension(1280,720));
 		this.setLocationRelativeTo(null);
@@ -24,16 +29,38 @@ public class JFramePrincipal extends JFrame {
 	}
 	
 	
-	public void alterarJPanel(JPanel jPanel) {
+	
+	// Isere um jPanel e sua respectiva localização na Frame
+	public void alterarJPanel(JPanel jPanel, Point point) {
+		
+		setLocal(point); // armazena a localização da tela a ser adicionada		
+		
+		this.insereJPanel(jPanel); // Chama o método que insere jPanel.
+	}
+	
+	
+	
+	// insere um jPanel em uma posição predefinida
+	public void alterarJPanel(JPanel jPanel) {		
+		setLocal(new Point(0,0)); //insere na posição 0, 0.
+		this.insereJPanel(jPanel); // Chama o método que insere jPanel.
+	}
+	
+	
+	private void insereJPanel(JPanel jPanel) {
 		if(getjPanelAnterior() != null) { // Condição para retirar jPanel do JFrame, caso haja algum.
 			this.remove(getjPanelAnterior());
 		}
 		
-		this.getContentPane().add(BorderLayout.CENTER,jPanel);
-		//System.out.println("adicionou nova tela");
+		this.getContentPane().add(jPanel);
+		jPanel.setLocation(getLocal());
+		
+		this.setjPanelAnterior(jPanel);
+		
+		System.out.println("adicionou nova tela");
 		this.repaint();
 		this.validate();
-		setjPanelAnterior(jPanel); // Guarda o jPanel que esta setado no jFrame.
+		
 	}
 
 
@@ -44,6 +71,18 @@ public class JFramePrincipal extends JFrame {
 
 	public void setjPanelAnterior(JPanel jPanelAnterior) {
 		this.jPanelAnterior = jPanelAnterior;
+	}
+
+
+
+	public Point getLocal() {
+		return local;
+	}
+
+
+
+	public void setLocal(Point local) {
+		this.local = local;
 	}
 
 }

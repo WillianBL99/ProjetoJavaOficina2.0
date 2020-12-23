@@ -1,5 +1,7 @@
 package icons;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -11,10 +13,12 @@ public class Icones {
 	private static ImageIcon vendas;
 	private static ImageIcon configuracao;
 
-	
-	
+   
+    
+    
 	public static ImageIcon getHome(JPanel jPanel) {
 		if(home == null) {
+			
 			home = new ImageIcon(jPanel.getClass().getResource("/icons/home-48.png"));
 		}
 		return home;

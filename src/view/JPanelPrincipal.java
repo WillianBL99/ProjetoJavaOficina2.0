@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -9,19 +10,32 @@ import javax.swing.SwingConstants;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.SetSizeIcon;
 
 public class JPanelPrincipal extends JPanel{
 	
 	//** Início declaração de variáveis **
 	
-	private JPanel jPanelPrincipalBase; // base do programa. Aplicada sobre JPanelPrincipal
+	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	
+	private int xIconJButton = 34, yIconJButton = 34;
+	
+	//private JPanel jPanelPrincipalBase; // base do programa. Aplicada sobre JPanelPrincipal
 	private JPanel jPanelMenuLateral;
 	private JPanel jPanelBarraMenu;
 	
 	private JButton jButtonInicio;
-	private JButton jButtonEstoque;
-	private JButton jButtonVender;
+	private JButton jButtonOS;
+	private JButton jButtonOSConsulta;
+	private JButton jButtonOSCriar;
 	private JButton jButtonVendas;
+	private JButton jButtonOrcamento;
+	private JButton jButtonPreOrcamento;
+	private JButton jButtonOrcamentoFinal;
+	private JButton jButtonVeiculos;
+	private JButton jButtonClientes;
+	private JButton jButtonUsuarios;
+	private JButton jButtonEstoque;
 	private JButton jButtonConfiguracao;
 	
 	//** Fim declaração de variáveis **
@@ -31,15 +45,14 @@ public class JPanelPrincipal extends JPanel{
 		this.getjPanelBarraMenu();
 		
 		this.getJButtonInicio();
-		this.getjButtonEstoque();
-		this.getjButtonVender();
+		/*this.getjButtonEstoque();
 		this.getjButtonVendas();
-		this.getjButtonConfiguracao();
+		this.getjButtonConfiguracao();*/
 		
 		this.addCompJPanelMenuLateral();
 		this.getjPanelMenuLateral();
 		
-		this.getjPanelPrincipalBase();
+		//this.getjPanelPrincipalBase();
 		this.addCompJPanelPrincipal();
 		this.getJPanelPrincipal();
 	}
@@ -55,7 +68,7 @@ public class JPanelPrincipal extends JPanel{
 		return this;
 	}
 
-	public JPanel getjPanelPrincipalBase() {
+	/*public JPanel getjPanelPrincipalBase() {
 		if(jPanelPrincipalBase == null) {
 			jPanelPrincipalBase = new JPanel();
 			jPanelPrincipalBase.setLayout(null);
@@ -64,14 +77,14 @@ public class JPanelPrincipal extends JPanel{
 			
 		}
 		return jPanelPrincipalBase;
-	}
+	}*/
 
 	public JPanel getjPanelMenuLateral() {
 		if(jPanelMenuLateral == null) {
 			jPanelMenuLateral = new JPanel();
 			jPanelMenuLateral.setLayout(null);
-			jPanelMenuLateral.setBackground(Cores.azul1);
-			jPanelMenuLateral.setSize(250,675);
+			jPanelMenuLateral.setBackground(Color.white);
+			jPanelMenuLateral.setSize(250,720);
 		}
 		return jPanelMenuLateral;
 	}
@@ -80,8 +93,8 @@ public class JPanelPrincipal extends JPanel{
 		if(jPanelBarraMenu == null) {
 			jPanelBarraMenu = new JPanel();
 			jPanelBarraMenu.setLayout(null);
-			jPanelBarraMenu.setBackground(Cores.cinza1);
-			jPanelBarraMenu.setSize(1280,45);
+			jPanelBarraMenu.setBackground(Cores.azul1);
+			jPanelBarraMenu.setSize(1030,46);
 		}
 		return jPanelBarraMenu;
 	}
@@ -93,11 +106,12 @@ public class JPanelPrincipal extends JPanel{
 	public JButton getJButtonInicio() {
 		if(jButtonInicio == null) {
 			jButtonInicio = new JButton();
-			jButtonInicio.setBackground(Cores.azul2);
-			jButtonInicio.setFont(Fontes.fontJButtons);
+			jButtonInicio.setBackground(Cores.azul1);
+			jButtonInicio.setFont(Fontes.fontJButtonsMenuLateral);
 			jButtonInicio.setText(" Início");
-			jButtonInicio.setForeground(Cores.foregroundJButton);
-			jButtonInicio.setIcon(Icones.getHome(this));
+			jButtonInicio.setForeground(Color.white);
+			setSizeIcon.setIconJButton(jButtonInicio, Icones.
+					getHome(this), xIconJButton, yIconJButton);
 			jButtonInicio.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonInicio.setBorder(null);
 			jButtonInicio.setFocusPainted(false);
@@ -107,71 +121,71 @@ public class JPanelPrincipal extends JPanel{
 		return jButtonInicio;
 	}
 	
-	public JButton getjButtonEstoque() {
-		if(jButtonEstoque == null) {
-			jButtonEstoque = new JButton();
-			jButtonEstoque.setBackground(Cores.azul2);
-			jButtonEstoque.setFont(Fontes.fontJButtons);
-			jButtonEstoque.setText(" Estoque");
-			jButtonEstoque.setForeground(Cores.foregroundJButton);
-			jButtonEstoque.setIcon(Icones.getEstoque(this));
-			jButtonEstoque.setHorizontalAlignment(SwingConstants.LEFT);
-			jButtonEstoque.setBorder(null);
-			jButtonEstoque.setFocusPainted(false);
-			jButtonEstoque.setSize(250,36);
-		}
-		return jButtonEstoque;
+	
+	public JButton getjButtonInicio() {
+		return jButtonInicio;
 	}
-	
-	public JButton getjButtonVender() {
-		if(jButtonVender == null) {
-			jButtonVender = new JButton();
-			jButtonVender.setBackground(Cores.azul2);
-			jButtonVender.setFont(Fontes.fontJButtons);
-			jButtonVender.setText(" Estoque");
-			jButtonVender.setForeground(Cores.foregroundJButton);
-			jButtonVender.setIcon(Icones.getVender(this));
-			jButtonVender.setHorizontalAlignment(SwingConstants.LEFT);
-			jButtonVender.setBorder(null);
-			jButtonVender.setFocusPainted(false);
-			jButtonVender.setSize(250,36);
-		}
-		return jButtonVender;
+
+
+	public JButton getjButtonOS() {
+		return jButtonOS;
 	}
-	
-	
+
+
+	public JButton getjButtonOSConsulta() {
+		return jButtonOSConsulta;
+	}
+
+
+	public JButton getjButtonOSCriar() {
+		return jButtonOSCriar;
+	}
+
+
 	public JButton getjButtonVendas() {
-		if(jButtonVendas == null) {
-			jButtonVendas = new JButton();
-			jButtonVendas.setBackground(Cores.azul2);
-			jButtonVendas.setFont(Fontes.fontJButtons);
-			jButtonVendas.setText(" Estoque");
-			jButtonVendas.setForeground(Cores.foregroundJButton);
-			jButtonVendas.setIcon(Icones.getVendas(this));
-			jButtonVendas.setHorizontalAlignment(SwingConstants.LEFT);
-			jButtonVendas.setBorder(null);
-			jButtonVendas.setFocusPainted(false);
-			jButtonVendas.setSize(250,36);
-		}
 		return jButtonVendas;
 	}
-	
-	
+
+
+	public JButton getjButtonOrcamento() {
+		return jButtonOrcamento;
+	}
+
+
+	public JButton getjButtonPreOrcamento() {
+		return jButtonPreOrcamento;
+	}
+
+
+	public JButton getjButtonOrcamentoFinal() {
+		return jButtonOrcamentoFinal;
+	}
+
+
+	public JButton getjButtonVeiculos() {
+		return jButtonVeiculos;
+	}
+
+
+	public JButton getjButtonClientes() {
+		return jButtonClientes;
+	}
+
+
+	public JButton getjButtonUsuarios() {
+		return jButtonUsuarios;
+	}
+
+
+	public JButton getjButtonEstoque() {
+		return jButtonEstoque;
+	}
+
+
 	public JButton getjButtonConfiguracao() {
-		if(jButtonConfiguracao == null) {
-			jButtonConfiguracao = new JButton();
-			jButtonConfiguracao.setBackground(Cores.azul2);
-			jButtonConfiguracao.setFont(Fontes.fontJButtons);
-			jButtonConfiguracao.setText(" Estoque");
-			jButtonConfiguracao.setForeground(Cores.foregroundJButton);
-			jButtonConfiguracao.setIcon(Icones.getConfiguracao(this));
-			jButtonConfiguracao.setHorizontalAlignment(SwingConstants.LEFT);
-			jButtonConfiguracao.setBorder(null);
-			jButtonConfiguracao.setFocusPainted(false);
-			jButtonConfiguracao.setSize(250,36);
-		}
 		return jButtonConfiguracao;
 	}
+	
 	
 	
 	//** Fim getters JButon **
@@ -179,30 +193,31 @@ public class JPanelPrincipal extends JPanel{
 	//** Início métodos adição de componentes **
 	
 	
+	
+
+
 	public void addCompJPanelPrincipal() {
 		this.getJPanelPrincipal().add(this.getjPanelMenuLateral());
-		this.getjPanelMenuLateral().setLocation(0,45);
+		this.getjPanelMenuLateral().setLocation(0,0);
 		
 		this.getJPanelPrincipal().add(this.getjPanelBarraMenu());
-		this.getjPanelBarraMenu().setLocation(0,0);
+		this.getjPanelBarraMenu().setLocation(250,0);
 	}
 	
 
 	public void addCompJPanelMenuLateral() {
 		this.getjPanelMenuLateral().add(this.getJButtonInicio());
-		this.getJButtonInicio().setLocation(0,4);
+		this.getJButtonInicio().setLocation(0,95);
 		
-		this.getjPanelMenuLateral().add(this.getjButtonEstoque());
+		/*this.getjPanelMenuLateral().add(this.getjButtonEstoque());
 		this.getjButtonEstoque().setLocation(0,44);
 		
-		this.getjPanelMenuLateral().add(this.getjButtonVender());
-		this.getjButtonVender().setLocation(0,84);
-		
+				
 		this.getjPanelMenuLateral().add(this.getjButtonVendas());
 		this.getjButtonVendas().setLocation(0,124);
 		
 		this.getjPanelMenuLateral().add(this.getjButtonConfiguracao());
-		this.getjButtonConfiguracao().setLocation(0,164);
+		this.getjButtonConfiguracao().setLocation(0,164);*/
 	}
 	
 	

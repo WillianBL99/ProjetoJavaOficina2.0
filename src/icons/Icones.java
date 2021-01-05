@@ -2,57 +2,58 @@ package icons;
 
 import java.awt.Image;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Icones {
 	
-	private static ImageIcon home;
-	private static ImageIcon estoque; 
-	private static ImageIcon vender;
-	private static ImageIcon vendas;
-	private static ImageIcon configuracao;
-
-   
+	
+	
+	private static String home;
+	private static String estoque; 
+	private static String vender;
+	private static String vendas;
+	private static String configuracao;    
     
-    
-	public static ImageIcon getHome(JPanel jPanel) {
-		if(home == null) {
+	public static String getHome(JPanel jPanel) {
+		if(home == null) {			
 			
-			home = new ImageIcon(jPanel.getClass().getResource("/icons/home-48.png"));
+			home = ("/icons/home-wht-348.png");
 		}
-		return home;
+		return home;		
 	}
 	
 	
-	public static ImageIcon getEstoque(JPanel jPanel) {
+	public static String getEstoque(JPanel jPanel) {
 		if(estoque == null) {
-			estoque = new ImageIcon(jPanel.getClass().getResource("/icons/filing-cabinet-48.png"));
+			estoque = ("/icons/filing-cabinet-48.png");
 		}
 		return estoque;
 	}
 	
 	
-	public static ImageIcon getVender(JPanel jPanel) {
+	public static String getVender(JPanel jPanel) {
 		if(vender == null) {
-			vender = new ImageIcon(jPanel.getClass().getResource("/icons/icons8-sell-48.png"));
+			vender = ("/icons/icons8-sell-48.png");
 		}
 		return vender;
 	}
 	
 	
-	public static ImageIcon getVendas(JPanel jPanel) {
+	public static String getVendas(JPanel jPanel) {
 		if(vendas == null) {
-			vendas = new ImageIcon(jPanel.getClass().getResource("/icons/accounting-30.png"));
+			vendas = ("/icons/accounting-30.png");
 		}
 		return vendas;
 	}
 	
 	
-	public static ImageIcon getConfiguracao(JPanel jPanel) {
+	public static String getConfiguracao(JPanel jPanel) {
 		if(configuracao == null) {
-			configuracao = new ImageIcon(jPanel.getClass().getResource("/icons/settings-50.png"));
+			configuracao = ("/icons/settings-50.png");
 		}
 		return configuracao;
 	}
+	
+	
+	
 }

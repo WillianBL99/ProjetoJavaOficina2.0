@@ -40,4 +40,18 @@ public class SetSizeIcon {
     }
     
     
+    public void setIconJLabel(JLabel jLabel, String img, int x, int y){  
+                
+        try {
+           ImageIcon imageIcon = new ImageIcon(getClass().getResource(img));    
+           Image image = imageIcon.getImage().getScaledInstance(x, y, 
+                   Image.SCALE_DEFAULT);
+           jLabel.setIcon(new ImageIcon(image));
+           
+        } catch (Exception e) {
+            System.out.println("setIconJLabel.Erro ao executar");
+        }        
+   }
+    
+    
 }

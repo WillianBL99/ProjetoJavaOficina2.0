@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Cores {
 
-	//public static Color branco = new Color(275, 275, 275);
+	public static Color branco = new Color(255, 255, 255);
 	public static Color pretoTransparent = new Color(0,0,0,200);
 	public static Color preto = new Color(0,0,0);
 	public static Color vermelho = new Color(240,8,8);

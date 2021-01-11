@@ -9,7 +9,8 @@ import view.JPanelPrincipal;
 public class ControlMain {
 	
 	private static JPanelLogin jPanelLogin;
-	private static JPanelPrincipal jPanelPrincipal;
+	private static ControlJPanelLogin controlJPanelLogin;
+	// private static JPanelPrincipal jPanelPrincipal; // apagar depois
 	private static JFramePrincipal jFramePrincipal;
 	
 	
@@ -26,7 +27,8 @@ public class ControlMain {
 	           
 	     }
 	      
-		 getjFramePrincipal().alterarJPanel(getjPanelPrincipal());
+		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getcontrolJPanelLogin();
 	}
 	
 	
@@ -38,14 +40,20 @@ public class ControlMain {
 	}
 	
 	
+	public static ControlJPanelLogin getcontrolJPanelLogin() {
+		if(controlJPanelLogin == null) {
+			controlJPanelLogin = new ControlJPanelLogin(getjFramePrincipal(), getjPanelLogin());
+		}
+		return controlJPanelLogin;
+	}
 
-	public static JPanelPrincipal getjPanelPrincipal() {
+	/*public static JPanelPrincipal getjPanelPrincipal() { // apagar depois
 		if(jPanelPrincipal == null) {
 			jPanelPrincipal = new JPanelPrincipal();
 		}
 		return jPanelPrincipal;
-	}
-
+	}*/
+	
 
 	public static JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null) {

@@ -2,9 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.SystemColor;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,17 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 
 import model.Cores;
 import model.Fontes;
-import model.TelConf;
+import model.SetSizeIcon;
 
 public class JPanelLogin extends JPanel{
 	
 	//** Início declaração de variáveis **
 	
-	TelConf telConf = new TelConf();	
+	SetSizeIcon setSizeIcon = new SetSizeIcon();	
 	
 	private JLabel jLabelImagemFundoLogin;
 	private JPanel jPanelCentralLogin;
@@ -115,8 +111,8 @@ public class JPanelLogin extends JPanel{
 	public JLabel getjLabelIconTitulo() {
 		if(jLabelIconTitulo == null) {
 			jLabelIconTitulo = new JLabel();
-			telConf.redimencionaImagem(jLabelIconTitulo, "/images/accounting-30.png");
 			jLabelIconTitulo.setSize(110, 110);
+			setSizeIcon.redimencionaImagem(jLabelIconTitulo, "/images/accounting-30.png");
 		}
 		return jLabelIconTitulo;
 	}

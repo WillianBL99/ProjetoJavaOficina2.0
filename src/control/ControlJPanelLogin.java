@@ -11,12 +11,13 @@ import view.JFramePrincipal;
 import view.JPanelLogin;
 import view.JPanelPrincipal;
 
-public class ControlJPanelLogin implements MouseListener, KeyListener{
+public class ControlJPanelLogin implements MouseListener, KeyListener {
 	
 	//** Início declaração de variáveis **
 	private JPanelLogin jPanelLogin;
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
+	private ControlJPanelPrincipal controlJPanelPrincipal;
 	private DaoJPanelLogin daoJPanelLogin = new DaoJPanelLogin();
 	
 	
@@ -33,7 +34,6 @@ public class ControlJPanelLogin implements MouseListener, KeyListener{
 
 	private void AddEvent() {
 		getjPanelLogin().getjButtonEntrar().addMouseListener(this);
-		getjPanelLogin().getjButtonEntrar().addKeyListener(this);
 		getjPanelLogin().getjTFieldUsuario().requestFocus();
 		getjPanelLogin().getjTFieldUsuario().addKeyListener(this);	
 
@@ -140,6 +140,14 @@ public class ControlJPanelLogin implements MouseListener, KeyListener{
 		}
 		
 		
+		public ControlJPanelPrincipal getcControlJPanelPrincipal() {
+			if(controlJPanelPrincipal == null){
+				controlJPanelPrincipal = new ControlJPanelPrincipal(getjFramePricipal(), getjPanelPrincipal());
+			}
+			return controlJPanelPrincipal;
+		}
+		
+		
 		private void validaLogin() {
 			String usuario = getjPanelLogin().getjTFieldUsuario().getText();
 			String senha = new String(getjPanelLogin().getjPFieldSenha().getPassword()) ;
@@ -147,6 +155,7 @@ public class ControlJPanelLogin implements MouseListener, KeyListener{
 			if(daoJPanelLogin.confLoginSenha(usuario, senha)) { // altera a tela
 				
 				getjFramePricipal().alterarJPanel(getjPanelPrincipal());
+				getcControlJPanelPrincipal();
 				getjPanelLogin().getjLabelErro().setVisible(false);
 				
 			} else { // apresenta mensagem de erro

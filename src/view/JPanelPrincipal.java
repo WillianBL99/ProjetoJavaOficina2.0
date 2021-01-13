@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,16 +17,19 @@ public class JPanelPrincipal extends JPanel{
 	
 	//** Início declaração de variáveis **
 	
+
+	private JPanel jPanelCenterAnterior;
+	
 	// variáveis para relocalização dos botoes apos abertura do btn "OS" ou "Orçamento"
-		private int sizeOSOpen = 0; // 60
-		private int sizeOrcamentoOpen = 0; // 60
+	private int sizeOSOpen = 0; // 60
+	private int sizeOrcamentoOpen = 0; // 60
 		
 		
 	private SetSizeIcon setSizeIcon = new SetSizeIcon(); // iniciando objeto para rendimensionamento de imagens
 	
 	private int xIconJButton = 34, yIconJButton = 34; // tamanho dos icones dos botoes do menu lateral
 	
-	//private JPanel jPanelPrincipalBase; // base do programa. Aplicada sobre JPanelPrincipal
+	
 	private JPanel jPanelMenuLateral;
 	private JPanel jPanelBarraMenu;
 	
@@ -496,6 +500,37 @@ public class JPanelPrincipal extends JPanel{
 
 	public void setSizeOrcamentoOpen(int sizeOrcamentoOpen) {
 		this.sizeOrcamentoOpen = sizeOrcamentoOpen;
+	}
+	
+	
+
+	public JPanel getjPanelCenterAnterior() {
+		if(jPanelCenterAnterior == null){
+			jPanelCenterAnterior = new JPanel();
+		}
+		return jPanelCenterAnterior;
+	}
+	
+	
+	public void setjPanelCenterAnterior(JPanel jPanel) {
+		jPanelCenterAnterior = jPanel;
+	}
+	
+	
+	// Isere um jPanel e sua respectiva localização na Frame
+	public void alterarJPanel(JPanel jPanel, Point point) {	
+		if(getjPanelCenterAnterior() != null) { // Condição para retirar jPanel do JFrame, caso haja algum.
+			this.getJPanelPrincipal().remove(getjPanelCenterAnterior());
+		}
+		
+		this.getJPanelPrincipal().add(jPanel);
+		jPanel.setLocation(point);
+		
+		this.setjPanelCenterAnterior(jPanel);
+		
+		System.out.println("adicionou nova tela à jpanelprincipal");
+		this.repaint();
+		this.validate();
 	}
 	
 	//** Fim métodos da classe **

@@ -1,7 +1,6 @@
 package view;
 
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 
@@ -22,7 +21,7 @@ public class JFramePrincipal extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(new Dimension(1280,720));
+		this.setSize(new Dimension(1280,740));
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		

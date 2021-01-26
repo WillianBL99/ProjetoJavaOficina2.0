@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import view.JFramePrincipal;
 import view.JPanelHome;
 import view.JPanelPrincipal;
+import view.JPanelVendas;
 
 public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
@@ -19,6 +20,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelHome jPanelHome;
+	private JPanelVendas jPanelVendas;
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
@@ -75,13 +77,16 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado
+		
 		if(e.getSource() == getjPanelPrincipal().getJButtonInicio()) {		
-			System.out.println("clicou em iniciar");
-			getjPanelPrincipal().alterarJPanel(getjPanelHome(), point);;
-			
+			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);			
 		}
+		
+		if(e.getSource() == getjPanelPrincipal().getjButtonVendas()) {
+			getjFramePricipal().alterarJPanel(this.getjPanelVendas());			
+		}
+		
 	}
 
 
@@ -137,6 +142,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				jPanelHome = new JPanelHome();
 			}
 			return jPanelHome;
+		}
+		
+		
+		public JPanelVendas getjPanelVendas() {
+			if(jPanelVendas == null){
+				jPanelVendas = new JPanelVendas();
+			}
+			return jPanelVendas;
 		}
 		
 		

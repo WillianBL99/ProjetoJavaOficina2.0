@@ -23,6 +23,7 @@ public class JPanelLogin extends JPanel{
 	SetSizeIcon setSizeIcon = new SetSizeIcon();	
 	
 	private JLabel jLabelImagemFundoLogin;
+	
 	private JPanel jPanelCentralLogin;
 	
 	private JTextField jTFieldUsuario;
@@ -46,25 +47,8 @@ public class JPanelLogin extends JPanel{
 	//** Início construtor **
 	
 	public JPanelLogin() {
-		this.getjLabelIconTitulo();
-		this.getjLabelTitulo();
-		this.getjLabelTitulo1();
 		
-		this.getjLabelUsuario();
-		this.getjTFieldUsuario();
-		
-		this.getjLabelSenha();
-		this.getjPFieldSenha();
-		
-		this.getjCBoxLembrarSenha();
-		this.getjLabelErro();
-		
-		this.getjButtonEntrar();
-		
-		this.getjPanelCentralLogin();
-		this.addCompJPanelCentralLogin();
-		
-		this.getJPanelLogin();
+		this.addCompJPanelCentralLogin();		
 		this.addCompJPanelLogin();
 	}
 	//** Fim construtor **

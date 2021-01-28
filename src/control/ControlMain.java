@@ -4,8 +4,6 @@ import javax.swing.UIManager;
 
 import view.JFramePrincipal;
 import view.JPanelLogin;
-import view.JPanelPrincipal;
-import view.JPanelVendas;
 
 public class ControlMain {
 	

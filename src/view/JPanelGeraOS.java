@@ -98,6 +98,7 @@ public class JPanelGeraOS extends JPanel {
 
 		public JButton getjButtonCancelar() {
 			if(jButtonCancelar == null){
+				
 				jButtonCancelar = new JButton();
 		
 				}	
@@ -107,6 +108,7 @@ public class JPanelGeraOS extends JPanel {
 		
 		public JButton getjButtonSalvar() {
 			if(jButtonSalvar == null){
+				
 				jButtonSalvar = new JButton();
 		
 				}	
@@ -116,6 +118,7 @@ public class JPanelGeraOS extends JPanel {
 		
 		public JButton getjButtonImprimir() {
 			if(jButtonImprimir == null){
+				
 				jButtonImprimir = new JButton();
 		
 				}	
@@ -125,6 +128,7 @@ public class JPanelGeraOS extends JPanel {
 		
 		public JButton getjButtonProcuraCliente() {
 			if(jButtonProcuraCliente == null){
+				
 				jButtonProcuraCliente = new JButton();
 		
 				}	
@@ -134,6 +138,7 @@ public class JPanelGeraOS extends JPanel {
 		
 		public JButton getjButtonSelecionarVeiculo() {
 			if(jButtonSelecionarVeiculo == null){
+				
 				jButtonSelecionarVeiculo = new JButton();
 		
 				}	

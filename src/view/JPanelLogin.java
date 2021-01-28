@@ -106,7 +106,7 @@ public class JPanelLogin extends JPanel{
 	public JLabel getjLabelTitulo() {
 		if(jLabelTitulo == null) {
 			jLabelTitulo = new JLabel();
-			jLabelTitulo.setFont(Fontes.fontLoginMax);
+			jLabelTitulo.setFont(Fontes.fontJLabelBold3);
 			jLabelTitulo.setForeground(Color.white);
 			jLabelTitulo.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelTitulo.setText("Workshop");
@@ -120,7 +120,7 @@ public class JPanelLogin extends JPanel{
 	public JLabel getjLabelTitulo1() {
 		if(jLabelTitulo1 == null) {
 			jLabelTitulo1 = new JLabel();
-			jLabelTitulo1.setFont(Fontes.fontLoginMax);
+			jLabelTitulo1.setFont(Fontes.fontJLabelBold3);
 			jLabelTitulo1.setForeground(Color.white);
 			jLabelTitulo1.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelTitulo1.setText("Manager");
@@ -135,7 +135,7 @@ public class JPanelLogin extends JPanel{
 	public JLabel getjLabelUsuario() {
 		if(jLabelUsuario == null) {
 			jLabelUsuario = new JLabel();
-			jLabelUsuario.setFont(Fontes.fontLoginMax);
+			jLabelUsuario.setFont(Fontes.fontJLabelBold3);
 			jLabelUsuario.setForeground(Color.white);
 			jLabelUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelUsuario.setText("USUÁRIO");
@@ -150,7 +150,7 @@ public class JPanelLogin extends JPanel{
 		if(jLabelSenha == null) {
 			jLabelSenha = new JLabel();
 			jLabelSenha = new JLabel();
-			jLabelSenha.setFont(Fontes.fontLoginMax);
+			jLabelSenha.setFont(Fontes.fontJLabelBold3);
 			jLabelSenha.setForeground(Color.white);
 			jLabelSenha.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelSenha.setText("SENHA");
@@ -164,7 +164,7 @@ public class JPanelLogin extends JPanel{
 	public JLabel getjLabelErro() {
 		if(jLabelErro == null) {
 			jLabelErro = new JLabel();
-			jLabelErro.setFont(Fontes.fontLoginMin);
+			jLabelErro.setFont(Fontes.fontJLabelBold1);
 			jLabelErro.setForeground(Cores.vermelho);
 			jLabelErro.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelErro.setText("Senha ou usuário incorretos");
@@ -186,7 +186,7 @@ public class JPanelLogin extends JPanel{
 		if(jButtonEntrar == null) {
 			jButtonEntrar = new JButton();
 			
-			jButtonEntrar.setFont(Fontes.fontLoginMax);
+			jButtonEntrar.setFont(Fontes.fontJButtonBold2);
 			jButtonEntrar.setBackground(Cores.azul1);
 			jButtonEntrar.setForeground(Color.white);
 			jButtonEntrar.setText("Entrar");
@@ -209,7 +209,7 @@ public class JPanelLogin extends JPanel{
 			jTFieldUsuario.setBorder(BorderFactory.createLineBorder(Cores.cinza2, 1));
 			jTFieldUsuario.setBackground(Color.white);
 			jTFieldUsuario.setForeground(Cores.preto);
-			jTFieldUsuario.setFont(Fontes.fontLoginMax);
+			jTFieldUsuario.setFont(Fontes.fontJTFieldBold1);
 			jTFieldUsuario.setSize(270, 45);
 			jTFieldUsuario.setOpaque(true);
 			
@@ -224,7 +224,7 @@ public class JPanelLogin extends JPanel{
 			jPFieldSenha.setBorder(BorderFactory.createLineBorder(Cores.cinza2, 1));
 			jPFieldSenha.setBackground(Color.white);
 			jPFieldSenha.setForeground(Cores.preto);
-			jPFieldSenha.setFont(Fontes.fontLoginMax);
+			jPFieldSenha.setFont(Fontes.fontJTFieldBold1);
 			jPFieldSenha.setSize(270, 45);
 			jPFieldSenha.setOpaque(true);
 		}
@@ -241,7 +241,7 @@ public class JPanelLogin extends JPanel{
 		if(jCBoxLembrarSenha == null) {
 			jCBoxLembrarSenha = new JCheckBox();
 			jCBoxLembrarSenha.setForeground(Color.white);
-			jCBoxLembrarSenha.setFont(Fontes.fontLoginMin);
+			jCBoxLembrarSenha.setFont(Fontes.fontJLabelBold1);
 			jCBoxLembrarSenha.setSize(271,21);
 			jCBoxLembrarSenha.setOpaque(false);
 			jCBoxLembrarSenha.setFocusable(false);

@@ -11,23 +11,55 @@ import java.awt.Font;
 
 public class Fontes {
 
-	public static Font fontJButtons = new Font("Arial", Font.BOLD, 26);
-	public static Font fontJButtonsMenuLateral = new Font("Segoe UI",Font.BOLD, 20);
-	public static Font fontJButtonVenda = new Font("Segoe UI", Font.BOLD, 23);
 	
-	public static Font fontJLabelBarraMenu = new Font("Segoe UI", Font.PLAIN, 22);
-	public static Font fontLoginMax = new Font("Segoe UI", Font.BOLD, 22);
-	public static Font fontLoginMin = new Font("Segoe UI", Font.BOLD, 16);
+	
+	
+	// fontes para JButtons
+	public static Font fontJButtonsMenuLateral = new Font("Segoe UI",Font.BOLD, 20);
+	
+	public static Font fontJButtonBold1 = new Font("Segoe UI", Font.BOLD, 20);
+	public static Font fontJButtonBold2 = new Font("Segoe UI", Font.BOLD, 22);
+	public static Font fontJButtonBold3 = new Font("Segoe UI", Font.BOLD, 25);
 
-	public static Font fontTitleTField = new Font("Segoe UI", Font.BOLD, 16);
-	public static Font fontTitleJPanel = new Font("Segoe UI", Font.BOLD, 20);
-	public static Font fontJTableCabelcalho = new Font("Segoe UI", Font.BOLD, 12);
-	public static Font fontJTable = new Font("Segoe UI", Font.PLAIN, 12);
-	public static Font fontVendas1 = new Font("Segoe UI", Font.PLAIN, 14);
-	public static Font fontVendas2 = new Font("Segoe UI", Font.PLAIN, 20);
-	public static Font fontVendas3 = new Font("Segoe UI", Font.BOLD, 30);
-	public static Font fontVendas4 = new Font("Segoe UI", Font.BOLD, 50);
-	public static Font fontJButtonVendas = new Font("Segoe UI", Font.BOLD, 25);
-	public static Font fontHorasHome = new Font("Impact", Font.BOLD, 80);
+	public static Font fontJButtonPlain1 = new Font("Segoe UI", Font.PLAIN, 12);
+	public static Font fontJButtonPlain2= new Font("Segoe UI", Font.PLAIN, 16);
+	public static Font fontJButtonPlain3 = new Font("Segoe UI", Font.PLAIN, 20);
+	
+	
+	// fontes para JLabels
+	public static Font fontJLabelBold1 = new Font("Segoe UI", Font.BOLD, 16);
+	public static Font fontJLabelBold2 = new Font("Segoe UI", Font.BOLD, 20);
+	public static Font fontJLabelBold3 = new Font("Segoe UI", Font.BOLD, 22);
+	public static Font fontJLabelBold4 = new Font("Impact", Font.BOLD, 80);
+	
+	public static Font fontJLabelPlain1 = new Font("Segoe UI", Font.PLAIN, 16);
+	public static Font fontJLabelPlain2 = new Font("Segoe UI", Font.PLAIN, 22);
+	public static Font fontJLabelPlain3 = new Font("Segoe UI", Font.PLAIN, 25);
+	
+	
+	// fontes para JTextFields
+	public static Font fontJTFieldBold1 = new Font("Segoe UI", Font.BOLD, 22);
+	public static Font fontJTFieldBold2 = new Font("Segoe UI", Font.BOLD, 30);
+	public static Font fontJTFieldBold3 = new Font("Segoe UI", Font.BOLD, 50);
+	
+	public static Font fontJTFieldPlain1 = new Font("Segoe UI", Font.PLAIN, 14);
+	public static Font fontJTFieldPlain2 = new Font("Segoe UI", Font.PLAIN, 16);
+	public static Font fontJTFieldPlain3 = new Font("Segoe UI", Font.PLAIN, 20);
+	
+	
+	// fontes para JTables
+	public static Font fontJTableBold1 = new Font("Segoe UI", Font.BOLD, 12);
+	public static Font fontJTableBold2 = new Font("Segoe UI", Font.BOLD, 16);
+	
+	public static Font fontJTablePlain1 = new Font("Segoe UI", Font.PLAIN, 12);
+	public static Font fontJTablePlain2 = new Font("Segoe UI", Font.PLAIN, 14);
+	
+	
+	// fontes para bordas
+	public static Font fontBorda1 = new Font("Segoe UI", Font.BOLD, 16);
+	public static Font fontBorda2 = new Font("Segoe UI", Font.BOLD, 20);
+	public static Font fontBorda3 = new Font("Segoe UI", Font.BOLD, 25);
+	
+	
 	
 }

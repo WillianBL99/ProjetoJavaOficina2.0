@@ -50,7 +50,7 @@ public class JPanelHome extends JPanel{
 	public JLabel getjLabelHoras() {
 		if(jLabelHoras == null) {
 			jLabelHoras = new JLabel();
-			jLabelHoras.setFont(Fontes.fontHorasHome);
+			jLabelHoras.setFont(Fontes.fontJLabelBold4);
 			jLabelHoras.setText("20:40");
 			jLabelHoras.setForeground(Cores.azul1);
 			jLabelHoras.setHorizontalAlignment(SwingConstants.LEFT);

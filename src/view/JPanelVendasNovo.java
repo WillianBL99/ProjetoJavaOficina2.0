@@ -111,7 +111,7 @@ public class JPanelVendasNovo extends JPanel {
 							"Produto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleJPanel,
+							Fontes.fontBorda2,
 							Cores.azul1)
 					);
 			jPanelProduto.setVisible(true);
@@ -131,7 +131,7 @@ public class JPanelVendasNovo extends JPanel {
 							"Iserir Produto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleJPanel,
+							Fontes.fontBorda2,
 							Cores.azul1)
 					);
 			jPanelInserirProduto.setVisible(true);
@@ -151,7 +151,7 @@ public class JPanelVendasNovo extends JPanel {
 							"Produtos da compra",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleJPanel,
+							Fontes.fontBorda2,
 							Cores.azul1)
 					);
 
@@ -170,7 +170,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JLabel getjLabelQuantidade() { // OK
 		if(jLabelQuantidade == null) {
 			jLabelQuantidade = new JLabel();
-			jLabelQuantidade.setFont(Fontes.fontTitleTField);
+			jLabelQuantidade.setFont(Fontes.fontJLabelBold1);
 			jLabelQuantidade.setForeground(Cores.preto);
 			jLabelQuantidade.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelQuantidade.setText("Quantidade");
@@ -184,7 +184,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JLabel getjLabelProdutoDescricao() { // OK
 		if(jLabelProdutoDescricao == null) {
 			jLabelProdutoDescricao = new JLabel();
-			jLabelProdutoDescricao.setFont(Fontes.fontJButtonVendas);
+			jLabelProdutoDescricao.setFont(Fontes.fontJLabelBold3);
 			jLabelProdutoDescricao.setForeground(Cores.preto);
 			jLabelProdutoDescricao.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelProdutoDescricao.setText("Algum produto");
@@ -198,7 +198,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JLabel getjLabelX() { // OK
 		if(jLabelX == null) {
 			jLabelX = new JLabel();
-			jLabelX.setFont(Fontes.fontJButtonVendas);
+			jLabelX.setFont(Fontes.fontJLabelBold3);
 			jLabelX.setForeground(Cores.azul1);
 			jLabelX.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelX.setText("X");
@@ -217,7 +217,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JButton getjButtonProsseguir() { // OK
 		if(jButtonProsseguir == null) {
 			jButtonProsseguir = new JButton();			
-			jButtonProsseguir.setFont(Fontes.fontJButtonVenda);
+			jButtonProsseguir.setFont(Fontes.fontJButtonBold3);
 			jButtonProsseguir.setBackground(Cores.azul1);
 			jButtonProsseguir.setForeground(Color.white);
 			jButtonProsseguir.setText("Prosseguir compra");
@@ -234,7 +234,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JButton getjButtonCancelar() { // OK 
 		if(jButtonCancelar == null) {
 			jButtonCancelar = new JButton();			
-			jButtonCancelar.setFont(Fontes.fontJButtonVenda);
+			jButtonCancelar.setFont(Fontes.fontJButtonPlain3);
 			jButtonCancelar.setBackground(Cores.azul1);
 			jButtonCancelar.setForeground(Color.white);
 			jButtonCancelar.setText("Cancelar");
@@ -251,7 +251,7 @@ public class JPanelVendasNovo extends JPanel {
 	public JButton getjButtonInserir() { // OK 
 		if(jButtonInserir == null) {
 			jButtonInserir = new JButton();			
-			jButtonInserir.setFont(Fontes.fontJButtonVenda);
+			jButtonInserir.setFont(Fontes.fontJButtonPlain3);
 			jButtonInserir.setBackground(Cores.azul1);
 			jButtonInserir.setForeground(Color.white);
 			jButtonInserir.setText("Inserir");
@@ -279,11 +279,11 @@ public class JPanelVendasNovo extends JPanel {
 							"Quantidade",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleTField,
+							Fontes.fontBorda1,
 							Cores.azul1)
 					);
 			jTFieldProdutoQuantidade.setForeground(Cores.azul1);
-			jTFieldProdutoQuantidade.setFont(Fontes.fontVendas3);
+			jTFieldProdutoQuantidade.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoQuantidade.setSize(202, 83);
 			jTFieldProdutoQuantidade.setOpaque(false);
 			
@@ -300,11 +300,11 @@ public class JPanelVendasNovo extends JPanel {
 							"Valor unitário",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleTField,
+							Fontes.fontBorda1,
 							Cores.azul1)
 					);
 			jTFieldProdutoVal.setForeground(Cores.azul1);
-			jTFieldProdutoVal.setFont(Fontes.fontVendas3);
+			jTFieldProdutoVal.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoVal.setSize(202, 83);
 			jTFieldProdutoVal.setOpaque(false);
 			
@@ -321,11 +321,11 @@ public class JPanelVendasNovo extends JPanel {
 							"Valor total",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontTitleTField,
+							Fontes.fontBorda1,
 							Cores.azul1)
 					);
 			jTFieldProdutoValTot.setForeground(Cores.azul1);
-			jTFieldProdutoValTot.setFont(Fontes.fontVendas3);
+			jTFieldProdutoValTot.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoValTot.setSize(202, 83);
 			jTFieldProdutoValTot.setOpaque(false);
 			
@@ -339,7 +339,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldInserirProdutoDesc.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 3, false));
 			jTFieldInserirProdutoDesc.setForeground(Cores.azul1);
-			jTFieldInserirProdutoDesc.setFont(Fontes.fontVendas2);
+			jTFieldInserirProdutoDesc.setFont(Fontes.fontJTFieldPlain3);
 			jTFieldInserirProdutoDesc.setSize(377, 30);
 			jTFieldInserirProdutoDesc.setOpaque(true);
 			
@@ -353,7 +353,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldInserirProdutoQuant.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 3, false));
 			jTFieldInserirProdutoQuant.setForeground(Cores.azul1);
-			jTFieldInserirProdutoQuant.setFont(Fontes.fontVendas2);
+			jTFieldInserirProdutoQuant.setFont(Fontes.fontJTFieldPlain3);
 			jTFieldInserirProdutoQuant.setSize(140, 30);
 			jTFieldInserirProdutoQuant.setOpaque(false);
 			
@@ -371,11 +371,11 @@ public class JPanelVendasNovo extends JPanel {
 							"Total",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontJButtonVenda,
+							Fontes.fontBorda3,
 							Cores.preto)
 					);
 			JTFieldTotal.setForeground(Cores.azul1);
-			JTFieldTotal.setFont(Fontes.fontVendas4);
+			JTFieldTotal.setFont(Fontes.fontJTFieldBold3);
 			JTFieldTotal.setSize(428, 77);
 			jTFieldProdutoValTot.setOpaque(false);
 			
@@ -396,7 +396,7 @@ public class JPanelVendasNovo extends JPanel {
 		if(jComboBoxDesc == null) {
 			jComboBoxDesc = new JComboBox<String>();
 			jComboBoxDesc.setForeground(Cores.preto);
-			jComboBoxDesc.setFont(Fontes.fontTitleTField);
+			jComboBoxDesc.setFont(Fontes.fontJLabelBold1);
 			jComboBoxDesc.setSize(170, 23);
 			jComboBoxDesc.setOpaque(false);
 			jComboBoxDesc.setFocusable(false);
@@ -446,9 +446,9 @@ public class JPanelVendasNovo extends JPanel {
 		            }
 		        ));			
 
-			jTableInserirProduto.setFont(Fontes.fontJTable);
+			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
 			jTableInserirProduto.setOpaque(false);
-			jTableInserirProduto.getTableHeader().setFont(Fontes.fontJTableCabelcalho);
+			jTableInserirProduto.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableInserirProduto.getTableHeader().setForeground(Cores.branco);
 			jTableInserirProduto.getTableHeader().setBackground(Cores.azul1);
 		 }
@@ -473,9 +473,9 @@ public class JPanelVendasNovo extends JPanel {
 		            }
 		        ));
 			
-			jTableProdutosCompra.setFont(Fontes.fontJTable);
+			jTableProdutosCompra.setFont(Fontes.fontJTablePlain1);
 			jTableProdutosCompra.setOpaque(false);
-			jTableProdutosCompra.getTableHeader().setFont(Fontes.fontJTableCabelcalho);
+			jTableProdutosCompra.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableProdutosCompra.getTableHeader().setForeground(Cores.branco);
 			jTableProdutosCompra.getTableHeader().setBackground(Cores.azul1);
 		 }

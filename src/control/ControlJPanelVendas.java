@@ -27,7 +27,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 
 
 	private void AddEvent() {
-		getjPanelVendas().getjButtonCancelar().addMouseListener(this);
+		//getjPanelVendas().getjButtonCancelar().addMouseListener(this);
 		
 	}
 

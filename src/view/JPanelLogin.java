@@ -272,34 +272,34 @@ public class JPanelLogin extends JPanel{
 	
 	public void addCompJPanelCentralLogin() {
 		
-		this.jPanelCentralLogin.add(this.getjLabelIconTitulo());
+		this.getjPanelCentralLogin().add(this.getjLabelIconTitulo());
 		this.getjLabelIconTitulo().setLocation(12, 12);
 		
-		this.jPanelCentralLogin.add(this.getjLabelTitulo());
+		this.getjPanelCentralLogin().add(this.getjLabelTitulo());
 		this.getjLabelTitulo().setLocation(132, 39);
 		
-		this.jPanelCentralLogin.add(this.getjLabelTitulo1());
+		this.getjPanelCentralLogin().add(this.getjLabelTitulo1());
 		this.getjLabelTitulo1().setLocation(173, 69);
 		
-		this.jPanelCentralLogin.add(this.getjLabelUsuario());
+		this.getjPanelCentralLogin().add(this.getjLabelUsuario());
 		this.getjLabelUsuario().setLocation(19, 158);
 		
-		this.jPanelCentralLogin.add(this.getjTFieldUsuario());
+		this.getjPanelCentralLogin().add(this.getjTFieldUsuario());
 		this.getjTFieldUsuario().setLocation(19, 197);	
 		
-		this.jPanelCentralLogin.add(this.getjLabelSenha());
+		this.getjPanelCentralLogin().add(this.getjLabelSenha());
 		this.getjLabelSenha().setLocation(19, 260);
 		
-		this.jPanelCentralLogin.add(this.getjPFieldSenha());
+		this.getjPanelCentralLogin().add(this.getjPFieldSenha());
 		this.getjPFieldSenha().setLocation(19, 299);	
 		
-		this.jPanelCentralLogin.add(this.getjCBoxLembrarSenha());
+		this.getjPanelCentralLogin().add(this.getjCBoxLembrarSenha());
 		this.getjCBoxLembrarSenha().setLocation(19, 362);
 				
-		this.jPanelCentralLogin.add(this.getjLabelErro());
+		this.getjPanelCentralLogin().add(this.getjLabelErro());
 		this.getjLabelErro().setLocation(19, 401);
 		
-		this.jPanelCentralLogin.add(this.getjButtonEntrar());
+		this.getjPanelCentralLogin().add(this.getjButtonEntrar());
 		this.getjButtonEntrar().setLocation(18, 440);
 	}
 	//** Fim métodos adição de componentes **

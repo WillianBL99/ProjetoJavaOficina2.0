@@ -22,7 +22,7 @@ public class JPanelVendas extends JPanel{
 	
 	//** Início declaração de variáveis **
 	
-	private SetSizeIcon setSizeIcon;
+	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
 	private JButton jButtonNovaVenda;
 	private JButton jButtonImprimir;
@@ -137,9 +137,9 @@ public class JPanelVendas extends JPanel{
 			jButtonNovaVenda.setFont(Fontes.fontJButtonPlain3);
 			jButtonNovaVenda.setBackground(Cores.azul1);
 			jButtonNovaVenda.setForeground(Color.white);
-			jButtonNovaVenda.setIcon(new ImageIcon(getClass().getResource(Icones.getAddCompra())));
-			//setSizeIcon.setIconJButton(jButtonNovaVenda, Icones.
-			//		getAddCompra(), 20, 20);
+			jButtonNovaVenda.setHorizontalTextPosition(SwingConstants.LEFT);
+			setSizeIcon.setIconJButton(jButtonNovaVenda, Icones.
+					getAddCompra(), 20, 20);
 			jButtonNovaVenda.setText("Nova");
 			jButtonNovaVenda.setSize(95, 35);
 			jButtonNovaVenda.setFocusable(false);
@@ -156,8 +156,8 @@ public class JPanelVendas extends JPanel{
 			jButtonImprimir.setFont(Fontes.fontJButtonPlain3);
 			jButtonImprimir.setBackground(Cores.azul1);
 			jButtonImprimir.setForeground(Color.white);
-			/*setSizeIcon.setIconJButton(jButtonImprimir, Icones.
-					getImprimir(), 30, 30);*/
+			setSizeIcon.setIconJButton(jButtonImprimir, Icones.
+					getImprimir(), 30, 30);
 			jButtonImprimir.setSize(56, 35);
 			jButtonImprimir.setFocusable(false);
 			jButtonImprimir.setBorder(BorderFactory.
@@ -173,8 +173,8 @@ public class JPanelVendas extends JPanel{
 			jButtonApagar.setFont(Fontes.fontJButtonPlain3);
 			jButtonApagar.setBackground(Cores.azul1);
 			jButtonApagar.setForeground(Color.white);
-			/*setSizeIcon.setIconJButton(jButtonApagar, Icones.
-					getApagar(), 30, 30);*/
+			setSizeIcon.setIconJButton(jButtonApagar, Icones.
+					getApagar(), 30, 30);
 			jButtonApagar.setSize(56, 35);
 			jButtonApagar.setFocusable(false);
 			jButtonApagar.setBorder(BorderFactory.
@@ -190,8 +190,9 @@ public class JPanelVendas extends JPanel{
 			jButtonFiltrar.setFont(Fontes.fontJButtonPlain1);
 			jButtonFiltrar.setBackground(Cores.azul1);
 			jButtonFiltrar.setForeground(Color.white);
-			/*setSizeIcon.setIconJButton(jButtonFiltrar, Icones.
-					getFiltrar(), 14, 14);*/
+			jButtonFiltrar.setHorizontalTextPosition(SwingConstants.LEFT);
+			setSizeIcon.setIconJButton(jButtonFiltrar, Icones.
+					getFiltrar(), 14, 14);
 			jButtonFiltrar.setText("Filtrar");
 			jButtonFiltrar.setSize(61, 22);
 			jButtonFiltrar.setFocusable(false);
@@ -209,8 +210,9 @@ public class JPanelVendas extends JPanel{
 			jButtonPesquisarTodos.setFont(Fontes.fontJButtonPlain1);
 			jButtonPesquisarTodos.setBackground(Cores.azul1);
 			jButtonPesquisarTodos.setForeground(Color.white);
-			/*setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getBuscarCompra(), 18, 18);*/
+			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
+			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
+					getBuscarCompra(), 18, 18);
 			jButtonPesquisarTodos.setText("pesquisar todos");
 			jButtonPesquisarTodos.setSize(118, 22);
 			jButtonPesquisarTodos.setFocusable(false);
@@ -232,7 +234,7 @@ public class JPanelVendas extends JPanel{
 		if(jTFieldDTInicial == null){
 			jTFieldDTInicial = new JTextField();
 			jTFieldDTInicial.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 3, false));
+					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
 			jTFieldDTInicial.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldDTInicial.setSize(85, 21);
@@ -246,7 +248,7 @@ public class JPanelVendas extends JPanel{
 		if(jTFieldDTFinal == null){
 			jTFieldDTFinal = new JTextField();
 			jTFieldDTFinal.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 3, false));
+					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);
 			jTFieldDTFinal.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldDTFinal.setSize(85, 21);
@@ -260,7 +262,7 @@ public class JPanelVendas extends JPanel{
 		if(jTFieldCliente == null){
 			jTFieldCliente = new JTextField();
 			jTFieldCliente.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 3, false));
+					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldCliente.setForeground(Cores.preto);
 			jTFieldCliente.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCliente.setSize(195, 21);

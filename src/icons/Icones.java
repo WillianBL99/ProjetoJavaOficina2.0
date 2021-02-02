@@ -143,6 +143,8 @@ public class Icones {
 		}
 		return configuracao;
 	}
+
+
 	
 	
 	

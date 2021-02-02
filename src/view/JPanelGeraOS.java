@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -111,11 +113,15 @@ import java.awt.event.ActionEvent;
 		public JButton getjButtonCancelar() {
 			if(jButtonCancelar == null){
 				
-				jButtonCancelar = new JButton();
-				jButtonCancelar.setSize(new Dimension(100, 35));
-				jButtonCancelar.setBackground(Cores.azul1);
-				jButtonCancelar.setText("Cancelar");
+				jButtonCancelar = new JButton();			
 				jButtonCancelar.setFont(Fontes.fontJButtonPlain3);
+				jButtonCancelar.setBackground(Cores.azul1);
+				jButtonCancelar.setForeground(Color.white);
+				jButtonCancelar.setText("Cancelar");
+				jButtonCancelar.setSize(110, 35);
+				jButtonCancelar.setFocusable(false);
+				jButtonCancelar.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1));
 			}	
 			return jButtonCancelar;
 	

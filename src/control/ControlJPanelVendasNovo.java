@@ -1,6 +1,3 @@
-/**
- * 
- */
 package control;
 
 import java.awt.event.KeyEvent;
@@ -11,49 +8,25 @@ import java.awt.event.MouseListener;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
-import view.JPanelVendasNovo;
 
-/**
- * @author pWili
- *
- */
-public class ControlJPanelVendas implements MouseListener, KeyListener {
+public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	
 
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePricipal;
 	private JPanelVendas jPanelVendas;
 	private JPanelPrincipal jPanelPrincipal;
-	private JPanelVendasNovo jPanelVendasNovo;
-	private ControlJPanelVendasNovo controlJPanelVendasNovo;
 	
 	//** Fim declaração de variáveis **	
 	
-	
-	/**
-	 * @param jFramePricipal
-	 * @param jPanelVendas
-	 * @param jPanelPrincipal
-	 */
-	public ControlJPanelVendas(JFramePrincipal jFramePricipal, JPanelVendas jPanelVendas,
-			JPanelPrincipal jPanelPrincipal) {
-		super();
-		this.jFramePricipal = jFramePricipal;
-		this.jPanelVendas = jPanelVendas;
-		this.jPanelPrincipal = jPanelPrincipal;
-		this.jPanelVendasNovo = jPanelVendasNovo;
-		this.AddEvent();
+	public ControlJPanelVendasNovo() {
+		
 	}
-	
 
 
 
 	private void AddEvent() {
-		getjPanelVendas().getjButtonNovaVenda().addMouseListener(this);
-		getjPanelVendas().getjButtonApagar().addMouseListener(this);
-		getjPanelVendas().getjButtonImprimir().addMouseListener(this);
-		getjPanelVendas().getjButtonFiltrar().addMouseListener(this);
-		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
+		//getjPanelVendas().getjButtonCancelar().addMouseListener(this);
 		
 	}
 
@@ -62,8 +35,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		
 	//** Início métodos sobrescritos **
 	
-	
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -84,11 +55,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
-			System.out.println("clicou em nova venda");
-			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
-		}
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -146,22 +113,5 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 	}		
 		
 		
-	public JPanelVendasNovo getjPanelVendasNovo() {
-		if(jPanelVendasNovo == null){
-			jPanelVendasNovo = new JPanelVendasNovo();
-	
-		}
-		return jPanelVendasNovo;
-	}
-
-
-
-	public ControlJPanelVendasNovo getControlJPanelVendasNovo() {
-		if(controlJPanelVendasNovo == null){
-			controlJPanelVendasNovo = new ControlJPanelVendasNovo();
-	
-		}
-		return controlJPanelVendasNovo;
-	}
 	//** Fim métodos da classe **
 }

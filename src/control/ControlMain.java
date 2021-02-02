@@ -10,7 +10,6 @@ public class ControlMain {
 	
 	private static JPanelLogin jPanelLogin;
 	private static ControlJPanelLogin controlJPanelLogin;
-	// private static JPanelPrincipal jPanelPrincipal; // apagar depois
 	private static JFramePrincipal jFramePrincipal;
 	
 	
@@ -27,7 +26,7 @@ public class ControlMain {
 	           
 	     }
 	      
-		 getjFramePrincipal().alterarJPanel(new JPanelVendas());
+		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
 		 getcontrolJPanelLogin();
 	}
 	
@@ -47,13 +46,6 @@ public class ControlMain {
 		return controlJPanelLogin;
 	}
 
-	/*public static JPanelPrincipal getjPanelPrincipal() { // apagar depois
-		if(jPanelPrincipal == null) {
-			jPanelPrincipal = new JPanelPrincipal();
-		}
-		return jPanelPrincipal;
-	}*/
-	
 
 	public static JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null) {

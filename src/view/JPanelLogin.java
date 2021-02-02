@@ -260,10 +260,10 @@ public class JPanelLogin extends JPanel{
 	
 	public void addCompJPanelLogin() {
 		
-		this.add(this.getjPanelCentralLogin());
+		this.getJPanelLogin().add(this.getjPanelCentralLogin());
 		this.getjPanelCentralLogin().setLocation(487, 108);
 		
-		this.add(this.getjLabelImagemFundoLogin());
+		this.getJPanelLogin().add(this.getjLabelImagemFundoLogin());
 		this.getjLabelImagemFundoLogin().setLocation(0,0);
 		
 	

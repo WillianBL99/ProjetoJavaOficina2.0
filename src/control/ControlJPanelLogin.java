@@ -157,6 +157,7 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 				getjFramePricipal().alterarJPanel(getjPanelPrincipal());
 				getcControlJPanelPrincipal();
 				getjPanelLogin().getjLabelErro().setVisible(false);
+				jPanelLogin = null; // setando jpanelLogin como nulo para ele ser encerrado
 				
 			} else { // apresenta mensagem de erro
 				getjPanelLogin().getjLabelErro().setVisible(true);

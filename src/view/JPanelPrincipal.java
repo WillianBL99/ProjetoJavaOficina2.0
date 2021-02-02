@@ -116,7 +116,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonInicio.setText(" Início");
 			jButtonInicio.setForeground(Cores.branco);
 			setSizeIcon.setIconJButton(jButtonInicio, Icones.
-					getHome(this), xIconJButton, yIconJButton);
+					getHome(), xIconJButton, yIconJButton);
 			jButtonInicio.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonInicio.setBorder(null);
 			jButtonInicio.setFocusPainted(false);
@@ -135,7 +135,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonOS.setText(" O.S.");
 			jButtonOS.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonOS, Icones.
-					getOS(this), xIconJButton, yIconJButton);
+					getOS(), xIconJButton, yIconJButton);
 			jButtonOS.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonOS.setBorder(null);
 			jButtonOS.setFocusPainted(false);
@@ -190,7 +190,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonVendas.setText(" Vendas");
 			jButtonVendas.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonVendas, Icones.
-					getVendas(this), xIconJButton, yIconJButton);
+					getVendas(), xIconJButton, yIconJButton);
 			jButtonVendas.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVendas.setBorder(null);
 			jButtonVendas.setFocusPainted(false);
@@ -209,7 +209,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonOrcamento.setText(" Orçamento");
 			jButtonOrcamento.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonOrcamento, Icones.
-					getOrcamento(this), xIconJButton, yIconJButton);
+					getOrcamento(), xIconJButton, yIconJButton);
 			jButtonOrcamento.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonOrcamento.setBorder(null);
 			jButtonOrcamento.setFocusPainted(false);
@@ -264,7 +264,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonVeiculos.setText(" Veículos");
 			jButtonVeiculos.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonVeiculos, Icones.
-					getVeiculos(this), xIconJButton, yIconJButton);
+					getVeiculos(), xIconJButton, yIconJButton);
 			jButtonVeiculos.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVeiculos.setBorder(null);
 			jButtonVeiculos.setFocusPainted(true);
@@ -283,7 +283,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonClientes.setText(" Clientes");
 			jButtonClientes.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonClientes, Icones.
-					getClientes(this), xIconJButton, yIconJButton);
+					getClientes(), xIconJButton, yIconJButton);
 			jButtonClientes.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonClientes.setBorder(null);
 			jButtonClientes.setFocusPainted(false);
@@ -302,7 +302,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonUsuarios.setText(" Usuários");
 			jButtonUsuarios.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonUsuarios, Icones.
-					getUsuarios(this), xIconJButton, yIconJButton);
+					getUsuarios(), xIconJButton, yIconJButton);
 			jButtonUsuarios.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonUsuarios.setBorder(null);
 			jButtonUsuarios.setFocusPainted(false);
@@ -321,7 +321,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonEstoque.setText(" Estoque");
 			jButtonEstoque.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonEstoque, Icones.
-					getEstoque(this), xIconJButton, yIconJButton);
+					getEstoque(), xIconJButton, yIconJButton);
 			jButtonEstoque.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonEstoque.setBorder(null);
 			jButtonEstoque.setFocusPainted(false);
@@ -340,7 +340,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonConfiguracao.setText(" Configurações");
 			jButtonConfiguracao.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonConfiguracao, Icones.
-					getConfiguracao(this), xIconJButton, yIconJButton);
+					getConfiguracao(), xIconJButton, yIconJButton);
 			jButtonConfiguracao.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonConfiguracao.setBorder(null);
 			jButtonConfiguracao.setFocusPainted(false);
@@ -365,7 +365,7 @@ public class JPanelPrincipal extends JPanel{
 			jLabelUser.setText(" Uilian");
 			jLabelUser.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJLabel(jLabelUser, Icones.
-					getUser(this), 52, 52);
+					getUser(), 52, 52);
 			jLabelUser.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelUser.setBorder(null);
 			jLabelUser.setSize(167,52);
@@ -379,7 +379,7 @@ public class JPanelPrincipal extends JPanel{
 		if(jLabelDescricaoTela == null) {
 			jLabelDescricaoTela = new JLabel();
 			jLabelDescricaoTela.setBackground(Cores.branco);
-			jLabelDescricaoTela.setFont(Fontes.fontJLabelBarraMenu);
+			jLabelDescricaoTela.setFont(Fontes.fontJLabelPlain2);
 			jLabelDescricaoTela.setText("Início");
 			jLabelDescricaoTela.setForeground(Cores.branco);
 			jLabelDescricaoTela.setHorizontalAlignment(SwingConstants.LEFT);

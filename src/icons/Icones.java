@@ -17,15 +17,63 @@ public class Icones {
 	private static String estoque;
 	private static String configuracao;
 	
+	private static String addCompra;
+	private static String buscarCompra;
+	private static String filtrar;
+	private static String imprimir;
+	private static String apagar;
 	
-	public static String getUser(JPanel jPanel) {
+	
+	
+	
+	public static String getAddCompra() {
+		if(addCompra == null){
+			addCompra = ("/icons/cart-add-wht-96.png");
+	
+		}
+		return addCompra;
+	}
+
+	public static String getBuscarCompra() {
+		if(buscarCompra == null){
+			buscarCompra = ("/icons/cart-search-wht-96.png");
+	
+		}
+		return buscarCompra;
+	}
+
+	public static String getFiltrar() {
+		if(filtrar == null){
+			filtrar = ("/icons/filter-wht-100.png");
+	
+		}
+		return filtrar;
+	}
+
+	public static String getImprimir() {
+		if(imprimir == null){
+			imprimir = ("/icons/printer-wht-100.png");
+	
+		}
+		return imprimir;
+	}
+
+	public static String getApagar() {
+		if(apagar == null){
+			apagar = ("/icons/trash-can-wht-384.png");
+	
+		}
+		return apagar;
+	}
+
+	public static String getUser() {
 		if(user == null) {					
 			user = ("/icons/user.png");
 		}
 		return user;		
 	}
     
-	public static String getHome(JPanel jPanel) {
+	public static String getHome() {
 		if(home == null) {					
 			home = ("/icons/home-wht-348.png");
 		}
@@ -33,7 +81,7 @@ public class Icones {
 	}
 	
 	
-	public static String getOS(JPanel jPanel) {
+	public static String getOS() {
 		if(OS == null) {					
 			OS = ("/icons/order-96.png");
 		}
@@ -41,7 +89,7 @@ public class Icones {
 	}
 
 	
-	public static String getVendas(JPanel jPanel) {
+	public static String getVendas() {
 		if(vendas == null) {					
 			vendas = ("/icons/buy-96.png");
 		}
@@ -49,7 +97,7 @@ public class Icones {
 	}
 
 	
-	public static String getOrcamento(JPanel jPanel) {
+	public static String getOrcamento() {
 		if(orcamento == null) {					
 			orcamento = ("/icons/order-sell-96.png");
 		}
@@ -57,7 +105,7 @@ public class Icones {
 	}
 
 	
-	public static String getVeiculos(JPanel jPanel) {
+	public static String getVeiculos() {
 		if(veiculos == null) {					
 			veiculos = ("/icons/car-90.png");
 		}
@@ -65,7 +113,7 @@ public class Icones {
 	}
 
 	
-	public static String getClientes(JPanel jPanel) {
+	public static String getClientes() {
 		if(clientes == null) {					
 			clientes = ("/icons/users-90.png");
 		}
@@ -73,7 +121,7 @@ public class Icones {
 	}
 
 	
-	public static String getUsuarios(JPanel jPanel) {
+	public static String getUsuarios() {
 		if(usuarios == null) {					
 			usuarios = ("/icons/user-480.png");
 		}
@@ -81,7 +129,7 @@ public class Icones {
 	}
 
 	
-	public static String getEstoque(JPanel jPanel) {
+	public static String getEstoque() {
 		if(estoque == null) {					
 			estoque = ("/icons/cabinet-90.png");
 		}
@@ -89,7 +137,7 @@ public class Icones {
 	}
 
 	
-	public static String getConfiguracao(JPanel jPanel) {
+	public static String getConfiguracao() {
 		if(configuracao == null) {					
 			configuracao = ("/icons/settings-144.png");
 		}

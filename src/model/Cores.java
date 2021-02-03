@@ -14,7 +14,7 @@ public class Cores {
 	public static Color cinza1 = new Color(50,50,50);
 	public static Color cinza2 = new Color(102,102,102);
 	public static Color cinza3 = new Color(160,160,160);
-	public static Color cinza4 = new Color(240,240,240);
+	public static Color cinza4 = new Color(200,200,200);
 	public static Color foregroundJButton = new Color(0,0,0);
 	
 

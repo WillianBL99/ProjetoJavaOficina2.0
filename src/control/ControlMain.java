@@ -26,7 +26,7 @@ public class ControlMain {
 	     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
 	           
 	     }
-	      
+	     
 		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
 		 getcontrolJPanelLogin();
 		

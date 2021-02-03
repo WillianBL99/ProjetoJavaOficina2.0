@@ -22,10 +22,19 @@ public class Icones {
 	private static String filtrar;
 	private static String imprimir;
 	private static String apagar;
+	private static String salvar;
 	
 	
 	
 	
+	public static String getSalvar() {
+		if(salvar == null){
+			salvar = ("/icons/save.png");
+	
+		}
+		return salvar;
+	}
+
 	public static String getAddCompra() {
 		if(addCompra == null){
 			addCompra = ("/icons/cart-add-wht-96.png");

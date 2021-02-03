@@ -26,6 +26,10 @@ import java.awt.event.ActionEvent;
 		}
 	
 	//** Início declaração de variáveis **
+		private SetSizeIcon setSizeIcon = new SetSizeIcon();
+		
+		private JPanel jPanelCentro;
+		
 		private JButton jButtonCancelar;
 		private JButton jButtonSalvar;
 		private JButton jButtonImprimir;
@@ -104,12 +108,26 @@ import java.awt.event.ActionEvent;
 			
 			return this;
 		}
+		
+		public JPanel getjPanelCentro() {
+			if(jPanelCentro == null){
+		
+				jPanelCentro = new JPanel();
+				jPanelCentro.setLayout(null);
+				jPanelCentro.setSize(new Dimension(1002, 568));
+				jPanelCentro.setVisible(true);
+				jPanelCentro.setBackground(Cores.branco);
+		
+			}
+			return jPanelCentro;
+		}
+		
 	//** Fim getters JPanel **
 	
 	
 	//** Início getters JButon **
 
-	
+
 		public JButton getjButtonCancelar() {
 			if(jButtonCancelar == null){
 				
@@ -131,8 +149,17 @@ import java.awt.event.ActionEvent;
 			if(jButtonSalvar == null){
 				
 				jButtonSalvar = new JButton();
+				jButtonSalvar.setFont(Fontes.fontJButtonPlain3);
+				jButtonSalvar.setBackground(Cores.azul1);
+				jButtonSalvar.setForeground(Color.white);
+				setSizeIcon.setIconJButton(jButtonSalvar, Icones.
+						getSalvar(), 30, 30);
+				jButtonSalvar.setSize(56,35);
+				jButtonSalvar.setFocusable(false);
+				jButtonSalvar.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1));
 		
-				}	
+			}	
 			return jButtonSalvar;
 		
 		}
@@ -140,9 +167,17 @@ import java.awt.event.ActionEvent;
 		public JButton getjButtonImprimir() {
 			if(jButtonImprimir == null){
 				
-				jButtonImprimir = new JButton();
-		
-				}	
+				jButtonImprimir = new JButton();			
+				jButtonImprimir.setFont(Fontes.fontJButtonPlain3);
+				jButtonImprimir.setBackground(Cores.azul1);
+				jButtonImprimir.setForeground(Color.white);
+				setSizeIcon.setIconJButton(jButtonImprimir, Icones.
+						getImprimir(), 30, 30);
+				jButtonImprimir.setSize(56, 35);
+				jButtonImprimir.setFocusable(false);
+				jButtonImprimir.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1));
+			}	
 			return jButtonImprimir;
 		
 		}
@@ -591,8 +626,17 @@ import java.awt.event.ActionEvent;
 	
 	//** Início métodos adição de componentes **
 		void addCompJPanelGeraOS() {
-			this.add(getjButtonCancelar());
-			this.getjButtonCancelar().setLocation(264, 67);
+			this.getJPanelGeraOS().add(getjButtonCancelar());
+			this.getjButtonCancelar().setLocation(14, 21);
+			
+			this.getJPanelGeraOS().add(getjButtonSalvar());
+			this.getjButtonSalvar().setLocation(133, 21);
+			
+			this.getJPanelGeraOS().add(getjButtonImprimir());
+			this.getjButtonImprimir().setLocation(199, 21);
+			
+			this.getJPanelGeraOS().add(getjPanelCentro());
+			this.getjPanelCentro().setLocation(14, 78);
 			
 		}
 	//** Fim métodos adição de componentes **

@@ -21,6 +21,7 @@ public class Fontes {
 	public static Font fontJButtonBold2 = new Font("Segoe UI", Font.BOLD, 22);
 	public static Font fontJButtonBold3 = new Font("Segoe UI", Font.BOLD, 25);
 
+	public static Font fontJButtonPlain0 = new Font("Segoe UI", Font.PLAIN, 10);
 	public static Font fontJButtonPlain1 = new Font("Segoe UI", Font.PLAIN, 12);
 	public static Font fontJButtonPlain2= new Font("Segoe UI", Font.PLAIN, 16);
 	public static Font fontJButtonPlain3 = new Font("Segoe UI", Font.PLAIN, 20);

@@ -6,6 +6,7 @@ import java.awt.Point;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,12 +18,15 @@ import model.Fontes;
 import model.SetSizeIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 	public class JPanelGeraOS extends JPanel {
 		
 		public JPanelGeraOS() {
 			getJPanelGeraOS();
 			addCompJPanelGeraOS();
+			getjPanelCentro();
+			addCompJpanelCentro();
 		}
 	
 	//** Início declaração de variáveis **
@@ -36,6 +40,8 @@ import java.awt.event.ActionEvent;
 		private JButton jButtonProcuraCliente;
 		private JButton jButtonSelecionarVeiculo;
 		
+		private JRadioButton jRadioButtonCpf;
+		private JRadioButton jRadioButtonCnpj;
 		
 		private JLabel jLabelCpf;
 		private JLabel jLabelEmail;
@@ -186,7 +192,15 @@ import java.awt.event.ActionEvent;
 			if(jButtonProcuraCliente == null){
 				
 				jButtonProcuraCliente = new JButton();
-		
+				jButtonProcuraCliente.setFont(Fontes.fontJButtonPlain3);			
+				jButtonProcuraCliente.setBackground(Cores.azul1);
+				jButtonProcuraCliente.setForeground(Color.white);
+				jButtonProcuraCliente.setText("Procura Cliente");
+				jButtonProcuraCliente.setSize(150,25);
+				jButtonProcuraCliente.setFocusable(false);
+				jButtonProcuraCliente.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1));
+				
 				}	
 			return jButtonProcuraCliente;
 		
@@ -201,17 +215,47 @@ import java.awt.event.ActionEvent;
 			return jButtonSelecionarVeiculo;
 		
 		}
+		
+		public JRadioButton getjRadioButtonCpf() {
+			if(jRadioButtonCpf == null){
+		
+				jRadioButtonCpf = new JRadioButton("CPF");
+				jRadioButtonCpf.setSize(45, 15);
+				jRadioButtonCpf.setBackground(Cores.branco);
+				jRadioButtonCpf.setForeground(Color.black);
+				jRadioButtonCpf.setFont(Fontes.fontJButtonPlain0);
+			}
+			return jRadioButtonCpf;
+		}
 
+		public JRadioButton getjRadioButtonCnpj() {
+			if(jRadioButtonCnpj == null){
+		
+				jRadioButtonCnpj = new JRadioButton("CNPJ");
+				jRadioButtonCnpj.setSize(50, 15);
+				jRadioButtonCnpj.setBackground(Cores.branco);
+				jRadioButtonCnpj.setForeground(Color.black);
+				jRadioButtonCnpj.setFont(Fontes.fontJButtonPlain0);
+			}
+			return jRadioButtonCnpj;
+		}
+		
 	//** Fim getters JButon **
 	
 	
 	//** Início getters JLabel **
 	
+
+
 		public JLabel getjLabelCpf() {
 				if(jLabelCpf == null){
 			
-					jLabelCpf = new JLabel();
-			
+					jLabelCpf = new JLabel("CPF:");
+					jLabelCpf.setFont(Fontes.fontJLabelPlain1);
+					jLabelCpf.setSize(30, 20);
+					jLabelCpf.setForeground(Cores.preto);
+					jLabelCpf.setOpaque(false);
+					
 				}
 				return jLabelCpf;
 		}	
@@ -639,11 +683,19 @@ import java.awt.event.ActionEvent;
 			this.getjPanelCentro().setLocation(14, 78);
 			
 		}
-	//** Fim métodos adição de componentes **
-	
-	
-	//** Início métodos da classe **
-	//** Fim métodos da classe **
-	
-
+		
+		void addCompJpanelCentro() {
+			this.getjPanelCentro().add(getjButtonProcuraCliente());
+			this.getjButtonProcuraCliente().setLocation(22, 27);
+			
+			this.getjPanelCentro().add(getjRadioButtonCpf());
+			this.getjRadioButtonCpf().setLocation(98, 60);
+			
+			this.getjPanelCentro().add(getjRadioButtonCnpj());
+			this.getjRadioButtonCnpj().setLocation(141, 60);
+			
+			
+			this.getjPanelCentro().add(getjLabelCpf());
+			this.getjLabelCpf().setLocation(63,77);
+		}
 }

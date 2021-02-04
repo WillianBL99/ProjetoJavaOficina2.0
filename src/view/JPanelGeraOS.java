@@ -278,8 +278,11 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelNome() {
 			if(jLabelNome == null){
 		
-				jLabelNome = new JLabel();
-		
+				jLabelNome = new JLabel("Nome:");
+				jLabelNome.setFont(Fontes.fontJLabelPlain1);
+				jLabelNome.setSize(47, 21);
+				jLabelNome.setForeground(Cores.preto);
+				jLabelNome.setOpaque(false);
 			}
 			return jLabelNome;
 		}	
@@ -302,8 +305,11 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelTipo() {
 			if(jLabelTipo == null){
 		
-				jLabelTipo = new JLabel();
-		
+				jLabelTipo = new JLabel("Tipo:");
+				jLabelTipo.setFont(Fontes.fontJLabelPlain1);
+				jLabelTipo.setSize(35, 21);
+				jLabelTipo.setForeground(Cores.preto);
+				jLabelTipo.setOpaque(false);
 			}
 			return jLabelTipo;
 		}
@@ -318,8 +324,11 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelTelefone() {
 			if(jLabelTelefone == null){
 		
-				jLabelTelefone = new JLabel();
-		
+				jLabelTelefone = new JLabel("Telefone:");
+				jLabelTelefone.setFont(Fontes.fontJLabelPlain1);
+				jLabelTelefone.setSize(63, 21);
+				jLabelTelefone.setForeground(Cores.preto);
+				jLabelTelefone.setOpaque(false);
 			}
 			return jLabelTelefone;
 		}	
@@ -463,8 +472,13 @@ import javax.swing.JRadioButton;
 		public JTextField getjTFieldCpf() {
 			if(jTFieldCpf == null){
 		
-				jTFieldCpf = new JTextField();
-		
+				jTFieldCpf = new JTextField("999.999.999-99");
+				jTFieldCpf.setSize(165, 21);
+				jTFieldCpf.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldCpf.setForeground(Cores.preto);
+				jTFieldCpf.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldCpf.setOpaque(true);
 			}
 			return jTFieldCpf;
 		}
@@ -485,10 +499,16 @@ import javax.swing.JRadioButton;
 			return jTFieldRua;
 		}
 		public JTextField getjTFieldNome() {
+			
 			if(jTFieldNome == null){
 		
-				jTFieldNome = new JTextField();
-		
+				jTFieldNome = new JTextField("José da Silva");
+				jTFieldNome.setSize(219, 21);
+				jTFieldNome.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldNome.setForeground(Cores.preto);
+				jTFieldNome.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldNome.setOpaque(true);
 			}
 			return jTFieldNome;
 		}
@@ -511,8 +531,13 @@ import javax.swing.JRadioButton;
 		public JTextField getjTFieldTipo() {
 			if(jTFieldTipo == null){
 		
-				jTFieldTipo = new JTextField();
-		
+				jTFieldTipo = new JTextField("Fisica");
+				jTFieldTipo.setSize(53, 21);
+				jTFieldTipo.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldTipo.setForeground(Cores.preto);
+				jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldTipo.setOpaque(true);
 			}
 			return jTFieldTipo;
 		}
@@ -527,8 +552,13 @@ import javax.swing.JRadioButton;
 		public JTextField getjTFieldTelefone() {
 			if(jTFieldTelefone == null){
 		
-				jTFieldTelefone = new JTextField();
-		
+				jTFieldTelefone = new JTextField("(77) 9 9999-9999");
+				jTFieldTelefone.setSize(115, 21);
+				jTFieldTelefone.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldTelefone.setForeground(Cores.preto);
+				jTFieldTelefone.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldTelefone.setOpaque(true);
 			}
 			return jTFieldTelefone;
 		}
@@ -694,8 +724,29 @@ import javax.swing.JRadioButton;
 			this.getjPanelCentro().add(getjRadioButtonCnpj());
 			this.getjRadioButtonCnpj().setLocation(141, 60);
 			
-			
 			this.getjPanelCentro().add(getjLabelCpf());
 			this.getjLabelCpf().setLocation(63,77);
+			
+			this.getjPanelCentro().add(getjTFieldCpf());
+			this.getjTFieldCpf().setLocation(97, 77);
+			
+			this.getjPanelCentro().add(getjLabelNome());
+			this.getjLabelNome().setLocation(303, 77);
+			
+			this.getjPanelCentro().add(getjTFieldNome());
+			this.getjTFieldNome().setLocation(354, 77);
+			
+			this.getjPanelCentro().add(getjLabelTipo());
+			this.getjLabelTipo().setLocation(613, 77);
+			
+			this.getjPanelCentro().add(getjTFieldTipo());
+			this.getjTFieldTipo().setLocation(656, 77);
+			
+			this.getjPanelCentro().add(getjLabelTelefone());
+			this.getjLabelTelefone().setLocation(754, 77);
+			
+			this.getjPanelCentro().add(getjTFieldTelefone());
+			this.getjTFieldTelefone().setLocation(825, 77);
+			
 		}
 }

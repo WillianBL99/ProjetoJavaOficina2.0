@@ -6,6 +6,7 @@ import view.JFramePrincipal;
 import view.JPanelGeraOS;
 import view.JPanelLogin;
 import view.JPanelVendas;
+import view.JPanelVendasProsseguir;
 
 public class ControlMain {
 	

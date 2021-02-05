@@ -24,9 +24,60 @@ public class Icones {
 	private static String apagar;
 	private static String salvar;
 	
+	private static String cartãoAzul;
+	private static String cartãoCinza;
+	private static String dinheiroAzul;
+	private static String dinheiroCinza;
+	
+	private static String editar;
 	
 	
+	public static String getEditar() {
+		if(editar == null){
 	
+			editar = ("/icons/edit-500.png");
+	
+		}
+		return editar;
+	}
+	
+	
+	public static String getCartãoAzul() {
+		if(cartãoAzul == null){
+	
+			cartãoAzul = ("/icons/card-blu-90.png");
+	
+		}
+		return cartãoAzul;
+	}
+
+	public static String getCartãoCinza() {
+		if(cartãoCinza == null){
+	
+			cartãoCinza = ("/icons/card-90.png");
+	
+		}
+		return cartãoCinza;
+	}
+
+	public static String getDinheiroAzul() {
+		if(dinheiroAzul == null){
+	
+			dinheiroAzul = ("/icons/money-blu-96.png");
+	
+		}
+		return dinheiroAzul;
+	}
+
+	public static String getDinheiroCinza() {
+		if(dinheiroCinza == null){
+	
+			dinheiroCinza = ("/icons/money-96.png");
+	
+		}
+		return dinheiroCinza;
+	}
+
 	public static String getSalvar() {
 		if(salvar == null){
 			salvar = ("/icons/save.png");
@@ -114,9 +165,17 @@ public class Icones {
 	}
 
 	
-	public static String getVeiculos() {
+	public static String getVeiculosAzul() {
 		if(veiculos == null) {					
 			veiculos = ("/icons/car-90.png");
+		}
+		return veiculos;
+	}
+	
+	
+	public static String getVeiculos() {
+		if(veiculos == null) {					
+			veiculos = ("/icons/car-wht-90.png");
 		}
 		return veiculos;
 	}

@@ -109,7 +109,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jPanelDadosCompra = new JPanel();
 			jPanelDadosCompra.setLayout(null);
 			jPanelDadosCompra.setBackground(Cores.branco);
-			jPanelDadosCompra.setSize(1180,166);
+			jPanelDadosCompra.setSize(1195,140);
 			jPanelDadosCompra.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
@@ -119,7 +119,6 @@ public class JPanelVendasProsseguir extends JPanel{
 							Fontes.fontBorda2,
 							Cores.azul1)
 					);
-			jPanelDadosCompra.setBorder(null);
 		}
 		return jPanelDadosCompra;
 	}
@@ -130,7 +129,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jPanelFormaPagamento = new JPanel();
 			jPanelFormaPagamento.setLayout(null);
 			jPanelFormaPagamento.setBackground(Cores.branco);
-			jPanelFormaPagamento.setSize(1180,105);
+			jPanelFormaPagamento.setSize(1195,105);
 			jPanelFormaPagamento.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
@@ -140,7 +139,6 @@ public class JPanelVendasProsseguir extends JPanel{
 							Fontes.fontBorda2,
 							Cores.azul1)
 					);
-			jPanelFormaPagamento.setBorder(null);
 		}
 		return jPanelFormaPagamento;
 	}
@@ -151,7 +149,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jPanelDadosPagamento = new JPanel();
 			jPanelDadosPagamento.setLayout(null);
 			jPanelDadosPagamento.setBackground(Cores.branco);
-			jPanelDadosPagamento.setSize(1180,166);
+			jPanelDadosPagamento.setSize(1195,120);
 			jPanelDadosPagamento.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
@@ -161,7 +159,6 @@ public class JPanelVendasProsseguir extends JPanel{
 							Fontes.fontBorda2,
 							Cores.azul1)
 					);
-			jPanelDadosPagamento.setBorder(null);
 		}
 		return jPanelDadosPagamento;
 	}
@@ -231,7 +228,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jButtonDinheiro.setText(" Dinheiro");
 			jButtonDinheiro.setForeground(Cores.preto);
 			setSizeIcon.setIconJButton(jButtonDinheiro, Icones.
-					getHome(), 50, 50);
+					getDinheiroCinza(), 50, 50);
 			jButtonDinheiro.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonDinheiro.setBorder(null);
 			jButtonDinheiro.setFocusPainted(false);
@@ -250,7 +247,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jButtonCartão.setText(" Cartão");
 			jButtonCartão.setForeground(Cores.preto);
 			setSizeIcon.setIconJButton(jButtonCartão, Icones.
-					getHome(), 50, 50);
+					getCartãoCinza(), 50, 50);
 			jButtonCartão.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonCartão.setBorder(null);
 			jButtonCartão.setFocusPainted(false);
@@ -271,7 +268,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFildValorTotCompra = new JTextField();
 			jTFildValorTotCompra.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza2, 1, true),
 							"Valor total da compra",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -293,7 +290,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFildDesconto = new JTextField();
 			jTFildDesconto.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza2, 1, true),
 							"Desconto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -315,7 +312,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFildValorPagar = new JTextField();
 			jTFildValorPagar.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza2, 1, true),
 							"Valor a pagar",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -337,7 +334,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFieldValorPago = new JTextField();
 			jTFieldValorPago.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza2, 1, true),
 							"Valor pago",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -359,7 +356,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFieldTroco = new JTextField();
 			jTFieldTroco.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza2, 1, true),
 							"Troco",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -408,13 +405,13 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjPanelDadosCompra().setLocation(14, 26);	
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjPanelFormaPagamento());
-		this.getjPanelFormaPagamento().setLocation(14, 222);	
+		this.getjPanelFormaPagamento().setLocation(14, 192);	
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjPanelDadosPagamento());
-		this.getjPanelDadosPagamento().setLocation(14, 354);	
+		this.getjPanelDadosPagamento().setLocation(14, 323);	
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjButtonFinalizarCompra());
-		this.getjButtonFinalizarCompra().setLocation(784, 476);	
+		this.getjButtonFinalizarCompra().setLocation(777, 476);	
 		
 	}
 	
@@ -422,13 +419,13 @@ public class JPanelVendasProsseguir extends JPanel{
 	public void addCompJPanelDadosCompra() {
 		
 		this.getjPanelDadosCompra().add(this.getjTFieldValorTotCompra());
-		this.getjTFieldValorTotCompra().setLocation(14, 60);
+		this.getjTFieldValorTotCompra().setLocation(14, 35);
 		
 		this.getjPanelDadosCompra().add(this.getjTFieldDesconto());
-		this.getjTFieldDesconto().setLocation(356, 60);
+		this.getjTFieldDesconto().setLocation(356, 35);
 		
 		this.getjPanelDadosCompra().add(this.getjTFieldValorPagar());
-		this.getjTFieldValorPagar().setLocation(221, 60);
+		this.getjTFieldValorPagar().setLocation(721, 35);
 		
 	}
 
@@ -436,10 +433,10 @@ public class JPanelVendasProsseguir extends JPanel{
 	public void addCompJPanelFormaPagamento() {
 		
 		this.getjPanelFormaPagamento().add(this.getjButtonDinheiro());
-		this.getjButtonDinheiro().setLocation(14, 44);
+		this.getjButtonDinheiro().setLocation(14, 35);
 		
 		this.getjPanelFormaPagamento().add(this.getjButtonCartão());
-		this.getjButtonCartão().setLocation(202, 44);
+		this.getjButtonCartão().setLocation(202, 35);
 		
 	}
 
@@ -447,10 +444,10 @@ public class JPanelVendasProsseguir extends JPanel{
 	public void addCompJPanelDadosPagamento() {	
 		
 		this.getjPanelDadosPagamento().add(this.getjTFieldValorPago());
-		this.getjTFieldValorPago().setLocation(14, 25);
+		this.getjTFieldValorPago().setLocation(14, 35);
 		
 		this.getjPanelDadosPagamento().add(this.getjTFieldTroco());
-		this.getjTFieldTroco().setLocation(276, 25);
+		this.getjTFieldTroco().setLocation(276, 35);
 		
 	}
 

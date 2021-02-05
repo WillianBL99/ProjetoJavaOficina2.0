@@ -24,9 +24,49 @@ public class Icones {
 	private static String apagar;
 	private static String salvar;
 	
+	private static String cartãoAzul;
+	private static String cartãoCinza;
+	private static String dinheiroAzul;
+	private static String dinheiroCinza;	
 	
 	
 	
+	public static String getCartãoAzul() {
+		if(cartãoAzul == null){
+	
+			cartãoAzul = ("/icons/card-blu-90.png");
+	
+		}
+		return cartãoAzul;
+	}
+
+	public static String getCartãoCinza() {
+		if(cartãoCinza == null){
+	
+			cartãoCinza = ("/icons/card-90.png");
+	
+		}
+		return cartãoCinza;
+	}
+
+	public static String getDinheiroAzul() {
+		if(dinheiroAzul == null){
+	
+			dinheiroAzul = ("/icons/money-blu-96.png");
+	
+		}
+		return dinheiroAzul;
+	}
+
+	public static String getDinheiroCinza() {
+		if(dinheiroCinza == null){
+	
+			dinheiroCinza = ("/icons/money-96.png");
+	
+		}
+		return dinheiroCinza;
+	}
+
 	public static String getSalvar() {
 		if(salvar == null){
 			salvar = ("/icons/save.png");

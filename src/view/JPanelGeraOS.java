@@ -210,8 +210,16 @@ import javax.swing.JRadioButton;
 			if(jButtonSelecionarVeiculo == null){
 				
 				jButtonSelecionarVeiculo = new JButton();
-		
+				jButtonSelecionarVeiculo.setFont(Fontes.fontJButtonPlain3);			
+				jButtonSelecionarVeiculo.setBackground(Cores.azul1);
+				jButtonSelecionarVeiculo.setForeground(Color.white);
+				jButtonSelecionarVeiculo.setText("Seleciona Veículo");
+				jButtonSelecionarVeiculo.setSize(169,25);
+				jButtonSelecionarVeiculo.setFocusable(false);
+				jButtonSelecionarVeiculo.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1));
 				}	
+			
 			return jButtonSelecionarVeiculo;
 		
 		}
@@ -252,7 +260,7 @@ import javax.swing.JRadioButton;
 			
 					jLabelCpf = new JLabel("CPF:");
 					jLabelCpf.setFont(Fontes.fontJLabelPlain1);
-					jLabelCpf.setSize(30, 20);
+					jLabelCpf.setSize(30, 21);
 					jLabelCpf.setForeground(Cores.preto);
 					jLabelCpf.setOpaque(false);
 					
@@ -262,16 +270,22 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelEmail() {
 			if(jLabelEmail == null){
 		
-				jLabelEmail = new JLabel();
-		
+				jLabelEmail = new JLabel("Email:");
+				jLabelEmail.setFont(Fontes.fontJLabelPlain1);
+				jLabelEmail.setSize(41, 21);
+				jLabelEmail.setForeground(Cores.preto);
+				jLabelEmail.setOpaque(false);
 			}
 			return jLabelEmail;
 		}	
 		public JLabel getjLabelRua() {
 			if(jLabelRua == null){
 		
-				jLabelRua = new JLabel();
-		
+				jLabelRua = new JLabel("Rua:");
+				jLabelRua.setFont(Fontes.fontJLabelPlain1);
+				jLabelRua.setSize(30, 21);
+				jLabelRua.setForeground(Cores.preto);
+				jLabelRua.setOpaque(false);
 			}
 			return jLabelRua;
 		}	
@@ -289,16 +303,22 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelCidade() {
 			if(jLabelCidade == null){
 		
-				jLabelCidade = new JLabel();
-		
+				jLabelCidade = new JLabel("Cidade:");
+				jLabelCidade.setSize(65, 21);
+				jLabelCidade.setFont(Fontes.fontJLabelPlain1);
+				jLabelCidade.setForeground(Cores.preto);
+				jLabelCidade.setOpaque(false);
 			}
 			return jLabelCidade;
 		}	
 		public JLabel getjLabelNumeroCasa() {
 			if(jLabelNumeroCasa == null){
 		
-				jLabelNumeroCasa = new JLabel();
-		
+				jLabelNumeroCasa = new JLabel("N° Casa:");
+				jLabelNumeroCasa.setFont(Fontes.fontJLabelPlain1);
+				jLabelNumeroCasa.setSize(60, 21);
+				jLabelNumeroCasa.setForeground(Cores.preto);
+				jLabelNumeroCasa.setOpaque(false);
 			}
 			return jLabelNumeroCasa;
 		}	
@@ -316,8 +336,11 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelBairro() {
 			if(jLabelBairro == null){
 		
-				jLabelBairro = new JLabel();
-		
+				jLabelBairro = new JLabel("Bairro:");
+				jLabelBairro.setSize(45, 21);
+				jLabelBairro.setFont(Fontes.fontJLabelPlain1);
+				jLabelBairro.setForeground(Cores.preto);
+				jLabelBairro.setOpaque(false);
 			}
 			return jLabelBairro;
 		}
@@ -337,80 +360,110 @@ import javax.swing.JRadioButton;
 		public JLabel getjLabelNumeroVeiculo() {
 			if(jLabelNumeroVeiculo == null){
 		
-				jLabelNumeroVeiculo = new JLabel();
-		
+				jLabelNumeroVeiculo = new JLabel("Nº:");
+				jLabelNumeroVeiculo.setFont(Fontes.fontJLabelPlain1);
+				jLabelNumeroVeiculo.setSize(22, 21);
+				jLabelNumeroVeiculo.setForeground(Cores.preto);
+				jLabelNumeroVeiculo.setOpaque(false);
 			}
 			return jLabelNumeroVeiculo;
 		}
 		public JLabel getjLabelMarca() {
 			if(jLabelMarca == null){
 		
-				jLabelMarca = new JLabel();
-		
+				jLabelMarca = new JLabel("Marca:");
+				jLabelMarca.setFont(Fontes.fontJLabelPlain1);
+				jLabelMarca.setSize(47, 21);
+				jLabelMarca.setForeground(Cores.preto);
+				jLabelMarca.setOpaque(false);
 			}
 			return jLabelMarca;
 		}
 		public JLabel getjLabelCor() {
 			if(jLabelCor == null){
 		
-				jLabelCor = new JLabel();
-		
+				jLabelCor = new JLabel("Cor:");
+				jLabelCor.setFont(Fontes.fontJLabelPlain1);
+				jLabelCor.setSize(28, 21);
+				jLabelCor.setForeground(Cores.preto);
+				jLabelCor.setOpaque(false);
 			}
 			return jLabelCor;
 		}
 		public JLabel getjLabelChassi() {
 			if(jLabelChassi == null){
 		
-				jLabelChassi = new JLabel();
-		
+				jLabelChassi = new JLabel("Chassi:");
+				jLabelChassi.setFont(Fontes.fontJLabelPlain1);
+				jLabelChassi.setSize(48, 21);
+				jLabelChassi.setForeground(Cores.preto);
+				jLabelChassi.setOpaque(false);
 			}
 			return jLabelChassi;
 		}
 		public JLabel getjLabelModelo() {
 			if(jLabelModelo == null){
 		
-				jLabelModelo = new JLabel();
-		
+				jLabelModelo = new JLabel("Modelo:");
+				jLabelModelo.setFont(Fontes.fontJLabelPlain1);
+				jLabelModelo.setSize(58, 21);
+				jLabelModelo.setForeground(Cores.preto);
+				jLabelModelo.setOpaque(false);
 			}
 			return jLabelModelo;
 		}
 		public JLabel getjLabelAno() {
 			if(jLabelAno == null){
 		
-				jLabelAno = new JLabel();
-		
+				jLabelAno = new JLabel("Ano:");
+				jLabelAno.setFont(Fontes.fontJLabelPlain1);
+				jLabelAno.setSize(32, 21);
+				jLabelAno.setForeground(Cores.preto);
+				jLabelAno.setOpaque(false);
 			}
 			return jLabelAno;
 		}
 		public JLabel getjLabelPlaca() {
 			if(jLabelPlaca == null){
 		
-				jLabelPlaca = new JLabel();
-		
+				jLabelPlaca = new JLabel("Placa:");
+				jLabelPlaca.setFont(Fontes.fontJLabelPlain1);
+				jLabelPlaca.setSize(40, 21);
+				jLabelPlaca.setForeground(Cores.preto);
+				jLabelPlaca.setOpaque(false);
 			}
 			return jLabelPlaca;
 		}
 		public JLabel getjLabelMotor() {
 			if(jLabelMotor == null){
 		
-				jLabelMotor = new JLabel();
-		
+				jLabelMotor = new JLabel("Motor:");
+				jLabelMotor.setFont(Fontes.fontJLabelPlain1);
+				jLabelMotor.setSize(48, 21);
+				jLabelMotor.setForeground(Cores.preto);
+				jLabelMotor.setOpaque(false);
 			}
 			return jLabelMotor;
 		}
 		public JLabel getjLabelKMAtual() {
 			if(jLabelKMAtual == null){
 		
-				jLabelKMAtual = new JLabel();
-		
+				jLabelKMAtual = new JLabel("Km atual:");
+				jLabelKMAtual.setFont(Fontes.fontJLabelPlain1);
+				jLabelKMAtual.setSize(66, 21);
+				jLabelKMAtual.setForeground(Cores.preto);
+				jLabelKMAtual.setOpaque(false);
 			}
 			return jLabelKMAtual;
 		}
 		public JLabel getjLabelCombustivel() {
 			if(jLabelCombustivel == null){
 		
-				jLabelCombustivel = new JLabel();
-		
+				jLabelCombustivel = new JLabel("Combustível:");
+				jLabelCombustivel.setFont(Fontes.fontJLabelPlain1);
+				jLabelCombustivel.setSize(91, 21);
+				jLabelCombustivel.setForeground(Cores.preto);
+				jLabelCombustivel.setOpaque(false);
 			}
 			return jLabelCombustivel;
 		}
@@ -486,7 +539,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldEmail == null){
 		
 				jTFieldEmail = new JTextField();
-		
+				jTFieldEmail.setSize(149, 21);
+				jTFieldEmail.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldEmail.setForeground(Cores.preto);
+				jTFieldEmail.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldEmail.setOpaque(true);
 			}
 			return jTFieldEmail;
 		}
@@ -494,7 +552,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldRua == null){
 		
 				jTFieldRua = new JTextField();
-		
+				jTFieldRua.setSize(166, 21);
+				jTFieldRua.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldRua.setForeground(Cores.preto);
+				jTFieldRua.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldRua.setOpaque(true);
 			}
 			return jTFieldRua;
 		}
@@ -516,7 +579,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldCidade == null){
 		
 				jTFieldCidade = new JTextField();
-		
+				jTFieldCidade.setSize(219, 21);
+				jTFieldCidade.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldCidade.setForeground(Cores.preto);
+				jTFieldCidade.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldCidade.setOpaque(true);
 			}
 			return jTFieldCidade;
 		}
@@ -524,7 +592,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldNumeroCasa == null){
 		
 				jTFieldNumeroCasa = new JTextField();
-		
+				jTFieldNumeroCasa.setSize(120, 21);
+				jTFieldNumeroCasa.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldNumeroCasa.setForeground(Cores.preto);
+				jTFieldNumeroCasa.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldNumeroCasa.setOpaque(true);
 			}
 			return jTFieldNumeroCasa;
 		}
@@ -545,7 +618,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldBairro == null){
 		
 				jTFieldBairro = new JTextField();
-		
+				jTFieldBairro.setSize(91, 21);
+				jTFieldBairro.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+				jTFieldBairro.setForeground(Cores.preto);
+				jTFieldBairro.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldBairro.setOpaque(true);
 			}
 			return jTFieldBairro;
 		}
@@ -748,5 +826,68 @@ import javax.swing.JRadioButton;
 			this.getjPanelCentro().add(getjTFieldTelefone());
 			this.getjTFieldTelefone().setLocation(825, 77);
 			
+			
+			this.getjPanelCentro().add(getjLabelEmail());
+			this.getjLabelEmail().setLocation(52, 111);
+			
+			this.getjPanelCentro().add(getjTFieldEmail());
+			this.getjTFieldEmail().setLocation(101, 111);
+			
+			this.getjPanelCentro().add(getjLabelCidade());
+			this.getjLabelCidade().setLocation(297, 111);
+			
+			this.getjPanelCentro().add(getjTFieldCidade());
+			this.getjTFieldCidade().setLocation(354, 111);
+			
+			this.getjPanelCentro().add(getjLabelBairro());
+			this.getjLabelBairro().setLocation(603, 111);
+			
+			this.getjPanelCentro().add(getjTFieldBairro());
+			this.getjTFieldBairro().setLocation(656, 111);
+		
+			this.getjPanelCentro().add(getjLabelRua());
+			this.getjLabelRua().setLocation(65, 145);
+			
+			this.getjPanelCentro().add(getjTFieldRua());
+			this.getjTFieldRua().setLocation(97, 145);
+			
+			this.getjPanelCentro().add(getjLabelNumeroCasa());
+			this.getjLabelNumeroCasa().setLocation(290, 145);
+			
+			this.getjPanelCentro().add(getjTFieldNumeroCasa());
+			this.getjTFieldNumeroCasa().setLocation(354, 145);
+			
+			this.getjPanelCentro().add(getjButtonSelecionarVeiculo());
+			this.getjButtonSelecionarVeiculo().setLocation(22, 182);
+			
+			this.getjPanelCentro().add(getjLabelNumeroVeiculo());
+			this.getjLabelNumeroVeiculo().setLocation(71, 224);
+			
+			this.getjPanelCentro().add(getjLabelMarca());
+			this.getjLabelMarca().setLocation(46, 258);
+			
+			this.getjPanelCentro().add(getjLabelCor());
+			this.getjLabelCor().setLocation(63, 292);
+			
+			this.getjPanelCentro().add(getjLabelChassi());
+			this.getjLabelChassi().setLocation(242, 224);
+			
+			this.getjPanelCentro().add(getjLabelModelo());
+			this.getjLabelModelo().setLocation(231, 258);
+			
+			this.getjPanelCentro().add(getjLabelAno());
+			this.getjLabelAno().setLocation(257, 292);
+			
+			this.getjPanelCentro().add(getjLabelPlaca());
+			this.getjLabelPlaca().setLocation(553, 224);
+			
+			this.getjPanelCentro().add(getjLabelMotor());
+			this.getjLabelMotor().setLocation(544, 258);
+			
+			this.getjPanelCentro().add(getjLabelKMAtual());
+			this.getjLabelKMAtual().setLocation(758, 224);
+			
+			this.getjPanelCentro().add(getjLabelCombustivel());
+			this.getjLabelCombustivel().setLocation(733, 258);
 		}
 }

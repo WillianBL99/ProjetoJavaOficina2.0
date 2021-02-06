@@ -16,6 +16,10 @@ public class Icones {
 	private static String usuarios;
 	private static String usuarioBranco;
 	private static String estoque;
+	private static String estoqueBranco;
+	private static String estoqueAdicionar;
+	private static String estoqueEditar;
+	private static String estoqueExcluir;
 	private static String configuracao;
 	
 	private static String addCompra;
@@ -214,6 +218,39 @@ public class Icones {
 			estoque = ("/icons/cabinet-90.png");
 		}
 		return estoque;
+	}
+	
+	
+	public static String getEstoqueBranco() {
+		
+		if(estoqueBranco == null) {					
+			estoqueBranco = ("/icons/cabinet-wht-90.png");
+		}
+		return estoqueBranco;
+	}
+	
+	
+	public static String getEstoqueAdicionar() {
+		if(estoqueAdicionar == null) {					
+			estoqueAdicionar = ("/icons/cabinet-add-wht-90.png");
+		}
+		return estoqueAdicionar;
+	}
+	
+	
+	public static String getEstoqueEditar() {
+		if(estoqueEditar == null) {					
+			estoqueEditar = ("/icons/cabinet-edt-wht-90.png");
+		}
+		return estoqueEditar;
+	}
+	
+	
+	public static String getEstoqueExcluir() {
+		if(estoqueExcluir == null) {					
+			estoqueExcluir = ("/icons/cabinet-del-wht-90.png");
+		}
+		return estoqueExcluir;
 	}
 
 	

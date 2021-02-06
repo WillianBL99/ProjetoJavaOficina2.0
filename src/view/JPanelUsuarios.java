@@ -26,7 +26,7 @@ import model.SetSizeIcon;
  * @author pWili
  *
  */
-public class JPanelClientes  extends JPanel{
+public class JPanelUsuarios  extends JPanel{
 
 
 	
@@ -34,6 +34,7 @@ public class JPanelClientes  extends JPanel{
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
+	private JButton jButtonNovoUsuario;
 	private JButton jButtonEditar;
 	private JButton jButtonApagar;
 	private JButton jButtonFiltrar;
@@ -41,11 +42,11 @@ public class JPanelClientes  extends JPanel{
 	
 	private JTextField jTFieldBuscarPor;
 	
-	private JPanel jPanelBuscaClientes; // barra que contem componentes para realizar busca de vendas
+	private JPanel jPanelBuscaUsuarios; // barra que contem componentes para realizar busca de vendas
 	
-	private JScrollPane jSPClientes;
+	private JScrollPane jSPUsuarios;
 	
-	private JTable jTableClientes;
+	private JTable jTableUsuarios;
 	
 	private JComboBox<String> jComboPesquisarPor;
 		
@@ -55,16 +56,16 @@ public class JPanelClientes  extends JPanel{
 
 
 
-	public JPanelClientes() {
-		this.addCompJPanelBuscaClientes();
-		this.addCompJPanelClientes();
+	public JPanelUsuarios() {
+		this.addCompJPanelBuscaUsuarios();
+		this.addCompJPanelUsuarios();
 	}
 	
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
 
-	public JPanelClientes getJPanelClientes() { // OK
+	public JPanelUsuarios getJPanelUsuarios() { // OK
 		this.setLayout(null);
 		this.setBackground(Cores.cinza3);
 		this.setSize(new Dimension(1030,674));
@@ -73,15 +74,15 @@ public class JPanelClientes  extends JPanel{
 	}
 	
 	
-	public JPanel getjPanelBuscaClientes() {
-		if(jPanelBuscaClientes == null){
-			jPanelBuscaClientes = new JPanel();
-			jPanelBuscaClientes.setLayout(null);
-			jPanelBuscaClientes.setBackground(Cores.branco);
-			jPanelBuscaClientes.setSize(1000, 50);
-			jPanelBuscaClientes.setBorder(null);
+	public JPanel getjPanelBuscaUsuarios() {
+		if(jPanelBuscaUsuarios == null){
+			jPanelBuscaUsuarios = new JPanel();
+			jPanelBuscaUsuarios.setLayout(null);
+			jPanelBuscaUsuarios.setBackground(Cores.branco);
+			jPanelBuscaUsuarios.setSize(1000, 50);
+			jPanelBuscaUsuarios.setBorder(null);
 		}
-		return jPanelBuscaClientes;
+		return jPanelBuscaUsuarios;
 	}
 	
 	//** Fim getters JPanel **
@@ -92,6 +93,25 @@ public class JPanelClientes  extends JPanel{
 	//** Fim getters JLabel **
 	
 	//** Início getters JButon **
+	
+	
+	public JButton getjButtonNovoUsuario() {
+		if(jButtonNovoUsuario == null){
+			jButtonNovoUsuario = new JButton();			
+			jButtonNovoUsuario.setFont(Fontes.fontJButtonPlain3);
+			jButtonNovoUsuario.setBackground(Cores.azul1);
+			jButtonNovoUsuario.setForeground(Color.white);
+			jButtonNovoUsuario.setHorizontalTextPosition(SwingConstants.LEFT);
+			setSizeIcon.setIconJButton(jButtonNovoUsuario, Icones.
+					getUsuarioBranco(), 20, 20);
+			jButtonNovoUsuario.setText("Novo");
+			jButtonNovoUsuario.setSize(95, 35);
+			jButtonNovoUsuario.setFocusable(false);
+			jButtonNovoUsuario.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonNovoUsuario;
+	}
 	
 	
 	public JButton getjButtonEditar() {
@@ -156,7 +176,7 @@ public class JPanelClientes  extends JPanel{
 			jButtonPesquisarTodos.setForeground(Color.white);
 			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
 			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getVeiculos(), 18, 18);
+					getUsuarioBranco(), 18, 18);
 			jButtonPesquisarTodos.setText("pesquisar todos");
 			jButtonPesquisarTodos.setSize(118, 22);
 			jButtonPesquisarTodos.setFocusable(false);
@@ -203,7 +223,7 @@ public class JPanelClientes  extends JPanel{
 				jComboPesquisarPor.setOpaque(false);
 				jComboPesquisarPor.setFocusable(false);
 				jComboPesquisarPor.setModel(new javax.swing.
-						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "CPF", "CNPJ", "Nome"}));
+						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "CPF", "Nome"}));
 				jComboPesquisarPor.setBorder(null);
 				
 				jComboPesquisarPor.setUI(new BasicComboBoxUI() {
@@ -240,48 +260,48 @@ public class JPanelClientes  extends JPanel{
 	
 	//** Início getters conjuto JScrollPane/JTable **
 	
-	public JScrollPane getjSPClientes() {
-		if(jSPClientes == null){
-			jSPClientes = new JScrollPane();
-			jSPClientes.setViewportView(getjTableClientes());
-			jSPClientes.setSize(1000, 225);	
+	public JScrollPane getjSPUsuarios() {
+		if(jSPUsuarios == null){
+			jSPUsuarios = new JScrollPane();
+			jSPUsuarios.setViewportView(getjTableUsuarios());
+			jSPUsuarios.setSize(1000, 225);	
 		}
-		return jSPClientes;
+		return jSPUsuarios;
 	}
 	
 
-	public JTable getjTableClientes() {
-		if(jTableClientes == null){
-			jTableClientes = new JTable();
-			jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+	public JTable getjTableUsuarios() {
+		if(jTableUsuarios == null){
+			jTableUsuarios = new JTable();
+			jTableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null, null},
 		                
 		            },
 		            new String [] {
-		                "CPF", "CNPJ", "Nome", "Email",
-		                "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		                "CPF", "Nome", "Email",
+		                "Telefone", "Cidade", "Usuário", "Senha","Função"
 		            }
 		        ));			
 
-			jTableClientes.setFont(Fontes.fontJTablePlain2);
-			jTableClientes.setOpaque(false);
-			jTableClientes.getTableHeader().setFont(Fontes.fontJTableBold2);
-			jTableClientes.getTableHeader().setForeground(Cores.branco);
-			jTableClientes.getTableHeader().setBackground(Cores.azul1);
+			jTableUsuarios.setFont(Fontes.fontJTablePlain2);
+			jTableUsuarios.setOpaque(false);
+			jTableUsuarios.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableUsuarios.getTableHeader().setForeground(Cores.branco);
+			jTableUsuarios.getTableHeader().setBackground(Cores.azul1);
 		}
-		return jTableClientes;
+		return jTableUsuarios;
 	}
 	
 	
@@ -291,34 +311,37 @@ public class JPanelClientes  extends JPanel{
 
 	
 
-	public void addCompJPanelClientes() { 
+	public void addCompJPanelUsuarios() { 
 	
-		this.getJPanelClientes().add(this.getjButtonEditar());
+		this.getJPanelUsuarios().add(this.getjButtonNovoUsuario());
+		this.getjButtonNovoUsuario().setLocation(14, 20);
+	
+		this.getJPanelUsuarios().add(this.getjButtonEditar());
 		this.getjButtonEditar().setLocation(884, 20);
 		
-		this.getJPanelClientes().add(this.getjButtonApagar());
+		this.getJPanelUsuarios().add(this.getjButtonApagar());
 		this.getjButtonApagar().setLocation(950, 20);
 		
-		this.getJPanelClientes().add(this.getjPanelBuscaClientes());
-		this.getjPanelBuscaClientes().setLocation(14, 75);
+		this.getJPanelUsuarios().add(this.getjPanelBuscaUsuarios());
+		this.getjPanelBuscaUsuarios().setLocation(14, 75);
 		
-		this.getJPanelClientes().add(this.getjSPClientes());
-		this.getjSPClientes().setLocation(14, 145);
+		this.getJPanelUsuarios().add(this.getjSPUsuarios());
+		this.getjSPUsuarios().setLocation(14, 145);
 	}
 
 	
-	public void addCompJPanelBuscaClientes() {		
+	public void addCompJPanelBuscaUsuarios() {		
 
-		this.getjPanelBuscaClientes().add(this.getjComboPesquisarPor());
+		this.getjPanelBuscaUsuarios().add(this.getjComboPesquisarPor());
 		this.getjComboPesquisarPor().setLocation(14, 16);
 		
-		this.getjPanelBuscaClientes().add(this.getjTFieldBuscarPor());
+		this.getjPanelBuscaUsuarios().add(this.getjTFieldBuscarPor());
 		this.getjTFieldBuscarPor().setLocation(180, 16);
 
-		this.getjPanelBuscaClientes().add(this.getjButtonFiltrar());
+		this.getjPanelBuscaUsuarios().add(this.getjButtonFiltrar());
 		this.getjButtonFiltrar().setLocation(800, 16);
 
-		this.getjPanelBuscaClientes().add(this.getjButtonPesquisarTodos());
+		this.getjPanelBuscaUsuarios().add(this.getjButtonPesquisarTodos());
 		this.getjButtonPesquisarTodos().setLocation(874, 16);
 	}
 	

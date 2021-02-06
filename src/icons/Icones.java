@@ -14,6 +14,7 @@ public class Icones {
 	private static String veiculos;
 	private static String clientes;
 	private static String usuarios;
+	private static String usuarioBranco;
 	private static String estoque;
 	private static String configuracao;
 	
@@ -30,6 +31,17 @@ public class Icones {
 	private static String dinheiroCinza;
 	
 	private static String editar;
+	
+	
+	
+	public static String getUsuarioBranco() {
+		if(usuarioBranco == null){
+	
+			usuarioBranco = ("/icons/user-wht-480.png");
+	
+		}
+		return usuarioBranco;
+	}
 	
 	
 	public static String getEditar() {

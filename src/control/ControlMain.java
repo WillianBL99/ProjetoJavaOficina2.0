@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 import view.JFramePrincipal;
 import view.JPanelGeraOS;
 import view.JPanelLogin;
+import view.JPanelUsuarios;
 import view.JPanelVeiculos;
 import view.JPanelVendas;
 import view.JPanelVendasProsseguir;
@@ -29,7 +30,7 @@ public class ControlMain {
 	           
 	     }
 	     
-		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getjFramePrincipal().alterarJPanel(new JPanelUsuarios());
 		 getcontrolJPanelLogin();
 		
 	}

@@ -8,25 +8,44 @@ import java.awt.event.MouseListener;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
+import view.JPanelVendasNovo;
+import view.JPanelVendasProsseguir;
 
 public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	
 
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePricipal;
+	private JPanelVendasProsseguir jPanelVendasProsseguir;
+	private JPanelVendasNovo jPanelVendasNovo;
 	private JPanelVendas jPanelVendas;
 	private JPanelPrincipal jPanelPrincipal;
-	
+
+
 	//** Fim declaração de variáveis **	
 	
-	public ControlJPanelVendasNovo() {
-		
+	
+	/**
+	 * @param jFramePricipal
+	 * @param jPanelVendasNovo
+	 * @param jPanelVendas
+	 * @param jPanelPrincipal
+	 */
+	public ControlJPanelVendasNovo(JFramePrincipal jFramePricipal, JPanelVendasNovo jPanelVendasNovo,
+			JPanelVendas jPanelVendas, JPanelPrincipal jPanelPrincipal) {
+		super();
+		this.jFramePricipal = jFramePricipal;
+		this.jPanelVendasNovo = jPanelVendasNovo;
+		this.jPanelVendas = jPanelVendas;
+		this.jPanelPrincipal = jPanelPrincipal;
+		AddEvent();
 	}
 
 
-
 	private void AddEvent() {
-		//getjPanelVendas().getjButtonCancelar().addMouseListener(this);
+		getjPanelVendasNovo().getjButtonCancelar().addMouseListener(this);
+		getjPanelVendasNovo().getjButtonInserir().addMouseListener(this);
+		getjPanelVendasNovo().getjButtonProsseguir().addMouseListener(this);
 		
 	}
 
@@ -55,7 +74,19 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == getjPanelVendasNovo().getjButtonCancelar()) {
+			// Cancelar a nova venda
+			getjFramePricipal().alterarJPanel(getjPanelPrincipal());
+			
+		} else if(e.getSource() == getjPanelVendasNovo().getjButtonInserir()) {
+			// funções para adicionar produtos a lista de produtos da nova venda
+			
+		} else if(e.getSource() == getjPanelVendasNovo().getjButtonProsseguir()) {
+			// Prosseguir com a compra. Ir para formas de pagamento
+			getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
+			
+		} 
 		
 	}
 
@@ -92,6 +123,24 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 			jFramePricipal = new JFramePrincipal();
 		}
 		return jFramePricipal;
+	}
+
+
+
+	public JPanelVendasProsseguir getjPanelVendasProsseguir() {
+		if(jPanelVendasProsseguir == null) {
+			jPanelVendasProsseguir = new JPanelVendasProsseguir();
+		}
+		return jPanelVendasProsseguir;
+	}
+
+
+
+	public JPanelVendasNovo getjPanelVendasNovo() {
+		if(jPanelVendasNovo == null) {
+			jPanelVendasNovo = new JPanelVendasNovo();
+		}
+		return jPanelVendasNovo;
 	}
 
 

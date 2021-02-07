@@ -14,10 +14,10 @@ import view.JPanelVendas;
 import view.JPanelVendasNovo;
 
 /**
- * @author pWili
+ * @author Paulo Uilian
  *
  */
-public class ControlJPanelVendas implements MouseListener, KeyListener {
+public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener {
 	
 
 	//** Início declaração de variáveis **
@@ -35,7 +35,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 	 * @param jPanelVendas
 	 * @param jPanelPrincipal
 	 */
-	public ControlJPanelVendas(JFramePrincipal jFramePricipal, JPanelVendas jPanelVendas,
+	public ControlJPanelVendasProsseguir(JFramePrincipal jFramePricipal, JPanelVendas jPanelVendas,
 			JPanelPrincipal jPanelPrincipal) {
 		super();
 		this.jFramePricipal = jFramePricipal;
@@ -88,7 +88,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
 			System.out.println("clicou em nova venda");
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
-			getControlJPanelVendasNovo();
 		}
 		
 	}

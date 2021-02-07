@@ -65,7 +65,7 @@ import javax.swing.JRadioButton;
 		private JLabel jLabelKMAtual;
 		private JLabel jLabelCombustivel;
 		
-		
+		private JLabel ordemServico;
 		private JLabel jLabelNumeroOS;
 		private JLabel jLabelServico;
 		private JLabel jLabelReclamacao;
@@ -99,7 +99,7 @@ import javax.swing.JRadioButton;
 		private JTextField jTFieldReclamacao;
 		private JTextField jTFieldData;
 		private JTextField jTFieldMotorista;
-		private JTextField jTFieldResponsavel;
+		private JComboBox jComboBoxResponsavel;
 		
 	//** Fim declaração de variáveis **
 
@@ -468,52 +468,82 @@ import javax.swing.JRadioButton;
 			return jLabelCombustivel;
 		}
 	
+		public JLabel getOrdemServico() {
+			if(ordemServico == null){
+		
+				ordemServico = new JLabel("Ordem de Seviço");
+				ordemServico.setFont(Fontes.fontJLabelBold2);
+				ordemServico.setSize(160, 27);
+				ordemServico.setBackground(Cores.branco);
+				ordemServico.setForeground(Cores.azul1);
+				ordemServico.setOpaque(false);
+			}
+			return ordemServico;
+		}
 		
 		public JLabel getjLabelNumeroOS() {
 			if(jLabelNumeroOS == null){
 		
-				jLabelNumeroOS = new JLabel();
-		
+				jLabelNumeroOS = new JLabel("Nº:");
+				jLabelNumeroOS.setFont(Fontes.fontJLabelPlain1);
+				jLabelNumeroOS.setSize(22, 21);
+				jLabelNumeroOS.setForeground(Cores.preto);
+				jLabelNumeroOS.setOpaque(false);
 			}
 			return jLabelNumeroOS;
 		}
 		public JLabel getjLabelServico() {
 			if(jLabelServico == null){
 		
-				jLabelServico = new JLabel();
-		
+				jLabelServico = new JLabel("Serviço:");
+				jLabelServico.setFont(Fontes.fontJLabelPlain1);
+				jLabelServico.setSize(55, 21);
+				jLabelServico.setForeground(Cores.preto);
+				jLabelServico.setOpaque(false);
 			}
 			return jLabelServico;
 		}
 		public JLabel getjLabelReclamacao() {
 			if(jLabelReclamacao == null){
 		
-				jLabelReclamacao = new JLabel();
-		
+				jLabelReclamacao = new JLabel("Reclamação:");
+				jLabelReclamacao.setFont(Fontes.fontJLabelPlain1);
+				jLabelReclamacao.setSize(87, 21);
+				jLabelReclamacao.setForeground(Cores.preto);
+				jLabelReclamacao.setOpaque(false);
 			}
 			return jLabelReclamacao;
 		}
 		public JLabel getjLabelData() {
 			if(jLabelData == null){
 		
-				jLabelData = new JLabel();
-		
+				jLabelData = new JLabel("Data:");
+				jLabelData.setFont(Fontes.fontJLabelPlain1);
+				jLabelData.setSize(36, 21);
+				jLabelData.setForeground(Cores.preto);
+				jLabelData.setOpaque(false);
 			}
 			return jLabelData;
 		}
 		public JLabel getjLabelMotorista() {
 			if(jLabelMotorista == null){
 		
-				jLabelMotorista = new JLabel();
-		
+				jLabelMotorista = new JLabel("Motorista:");
+				jLabelMotorista.setFont(Fontes.fontJLabelPlain1);
+				jLabelMotorista.setSize(72, 21);
+				jLabelMotorista.setForeground(Cores.preto);
+				jLabelMotorista.setOpaque(false);
 			}
 			return jLabelMotorista;
 		}
 		public JLabel getjLabelResponsavel() {
 			if(jLabelResponsavel == null){
 		
-				jLabelResponsavel = new JLabel();
-		
+				jLabelResponsavel = new JLabel("Responsável:");
+				jLabelResponsavel.setFont(Fontes.fontJLabelPlain1);
+				jLabelResponsavel.setSize(90, 21);
+				jLabelResponsavel.setForeground(Cores.preto);
+				jLabelResponsavel.setOpaque(false);
 			}
 			return jLabelResponsavel;
 		}
@@ -646,7 +676,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldNumeroVeiculo == null){
 		
 				jTFieldNumeroVeiculo = new JTextField();
-		
+				jTFieldNumeroVeiculo.setSize(105, 21);
+				jTFieldNumeroVeiculo.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldNumeroVeiculo.setForeground(Cores.preto);
+				jTFieldNumeroVeiculo.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldNumeroVeiculo.setOpaque(true);
 			}
 			return jTFieldNumeroVeiculo;
 		}
@@ -654,7 +689,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldMarca == null){
 		
 				jTFieldMarca = new JTextField();
-		
+				jTFieldMarca.setSize(105, 21);
+				jTFieldMarca.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldMarca.setForeground(Cores.preto);
+				jTFieldMarca.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldMarca.setOpaque(true);
 			}
 			return jTFieldMarca;
 		}
@@ -662,7 +702,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldCor == null){
 		
 				jTFieldCor = new JTextField();
-		
+				jTFieldCor.setSize(105, 21);
+				jTFieldCor.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldCor.setForeground(Cores.preto);
+				jTFieldCor.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldCor.setOpaque(true);
 			}
 			return jTFieldCor;
 		}
@@ -670,7 +715,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldChassi == null){
 		
 				jTFieldChassi = new JTextField();
-		
+				jTFieldChassi.setSize(219, 21);
+				jTFieldChassi.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldChassi.setForeground(Cores.preto);
+				jTFieldChassi.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldChassi.setOpaque(true);
 			}
 			return jTFieldChassi;
 		}
@@ -678,7 +728,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldModelo == null){
 		
 				jTFieldModelo = new JTextField();
-		
+				jTFieldModelo.setSize(219, 21);
+				jTFieldModelo.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldModelo.setForeground(Cores.preto);
+				jTFieldModelo.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldModelo.setOpaque(true);
 			}
 			return jTFieldModelo;
 		}
@@ -686,7 +741,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldAno == null){
 		
 				jTFieldAno = new JTextField();
-		
+				jTFieldAno.setSize(105, 21);
+				jTFieldAno.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldAno.setForeground(Cores.preto);
+				jTFieldAno.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldAno.setOpaque(true);
 			}
 			return jTFieldAno;
 		}
@@ -694,7 +754,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldPlaca == null){
 		
 				jTFieldPlaca = new JTextField();
-		
+				jTFieldPlaca.setSize(125, 21);
+				jTFieldPlaca.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldPlaca.setForeground(Cores.preto);
+				jTFieldPlaca.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldPlaca.setOpaque(true);
 			}
 			return jTFieldPlaca;
 		}
@@ -702,7 +767,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldMotor == null){
 		
 				jTFieldMotor = new JTextField();
-		
+				jTFieldMotor.setSize(125, 21);
+				jTFieldMotor.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldMotor.setForeground(Cores.preto);
+				jTFieldMotor.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldMotor.setOpaque(true);
 			}
 			return jTFieldMotor;
 		}
@@ -710,16 +780,26 @@ import javax.swing.JRadioButton;
 			if(jTFieldKMAtual == null){
 		
 				jTFieldKMAtual = new JTextField();
-		
+				jTFieldKMAtual.setSize(120, 21);
+				jTFieldKMAtual.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldKMAtual.setForeground(Cores.preto);
+				jTFieldKMAtual.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldKMAtual.setOpaque(true);
 			}
 			return jTFieldKMAtual;
 		}
-		public JTextField getjTFieldCombustivel() {
+		public JTextField getjTFieldCombustivel() {//pode ser pudado para jcombobox!
 	
 			if(jTFieldCombustivel == null){
 		
 				jTFieldCombustivel = new JTextField();
-		
+				jTFieldCombustivel.setSize(125, 21);
+				jTFieldCombustivel.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldCombustivel.setForeground(Cores.preto);
+				jTFieldCombustivel.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldCombustivel.setOpaque(true);
 			}
 			return jTFieldCombustivel;
 		}
@@ -729,7 +809,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldNumeroOS == null){
 		
 				jTFieldNumeroOS = new JTextField();
-		
+				jTFieldNumeroOS.setSize(165, 21);
+				jTFieldNumeroOS.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldNumeroOS.setForeground(Cores.preto);
+				jTFieldNumeroOS.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldNumeroOS.setOpaque(true);
 			}
 			return jTFieldNumeroOS;
 		}
@@ -737,7 +822,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldServico == null){
 		
 				jTFieldServico = new JTextField();
-		
+				jTFieldServico.setSize(627, 21);
+				jTFieldServico.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldServico.setForeground(Cores.preto);
+				jTFieldServico.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldServico.setOpaque(true);
 			}
 			return jTFieldServico;
 		}
@@ -745,7 +835,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldReclamacao == null){
 		
 				jTFieldReclamacao = new JTextField();
-		
+				jTFieldReclamacao.setSize(627, 85);
+				jTFieldReclamacao.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldReclamacao.setForeground(Cores.preto);
+				jTFieldReclamacao.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldReclamacao.setOpaque(true);
 			}
 			return jTFieldReclamacao;
 		}
@@ -753,7 +848,12 @@ import javax.swing.JRadioButton;
 			if(jTFieldData == null){
 		
 				jTFieldData = new JTextField();
-		
+				jTFieldData.setSize(131, 21);
+				jTFieldData.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldData.setForeground(Cores.preto);
+				jTFieldData.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldData.setOpaque(true);
 			}
 			return jTFieldData;
 		}
@@ -761,21 +861,39 @@ import javax.swing.JRadioButton;
 			if(jTFieldMotorista == null){
 		
 				jTFieldMotorista = new JTextField();
-		
+				jTFieldMotorista.setSize(115, 21);
+				jTFieldMotorista.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jTFieldMotorista.setForeground(Cores.preto);
+				jTFieldMotorista.setFont(Fontes.fontJTFieldPlain1);
+				jTFieldMotorista.setOpaque(true);
 			}
 			return jTFieldMotorista;
 		}
-		public JTextField getjTFieldResponsavel() {
-			if(jTFieldResponsavel == null){
-		
-				jTFieldResponsavel = new JTextField();
-		
-			}
-			return jTFieldResponsavel;
-		}
 		
 	//** Fim getters JTextField **
+		
+		
+	//** Início getters JComboBox **
+		
+		public JComboBox getjComboBoxResponsavel() {
+			if(jComboBoxResponsavel == null){
+		
+				jComboBoxResponsavel = new JComboBox<String>();
+				jComboBoxResponsavel.setSize(89, 21);
+				jComboBoxResponsavel.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jComboBoxResponsavel.setForeground(Cores.preto);
+				jComboBoxResponsavel.setFont(Fontes.fontJTFieldPlain1);
+				jComboBoxResponsavel.setOpaque(true);
+				jComboBoxResponsavel.addItem("Pedro");
+			}
+			return jComboBoxResponsavel;
+		}
 	
+	//** Fim getters JComboBox **
+		
+		
 	//** Início métodos adição de componentes **
 		void addCompJPanelGeraOS() {
 			this.getJPanelGeraOS().add(getjButtonCancelar());
@@ -862,13 +980,13 @@ import javax.swing.JRadioButton;
 			
 			this.getjPanelCentro().add(getjLabelNumeroVeiculo());
 			this.getjLabelNumeroVeiculo().setLocation(71, 224);
-			
+		
 			this.getjPanelCentro().add(getjLabelMarca());
 			this.getjLabelMarca().setLocation(46, 258);
 			
 			this.getjPanelCentro().add(getjLabelCor());
 			this.getjLabelCor().setLocation(63, 292);
-			
+		
 			this.getjPanelCentro().add(getjLabelChassi());
 			this.getjLabelChassi().setLocation(242, 224);
 			
@@ -889,5 +1007,75 @@ import javax.swing.JRadioButton;
 			
 			this.getjPanelCentro().add(getjLabelCombustivel());
 			this.getjLabelCombustivel().setLocation(733, 258);
+		
+			this.getjPanelCentro().add(getjTFieldNumeroVeiculo());
+			this.getjTFieldNumeroVeiculo().setLocation(97, 224);
+			
+			this.getjPanelCentro().add(getjTFieldMarca());
+			this.getjTFieldMarca().setLocation(97, 258);
+			
+			this.getjPanelCentro().add(getjTFieldCor());
+			this.getjTFieldCor().setLocation(97, 292);
+			
+			this.getjPanelCentro().add(getjTFieldChassi());
+			this.getjTFieldChassi().setLocation(294, 224);
+			
+			this.getjPanelCentro().add(getjTFieldModelo());
+			this.getjTFieldModelo().setLocation(294, 258);
+	
+			this.getjPanelCentro().add(getjTFieldAno());
+			this.getjTFieldAno().setLocation(294, 292);
+			
+			this.getjPanelCentro().add(getjTFieldPlaca());
+			this.getjTFieldPlaca().setLocation(597, 224);
+			
+			this.getjPanelCentro().add(getjTFieldMotor());
+			this.getjTFieldMotor().setLocation(597, 258);
+			
+			this.getjPanelCentro().add(getjTFieldKMAtual());
+			this.getjTFieldKMAtual().setLocation(829, 224);
+			
+			this.getjPanelCentro().add(getjTFieldCombustivel());
+			this.getjTFieldCombustivel().setLocation(829, 258);
+			
+			this.getjPanelCentro().add(getOrdemServico());
+			this.getOrdemServico().setLocation(21, 329);
+			
+			this.getjPanelCentro().add(getjLabelNumeroOS());
+			this.getjLabelNumeroOS().setLocation(70, 370);
+			
+			this.getjPanelCentro().add(getjLabelServico());
+			this.getjLabelServico().setLocation(38, 404);
+			
+			this.getjPanelCentro().add(getjLabelReclamacao());
+			this.getjLabelReclamacao().setLocation(99, 439);
+			
+			this.getjPanelCentro().add(getjLabelData());
+			this.getjLabelData().setLocation(312, 370);
+			
+			this.getjPanelCentro().add(getjLabelMotorista());
+			this.getjLabelMotorista().setLocation(533, 370);
+			
+			this.getjPanelCentro().add(getjLabelResponsavel());
+			this.getjLabelResponsavel().setLocation(773, 370);
+			
+			this.getjPanelCentro().add(getjTFieldNumeroOS());
+			this.getjTFieldNumeroOS().setLocation(96, 370);
+			
+			this.getjPanelCentro().add(getjTFieldServico());
+			this.getjTFieldServico().setLocation(96, 404);
+			
+			this.getjPanelCentro().add(getjTFieldReclamacao());
+			this.getjTFieldReclamacao().setLocation(96, 464);
+			
+			this.getjPanelCentro().add(getjTFieldData());
+			this.getjTFieldData().setLocation(352, 370);
+			
+			this.getjPanelCentro().add(getjTFieldMotorista());
+			this.getjTFieldMotorista().setLocation(611, 370);
+			
+			this.getjPanelCentro().add(getjComboBoxResponsavel());
+			this.getjComboBoxResponsavel().setLocation(867, 370);
+			
 		}
 }

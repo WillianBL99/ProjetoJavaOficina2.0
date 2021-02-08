@@ -20,6 +20,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	private JPanelVendasNovo jPanelVendasNovo;
 	private JPanelVendas jPanelVendas;
 	private JPanelPrincipal jPanelPrincipal;
+	private ControlJPanelVendasProsseguir controlJPanelVendasProsseguir;
 
 
 	//** Fim declaração de variáveis **	
@@ -85,6 +86,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		} else if(e.getSource() == getjPanelVendasNovo().getjButtonProsseguir()) {
 			// Prosseguir com a compra. Ir para formas de pagamento
 			getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
+			getcontrolJPanelVendasProsseguir();
 			
 		} 
 		
@@ -159,7 +161,16 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 			jPanelPrincipal = new JPanelPrincipal();
 		}
 		return jPanelPrincipal;
-	}		
+	}	
+	
+	
+	public ControlJPanelVendasProsseguir getcontrolJPanelVendasProsseguir() {
+		if(controlJPanelVendasProsseguir == null) {
+			controlJPanelVendasProsseguir = new ControlJPanelVendasProsseguir(getjFramePricipal(), getjPanelVendasProsseguir(),
+					getjPanelPrincipal(), getjPanelVendasNovo(), getjPanelVendas());
+		}
+		return controlJPanelVendasProsseguir;
+	}
 		
 		
 	//** Fim métodos da classe **

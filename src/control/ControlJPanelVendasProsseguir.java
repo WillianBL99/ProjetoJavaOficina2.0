@@ -12,6 +12,7 @@ import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
 import view.JPanelVendasNovo;
+import view.JPanelVendasProsseguir;
 
 /**
  * @author Paulo Uilian
@@ -22,9 +23,10 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePricipal;
-	private JPanelVendas jPanelVendas;
+	private JPanelVendasProsseguir jPanelVendasProsseguir;
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelVendasNovo jPanelVendasNovo;
+	private JPanelVendas jPanelVendas;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
 	
 	//** Fim declaração de variáveis **	
@@ -32,16 +34,17 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	/**
 	 * @param jFramePricipal
-	 * @param jPanelVendas
+	 * @param jPanelVendasProsseguir
 	 * @param jPanelPrincipal
 	 */
-	public ControlJPanelVendasProsseguir(JFramePrincipal jFramePricipal, JPanelVendas jPanelVendas,
-			JPanelPrincipal jPanelPrincipal) {
+	public ControlJPanelVendasProsseguir(JFramePrincipal jFramePricipal, JPanelVendasProsseguir jPanelVendasProsseguir,
+			JPanelPrincipal jPanelPrincipal, JPanelVendasNovo jPanelVendasNovo, JPanelVendas jPanelVendas) {
 		super();
 		this.jFramePricipal = jFramePricipal;
-		this.jPanelVendas = jPanelVendas;
+		this.jPanelVendasProsseguir = jPanelVendasProsseguir;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jPanelVendasNovo = jPanelVendasNovo;
+		this.jPanelVendas = jPanelVendas;
 		this.AddEvent();
 	}
 	
@@ -49,11 +52,10 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 
 	private void AddEvent() {
-		getjPanelVendas().getjButtonNovaVenda().addMouseListener(this);
-		getjPanelVendas().getjButtonApagar().addMouseListener(this);
-		getjPanelVendas().getjButtonImprimir().addMouseListener(this);
-		getjPanelVendas().getjButtonFiltrar().addMouseListener(this);
-		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonVoltar().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonCartão().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonDinheiro().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonFinalizarCompra().addMouseListener(this);
 		
 	}
 
@@ -85,9 +87,24 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
-			System.out.println("clicou em nova venda");
+		if(e.getSource() == getjPanelVendasProsseguir().getjButtonVoltar()) {
+			// quando o botão voltar for clicado
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
+			
+		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartão()) {
+			// quando a opção pagar com cartão for clicada
+			
+		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartão()) {
+			// quando a opção pagar com cartão for clicada
+			
+		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
+			// quando a opção pagar com dinheiro for clicada
+			
+		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
+			// quando o botão finalizar compra for clicado
+			System.out.println("JPanelPrincipal foi chamado por finalizar compra");
+			getjFramePricipal().alterarJPanel(getjPanelPrincipal());
+			
 		}
 		
 	}
@@ -129,11 +146,11 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 
 
-	public JPanelVendas getjPanelVendas() {
-		if(jPanelVendas == null) {
-			jPanelVendas = new JPanelVendas();
+	public JPanelVendasProsseguir getjPanelVendasProsseguir() {
+		if(jPanelVendasProsseguir == null) {
+			jPanelVendasProsseguir = new JPanelVendasProsseguir();
 		}
-		return jPanelVendas;
+		return jPanelVendasProsseguir;
 	}
 
 
@@ -144,6 +161,15 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		}
 		return jPanelPrincipal;
 	}		
+	
+	
+public JPanelVendas getjPanelVendas() {
+	if(jPanelVendas == null){
+		jPanelVendas = new JPanelVendas();
+
+	}
+	return jPanelVendas;
+}		
 		
 		
 	public JPanelVendasNovo getjPanelVendasNovo() {

@@ -86,7 +86,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 	public void mouseClicked(MouseEvent e) {
 		
 		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
-			System.out.println("clicou em nova venda");
+			// quando o botão nova venda for clicado
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			getControlJPanelVendasNovo();
 		}

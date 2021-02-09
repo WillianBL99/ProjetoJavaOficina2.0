@@ -12,6 +12,7 @@ import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JFramePrincipal;
+import view.JPanelGeraOS;
 import view.JPanelHome;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -28,6 +29,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelHome jPanelHome;
 	private JPanelVendas jPanelVendas;
+	private JPanelGeraOS jPanelGeraOS;
 	
 	private ControlJPanelVendas controlJPanelVendas;
 
@@ -93,21 +95,59 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 
 	
 	@Override
-	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado
+	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado		
 		
-		if(e.getSource() == getjPanelPrincipal().getJButtonInicio()) {		
+		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {		
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getJButtonInicio(), Icones.getHomeOn(), Icones.getHomeOff());
-			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);			
+			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);	
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
 			
 			
-		} else if(e.getSource() == getjPanelPrincipal().getjButtonOS()) {
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOS()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonOS(), Icones.getOSOn(), Icones.getOSOff());
+			this.setSizeOSOpen(true);
+			this.setSizeOrcamentoOpen(false);
 			
 			
-		} else if(e.getSource() == getjPanelPrincipal().getjButtonVendas()) {
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSCriar()) {
+			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point);	
+			
+			
+		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
 			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point);
 			getControlJPanelVendas();
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
 			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(true);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
 		}
 		
 	}
@@ -130,48 +170,32 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	public void mouseEntered(MouseEvent e) { // Quando o ponteiro do mouse passar por algum componente
 		
 		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOS()) {
-			this.setSizeOSOpen(true);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(true);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
-			this.setSizeOSOpen(false);
-			this.setSizeOrcamentoOpen(false);
+			
+			
 		}
 	}
 
@@ -223,6 +247,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		
 			}
 			return controlJPanelVendas;
+		}
+		
+		
+		public JPanelGeraOS getjPanelGerarOS() {
+			if(jPanelGeraOS == null){
+				jPanelGeraOS = new JPanelGeraOS();
+			}
+			return jPanelGeraOS;
 		}
 		
 		
@@ -309,11 +341,13 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				setSizeIcon.setIconJButton(jButton, iconeSelected, 34 ,34);
 				
 				jButtonClicado.setBackground(Cores.branco);
-				jButtonClicado.setForeground(Cores.preto);
+				jButtonClicado.setForeground(Cores.cinza2);
 				setSizeIcon.setIconJButton(jButtonClicado, iconeJButtonClicado, 34 ,34);
 				
 				jButtonClicado = jButton;
 				iconeJButtonClicado = iconeNotSelected;
+				this.getjFramePricipal().repaint();
+				this.getjFramePricipal().validate();
 			}
 		}
 		

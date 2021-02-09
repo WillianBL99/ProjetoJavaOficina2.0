@@ -346,8 +346,6 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				
 				jButtonClicado = jButton;
 				iconeJButtonClicado = iconeNotSelected;
-				this.getjFramePricipal().repaint();
-				this.getjFramePricipal().validate();
 			}
 		}
 		

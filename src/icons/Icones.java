@@ -7,11 +7,14 @@ public class Icones {
 	
 	
 	private static String user;
-	private static String home;
-	private static String OS;
+	private static String homeOn;
+	private static String homeOff;
+	private static String OSOn;
+	private static String OSOff;
 	private static String vendas;
 	private static String orcamento;
 	private static String veiculos;
+	private static String veiculosAzul;
 	private static String clientes;
 	private static String usuarios;
 	private static String usuarioBranco;
@@ -149,19 +152,34 @@ public class Icones {
 		return user;		
 	}
     
-	public static String getHome() {
-		if(home == null) {					
-			home = ("/icons/home-wht-348.png");
+	public static String getHomeOn() {
+		if(homeOn == null) {					
+			homeOn = ("/icons/home-wht-348.png");
 		}
-		return home;		
+		return homeOn;		
+	}
+    
+	public static String getHomeOff() {
+		if(homeOff == null) {					
+			homeOff = ("/icons/home-348.png");
+		}
+		return homeOff;		
 	}
 	
 	
-	public static String getOS() {
-		if(OS == null) {					
-			OS = ("/icons/order-96.png");
+	public static String getOSOn() {
+		if(OSOn == null) {					
+			OSOn = ("/icons/order-wht-96.png");
 		}
-		return OS;
+		return OSOn;
+	}
+	
+	
+	public static String getOSOff() {
+		if(OSOff == null) {					
+			OSOff = ("/icons/order-96.png");
+		}
+		return OSOff;
 	}
 
 	
@@ -182,10 +200,10 @@ public class Icones {
 
 	
 	public static String getVeiculosAzul() {
-		if(veiculos == null) {					
-			veiculos = ("/icons/car-90.png");
+		if(veiculosAzul == null) {					
+			veiculosAzul = ("/icons/car-90.png");
 		}
-		return veiculos;
+		return veiculosAzul;
 	}
 	
 	

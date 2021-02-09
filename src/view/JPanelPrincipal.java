@@ -116,7 +116,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonInicio.setText(" Início");
 			jButtonInicio.setForeground(Cores.branco);
 			setSizeIcon.setIconJButton(jButtonInicio, Icones.
-					getHome(), xIconJButton, yIconJButton);
+					getHomeOn(), xIconJButton, yIconJButton);
 			jButtonInicio.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonInicio.setBorder(null);
 			jButtonInicio.setFocusPainted(false);
@@ -135,7 +135,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonOS.setText(" O.S.");
 			jButtonOS.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonOS, Icones.
-					getOS(), xIconJButton, yIconJButton);
+					getOSOff(), xIconJButton, yIconJButton);
 			jButtonOS.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonOS.setBorder(null);
 			jButtonOS.setFocusPainted(false);
@@ -264,7 +264,7 @@ public class JPanelPrincipal extends JPanel{
 			jButtonVeiculos.setText(" Veículos");
 			jButtonVeiculos.setForeground(Cores.cinza2);
 			setSizeIcon.setIconJButton(jButtonVeiculos, Icones.
-					getVeiculos(), xIconJButton, yIconJButton);
+					getVeiculosAzul(), xIconJButton, yIconJButton);
 			jButtonVeiculos.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVeiculos.setBorder(null);
 			jButtonVeiculos.setFocusPainted(true);
@@ -435,44 +435,39 @@ public class JPanelPrincipal extends JPanel{
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonVendas());
-		this.getjButtonVendas().setLocation(4, 185 + getSizeOSOpen());
+		this.getjButtonVendas().setLocation(4, 185);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonOrcamento());
-		this.getjButtonOrcamento().setLocation(4,230 + getSizeOSOpen());
+		this.getjButtonOrcamento().setLocation(4,230);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonPreOrcamento());
-		this.getjButtonPreOrcamento().setLocation(44,268 + getSizeOSOpen());
+		this.getjButtonPreOrcamento().setLocation(44,268);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonOrcamentoFinal());
-		this.getjButtonOrcamentoFinal().setLocation(44,298 + getSizeOSOpen());
+		this.getjButtonOrcamentoFinal().setLocation(44,298);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonVeiculos());
-		this.getjButtonVeiculos().setLocation(4,275 + getSizeOSOpen() +
-				getSizeOrcamentoOpen());
+		this.getjButtonVeiculos().setLocation(4,275);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonClientes());
-		this.getjButtonClientes().setLocation(4,320 + getSizeOSOpen() +
-				getSizeOrcamentoOpen());
+		this.getjButtonClientes().setLocation(4,320);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonUsuarios());
-		this.getjButtonUsuarios().setLocation(4,365 + getSizeOSOpen() +
-				getSizeOrcamentoOpen());
+		this.getjButtonUsuarios().setLocation(4,365);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonEstoque());
-		this.getjButtonEstoque().setLocation(4, 410 + getSizeOSOpen() +
-				getSizeOrcamentoOpen());
+		this.getjButtonEstoque().setLocation(4, 410);
 
 		
 		this.getjPanelMenuLateral().add(this.getjButtonConfiguracao());
-		this.getjButtonConfiguracao().setLocation(4,455 + getSizeOSOpen() +
-				getSizeOrcamentoOpen());
+		this.getjButtonConfiguracao().setLocation(4,455);
 		
 	}
 
@@ -483,24 +478,7 @@ public class JPanelPrincipal extends JPanel{
 	//** Fim métodos adição de componentes **
 	
 	//** Início métodos da classe **
-	public int getSizeOSOpen() {
-		return sizeOSOpen;
-	}
-
-
-	public void setSizeOSOpen(int sizeOSOpen) {
-		this.sizeOSOpen = sizeOSOpen;
-	}
-
-
-	public int getSizeOrcamentoOpen() {
-		return sizeOrcamentoOpen;
-	}
-
-
-	public void setSizeOrcamentoOpen(int sizeOrcamentoOpen) {
-		this.sizeOrcamentoOpen = sizeOrcamentoOpen;
-	}
+	
 	
 	
 

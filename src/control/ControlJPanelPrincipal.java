@@ -6,6 +6,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
+
+import icons.Icones;
+import model.Cores;
+import model.SetSizeIcon;
 import view.JFramePrincipal;
 import view.JPanelHome;
 import view.JPanelPrincipal;
@@ -14,14 +19,22 @@ import view.JPanelVendas;
 public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
 
+	
 	//** Início declaração de variáveis **
+	
+	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelHome jPanelHome;
 	private JPanelVendas jPanelVendas;
 	
-	
 	private ControlJPanelVendas controlJPanelVendas;
+
+	private int sizeOSOpen;
+	private int sizeOrcamentoOpen;
+	private JButton jButtonClicado = this.getjPanelPrincipal().getJButtonInicio(); // guarda o jbutton clicado
+	private String iconeJButtonClicado = "/icons/home-348.png"; // guarda o caminho do icone do jbutton clicado
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
@@ -83,10 +96,15 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado
 		
 		if(e.getSource() == getjPanelPrincipal().getJButtonInicio()) {		
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getJButtonInicio(), Icones.getHomeOn(), Icones.getHomeOff());
 			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);			
-		}
-		
-		if(e.getSource() == getjPanelPrincipal().getjButtonVendas()) {
+			
+			
+		} else if(e.getSource() == getjPanelPrincipal().getjButtonOS()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonOS(), Icones.getOSOn(), Icones.getOSOff());
+			
+			
+		} else if(e.getSource() == getjPanelPrincipal().getjButtonVendas()) {
 			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point);
 			getControlJPanelVendas();
 			
@@ -104,21 +122,62 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 			
 	}
 	
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseEntered(MouseEvent e) { // Quando o ponteiro do mouse passar por algum componente
+		
+		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
 			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOS()) {
+			this.setSizeOSOpen(true);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(true);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
+			this.setSizeOSOpen(false);
+			this.setSizeOrcamentoOpen(false);
+		}
 	}
 
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void mouseExited(MouseEvent e) { // Quando o ponteiro do mouse sair de algum componente		}
 			
 	}	
 		
@@ -164,6 +223,98 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		
 			}
 			return controlJPanelVendas;
+		}
+		
+		
+		public void setLocalizaçãoJButtonsMenuLateral() { // quando os jbuttons OS ou Orçamento forem solicitados
+			//chamar para setar a nova localização dos demais jbuttons
+			this.getjPanelPrincipal().getjButtonVendas().setLocation(4, 185 + getSizeOSOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonOrcamento().setLocation(4,230 + getSizeOSOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonPreOrcamento().setLocation(44,268 + getSizeOSOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonOrcamentoFinal().setLocation(44,298 + getSizeOSOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonVeiculos().setLocation(4,275 + getSizeOSOpen() +
+					getSizeOrcamentoOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonClientes().setLocation(4,320 + getSizeOSOpen() +
+					getSizeOrcamentoOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonUsuarios().setLocation(4,365 + getSizeOSOpen() +
+					getSizeOrcamentoOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonEstoque().setLocation(4, 410 + getSizeOSOpen() +
+					getSizeOrcamentoOpen());
+
+			
+			this.getjPanelPrincipal().getjButtonConfiguracao().setLocation(4,455 + getSizeOSOpen() +
+					getSizeOrcamentoOpen());
+			
+		}
+		
+		
+		public int getSizeOSOpen() {
+			return sizeOSOpen;
+		}
+
+
+		public void setSizeOSOpen(boolean sizeOSOpen) {
+			if(sizeOSOpen) { // se for verdadeiro
+				this.sizeOSOpen = 60;
+				this.getjPanelPrincipal().getjButtonOSConsulta().setVisible(true);
+				this.getjPanelPrincipal().getjButtonOSCriar().setVisible(true);
+			} else {
+				this.sizeOSOpen = 0;
+				this.getjPanelPrincipal().getjButtonOSConsulta().setVisible(false);
+				this.getjPanelPrincipal().getjButtonOSCriar().setVisible(false);
+			}
+			
+			this.setLocalizaçãoJButtonsMenuLateral();
+		}
+
+
+		public int getSizeOrcamentoOpen() {
+			return sizeOrcamentoOpen;
+		}
+
+
+		public void setSizeOrcamentoOpen(boolean sizeOrcamentoOpen) { // Mostra os jButtons gerarOS e ConsultarOS
+			if(sizeOrcamentoOpen) { // se for verdadeiro
+				this.sizeOrcamentoOpen = 60;
+				this.getjPanelPrincipal().getjButtonOrcamentoFinal().setVisible(true);
+				this.getjPanelPrincipal().getjButtonPreOrcamento().setVisible(true);
+			} else {
+				this.sizeOrcamentoOpen = 0;
+				this.getjPanelPrincipal().getjButtonOrcamentoFinal().setVisible(false);
+				this.getjPanelPrincipal().getjButtonPreOrcamento().setVisible(false);
+			}
+			
+			this.setLocalizaçãoJButtonsMenuLateral();
+		}
+		
+		
+		public void mudarCorJButtonSelecionado(JButton jButton, String iconeSelected, String iconeNotSelected) {
+			if(jButtonClicado != null && jButtonClicado != jButton) {
+				jButton.setBackground(Cores.azul1);
+				jButton.setForeground(Cores.branco);
+				setSizeIcon.setIconJButton(jButton, iconeSelected, 34 ,34);
+				
+				jButtonClicado.setBackground(Cores.branco);
+				jButtonClicado.setForeground(Cores.preto);
+				setSizeIcon.setIconJButton(jButtonClicado, iconeJButtonClicado, 34 ,34);
+				
+				jButtonClicado = jButton;
+				iconeJButtonClicado = iconeNotSelected;
+			}
 		}
 		
 		

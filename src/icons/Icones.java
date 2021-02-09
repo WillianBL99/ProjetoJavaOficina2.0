@@ -24,6 +24,7 @@ public class Icones {
 	private static String estoqueEditar;
 	private static String estoqueExcluir;
 	private static String configuracao;
+	private static String buscar;
 	
 	private static String addCompra;
 	private static String buscarCompra;
@@ -39,7 +40,14 @@ public class Icones {
 	
 	private static String editar;
 	
+	public static String getBuscar() {
+		if(buscar == null){
 	
+			buscar = ("/icons/buscar.png");
+	
+		}
+		return buscar;
+	}
 	
 	public static String getUsuarioBranco() {
 		if(usuarioBranco == null){

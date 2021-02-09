@@ -3,6 +3,7 @@ package control;
 import javax.swing.UIManager;
 
 import view.JFramePrincipal;
+import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelLogin;
 import view.JPanelVeiculos;
@@ -30,7 +31,7 @@ public class ControlMain {
 	     }
 	     
 
-		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getjFramePrincipal().alterarJPanel(new JPanelConsultarOS());
 		 getcontrolJPanelLogin();
 		
 	}

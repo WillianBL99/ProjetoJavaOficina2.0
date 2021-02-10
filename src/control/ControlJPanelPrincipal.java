@@ -12,6 +12,7 @@ import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JFramePrincipal;
+import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelHome;
 import view.JPanelPrincipal;
@@ -30,6 +31,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JPanelHome jPanelHome;
 	private JPanelVendas jPanelVendas;
 	private JPanelGeraOS jPanelGeraOS;
+	private JPanelConsultarOS jPanelConsultarOS;
 	
 	private ControlJPanelVendas controlJPanelVendas;
 
@@ -114,7 +116,12 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point);	
 			
 			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSConsulta()) {
+			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point);	
+			
+			
 		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVendas(), Icones.getVendasOn(), Icones.getVendasOff());
 			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point);
 			getControlJPanelVendas();
 			this.setSizeOSOpen(false);
@@ -122,30 +129,36 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonOrcamento(), Icones.getOrcamentoOn(), Icones.getOrcamentoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(true);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonClientes(), Icones.getClientesOn(), Icones.getClientesOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
+			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 		}
@@ -255,6 +268,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				jPanelGeraOS = new JPanelGeraOS();
 			}
 			return jPanelGeraOS;
+		}
+		
+		
+		public JPanelConsultarOS getjPanelConsultarOS() {
+			if(jPanelConsultarOS == null){
+				jPanelConsultarOS = new JPanelConsultarOS();
+			}
+			return jPanelConsultarOS;
 		}
 		
 		

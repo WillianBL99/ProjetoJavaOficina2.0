@@ -103,7 +103,7 @@ public class JPanelUsuarios  extends JPanel{
 			jButtonNovoUsuario.setForeground(Color.white);
 			jButtonNovoUsuario.setHorizontalTextPosition(SwingConstants.LEFT);
 			setSizeIcon.setIconJButton(jButtonNovoUsuario, Icones.
-					getUsuarioBranco(), 20, 20);
+					getUsuariosOn(), 20, 20);
 			jButtonNovoUsuario.setText("Novo");
 			jButtonNovoUsuario.setSize(95, 35);
 			jButtonNovoUsuario.setFocusable(false);
@@ -176,7 +176,7 @@ public class JPanelUsuarios  extends JPanel{
 			jButtonPesquisarTodos.setForeground(Color.white);
 			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
 			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getUsuarioBranco(), 18, 18);
+					getUsuariosOn(), 18, 18);
 			jButtonPesquisarTodos.setText("pesquisar todos");
 			jButtonPesquisarTodos.setSize(118, 22);
 			jButtonPesquisarTodos.setFocusable(false);

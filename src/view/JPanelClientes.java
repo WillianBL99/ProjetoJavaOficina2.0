@@ -156,7 +156,7 @@ public class JPanelClientes  extends JPanel{
 			jButtonPesquisarTodos.setForeground(Color.white);
 			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
 			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getVeiculos(), 18, 18);
+					getUser(), 18, 18);
 			jButtonPesquisarTodos.setText("pesquisar todos");
 			jButtonPesquisarTodos.setSize(118, 22);
 			jButtonPesquisarTodos.setFocusable(false);

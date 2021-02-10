@@ -7,55 +7,82 @@ public class Icones {
 	
 	
 	private static String user;
+	
 	private static String homeOn;
 	private static String homeOff;
+	
 	private static String OSOn;
 	private static String OSOff;
-	private static String vendas;
-	private static String orcamento;
-	private static String veiculos;
-	private static String veiculosAzul;
-	private static String clientes;
-	private static String usuarios;
-	private static String usuarioBranco;
-	private static String estoque;
-	private static String estoqueBranco;
+	
+	private static String vendasOn;
+	private static String vendasOff;
+	
+	private static String orcamentoOn;
+	private static String orcamentoOff;
+
+	private static String veiculosOn;
+	private static String veiculosOff;
+	
+	private static String clientesOn;
+	private static String clientesOff;
+	
+	private static String usuariosOn;
+	private static String usuariosOff;
+	
+	private static String estoqueOn;
+	private static String estoqueOff;
+	
 	private static String estoqueAdicionar;
 	private static String estoqueEditar;
 	private static String estoqueExcluir;
-	private static String configuracao;
-	private static String buscar;
 	
+	private static String configuracaoOn;
+	private static String configuracaoOff;
+		
 	private static String addCompra;
 	private static String buscarCompra;
+	
 	private static String filtrar;
 	private static String imprimir;
 	private static String apagar;
 	private static String salvar;
+	private static String buscar;
+	private static String editar;
 	
 	private static String cartãoAzul;
 	private static String cartãoCinza;
 	private static String dinheiroAzul;
 	private static String dinheiroCinza;
 	
-	private static String editar;
+	
 	
 	public static String getBuscar() {
 		if(buscar == null){
 	
-			buscar = ("/icons/buscar.png");
+			buscar = ("/icons/buscar-24.png");
 	
 		}
 		return buscar;
 	}
 	
-	public static String getUsuarioBranco() {
-		if(usuarioBranco == null){
 	
-			usuarioBranco = ("/icons/user-wht-480.png");
+	public static String getUsuariosOn() {
+		if(usuariosOn == null){
+	
+			usuariosOn = ("/icons/user-wht-480.png");
 	
 		}
-		return usuarioBranco;
+		return usuariosOn;
+	}
+	
+	
+	public static String getUsuarioOff() {
+		if(usuariosOff == null){
+	
+			usuariosOff = ("/icons/user-480.png");
+	
+		}
+		return usuariosOff;
 	}
 	
 	
@@ -191,68 +218,84 @@ public class Icones {
 	}
 
 	
-	public static String getVendas() {
-		if(vendas == null) {					
-			vendas = ("/icons/buy-96.png");
+	public static String getVendasOn() {
+		if(vendasOn == null) {					
+			vendasOn = ("/icons/buy-wht-96.png");
 		}
-		return vendas;
+		return vendasOn;
 	}
 
 	
-	public static String getOrcamento() {
-		if(orcamento == null) {					
-			orcamento = ("/icons/order-sell-96.png");
+	public static String getVendasOff() {
+		if(vendasOff == null) {					
+			vendasOff = ("/icons/buy-96.png");
 		}
-		return orcamento;
+		return vendasOff;
 	}
 
 	
-	public static String getVeiculosAzul() {
-		if(veiculosAzul == null) {					
-			veiculosAzul = ("/icons/car-90.png");
+	public static String getOrcamentoOn() {
+		if(orcamentoOn == null) {					
+			orcamentoOn = ("/icons/order-sell-wht-96.png");
 		}
-		return veiculosAzul;
-	}
-	
-	
-	public static String getVeiculos() {
-		if(veiculos == null) {					
-			veiculos = ("/icons/car-wht-90.png");
-		}
-		return veiculos;
+		return orcamentoOn;
 	}
 
 	
-	public static String getClientes() {
-		if(clientes == null) {					
-			clientes = ("/icons/users-90.png");
+	public static String getOrcamentoOff() {
+		if(orcamentoOff == null) {					
+			orcamentoOff = ("/icons/order-sell-96.png");
 		}
-		return clientes;
+		return orcamentoOff;
 	}
 
 	
-	public static String getUsuarios() {
-		if(usuarios == null) {					
-			usuarios = ("/icons/user-480.png");
+	public static String getVeiculosOn() {
+		if(veiculosOn == null) {					
+			veiculosOn = ("/icons/car-wht-90.png");
 		}
-		return usuarios;
+		return veiculosOn;
+	}
+	
+	
+	public static String getVeiculosOff() {
+		if(veiculosOff == null) {					
+			veiculosOff = ("/icons/car-90.png");
+		}
+		return veiculosOff;
 	}
 
 	
-	public static String getEstoque() {
-		if(estoque == null) {					
-			estoque = ("/icons/cabinet-90.png");
+	public static String getClientesOn() {
+		if(clientesOn == null) {					
+			clientesOn = ("/icons/users-wht-90.png");
 		}
-		return estoque;
+		return clientesOn;
 	}
+
 	
-	
-	public static String getEstoqueBranco() {
-		
-		if(estoqueBranco == null) {					
-			estoqueBranco = ("/icons/cabinet-wht-90.png");
+	public static String getClientesOff() {
+		if(clientesOff == null) {					
+			clientesOff = ("/icons/users-90.png");
 		}
-		return estoqueBranco;
+		return clientesOff;
+	}
+
+	
+	public static String getEstoqueOn() {
+		if(estoqueOn == null) {					
+			estoqueOn = ("/icons/cabinet-wht-90.png");
+		}
+		return estoqueOn;
+	}
+
+	
+	public static String getEstoqueOff() {
+		if(estoqueOff == null) {					
+			estoqueOff = ("/icons/cabinet-90.png");
+		}
+		return estoqueOff;
+	
 	}
 	
 	
@@ -280,11 +323,19 @@ public class Icones {
 	}
 
 	
-	public static String getConfiguracao() {
-		if(configuracao == null) {					
-			configuracao = ("/icons/settings-144.png");
+	public static String getConfiguracaoOn() {
+		if(configuracaoOn == null) {					
+			configuracaoOn = ("/icons/settings-wht-144.png");
 		}
-		return configuracao;
+		return configuracaoOn;
+	}
+
+	
+	public static String getConfiguracaoOff() {
+		if(configuracaoOff == null) {					
+			configuracaoOff = ("/icons/settings-144.png");
+		}
+		return configuracaoOff;
 	}
 
 

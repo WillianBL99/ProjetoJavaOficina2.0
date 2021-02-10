@@ -173,7 +173,7 @@ public class JPanelEstoque  extends JPanel{
 			jButtonPesquisarTodos.setForeground(Color.white);
 			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
 			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getEstoqueBranco(), 18, 18);
+					getEstoqueOn(), 18, 18);
 			jButtonPesquisarTodos.setText("pesquisar todos");
 			jButtonPesquisarTodos.setSize(118, 22);
 			jButtonPesquisarTodos.setFocusable(false);

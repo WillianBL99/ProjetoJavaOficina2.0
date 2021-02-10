@@ -7,11 +7,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JFramePrincipal;
+import view.JFrameTelasPopUps;
 import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelHome;
@@ -161,6 +163,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
+			JFrameTelasPopUps.getjPanelNovoOrcamentoFinal();
 		}
 		
 	}

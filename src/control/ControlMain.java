@@ -31,7 +31,7 @@ public class ControlMain {
 	     }
 	     
 
-		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getjFramePrincipal().alterarJPanel(new JPanelConsultarOS());
 		 getcontrolJPanelLogin();
 		
 	}

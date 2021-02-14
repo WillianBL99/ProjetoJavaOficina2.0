@@ -3,12 +3,7 @@ package control;
 import javax.swing.UIManager;
 
 import view.JFramePrincipal;
-import view.JPanelConsultarOS;
-import view.JPanelGeraOS;
 import view.JPanelLogin;
-import view.JPanelVeiculos;
-import view.JPanelVendas;
-import view.JPanelVendasProsseguir;
 
 public class ControlMain {
 	
@@ -20,6 +15,10 @@ public class ControlMain {
 	public static void main(String[] ags) {
 		
 		try {
+			
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+			
+			
 	      	for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 	        	if ("Windows Classic".equals(info.getName())) { // Define designer dos componentes ("Windows","Windows Classic","Nimbus","Metal","CDE/Motif")
 	            	UIManager.setLookAndFeel(info.getClassName());

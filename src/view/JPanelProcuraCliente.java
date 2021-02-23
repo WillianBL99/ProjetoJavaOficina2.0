@@ -35,6 +35,7 @@ public class JPanelProcuraCliente extends JPanel{
 //** Início declaração de variáveis **
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
+	
 	private JPanel jPanelCentro;
 	
 	private JButton jButtonCancelar;

@@ -5,15 +5,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
+import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
-import view.JFrameTelasPopUps;
 import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelHome;
@@ -158,12 +156,11 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
-			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			JFrameTelasPopUps.getjPanelNovoOrcamentoFinal();
+			new JDialogProcurarVeiculo(getjFramePricipal(), false);
 		}
 		
 	}

@@ -14,9 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -26,6 +23,7 @@ import model.SetSizeIcon;
  * @author Paulo Uilian
  *
  */
+@SuppressWarnings("serial")
 public class JPanelVeiculos extends JPanel{
 
 
@@ -205,29 +203,6 @@ public class JPanelVeiculos extends JPanel{
 				jComboPesquisarPor.setModel(new javax.swing.
 						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "Chassi", "Placa"}));
 				jComboPesquisarPor.setBorder(null);
-				
-				jComboPesquisarPor.setUI(new BasicComboBoxUI() {
-				    protected JButton createArrowButton() {
-				        return new JButton() {
-				        	@Override
-				        	public Color getBackground() {		        		
-				        		return super.getBackground().cyan;
-				        	}
-				        	@Override
-				        	public Border getBorder() {
-				        		return BorderFactory.createEmptyBorder();
-				        	}
-				        	@Override
-				            public int getWidth() {
-				            	  return 1;
-				            }
-				        	@Override
-				            public int getHeight() {
-				            	  return 1;
-				            }
-				        };
-				    }
-				});
 				
 			}
 			

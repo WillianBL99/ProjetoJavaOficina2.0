@@ -33,6 +33,7 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 
 
 	private void AddEvent() {
+		
 		getjPanelLogin().getjButtonEntrar().addMouseListener(this);
 		getjPanelLogin().getjTFieldUsuario().requestFocus();
 		getjPanelLogin().getjTFieldUsuario().addKeyListener(this);	

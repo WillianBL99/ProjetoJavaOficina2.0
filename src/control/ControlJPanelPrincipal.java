@@ -87,7 +87,6 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	

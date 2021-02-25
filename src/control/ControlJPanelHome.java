@@ -7,8 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.time.LocalTime;
-
 import model.Relogio;
 import view.JPanelHome;
 
@@ -16,6 +14,7 @@ import view.JPanelHome;
  * @author Paulo Uilian
  *
  */
+
 public class ControlJPanelHome  implements MouseListener, KeyListener {
 	
 
@@ -31,12 +30,18 @@ public class ControlJPanelHome  implements MouseListener, KeyListener {
 	public ControlJPanelHome(JPanelHome jPanelHome) {
 		super();
 		this.jPanelHome = jPanelHome;
+		
+		 /*
+		  *  Chamada da classe Relogio realiza a inicialização de uma nova thread
+		  *  que realiza a modificação das horas da jlabel passada pelo parametro
+		  */
 		new Relogio(getjPanelHome().getjLabelHoras()).start();
+		this.AddEvent();
 	}
 
 
 	private void AddEvent() {
-		//getjPanelVendas().getjButtonNovaVenda().addMouseListener(this);
+		//getjPanelHome().addKeyListener(this);
 		
 	}
 

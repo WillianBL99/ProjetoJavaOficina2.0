@@ -3,20 +3,16 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -26,6 +22,8 @@ import model.SetSizeIcon;
  * @author pWili
  *
  */
+
+@SuppressWarnings("serial")
 public class JPanelUsuarios  extends JPanel{
 
 
@@ -48,7 +46,7 @@ public class JPanelUsuarios  extends JPanel{
 	
 	private JTable jTableUsuarios;
 	
-	private JComboBox<String> jComboPesquisarPor;
+	private Choice choicePesquisarPor;
 		
 	//** Fim declaração de variáveis **
 	
@@ -79,7 +77,7 @@ public class JPanelUsuarios  extends JPanel{
 			jPanelBuscaUsuarios = new JPanel();
 			jPanelBuscaUsuarios.setLayout(null);
 			jPanelBuscaUsuarios.setBackground(Cores.branco);
-			jPanelBuscaUsuarios.setSize(1000, 50);
+			jPanelBuscaUsuarios.setSize(990, 50);
 			jPanelBuscaUsuarios.setBorder(null);
 		}
 		return jPanelBuscaUsuarios;
@@ -214,45 +212,22 @@ public class JPanelUsuarios  extends JPanel{
 	
 	//** Início getters JComboBox **
 	
-		public JComboBox<String> getjComboPesquisarPor() { // OK
-			if(jComboPesquisarPor == null) {
-				jComboPesquisarPor = new JComboBox<String>();
-				jComboPesquisarPor.setForeground(Cores.preto);
-				jComboPesquisarPor.setFont(Fontes.fontJLabelPlain1);
-				jComboPesquisarPor.setSize(150, 25);
-				jComboPesquisarPor.setOpaque(false);
-				jComboPesquisarPor.setFocusable(false);
-				jComboPesquisarPor.setModel(new javax.swing.
-						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "CPF", "Nome"}));
-				jComboPesquisarPor.setBorder(null);
-				
-				jComboPesquisarPor.setUI(new BasicComboBoxUI() {
-				    protected JButton createArrowButton() {
-				        return new JButton() {
-				        	@Override
-				        	public Color getBackground() {		        		
-				        		return super.getBackground().cyan;
-				        	}
-				        	@Override
-				        	public Border getBorder() {
-				        		return BorderFactory.createEmptyBorder();
-				        	}
-				        	@Override
-				            public int getWidth() {
-				            	  return 1;
-				            }
-				        	@Override
-				            public int getHeight() {
-				            	  return 1;
-				            }
-				        };
-				    }
-				});
-				
-			}
-			
-			return jComboPesquisarPor;
+	public Choice getChoicePesquisarPor() {
+		if(choicePesquisarPor == null){
+			choicePesquisarPor = new Choice();
+			choicePesquisarPor.setSize(150, 25);
+			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
+			choicePesquisarPor.setVisible(true);
+			choicePesquisarPor.add("Selecione uma opção");
+			choicePesquisarPor.add("CPF");
+			choicePesquisarPor.add("Nome");
+			choicePesquisarPor.setFocusable(false);
+	
 		}
+		return choicePesquisarPor;
+	}
+		
+		
 		
 		
 		
@@ -264,7 +239,8 @@ public class JPanelUsuarios  extends JPanel{
 		if(jSPUsuarios == null){
 			jSPUsuarios = new JScrollPane();
 			jSPUsuarios.setViewportView(getjTableUsuarios());
-			jSPUsuarios.setSize(1000, 225);	
+			jSPUsuarios.setSize(990, 225);	
+			jSPUsuarios.setBorder(null);
 		}
 		return jSPUsuarios;
 	}
@@ -317,10 +293,10 @@ public class JPanelUsuarios  extends JPanel{
 		this.getjButtonNovoUsuario().setLocation(14, 20);
 	
 		this.getJPanelUsuarios().add(this.getjButtonEditar());
-		this.getjButtonEditar().setLocation(884, 20);
+		this.getjButtonEditar().setLocation(882, 20);
 		
 		this.getJPanelUsuarios().add(this.getjButtonApagar());
-		this.getjButtonApagar().setLocation(950, 20);
+		this.getjButtonApagar().setLocation(948, 20);
 		
 		this.getJPanelUsuarios().add(this.getjPanelBuscaUsuarios());
 		this.getjPanelBuscaUsuarios().setLocation(14, 75);
@@ -332,17 +308,17 @@ public class JPanelUsuarios  extends JPanel{
 	
 	public void addCompJPanelBuscaUsuarios() {		
 
-		this.getjPanelBuscaUsuarios().add(this.getjComboPesquisarPor());
-		this.getjComboPesquisarPor().setLocation(14, 16);
+		this.getjPanelBuscaUsuarios().add(this.getChoicePesquisarPor());
+		this.getChoicePesquisarPor().setLocation(14, 16);
 		
 		this.getjPanelBuscaUsuarios().add(this.getjTFieldBuscarPor());
 		this.getjTFieldBuscarPor().setLocation(180, 16);
 
 		this.getjPanelBuscaUsuarios().add(this.getjButtonFiltrar());
-		this.getjButtonFiltrar().setLocation(800, 16);
+		this.getjButtonFiltrar().setLocation(790, 16);
 
 		this.getjPanelBuscaUsuarios().add(this.getjButtonPesquisarTodos());
-		this.getjButtonPesquisarTodos().setLocation(874, 16);
+		this.getjButtonPesquisarTodos().setLocation(864, 16);
 	}
 	
 	//** Fim métodos adição de componentes **

@@ -15,7 +15,10 @@ import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelHome;
+import view.JPanelOrcamentoFinal;
+import view.JPanelPreOrcamento;
 import view.JPanelPrincipal;
+import view.JPanelUsuarios;
 import view.JPanelVendas;
 
 public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
@@ -28,13 +31,17 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
+	
 	private JPanelHome jPanelHome;
-	private JPanelVendas jPanelVendas;
 	private JPanelGeraOS jPanelGeraOS;
 	private JPanelConsultarOS jPanelConsultarOS;
-	
-	private ControlJPanelVendas controlJPanelVendas;
+	private JPanelVendas jPanelVendas;
+	private JPanelPreOrcamento jPanelPreOrcamento;
+	private JPanelOrcamentoFinal jPanelOrcamentoFinal;
+	private JPanelUsuarios jPanelUsuarios;
+
 	private ControlJPanelHome controlJPanelHome;
+	private ControlJPanelVendas controlJPanelVendas;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
@@ -135,6 +142,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.setSizeOrcamentoOpen(true);
 			
 			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
+			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point);			
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
+			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point);			
+			
+			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
 			this.setSizeOSOpen(false);
@@ -148,6 +163,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
+			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point);
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -286,6 +302,30 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				jPanelConsultarOS = new JPanelConsultarOS();
 			}
 			return jPanelConsultarOS;
+		}
+		
+		
+		public JPanelPreOrcamento getjPanelPreOrcamento() {
+			if(jPanelPreOrcamento == null){
+				jPanelPreOrcamento = new JPanelPreOrcamento();
+			}
+			return jPanelPreOrcamento;
+		}
+		
+		
+		public JPanelOrcamentoFinal getjPanelOrcamentoFinal() {
+			if(jPanelOrcamentoFinal == null){
+				jPanelOrcamentoFinal = new JPanelOrcamentoFinal();
+			}
+			return jPanelOrcamentoFinal;
+		}
+		
+		
+		public JPanelUsuarios getjPanelUsuarios() {
+			if(jPanelUsuarios == null){
+				jPanelUsuarios = new JPanelUsuarios();
+			}
+			return jPanelUsuarios;
 		}
 		
 		

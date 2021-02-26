@@ -7,25 +7,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import view.JDialogProcurarVeiculo;
+
+import view.JDialogProcurarServico;
 import view.JFramePrincipal;
 
 /**
  * @author Paulo Uilian
  *
  */
-public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener {
+public class ControlJDialogProcurarServico  implements MouseListener, KeyListener {
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
-	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
-	
+	private JDialogProcurarServico jDialogProcurarServico;
 	
 	//** Fim declaração de variáveis **	
 	
-	public ControlJDialogProcurarVeiculo(JFramePrincipal jFramePricipal, JDialogProcurarVeiculo jDialogProcurarVeiculo) {		
+	public ControlJDialogProcurarServico(JFramePrincipal jFramePricipal, JDialogProcurarServico jDialogProcurarServico) {		
 		this.jFramePrincipal = jFramePricipal;	
-		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
+		this.jDialogProcurarServico = jDialogProcurarServico;
 		AddEvent();
 		
 	}
@@ -34,9 +34,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private void AddEvent() {
 
 		//DragListener.add(getjDialogProcurarVeiculo()); // possibilita mover o JDialog como o undecorated = true
-		getjDialogProcurarVeiculo().getjButtonProcurar().addMouseListener(this);
-		getjDialogProcurarVeiculo().getjButtonSelecionar().addMouseListener(this);
-		getjDialogProcurarVeiculo().getjButtonCancelar().addMouseListener(this);
 		
 	}
 		
@@ -65,17 +62,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		/*
-		if(e.getSource() == getjDialogProcurarVeiculo().getjButtonFecharTela()) {	
-			
-			int fechar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja fechar a tela?", "Alerta!", JOptionPane.WARNING_MESSAGE);
-			//JOptionPane.showConfirmDialog(null, "Tem certeza que deseja fechar a tela?", "Alerta!", JOptionPane.OK_CANCEL_OPTION);
-			if(fechar == 0) {
-				getjFramePricipal().dispose(); // método da classe
-			}
-			
-		}
-		*/
 	}
 
 
@@ -118,11 +104,11 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		}
 		
 
-		public JDialogProcurarVeiculo getjDialogProcurarVeiculo() {
-			if(jDialogProcurarVeiculo == null){
-				jDialogProcurarVeiculo = new JDialogProcurarVeiculo(getjFramePricipal(), true);
+		public JDialogProcurarServico getjDialogProcurarServico() {
+			if(jDialogProcurarServico == null){
+				jDialogProcurarServico = new JDialogProcurarServico(getjFramePricipal(), true);
 			}
-			return jDialogProcurarVeiculo;
+			return jDialogProcurarServico;
 		}
 	
 	

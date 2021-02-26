@@ -26,7 +26,7 @@ import model.SetSizeIcon;
  *
  */
 @SuppressWarnings("serial")
-public class JDialogProcurarSevico  extends JDialog{	
+public class JDialogProcurarServico  extends JDialog{	
 	
 	//** Início declaração de variáveis **
 	
@@ -51,17 +51,17 @@ public class JDialogProcurarSevico  extends JDialog{
 	//** Fim declaração de variáveis **
 	
 	//** Início construtor **
-	public JDialogProcurarSevico(Frame frame, boolean modal) {
+	public JDialogProcurarServico(Frame frame, boolean modal) {
 		super(frame, "Procurar serviço");
 		this.modal = modal;
-		this.addCompJDialogProcurarSevico();
+		this.addCompJDialogProcurarServico();
 	}	
 
 	
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
-	public JDialogProcurarSevico getJDialogProcurarSevico() {
+	public JDialogProcurarServico getJDialogProcurarServico() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
@@ -80,7 +80,7 @@ public class JDialogProcurarSevico  extends JDialog{
 			jPanelBarraMenu = new JPanel();
 			jPanelBarraMenu.setLayout(null);
 			jPanelBarraMenu.setBackground(Cores.azul1);
-			jPanelBarraMenu.setSize(getJDialogProcurarSevico().getWidth(),25);
+			jPanelBarraMenu.setSize(getJDialogProcurarServico().getWidth(),25);
 		}
 		return jPanelBarraMenu;
 	}*/	
@@ -273,30 +273,30 @@ public class JDialogProcurarSevico  extends JDialog{
 	//** Início métodos adição de componentes **
 	
 	
-	public void addCompJDialogProcurarSevico() {
+	public void addCompJDialogProcurarServico() {
 
-		/*getJDialogProcurarSevico().getContentPane().add(getjPanelBarraMenu());
+		/*getJDialogProcurarServico().getContentPane().add(getjPanelBarraMenu());
 		getjPanelBarraMenu().setLocation(0, 0);*/
 
-		getJDialogProcurarSevico().getContentPane().add(getjLabelPesquisarPor());
+		getJDialogProcurarServico().getContentPane().add(getjLabelPesquisarPor());
 		getjLabelPesquisarPor().setLocation(50, 40);
 		
-		getJDialogProcurarSevico().getContentPane().add(getChoicePesquisarPor());
+		getJDialogProcurarServico().getContentPane().add(getChoicePesquisarPor());
 		getChoicePesquisarPor().setLocation(155, 40);
 
-		getJDialogProcurarSevico().getContentPane().add(getjTFieldProcurar());
+		getJDialogProcurarServico().getContentPane().add(getjTFieldProcurar());
 		getjTFieldProcurar().setLocation(319, 40);
 		
-		getJDialogProcurarSevico().getContentPane().add(getjButtonProcurar());
+		getJDialogProcurarServico().getContentPane().add(getjButtonProcurar());
 		getjButtonProcurar().setLocation(511, 40);
 
-		getJDialogProcurarSevico().getContentPane().add(getjSPanelSevicos());
+		getJDialogProcurarServico().getContentPane().add(getjSPanelSevicos());
 		getjSPanelSevicos().setLocation(50, 100);
 
-		getJDialogProcurarSevico().getContentPane().add(getjButtonCancelar());
+		getJDialogProcurarServico().getContentPane().add(getjButtonCancelar());
 		getjButtonCancelar().setLocation(744, 235);
 
-		getJDialogProcurarSevico().getContentPane().add(getjButtonSelecionar());
+		getJDialogProcurarServico().getContentPane().add(getjButtonSelecionar());
 		getjButtonSelecionar().setLocation(860, 235);
 	}
 	

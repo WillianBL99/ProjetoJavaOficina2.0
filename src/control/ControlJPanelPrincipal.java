@@ -45,8 +45,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
-	private JButton jButtonClicado = this.getjPanelPrincipal().getJButtonInicio(); // guarda o jbutton clicado
-	private String iconeJButtonClicado = "/icons/home-348.png"; // guarda o caminho do icone do jbutton clicado
+	private JButton jButtonClicado; // guarda o jbutton clicado
+	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
@@ -56,6 +56,9 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	public ControlJPanelPrincipal(JFramePrincipal jFramePricipal, JPanelPrincipal jPanelPrincipal) {		
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jFramePrincipal = jFramePricipal;
+		
+		jButtonClicado = this.getjPanelPrincipal().getJButtonInicio();
+		iconeJButtonClicado = Icones.getHomeOff();
 		
 		getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);
 		getControlJPanelHome();
@@ -404,17 +407,30 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.setLocalizaçãoJButtonsMenuLateral();
 		}
 		
-		
+		/*
+		 * método mudarCorJButtonSelecionado(@jButton, @iconeSelected, @iconeNotSelected)
+		 * 
+		 * @jButton - Recebe como parâmetro o JButton para realização de mudança de ícone,
+		 * mudança de background e mudança de foreground.
+		 * 
+		 * @iconeSelected - Recebe caminho do ícone que deve ser setado quando o JButton
+		 * estiver selecionado.
+		 * 
+		 * @iconeNotSelected - Recebe caminho do ícone que deve ser setado quando o JButton não
+		 * estiver selecionado.
+		 * 
+		 */
 		public void mudarCorJButtonSelecionado(JButton jButton, String iconeSelected, String iconeNotSelected) {
-			if(jButtonClicado != null && jButtonClicado != jButton) {
+			if(jButtonClicado != null && jButtonClicado != jButton) { 
+				// setando a nova aparência do JButton clicado.
 				jButton.setBackground(Cores.azul1);
 				jButton.setForeground(Cores.branco);
 				setSizeIcon.setIconJButton(jButton, iconeSelected, 34 ,34);
-				
+				// setando a aparência do JButton clicado ateriormente.
 				jButtonClicado.setBackground(Cores.branco);
 				jButtonClicado.setForeground(Cores.cinza2);
 				setSizeIcon.setIconJButton(jButtonClicado, iconeJButtonClicado, 34 ,34);
-				
+				// guardando os caminhos dos ícones do JButton que está selecionado.
 				jButtonClicado = jButton;
 				iconeJButtonClicado = iconeNotSelected;
 			}

@@ -30,15 +30,15 @@ public class JPanelProcuraCliente extends JDialog{
 	public JPanelProcuraCliente(Frame frame, boolean modal) {
 		super(frame, "Procura Cliente");
 		this.setModal(modal);
-		
 		getJPanelProcuraCliente();
 		addCompJPanelProcuraCliente();
 	
 	}
 
-//** Início declaração de variáveis **
+	//** Início declaração de variáveis **
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
+	private JLabel jLabelPesquisarPor;
 	
 	private JPanel jPanelCentro;
 	
@@ -46,13 +46,11 @@ public class JPanelProcuraCliente extends JDialog{
 	private JButton jButtonSeleciona;
 	
 	
-	private JLabel jLabelCpf;
-	
 	private JComboBox jComboBoxPesquisa;
-//** Fim declaração de variáveis **
+	//** Fim declaração de variáveis **
 
 
-//** Início getters JPanels **
+	//** Início getters JPanels **
 	public JPanelProcuraCliente getJPanelProcuraCliente() {
 		
 		this.setLayout(null);
@@ -64,10 +62,10 @@ public class JPanelProcuraCliente extends JDialog{
 	}
 	
 	
-//** Fim getters JPanel **
+	//** Fim getters JPanel **
 
 
-//** Início getters JButon **
+	//** Início getters JButon **
 
 
 	public JButton getjButtonSeleciona() {
@@ -104,24 +102,24 @@ public class JPanelProcuraCliente extends JDialog{
 		}
 		return jButtonCancelar;
 	}
-//** Fim getters JButon **
+	//** Fim getters JButon **
 
 
-//** Início getters JLabel **
-
-	public JLabel getjLabelCpf() {
-		if(jLabelCpf == null){
+	//** Início getters JLabel **	
+	
+	public JLabel getjLabelPesquisarPor() {
+		if(jLabelPesquisarPor == null){
 		
-			jLabelCpf = new JLabel("CPF:");
-			jLabelCpf.setFont(Fontes.fontJLabelPlain1);
-			jLabelCpf.setSize(30, 21);
-			jLabelCpf.setForeground(Cores.preto);
-			jLabelCpf.setOpaque(false);
+			jLabelPesquisarPor = new JLabel("Pesquisar por:");
+			jLabelPesquisarPor.setFont(Fontes.fontJLabelPlain1);
+			jLabelPesquisarPor.setSize(99, 21);
+			jLabelPesquisarPor.setForeground(Cores.preto);
+			jLabelPesquisarPor.setOpaque(false);
 				
 		}
-		return jLabelCpf;
-	}	
-
+		return jLabelPesquisarPor;
+	}
+	
 	//** Fim getters JLabel **
 	
 	
@@ -130,34 +128,36 @@ public class JPanelProcuraCliente extends JDialog{
 	
 	
 	//** Início getters JComboBox **
-	
-	public JComboBox getjComboBoxPesquisa() {
-		if(jComboBoxPesquisa == null){
-	
-			jComboBoxPesquisa = new JComboBox<String>();
-			jComboBoxPesquisa.setSize(89, 21);
-			jComboBoxPesquisa.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jComboBoxPesquisa.setForeground(Cores.preto);
-			jComboBoxPesquisa.setFont(Fontes.fontJTFieldPlain1);
-			jComboBoxPesquisa.setOpaque(true);
-			jComboBoxPesquisa.addItem("Nome");
-			jComboBoxPesquisa.addItem("CPF");
-			jComboBoxPesquisa.addItem("CNPJ");
-			jComboBoxPesquisa.addItem("Cidade");
-			jComboBoxPesquisa.addItem("Telefone");
+		public JComboBox getjComboBoxPesquisa() {
+			if(jComboBoxPesquisa == null){
+				
+				jComboBoxPesquisa = new JComboBox<String>();
+				jComboBoxPesquisa.setSize(144, 21);
+				jComboBoxPesquisa.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+				jComboBoxPesquisa.setForeground(Cores.preto);
+				jComboBoxPesquisa.setFont(Fontes.fontJTFieldPlain1);
+				jComboBoxPesquisa.setOpaque(true);
+				jComboBoxPesquisa.addItem("Nome");
+			}
+			return jComboBoxPesquisa;
 		}
-		return jComboBoxPesquisa;
-	}
 
 	//** Fim getters JComboBox **
 	
 	
 	//** Início métodos adição de componentes **
 	void addCompJPanelProcuraCliente() {
-
+		this.getJPanelProcuraCliente().add(getjLabelPesquisarPor());
+		this.getjLabelPesquisarPor().setLocation(51, 64);
+		
+		this.getJPanelProcuraCliente().add(getjComboBoxPesquisa());
+		this.getjComboBoxPesquisa().setLocation(155, 64);
 		
 	}
+
+
+	
 	
 	
 		

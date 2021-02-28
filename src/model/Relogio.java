@@ -3,7 +3,6 @@
  */
 package model;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +33,9 @@ public class Relogio extends Thread{
             
             jLabelHoras.setText(horas);//joga para o TextField
             System.out.println(horas);
-            
+
+    		System.out.println("treads = " + Thread.activeCount());
+    		
             try{
                 
                 sleep(1000);

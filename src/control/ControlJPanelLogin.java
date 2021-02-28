@@ -59,12 +59,12 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				getjPanelLogin().getjPFieldSenha().requestFocus();
 			}
-		}
-		
-		if(e.getSource() == getjPanelLogin().getjPFieldSenha()) { // caso a senha e usuário esteja correto muda a tela
+			
+		} else if(e.getSource() == getjPanelLogin().getjPFieldSenha()) { // caso a senha e usuário esteja correto muda a tela
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				validaLogin(); // metodo da classe
 			}
+			
 		}
 			
 	}

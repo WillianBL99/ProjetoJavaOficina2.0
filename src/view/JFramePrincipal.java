@@ -56,7 +56,7 @@ public class JFramePrincipal extends JFrame {
 		
 		this.setjPanelAnterior(jPanel);
 		
-		System.out.println("adicionou nova tela: treads = " + Thread.activeCount());
+		
 		this.repaint();
 		this.validate();
 		

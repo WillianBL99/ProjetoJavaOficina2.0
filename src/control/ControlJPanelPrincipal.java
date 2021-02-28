@@ -15,7 +15,10 @@ import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelGeraOS;
 import view.JPanelHome;
+import view.JPanelOrcamentoFinal;
+import view.JPanelPreOrcamento;
 import view.JPanelPrincipal;
+import view.JPanelUsuarios;
 import view.JPanelVendas;
 
 public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
@@ -28,18 +31,22 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
+	
 	private JPanelHome jPanelHome;
-	private JPanelVendas jPanelVendas;
 	private JPanelGeraOS jPanelGeraOS;
 	private JPanelConsultarOS jPanelConsultarOS;
-	
-	private ControlJPanelVendas controlJPanelVendas;
+	private JPanelVendas jPanelVendas;
+	private JPanelPreOrcamento jPanelPreOrcamento;
+	private JPanelOrcamentoFinal jPanelOrcamentoFinal;
+	private JPanelUsuarios jPanelUsuarios;
+
 	private ControlJPanelHome controlJPanelHome;
+	private ControlJPanelVendas controlJPanelVendas;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
-	private JButton jButtonClicado = this.getjPanelPrincipal().getJButtonInicio(); // guarda o jbutton clicado
-	private String iconeJButtonClicado = "/icons/home-348.png"; // guarda o caminho do icone do jbutton clicado
+	private JButton jButtonClicado; // guarda o jbutton clicado
+	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
@@ -49,6 +56,9 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	public ControlJPanelPrincipal(JFramePrincipal jFramePricipal, JPanelPrincipal jPanelPrincipal) {		
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jFramePrincipal = jFramePricipal;
+		
+		jButtonClicado = this.getjPanelPrincipal().getJButtonInicio();
+		iconeJButtonClicado = Icones.getHomeOff();
 		
 		getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);
 		getControlJPanelHome();
@@ -87,7 +97,6 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	
@@ -136,6 +145,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.setSizeOrcamentoOpen(true);
 			
 			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
+			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point);			
+			
+			
+		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
+			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point);			
+			
+			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
 			this.setSizeOSOpen(false);
@@ -149,6 +166,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
+			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point);
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -290,6 +308,30 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		}
 		
 		
+		public JPanelPreOrcamento getjPanelPreOrcamento() {
+			if(jPanelPreOrcamento == null){
+				jPanelPreOrcamento = new JPanelPreOrcamento();
+			}
+			return jPanelPreOrcamento;
+		}
+		
+		
+		public JPanelOrcamentoFinal getjPanelOrcamentoFinal() {
+			if(jPanelOrcamentoFinal == null){
+				jPanelOrcamentoFinal = new JPanelOrcamentoFinal();
+			}
+			return jPanelOrcamentoFinal;
+		}
+		
+		
+		public JPanelUsuarios getjPanelUsuarios() {
+			if(jPanelUsuarios == null){
+				jPanelUsuarios = new JPanelUsuarios();
+			}
+			return jPanelUsuarios;
+		}
+		
+		
 		public void setLocalizaçãoJButtonsMenuLateral() { // quando os jbuttons OS ou Orçamento forem solicitados
 			//chamar para setar a nova localização dos demais jbuttons
 			this.getjPanelPrincipal().getjButtonVendas().setLocation(4, 185 + getSizeOSOpen());
@@ -365,17 +407,30 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.setLocalizaçãoJButtonsMenuLateral();
 		}
 		
-		
+		/*
+		 * método mudarCorJButtonSelecionado(@jButton, @iconeSelected, @iconeNotSelected)
+		 * 
+		 * @jButton - Recebe como parâmetro o JButton para realização de mudança de ícone,
+		 * mudança de background e mudança de foreground.
+		 * 
+		 * @iconeSelected - Recebe caminho do ícone que deve ser setado quando o JButton
+		 * estiver selecionado.
+		 * 
+		 * @iconeNotSelected - Recebe caminho do ícone que deve ser setado quando o JButton não
+		 * estiver selecionado.
+		 * 
+		 */
 		public void mudarCorJButtonSelecionado(JButton jButton, String iconeSelected, String iconeNotSelected) {
-			if(jButtonClicado != null && jButtonClicado != jButton) {
+			if(jButtonClicado != null && jButtonClicado != jButton) { 
+				// setando a nova aparência do JButton clicado.
 				jButton.setBackground(Cores.azul1);
 				jButton.setForeground(Cores.branco);
 				setSizeIcon.setIconJButton(jButton, iconeSelected, 34 ,34);
-				
+				// setando a aparência do JButton clicado ateriormente.
 				jButtonClicado.setBackground(Cores.branco);
 				jButtonClicado.setForeground(Cores.cinza2);
 				setSizeIcon.setIconJButton(jButtonClicado, iconeJButtonClicado, 34 ,34);
-				
+				// guardando os caminhos dos ícones do JButton que está selecionado.
 				jButtonClicado = jButton;
 				iconeJButtonClicado = iconeNotSelected;
 			}

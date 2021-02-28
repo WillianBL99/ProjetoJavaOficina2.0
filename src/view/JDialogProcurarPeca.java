@@ -21,16 +21,12 @@ import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
 
-
 /**
  * @author Paulo Uilian
  *
  */
 @SuppressWarnings("serial")
-public class JDialogProcurarVeiculo extends JDialog{
-
-
-	
+public class JDialogProcurarPeca extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **
@@ -46,9 +42,9 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	private JLabel jLabelPesquisarPor;
 	
-	private JScrollPane jSPaneVeiculos;
+	private JScrollPane jSPanePeca;
 	
-	private JTable jTableVeiculos;
+	private JTable jTablePecas;
 
 	private Choice choicePesquisarPor;
 	
@@ -56,17 +52,17 @@ public class JDialogProcurarVeiculo extends JDialog{
 	//** Fim declaração de variáveis **
 	
 	//** Início construtor **
-	public JDialogProcurarVeiculo(Frame frame, boolean modal) {
-		super(frame, "Procurar veículo");
+	public JDialogProcurarPeca(Frame frame, boolean modal) {
+		super(frame, "Procurar peças");
 		this.modal = modal;
-		this.addCompJDialogProcurarVeiculo();
+		this.addCompJDialogProcurarPeca();
 	}	
 
 	
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
-	public JDialogProcurarVeiculo getJDialogProcurarVeiculo() {
+	public JDialogProcurarPeca getJDialogProcurarPeca() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
@@ -85,7 +81,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 			jPanelBarraMenu = new JPanel();
 			jPanelBarraMenu.setLayout(null);
 			jPanelBarraMenu.setBackground(Cores.azul1);
-			jPanelBarraMenu.setSize(getJDialogProcurarVeiculo().getWidth(),25);
+			jPanelBarraMenu.setSize(getJDialogProcurarPeca().getWidth(),25);
 		}
 		return jPanelBarraMenu;
 	}*/	
@@ -214,48 +210,47 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	//** Início getters conjuto JScrollPane/JTable **
 	
-	public JScrollPane getjSPaneVeiculos() {
-		if(jSPaneVeiculos == null){
-			jSPaneVeiculos = new JScrollPane();
-			jSPaneVeiculos.setViewportView(getjTableVeiculos());
-			jSPaneVeiculos.setSize(900, 110);
+	public JScrollPane getjSPanePeca() {
+		if(jSPanePeca == null){
+			jSPanePeca = new JScrollPane();
+			jSPanePeca.setViewportView(getjTablePecas());
+			jSPanePeca.setSize(900, 110);
 		}
-		return jSPaneVeiculos;
+		return jSPanePeca;
 	}
 
 
-	public JTable getjTableVeiculos() {
-		if(jTableVeiculos == null){
-			jTableVeiculos = new JTable();
-			jTableVeiculos.setModel(new javax.swing.table.DefaultTableModel(
+	public JTable getjTablePecas() {
+		if(jTablePecas == null){
+			jTablePecas = new JTable();
+			jTablePecas.setModel(new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
+		                {null, null, null, null},
 		                
 		            },
 		            new String [] {
-		                "Nº Veículo", "Placa", "Chassi", "Marca",
-		                "Modelo", "Motor", "Combustível", "Cor", "Ano"
+		            	"Cod.Produto", "Qtd.Estoque", "Descrição", "Preço",
 		            }
 		        ));				
 
-			jTableVeiculos.setFont(Fontes.fontJTablePlain1);
-			jTableVeiculos.setOpaque(false);
-			jTableVeiculos.getTableHeader().setFont(Fontes.fontJTableBold1);
-			jTableVeiculos.getTableHeader().setForeground(Cores.branco);
-			jTableVeiculos.getTableHeader().setBackground(Cores.azul1);
+			jTablePecas.setFont(Fontes.fontJTablePlain1);
+			jTablePecas.setOpaque(false);
+			jTablePecas.getTableHeader().setFont(Fontes.fontJTableBold1);
+			jTablePecas.getTableHeader().setForeground(Cores.branco);
+			jTablePecas.getTableHeader().setBackground(Cores.azul1);
 		}
-		return jTableVeiculos;
+		return jTablePecas;
 	}
 	
 	
@@ -265,8 +260,8 @@ public class JDialogProcurarVeiculo extends JDialog{
 			choicePesquisarPor.setSize(175, 50);
 			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
 			choicePesquisarPor.setVisible(true);
-			choicePesquisarPor.add("Placa");
-			choicePesquisarPor.add("Chassi");
+			choicePesquisarPor.add("Descrição Peça");
+			choicePesquisarPor.add("Código Peça");
 			choicePesquisarPor.setFocusable(false);
 	
 		}
@@ -279,30 +274,30 @@ public class JDialogProcurarVeiculo extends JDialog{
 	//** Início métodos adição de componentes **
 	
 	
-	public void addCompJDialogProcurarVeiculo() {
+	public void addCompJDialogProcurarPeca() {
 
-		/*getJDialogProcurarVeiculo().getContentPane().add(getjPanelBarraMenu());
+		/*getJDialogProcurarPeca().getContentPane().add(getjPanelBarraMenu());
 		getjPanelBarraMenu().setLocation(0, 0);*/
 
-		getJDialogProcurarVeiculo().getContentPane().add(getjLabelPesquisarPor());
+		getJDialogProcurarPeca().getContentPane().add(getjLabelPesquisarPor());
 		getjLabelPesquisarPor().setLocation(50, 40);
 		
-		getJDialogProcurarVeiculo().getContentPane().add(getChoicePesquisarPor());
+		getJDialogProcurarPeca().getContentPane().add(getChoicePesquisarPor());
 		getChoicePesquisarPor().setLocation(155, 40);
 
-		getJDialogProcurarVeiculo().getContentPane().add(getjTFieldProcurar());
+		getJDialogProcurarPeca().getContentPane().add(getjTFieldProcurar());
 		getjTFieldProcurar().setLocation(319, 40);
 		
-		getJDialogProcurarVeiculo().getContentPane().add(getjButtonProcurar());
+		getJDialogProcurarPeca().getContentPane().add(getjButtonProcurar());
 		getjButtonProcurar().setLocation(511, 40);
 
-		getJDialogProcurarVeiculo().getContentPane().add(getjSPaneVeiculos());
-		getjSPaneVeiculos().setLocation(50, 100);
+		getJDialogProcurarPeca().getContentPane().add(getjSPanePeca());
+		getjSPanePeca().setLocation(50, 100);
 
-		getJDialogProcurarVeiculo().getContentPane().add(getjButtonCancelar());
+		getJDialogProcurarPeca().getContentPane().add(getjButtonCancelar());
 		getjButtonCancelar().setLocation(744, 235);
 
-		getJDialogProcurarVeiculo().getContentPane().add(getjButtonSelecionar());
+		getJDialogProcurarPeca().getContentPane().add(getjButtonSelecionar());
 		getjButtonSelecionar().setLocation(860, 235);
 	}
 	

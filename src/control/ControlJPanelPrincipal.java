@@ -34,6 +34,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JPanelConsultarOS jPanelConsultarOS;
 	
 	private ControlJPanelVendas controlJPanelVendas;
+	private ControlJPanelHome controlJPanelHome;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
@@ -50,6 +51,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		this.jFramePrincipal = jFramePricipal;
 		
 		getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);
+		getControlJPanelHome();
 
 		AddEvent();
 		
@@ -245,6 +247,15 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			return jPanelHome;
 		}
 		
+		
+		public ControlJPanelHome getControlJPanelHome() {
+			if(controlJPanelHome == null){
+				controlJPanelHome = new ControlJPanelHome(getjPanelHome());
+		
+			}
+			return controlJPanelHome;
+		}
+				
 		
 		public JPanelVendas getjPanelVendas() {
 			if(jPanelVendas == null){

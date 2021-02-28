@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,6 +14,7 @@ import javax.swing.SwingConstants;
 import model.Cores;
 import model.Fontes;
 
+@SuppressWarnings("serial")
 public class JPanelVendasNovo extends JPanel {
 
 	

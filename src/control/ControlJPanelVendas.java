@@ -41,7 +41,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		this.jFramePricipal = jFramePricipal;
 		this.jPanelVendas = jPanelVendas;
 		this.jPanelPrincipal = jPanelPrincipal;
-		this.jPanelVendasNovo = jPanelVendasNovo;
 		this.AddEvent();
 	}
 	

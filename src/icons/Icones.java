@@ -1,8 +1,6 @@
 package icons;
 
 
-import javax.swing.JPanel;
-
 public class Icones {
 	
 	

@@ -10,6 +10,7 @@ import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
 
+@SuppressWarnings("serial")
 public class JPanelHome extends JPanel{
 	
 	//** Início declaração de variáveis **
@@ -55,7 +56,7 @@ public class JPanelHome extends JPanel{
 			jLabelHoras.setForeground(Cores.azul1);
 			jLabelHoras.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelHoras.setBorder(null);
-			jLabelHoras.setSize(195,98);
+			jLabelHoras.setSize(200,98);
 		}
 		return jLabelHoras;
 	}

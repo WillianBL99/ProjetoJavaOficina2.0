@@ -13,17 +13,13 @@ import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
 
+@SuppressWarnings("serial")
 public class JPanelPrincipal extends JPanel{
 	
 	//** Início declaração de variáveis **
 	
 
-	private JPanel jPanelCenterAnterior;
-	
-	// variáveis para relocalização dos botoes apos abertura do btn "OS" ou "Orçamento"
-	private int sizeOSOpen = 0; // 60
-	private int sizeOrcamentoOpen = 0; // 60
-		
+	private JPanel jPanelCenterAnterior;		
 		
 	private SetSizeIcon setSizeIcon = new SetSizeIcon(); // iniciando objeto para rendimensionamento de imagens
 	
@@ -58,7 +54,6 @@ public class JPanelPrincipal extends JPanel{
 		
 		this.addCompJPanelMenuLateral();
 		
-		//this.getjPanelPrincipalBase();
 		this.addCompJPanelPrincipal();
 	}
 	
@@ -72,17 +67,6 @@ public class JPanelPrincipal extends JPanel{
 		
 		return this;
 	}
-
-	/*public JPanel getjPanelPrincipalBase() {
-		if(jPanelPrincipalBase == null) {
-			jPanelPrincipalBase = new JPanel();
-			jPanelPrincipalBase.setLayout(null);
-			jPanelPrincipalBase.setBackground(Cores.cinza2);
-			jPanelPrincipalBase.setSize(1280,720);
-			
-		}
-		return jPanelPrincipalBase;
-	}*/
 
 	public JPanel getjPanelMenuLateral() {
 		if(jPanelMenuLateral == null) {

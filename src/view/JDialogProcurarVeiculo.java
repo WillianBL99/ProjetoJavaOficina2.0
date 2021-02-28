@@ -3,7 +3,6 @@
  */
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Frame;
@@ -12,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -28,6 +26,7 @@ import model.SetSizeIcon;
  * @author Paulo Uilian
  *
  */
+@SuppressWarnings("serial")
 public class JDialogProcurarVeiculo extends JDialog{
 
 
@@ -39,7 +38,6 @@ public class JDialogProcurarVeiculo extends JDialog{
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
 	private boolean modal;
-	
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
 	private JButton jButtonProcurar;	
@@ -59,7 +57,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	//** Início construtor **
 	public JDialogProcurarVeiculo(Frame frame, boolean modal) {
-		super(frame,"Cadastrar veículo");
+		super(frame, "Procurar veículo");
 		this.modal = modal;
 		this.addCompJDialogProcurarVeiculo();
 	}	
@@ -69,21 +67,47 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	//** Início getters JPanels **
 	public JDialogProcurarVeiculo getJDialogProcurarVeiculo() {
+		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 310);
 		this.setVisible(true);
 		this.setModal(modal);
+		this.setVisible(true);
 		return this;
 	}
 	
 	
+	// utilizar caso venha ser criada um jdialog comm o undecored true
+	/*public JPanel getjPanelBarraMenu() {
+		if(jPanelBarraMenu == null) {
+			jPanelBarraMenu = new JPanel();
+			jPanelBarraMenu.setLayout(null);
+			jPanelBarraMenu.setBackground(Cores.azul1);
+			jPanelBarraMenu.setSize(getJDialogProcurarVeiculo().getWidth(),25);
+		}
+		return jPanelBarraMenu;
+	}*/	
 	
 	
 	//** Fim getters JPanel **
 	
 	//** Início getters JLabel **
+	
+	// utilizar caso venha ser criada um jdialog comm o undecored true
+		/*public JLabel getjLabelTituloTela() {
+		if(jLabelTituloTela == null){
+			jLabelTituloTela = new JLabel();
+			jLabelTituloTela.setFont(Fontes.fontJLabelPlain1);
+			jLabelTituloTela.setForeground(Cores.branco);
+			jLabelTituloTela.setHorizontalAlignment(SwingConstants.LEFT);
+			jLabelTituloTela.setText("Procurar veículo");
+			jLabelTituloTela.setOpaque(false);
+		}
+		return jLabelTituloTela;
+	}*/
+	
 	
 	public JLabel getjLabelPesquisarPor() {
 		if(jLabelPesquisarPor == null){
@@ -101,6 +125,23 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	
 	//** Fim getters JButon **
+	
+	// utilizar caso venha ser criada um jdialog comm o undecored true
+		/*public JButton getjButtonFecharTela() {
+		if(jButtonFecharTela == null){
+			jButtonFecharTela = new JButton();			
+			jButtonFecharTela.setFont(Fontes.fontJButtonPlain3);
+			jButtonFecharTela.setBackground(Cores.transparent);
+			jButtonFecharTela.setForeground(Cores.branco);
+			jButtonFecharTela.setText("X");
+			jButtonFecharTela.setSize(25, 25);
+			jButtonFecharTela.setFocusable(false);
+			jButtonFecharTela.setBorder(null);
+	        
+		}
+		return jButtonFecharTela;
+	}*/
+	
 	
 	public JButton getjButtonCancelar() {
 		if(jButtonCancelar == null){
@@ -240,6 +281,9 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	public void addCompJDialogProcurarVeiculo() {
 
+		/*getJDialogProcurarVeiculo().getContentPane().add(getjPanelBarraMenu());
+		getjPanelBarraMenu().setLocation(0, 0);*/
+
 		getJDialogProcurarVeiculo().getContentPane().add(getjLabelPesquisarPor());
 		getjLabelPesquisarPor().setLocation(50, 40);
 		
@@ -261,6 +305,17 @@ public class JDialogProcurarVeiculo extends JDialog{
 		getJDialogProcurarVeiculo().getContentPane().add(getjButtonSelecionar());
 		getjButtonSelecionar().setLocation(860, 235);
 	}
+	
+	
+	// utilizar caso venha ser criada um jdialog comm o undecored true
+	/*public void addCompJPanelBarraMenu() {
+
+		getjPanelBarraMenu().add(getjLabelTituloTela());
+		getjLabelTituloTela().setLocation(((getjPanelBarraMenu().getWidth()/2) + (getjLabelTituloTela().getWidth()/2)), 0);
+
+		getjPanelBarraMenu().add(getjButtonFecharTela());
+		getjButtonFecharTela().setLocation(getjPanelBarraMenu().getWidth() - (5 + getjButtonFecharTela().getWidth()), 0);
+	}*/
 	
 	//** Fim métodos adição de componentes **
 	

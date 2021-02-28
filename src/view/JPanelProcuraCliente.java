@@ -5,10 +5,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -23,12 +25,14 @@ import model.SetSizeIcon;
  * @author josim
  *
  */
-public class JPanelProcuraCliente extends JPanel{
+public class JPanelProcuraCliente extends JDialog{
 
-	public JPanelProcuraCliente() {
+	public JPanelProcuraCliente(Frame frame, boolean modal) {
+		super(frame, "Procura Cliente");
+		this.setModal(modal);
+		
 		getJPanelProcuraCliente();
 		addCompJPanelProcuraCliente();
-		getjPanelCentro();
 	
 	}
 
@@ -59,18 +63,6 @@ public class JPanelProcuraCliente extends JPanel{
 		return this;
 	}
 	
-	public JPanel getjPanelCentro() {
-		if(jPanelCentro == null){
-	
-			jPanelCentro = new JPanel();
-			jPanelCentro.setLayout(null);
-			jPanelCentro.setSize(new Dimension(1002, 568));
-			jPanelCentro.setVisible(true);
-			jPanelCentro.setBackground(Cores.branco);
-	
-		}
-		return jPanelCentro;
-	}
 	
 //** Fim getters JPanel **
 

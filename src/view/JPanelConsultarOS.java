@@ -43,6 +43,8 @@ public class JPanelConsultarOS extends JPanel {
 	private JRadioButton jRadioButtonCpf;
 	private JRadioButton jRadioButtonCnpj;
 	
+	
+	private JLabel dadosClientes;
 	private JLabel jLabelCpf;
 	private JLabel jLabelEmail;
 	private JLabel jLabelRua;
@@ -54,6 +56,7 @@ public class JPanelConsultarOS extends JPanel {
 	private JLabel jLabelTelefone;
 	
 	
+	private JLabel dadosVeiculo;
 	private JLabel jLabelNumeroVeiculo;
 	private JLabel jLabelMarca;
 	private JLabel jLabelCor;
@@ -65,7 +68,7 @@ public class JPanelConsultarOS extends JPanel {
 	private JLabel jLabelKMAtual;
 	private JLabel jLabelCombustivel;
 	
-	private JLabel ordemServico;
+	private JLabel dadosOS;
 	private JLabel jLabelNumeroOS;
 	private JLabel jLabelServico;
 	private JLabel jLabelReclamacao;
@@ -219,20 +222,31 @@ public class JPanelConsultarOS extends JPanel {
 
 //** Início getters JLabel **
 
-
-
 	public JLabel getjLabelCpf() {
-			if(jLabelCpf == null){
+		if(jLabelCpf == null){
 		
-				jLabelCpf = new JLabel("CPF:");
-				jLabelCpf.setFont(Fontes.fontJLabelPlain1);
-				jLabelCpf.setSize(30, 21);
-				jLabelCpf.setForeground(Cores.preto);
-				jLabelCpf.setOpaque(false);
+			jLabelCpf = new JLabel("CPF:");
+			jLabelCpf.setFont(Fontes.fontJLabelPlain1);
+			jLabelCpf.setSize(30, 21);
+			jLabelCpf.setForeground(Cores.preto);
+			jLabelCpf.setOpaque(false);
 				
-			}
-			return jLabelCpf;
+		}
+		return jLabelCpf;
 	}	
+	public JLabel getDadosClientes() {
+		if(dadosClientes == null){
+	
+			dadosClientes = new JLabel("Dados cliente");
+			dadosClientes.setFont(Fontes.fontJLabelBold2);
+			dadosClientes.setSize(160, 27);
+			dadosClientes.setBackground(Cores.branco);
+			dadosClientes.setForeground(Cores.azul1);
+			dadosClientes.setOpaque(false);
+	
+		}
+		return dadosClientes;
+	}
 	public JLabel getjLabelEmail() {
 		if(jLabelEmail == null){
 	
@@ -322,7 +336,19 @@ public class JPanelConsultarOS extends JPanel {
 		return jLabelTelefone;
 	}	
 
+	public JLabel getDadosVeiculo() {
+		if(dadosVeiculo == null){
 	
+			dadosVeiculo = new JLabel("Dados veículo");
+			dadosVeiculo.setFont(Fontes.fontJLabelBold2);
+			dadosVeiculo.setSize(160, 27);
+			dadosVeiculo.setBackground(Cores.branco);
+			dadosVeiculo.setForeground(Cores.azul1);
+			dadosVeiculo.setOpaque(false);
+	
+		}
+		return dadosVeiculo;
+	}
 	public JLabel getjLabelNumeroVeiculo() {
 		if(jLabelNumeroVeiculo == null){
 	
@@ -434,19 +460,18 @@ public class JPanelConsultarOS extends JPanel {
 		return jLabelCombustivel;
 	}
 
-	public JLabel getOrdemServico() {
-		if(ordemServico == null){
+	public JLabel getDadosOS() {
+		if(dadosOS == null){
 	
-			ordemServico = new JLabel("Ordem de Seviço");
-			ordemServico.setFont(Fontes.fontJLabelBold2);
-			ordemServico.setSize(160, 27);
-			ordemServico.setBackground(Cores.branco);
-			ordemServico.setForeground(Cores.azul1);
-			ordemServico.setOpaque(false);
+			dadosOS = new JLabel("Dados O.S.");
+			dadosOS.setFont(Fontes.fontJLabelBold2);
+			dadosOS.setSize(160, 27);
+			dadosOS.setBackground(Cores.branco);
+			dadosOS.setForeground(Cores.azul1);
+			dadosOS.setOpaque(false);
 		}
-		return ordemServico;
+		return dadosOS;
 	}
-	
 	public JLabel getjLabelNumeroOS() {
 		if(jLabelNumeroOS == null){
 	
@@ -1001,8 +1026,8 @@ public class JPanelConsultarOS extends JPanel {
 		this.getjPanelCentro().add(getjTFieldCombustivel());
 		this.getjTFieldCombustivel().setLocation(829, 258);
 		
-		this.getjPanelCentro().add(getOrdemServico());
-		this.getOrdemServico().setLocation(21, 329);
+		this.getjPanelCentro().add(getDadosOS());
+		this.getDadosOS().setLocation(21, 329);
 		
 		this.getjPanelCentro().add(getjLabelNumeroOS());
 		this.getjLabelNumeroOS().setLocation(70, 370);
@@ -1039,6 +1064,12 @@ public class JPanelConsultarOS extends JPanel {
 		
 		this.getjPanelCentro().add(getjComboBoxResponsavel());
 		this.getjComboBoxResponsavel().setLocation(867, 370);
+		
+		this.getjPanelCentro().add(getDadosClientes());
+		this.getDadosClientes().setLocation(20, 28);
+		
+		this.getjPanelCentro().add(getDadosVeiculo());
+		this.getDadosVeiculo().setLocation(20, 186);
 		
 	}
 	

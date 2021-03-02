@@ -34,6 +34,7 @@ public class JPanelPreOrcamento  extends JPanel {
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 
 	private JPanel jPanelBuscaOrcamentos; // barra que contem componentes para realizar busca de orcamentos
 	
@@ -95,7 +96,15 @@ public class JPanelPreOrcamento  extends JPanel {
 	//** Fim getters JPanel **
 	
 	//** Início getters JLabel **
-		
+	
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Pré Orçamento";	
+		}
+		return tituloDescricaoTela;
+	}
+	
+	
 	public JLabel getjLabelDTInicial() {
 		if(jLabelDTInicial == null){
 			jLabelDTInicial = new JLabel();

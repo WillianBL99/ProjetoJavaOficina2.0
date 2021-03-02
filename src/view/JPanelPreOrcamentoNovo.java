@@ -5,15 +5,14 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -23,11 +22,14 @@ import model.SetSizeIcon;
  * @author Paulo Uilian
  *
  */
+
+@SuppressWarnings("serial")
 public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
     //** Início declaração de variáveis **
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JPanel jPanelCentro;
 	
@@ -37,8 +39,23 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JButton jButtonProcuraCliente;
 	private JButton jButtonSelecionarVeiculo;
 	
+	private JButton jButtonListaProdutos;
+	private JButton jButtonListaServicos;
+	
+	private JButton jButtonAdicionarProdutoServico;
+	private JButton jButtonEditarProdutoServico;
+	private JButton jButtonApagarProdutoServico;
+	
+	
 	private JRadioButton jRadioButtonCpf;
 	private JRadioButton jRadioButtonCnpj;
+	
+	
+	private JLabel jLabelDadosPreOrcamento;
+	private JLabel jLabelNumeroPreOrcamento;
+	private JLabel jLabelDataPreOrcamento;
+	private JLabel jLabelHorarioPreOrcamento;
+	private JLabel jLabelResponsavelPreOrcamento;
 	
 	private JLabel jLabelCpf;
 	private JLabel jLabelEmail;
@@ -48,8 +65,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JLabel jLabelNumeroCasa;
 	private JLabel jLabelTipo;
 	private JLabel jLabelBairro;
-	private JLabel jLabelTelefone;
-	
+	private JLabel jLabelTelefone;	
 	
 	private JLabel jLabelNumeroVeiculo;
 	private JLabel jLabelMarca;
@@ -61,6 +77,12 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JLabel jLabelMotor;
 	private JLabel jLabelKMAtual;
 	private JLabel jLabelCombustivel;
+	
+
+	private JTextField jTFieldNumeroPreOrcamento;
+	private JTextField jTFieldDataPreOrcamento;
+	private JTextField jTFieldHorarioPreOrcamento;
+	private JTextField jTFieldResponsavelPreOrcamento;
 	
 	private JTextField jTFieldCpf;
 	private JTextField jTFieldEmail;
@@ -83,6 +105,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
+	private JScrollPane JSPListaProdutoServico;
+	private JTable jTableListaProdutoServico;
+	
     //** Fim declaração de variáveis **
 
 
@@ -94,8 +119,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
     //** Início getters JPanels **
-	public JPanelPreOrcamentoNovo getJPanelPreOrcamentoNovo() {
-		
+	
+	public JPanelPreOrcamentoNovo getJPanelPreOrcamentoNovo() {		
 		this.setLayout(null);
 		this.setSize(new Dimension(1030, 674));
 		this.setBackground(Cores.cinza4);
@@ -104,12 +129,12 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		return this;
 	}
 	
-	public JPanel getjPanelCentro() {
-		if(jPanelCentro == null){
 	
+	public JPanel getjPanelCentro() {
+		if(jPanelCentro == null){	
 			jPanelCentro = new JPanel();
 			jPanelCentro.setLayout(null);
-			jPanelCentro.setSize(new Dimension(1002, 568));
+			jPanelCentro.setSize(new Dimension(950, 568));
 			jPanelCentro.setVisible(true);
 			jPanelCentro.setBackground(Cores.branco);
 	
@@ -124,8 +149,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 
 	public JButton getjButtonCancelar() {
-		if(jButtonCancelar == null){
-			
+		if(jButtonCancelar == null){			
 			jButtonCancelar = new JButton();			
 			jButtonCancelar.setFont(Fontes.fontJButtonPlain3);
 			jButtonCancelar.setBackground(Cores.azul1);
@@ -140,9 +164,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	}
 	
+	
 	public JButton getjButtonSalvar() {
 		if(jButtonSalvar == null){
-			
 			jButtonSalvar = new JButton();
 			jButtonSalvar.setFont(Fontes.fontJButtonPlain3);
 			jButtonSalvar.setBackground(Cores.azul1);
@@ -159,9 +183,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	}
 	
+	
 	public JButton getjButtonImprimir() {
-		if(jButtonImprimir == null){
-			
+		if(jButtonImprimir == null){			
 			jButtonImprimir = new JButton();			
 			jButtonImprimir.setFont(Fontes.fontJButtonPlain3);
 			jButtonImprimir.setBackground(Cores.azul1);
@@ -177,9 +201,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	}
 	
+	
 	public JButton getjButtonProcuraCliente() {
-		if(jButtonProcuraCliente == null){
-			
+		if(jButtonProcuraCliente == null){			
 			jButtonProcuraCliente = new JButton();
 			jButtonProcuraCliente.setFont(Fontes.fontJButtonPlain3);			
 			jButtonProcuraCliente.setBackground(Cores.azul1);
@@ -195,9 +219,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	}
 	
+	
 	public JButton getjButtonSelecionarVeiculo() {
-		if(jButtonSelecionarVeiculo == null){
-			
+		if(jButtonSelecionarVeiculo == null){			
 			jButtonSelecionarVeiculo = new JButton();
 			jButtonSelecionarVeiculo.setFont(Fontes.fontJButtonPlain3);			
 			jButtonSelecionarVeiculo.setBackground(Cores.azul1);
@@ -207,15 +231,94 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonSelecionarVeiculo.setFocusable(false);
 			jButtonSelecionarVeiculo.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
-			}	
-		
+			}
 		return jButtonSelecionarVeiculo;
 	
 	}
 	
-	public JRadioButton getjRadioButtonCpf() {
-		if(jRadioButtonCpf == null){
 	
+	public JButton getjButtonListaProdutos() {
+		if(jButtonListaProdutos == null){			
+			jButtonListaProdutos = new JButton();
+			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain3);			
+			jButtonListaProdutos.setBackground(Cores.azul1);
+			jButtonListaProdutos.setForeground(Color.white);
+			jButtonListaProdutos.setText("Seleciona Veículo");
+			jButtonListaProdutos.setSize(169,25);
+			jButtonListaProdutos.setFocusable(false);
+			jButtonListaProdutos.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonListaProdutos;
+	}
+
+
+	public JButton getjButtonListaServicos() {
+		if(jButtonListaServicos == null){		
+			jButtonListaServicos = new JButton();
+			jButtonListaServicos.setFont(Fontes.fontJButtonPlain3);			
+			jButtonListaServicos.setBackground(Cores.azul1);
+			jButtonListaServicos.setForeground(Color.white);
+			jButtonListaServicos.setText("Seleciona Veículo");
+			jButtonListaServicos.setSize(169,25);
+			jButtonListaServicos.setFocusable(false);
+			jButtonListaServicos.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonListaServicos;
+	}
+
+
+	public JButton getjButtonAdicionarProdutoServico() {
+		if(jButtonAdicionarProdutoServico == null){		
+			jButtonAdicionarProdutoServico = new JButton();
+			jButtonAdicionarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
+			jButtonAdicionarProdutoServico.setBackground(Cores.azul1);
+			jButtonAdicionarProdutoServico.setForeground(Color.white);
+			jButtonAdicionarProdutoServico.setText("Seleciona Veículo");
+			jButtonAdicionarProdutoServico.setSize(169,25);
+			jButtonAdicionarProdutoServico.setFocusable(false);
+			jButtonAdicionarProdutoServico.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonAdicionarProdutoServico;
+	}
+
+
+	public JButton getjButtonEditarProdutoServico() {
+		if(jButtonEditarProdutoServico == null){		
+			jButtonEditarProdutoServico = new JButton();
+			jButtonEditarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
+			jButtonEditarProdutoServico.setBackground(Cores.azul1);
+			jButtonEditarProdutoServico.setForeground(Color.white);
+			jButtonEditarProdutoServico.setText("Seleciona Veículo");
+			jButtonEditarProdutoServico.setSize(169,25);
+			jButtonEditarProdutoServico.setFocusable(false);
+			jButtonEditarProdutoServico.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonEditarProdutoServico;
+	}
+
+
+	public JButton getjButtonApagarProdutoServico() {
+		if(jButtonApagarProdutoServico == null){		
+			jButtonApagarProdutoServico = new JButton();
+			jButtonApagarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
+			jButtonApagarProdutoServico.setBackground(Cores.azul1);
+			jButtonApagarProdutoServico.setForeground(Color.white);
+			jButtonApagarProdutoServico.setText("Seleciona Veículo");
+			jButtonApagarProdutoServico.setSize(169,25);
+			jButtonApagarProdutoServico.setFocusable(false);
+			jButtonApagarProdutoServico.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonApagarProdutoServico;
+	}
+	
+	
+	public JRadioButton getjRadioButtonCpf() {
+		if(jRadioButtonCpf == null){	
 			jRadioButtonCpf = new JRadioButton("CPF");
 			jRadioButtonCpf.setSize(45, 15);
 			jRadioButtonCpf.setBackground(Cores.branco);
@@ -224,10 +327,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jRadioButtonCpf;
 	}
+	
 
 	public JRadioButton getjRadioButtonCnpj() {
-		if(jRadioButtonCnpj == null){
-	
+		if(jRadioButtonCnpj == null){	
 			jRadioButtonCnpj = new JRadioButton("CNPJ");
 			jRadioButtonCnpj.setSize(50, 15);
 			jRadioButtonCnpj.setBackground(Cores.branco);
@@ -241,12 +344,76 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 
     //** Início getters JLabel **
+	public JLabel getjLabelDadosPreOrcamento() {
+		if(jLabelDadosPreOrcamento == null){
+			jLabelDadosPreOrcamento = new JLabel("N° Casa:");
+			jLabelDadosPreOrcamento.setFont(Fontes.fontJLabelPlain1);
+			jLabelDadosPreOrcamento.setSize(60, 21);
+			jLabelDadosPreOrcamento.setForeground(Cores.preto);
+			jLabelDadosPreOrcamento.setOpaque(false);
+		}
+		return jLabelDadosPreOrcamento;
+	}
 
 
+	public JLabel getjLabelNumeroPreOrcamento() {
+		if(jLabelNumeroPreOrcamento == null){
+			jLabelNumeroPreOrcamento = new JLabel("N° Casa:");
+			jLabelNumeroPreOrcamento.setFont(Fontes.fontJLabelPlain1);
+			jLabelNumeroPreOrcamento.setSize(60, 21);
+			jLabelNumeroPreOrcamento.setForeground(Cores.preto);
+			jLabelNumeroPreOrcamento.setOpaque(false);
+		}
+		return jLabelNumeroPreOrcamento;
+	}
+
+
+	public JLabel getjLabelDataPreOrcamento() {
+		if(jLabelDataPreOrcamento == null){
+			jLabelDataPreOrcamento = new JLabel("N° Casa:");
+			jLabelDataPreOrcamento.setFont(Fontes.fontJLabelPlain1);
+			jLabelDataPreOrcamento.setSize(60, 21);
+			jLabelDataPreOrcamento.setForeground(Cores.preto);
+			jLabelDataPreOrcamento.setOpaque(false);
+		}
+		return jLabelDataPreOrcamento;
+	}
+
+
+	public JLabel getjLabelHorarioPreOrcamento() {
+		if(jLabelHorarioPreOrcamento == null){
+			jLabelHorarioPreOrcamento = new JLabel("N° Casa:");
+			jLabelHorarioPreOrcamento.setFont(Fontes.fontJLabelPlain1);
+			jLabelHorarioPreOrcamento.setSize(60, 21);
+			jLabelHorarioPreOrcamento.setForeground(Cores.preto);
+			jLabelHorarioPreOrcamento.setOpaque(false);
+		}
+		return jLabelHorarioPreOrcamento;
+	}
+
+
+	public JLabel getjLabelResponsavelPreOrcamento() {
+		if(jLabelResponsavelPreOrcamento == null){
+			jLabelResponsavelPreOrcamento = new JLabel("N° Casa:");
+			jLabelResponsavelPreOrcamento.setFont(Fontes.fontJLabelPlain1);
+			jLabelResponsavelPreOrcamento.setSize(60, 21);
+			jLabelResponsavelPreOrcamento.setForeground(Cores.preto);
+			jLabelResponsavelPreOrcamento.setOpaque(false);
+		}
+		return jLabelResponsavelPreOrcamento;
+	}
+
+
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Novo Pré Orçamento";	
+		}
+		return tituloDescricaoTela;
+	}
+	
 
 	public JLabel getjLabelCpf() {
-			if(jLabelCpf == null){
-		
+			if(jLabelCpf == null){		
 				jLabelCpf = new JLabel("CPF:");
 				jLabelCpf.setFont(Fontes.fontJLabelPlain1);
 				jLabelCpf.setSize(30, 21);
@@ -255,10 +422,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 				
 			}
 			return jLabelCpf;
-	}	
-	public JLabel getjLabelEmail() {
-		if(jLabelEmail == null){
+	}
 	
+	
+	public JLabel getjLabelEmail() {
+		if(jLabelEmail == null){	
 			jLabelEmail = new JLabel("Email:");
 			jLabelEmail.setFont(Fontes.fontJLabelPlain1);
 			jLabelEmail.setSize(41, 21);
@@ -267,9 +435,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelEmail;
 	}	
-	public JLabel getjLabelRua() {
-		if(jLabelRua == null){
 	
+	
+	public JLabel getjLabelRua() {
+		if(jLabelRua == null){	
 			jLabelRua = new JLabel("Rua:");
 			jLabelRua.setFont(Fontes.fontJLabelPlain1);
 			jLabelRua.setSize(30, 21);
@@ -278,9 +447,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelRua;
 	}	
-	public JLabel getjLabelNome() {
-		if(jLabelNome == null){
 	
+	
+	public JLabel getjLabelNome() {
+		if(jLabelNome == null){	
 			jLabelNome = new JLabel("Nome:");
 			jLabelNome.setFont(Fontes.fontJLabelPlain1);
 			jLabelNome.setSize(47, 21);
@@ -289,9 +459,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelNome;
 	}	
-	public JLabel getjLabelCidade() {
-		if(jLabelCidade == null){
 	
+	
+	public JLabel getjLabelCidade() {
+		if(jLabelCidade == null){	
 			jLabelCidade = new JLabel("Cidade:");
 			jLabelCidade.setSize(65, 21);
 			jLabelCidade.setFont(Fontes.fontJLabelPlain1);
@@ -300,9 +471,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelCidade;
 	}	
-	public JLabel getjLabelNumeroCasa() {
-		if(jLabelNumeroCasa == null){
 	
+	
+	public JLabel getjLabelNumeroCasa() {
+		if(jLabelNumeroCasa == null){	
 			jLabelNumeroCasa = new JLabel("N° Casa:");
 			jLabelNumeroCasa.setFont(Fontes.fontJLabelPlain1);
 			jLabelNumeroCasa.setSize(60, 21);
@@ -311,9 +483,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelNumeroCasa;
 	}	
-	public JLabel getjLabelTipo() {
-		if(jLabelTipo == null){
 	
+	
+	public JLabel getjLabelTipo() {
+		if(jLabelTipo == null){	
 			jLabelTipo = new JLabel("Tipo:");
 			jLabelTipo.setFont(Fontes.fontJLabelPlain1);
 			jLabelTipo.setSize(35, 21);
@@ -322,9 +495,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelTipo;
 	}
-	public JLabel getjLabelBairro() {
-		if(jLabelBairro == null){
 	
+	
+	public JLabel getjLabelBairro() {
+		if(jLabelBairro == null){	
 			jLabelBairro = new JLabel("Bairro:");
 			jLabelBairro.setSize(45, 21);
 			jLabelBairro.setFont(Fontes.fontJLabelPlain1);
@@ -333,9 +507,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelBairro;
 	}
-	public JLabel getjLabelTelefone() {
-		if(jLabelTelefone == null){
 	
+	
+	public JLabel getjLabelTelefone() {
+		if(jLabelTelefone == null){	
 			jLabelTelefone = new JLabel("Telefone:");
 			jLabelTelefone.setFont(Fontes.fontJLabelPlain1);
 			jLabelTelefone.setSize(63, 21);
@@ -347,8 +522,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	
 	public JLabel getjLabelNumeroVeiculo() {
-		if(jLabelNumeroVeiculo == null){
-	
+		if(jLabelNumeroVeiculo == null){	
 			jLabelNumeroVeiculo = new JLabel("Nº:");
 			jLabelNumeroVeiculo.setFont(Fontes.fontJLabelPlain1);
 			jLabelNumeroVeiculo.setSize(22, 21);
@@ -357,9 +531,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelNumeroVeiculo;
 	}
-	public JLabel getjLabelMarca() {
-		if(jLabelMarca == null){
 	
+	
+	public JLabel getjLabelMarca() {
+		if(jLabelMarca == null){	
 			jLabelMarca = new JLabel("Marca:");
 			jLabelMarca.setFont(Fontes.fontJLabelPlain1);
 			jLabelMarca.setSize(47, 21);
@@ -368,9 +543,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelMarca;
 	}
-	public JLabel getjLabelCor() {
-		if(jLabelCor == null){
 	
+	
+	public JLabel getjLabelCor() {
+		if(jLabelCor == null){	
 			jLabelCor = new JLabel("Cor:");
 			jLabelCor.setFont(Fontes.fontJLabelPlain1);
 			jLabelCor.setSize(28, 21);
@@ -379,9 +555,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelCor;
 	}
-	public JLabel getjLabelChassi() {
-		if(jLabelChassi == null){
 	
+	
+	public JLabel getjLabelChassi() {
+		if(jLabelChassi == null){	
 			jLabelChassi = new JLabel("Chassi:");
 			jLabelChassi.setFont(Fontes.fontJLabelPlain1);
 			jLabelChassi.setSize(48, 21);
@@ -390,9 +567,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelChassi;
 	}
-	public JLabel getjLabelModelo() {
-		if(jLabelModelo == null){
 	
+	
+	public JLabel getjLabelModelo() {
+		if(jLabelModelo == null){	
 			jLabelModelo = new JLabel("Modelo:");
 			jLabelModelo.setFont(Fontes.fontJLabelPlain1);
 			jLabelModelo.setSize(58, 21);
@@ -401,6 +579,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelModelo;
 	}
+	
+	
 	public JLabel getjLabelAno() {
 		if(jLabelAno == null){
 	
@@ -733,17 +913,113 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
+	public JTextField getjTFieldNumeroPreOrcamento() {
+		if(jTFieldNumeroPreOrcamento == null){
+			jTFieldNumeroPreOrcamento = new JTextField();
+			jTFieldNumeroPreOrcamento.setSize(125, 21);
+			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
+			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldNumeroPreOrcamento.setOpaque(true);
+		}
+		return jTFieldNumeroPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldDataPreOrcamento() {
+		if(jTFieldDataPreOrcamento == null){
+			jTFieldDataPreOrcamento = new JTextField();
+			jTFieldDataPreOrcamento.setSize(125, 21);
+			jTFieldDataPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDataPreOrcamento.setForeground(Cores.preto);
+			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldDataPreOrcamento.setOpaque(true);
+		}
+		return jTFieldDataPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldHorarioPreOrcamento() {
+		if(jTFieldHorarioPreOrcamento == null){
+			jTFieldHorarioPreOrcamento = new JTextField();
+			jTFieldHorarioPreOrcamento.setSize(125, 21);
+			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
+			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldHorarioPreOrcamento.setOpaque(true);
+		}
+		return jTFieldHorarioPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldResponsavelPreOrcamento() {
+		if(jTFieldResponsavelPreOrcamento == null){
+			jTFieldResponsavelPreOrcamento = new JTextField();
+			jTFieldResponsavelPreOrcamento.setSize(125, 21);
+			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
+			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldResponsavelPreOrcamento.setOpaque(true);
+		}
+		return jTFieldResponsavelPreOrcamento;
+	}
 	
 	
     //** Fim getters JTextField **
 	
 	
-	//** Início getters JComboBox **
-	
-	
+	//** Início getters JScrollPane/JTable **
 
-	//** Fim getters JComboBox **
-	
+	public JScrollPane getJSPListaProdutoServico() {
+		if(JSPListaProdutoServico == null){
+			JSPListaProdutoServico = new JScrollPane();
+			JSPListaProdutoServico.setViewportView(getjTableListaProdutoServico());
+			JSPListaProdutoServico.setSize(990, 225);	
+		}
+		return JSPListaProdutoServico;
+	}
+
+
+	public JTable getjTableListaProdutoServico() {
+		if(jTableListaProdutoServico == null){
+			jTableListaProdutoServico = new JTable();
+			jTableListaProdutoServico.setModel(new javax.swing.table.DefaultTableModel(
+		            new Object [][] {
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null, null},
+		                
+		            },
+		            new String [] {
+		                "Data", "Cliente", "Placa", "Qtd.Produtos",
+		                "Desconto", "Valor"
+		            }
+		        ));			
+
+			jTableListaProdutoServico.setFont(Fontes.fontJTablePlain2);
+			jTableListaProdutoServico.setOpaque(false);
+			jTableListaProdutoServico.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableListaProdutoServico.getTableHeader().setForeground(Cores.branco);
+			jTableListaProdutoServico.getTableHeader().setBackground(Cores.azul1);
+		}
+		return jTableListaProdutoServico;
+	}
+
+	//** Fim getters JScrollPane/JTable **
+		
 	
 	//** Início métodos adição de componentes **
 	void addCompJPanelPreOrcamentoNovo() {
@@ -762,134 +1038,139 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	void addCompJpanelCentro() {
+		
+		// -- parte descritiva cliente
 		this.getjPanelCentro().add(getjButtonProcuraCliente());
-		this.getjButtonProcuraCliente().setLocation(22, 27);
+		this.getjButtonProcuraCliente().setLocation(28, 103);
 		
 		this.getjPanelCentro().add(getjRadioButtonCpf());
-		this.getjRadioButtonCpf().setLocation(98, 60);
+		this.getjRadioButtonCpf().setLocation(98, 136);
 		
 		this.getjPanelCentro().add(getjRadioButtonCnpj());
-		this.getjRadioButtonCnpj().setLocation(141, 60);
+		this.getjRadioButtonCnpj().setLocation(141, 136);
 		
 		this.getjPanelCentro().add(getjLabelCpf());
-		this.getjLabelCpf().setLocation(63,77);
+		this.getjLabelCpf().setLocation(63,153);
 		
 		this.getjPanelCentro().add(getjTFieldCpf());
-		this.getjTFieldCpf().setLocation(97, 77);
+		this.getjTFieldCpf().setLocation(97, 153);
 		
 		this.getjPanelCentro().add(getjLabelNome());
-		this.getjLabelNome().setLocation(303, 77);
+		this.getjLabelNome().setLocation(303, 153);
 		
 		this.getjPanelCentro().add(getjTFieldNome());
-		this.getjTFieldNome().setLocation(354, 77);
+		this.getjTFieldNome().setLocation(354, 153);
 		
 		this.getjPanelCentro().add(getjLabelTipo());
-		this.getjLabelTipo().setLocation(613, 77);
+		this.getjLabelTipo().setLocation(613, 153);
 		
 		this.getjPanelCentro().add(getjTFieldTipo());
-		this.getjTFieldTipo().setLocation(656, 77);
+		this.getjTFieldTipo().setLocation(656, 153);
 		
 		this.getjPanelCentro().add(getjLabelTelefone());
-		this.getjLabelTelefone().setLocation(754, 77);
+		this.getjLabelTelefone().setLocation(754, 153);
 		
 		this.getjPanelCentro().add(getjTFieldTelefone());
-		this.getjTFieldTelefone().setLocation(825, 77);
+		this.getjTFieldTelefone().setLocation(825, 153);
 		
 		
 		this.getjPanelCentro().add(getjLabelEmail());
-		this.getjLabelEmail().setLocation(52, 111);
+		this.getjLabelEmail().setLocation(52, 187);
 		
 		this.getjPanelCentro().add(getjTFieldEmail());
-		this.getjTFieldEmail().setLocation(101, 111);
+		this.getjTFieldEmail().setLocation(97, 187);
 		
 		this.getjPanelCentro().add(getjLabelCidade());
-		this.getjLabelCidade().setLocation(297, 111);
+		this.getjLabelCidade().setLocation(297, 187);
 		
 		this.getjPanelCentro().add(getjTFieldCidade());
-		this.getjTFieldCidade().setLocation(354, 111);
+		this.getjTFieldCidade().setLocation(354, 187);
 		
 		this.getjPanelCentro().add(getjLabelBairro());
-		this.getjLabelBairro().setLocation(603, 111);
+		this.getjLabelBairro().setLocation(603, 187);
 		
 		this.getjPanelCentro().add(getjTFieldBairro());
-		this.getjTFieldBairro().setLocation(656, 111);
+		this.getjTFieldBairro().setLocation(656, 187);
 	
+		
 		this.getjPanelCentro().add(getjLabelRua());
-		this.getjLabelRua().setLocation(65, 145);
+		this.getjLabelRua().setLocation(65, 221);
 		
 		this.getjPanelCentro().add(getjTFieldRua());
-		this.getjTFieldRua().setLocation(97, 145);
+		this.getjTFieldRua().setLocation(97, 221);
 		
 		this.getjPanelCentro().add(getjLabelNumeroCasa());
-		this.getjLabelNumeroCasa().setLocation(290, 145);
+		this.getjLabelNumeroCasa().setLocation(290, 221);
 		
 		this.getjPanelCentro().add(getjTFieldNumeroCasa());
-		this.getjTFieldNumeroCasa().setLocation(354, 145);
+		this.getjTFieldNumeroCasa().setLocation(354, 221);
 		
+		// -- parte descritiva do veículo
 		this.getjPanelCentro().add(getjButtonSelecionarVeiculo());
-		this.getjButtonSelecionarVeiculo().setLocation(22, 182);
+		this.getjButtonSelecionarVeiculo().setLocation(22, 258);
 		
 		this.getjPanelCentro().add(getjLabelNumeroVeiculo());
-		this.getjLabelNumeroVeiculo().setLocation(71, 224);
-	
-		this.getjPanelCentro().add(getjLabelMarca());
-		this.getjLabelMarca().setLocation(46, 258);
-		
-		this.getjPanelCentro().add(getjLabelCor());
-		this.getjLabelCor().setLocation(63, 292);
-	
-		this.getjPanelCentro().add(getjLabelChassi());
-		this.getjLabelChassi().setLocation(242, 224);
-		
-		this.getjPanelCentro().add(getjLabelModelo());
-		this.getjLabelModelo().setLocation(231, 258);
-		
-		this.getjPanelCentro().add(getjLabelAno());
-		this.getjLabelAno().setLocation(257, 292);
-		
-		this.getjPanelCentro().add(getjLabelPlaca());
-		this.getjLabelPlaca().setLocation(553, 224);
-		
-		this.getjPanelCentro().add(getjLabelMotor());
-		this.getjLabelMotor().setLocation(544, 258);
-		
-		this.getjPanelCentro().add(getjLabelKMAtual());
-		this.getjLabelKMAtual().setLocation(758, 224);
-		
-		this.getjPanelCentro().add(getjLabelCombustivel());
-		this.getjLabelCombustivel().setLocation(733, 258);
+		this.getjLabelNumeroVeiculo().setLocation(71, 300);
 	
 		this.getjPanelCentro().add(getjTFieldNumeroVeiculo());
-		this.getjTFieldNumeroVeiculo().setLocation(97, 224);
-		
-		this.getjPanelCentro().add(getjTFieldMarca());
-		this.getjTFieldMarca().setLocation(97, 258);
-		
-		this.getjPanelCentro().add(getjTFieldCor());
-		this.getjTFieldCor().setLocation(97, 292);
+		this.getjTFieldNumeroVeiculo().setLocation(97, 300);
+	
+		this.getjPanelCentro().add(getjLabelChassi());
+		this.getjLabelChassi().setLocation(242, 300);
 		
 		this.getjPanelCentro().add(getjTFieldChassi());
-		this.getjTFieldChassi().setLocation(294, 224);
+		this.getjTFieldChassi().setLocation(294, 300);
 		
-		this.getjPanelCentro().add(getjTFieldModelo());
-		this.getjTFieldModelo().setLocation(294, 258);
-
-		this.getjPanelCentro().add(getjTFieldAno());
-		this.getjTFieldAno().setLocation(294, 292);
+		this.getjPanelCentro().add(getjLabelPlaca());
+		this.getjLabelPlaca().setLocation(553, 300);
 		
 		this.getjPanelCentro().add(getjTFieldPlaca());
-		this.getjTFieldPlaca().setLocation(597, 224);
+		this.getjTFieldPlaca().setLocation(597, 300);
 		
-		this.getjPanelCentro().add(getjTFieldMotor());
-		this.getjTFieldMotor().setLocation(597, 258);
+		this.getjPanelCentro().add(getjLabelKMAtual());
+		this.getjLabelKMAtual().setLocation(758, 300);
 		
 		this.getjPanelCentro().add(getjTFieldKMAtual());
-		this.getjTFieldKMAtual().setLocation(829, 224);
+		this.getjTFieldKMAtual().setLocation(829, 300);
+	
+		this.getjPanelCentro().add(getjLabelMarca());
+		this.getjLabelMarca().setLocation(46, 334);
+		
+		this.getjPanelCentro().add(getjTFieldMarca());
+		this.getjTFieldMarca().setLocation(97, 334);
+		
+		this.getjPanelCentro().add(getjLabelModelo());
+		this.getjLabelModelo().setLocation(231, 334);
+		
+		this.getjPanelCentro().add(getjTFieldModelo());
+		this.getjTFieldModelo().setLocation(294, 334);
+		
+		this.getjPanelCentro().add(getjLabelMotor());
+		this.getjLabelMotor().setLocation(544, 334);
+		
+		this.getjPanelCentro().add(getjTFieldMotor());
+		this.getjTFieldMotor().setLocation(597, 334);
+		
+		this.getjPanelCentro().add(getjLabelCombustivel());
+		this.getjLabelCombustivel().setLocation(733, 334);
 		
 		this.getjPanelCentro().add(getjTFieldCombustivel());
-		this.getjTFieldCombustivel().setLocation(829, 258);
+		this.getjTFieldCombustivel().setLocation(829, 334);
+		
+		this.getjPanelCentro().add(getjLabelCor());
+		this.getjLabelCor().setLocation(63, 368);
+		
+		this.getjPanelCentro().add(getjTFieldCor());
+		this.getjTFieldCor().setLocation(97, 368);
+		
+		this.getjPanelCentro().add(getjLabelAno());
+		this.getjLabelAno().setLocation(257, 368);
+
+		this.getjPanelCentro().add(getjTFieldAno());
+		this.getjTFieldAno().setLocation(294, 368);
 		
 		
 		
 	}
+	
 }

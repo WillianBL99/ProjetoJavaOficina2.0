@@ -373,6 +373,17 @@ public class JPanelPrincipal extends JPanel{
 		}
 		return jLabelDescricaoTela;
 	}
+	
+	/*
+	 * método setjLabelDescricaoTela(@descricaoTela)
+	 * 
+	 * @descricaoTela - Recebe como parâmetro uma String contento o texto
+	 * a ser setado na barra de título desta classe.
+	 * 
+	 */
+	private void setjLabelDescricaoTela(String descricaoTela) {
+		this.jLabelDescricaoTela.setText(descricaoTela);
+	}
 
 	//** Fim getters JLabel **
 	
@@ -479,20 +490,28 @@ public class JPanelPrincipal extends JPanel{
 	}
 	
 	
-	// Isere um jPanel e sua respectiva localização na Frame
-	public void alterarJPanel(JPanel jPanel, Point point) {	
-		if(getjPanelCenterAnterior() != null) { // Condição para retirar jPanel do JFrame, caso haja algum.
+	public void alterarJPanel(JPanel jPanel, Point point) {
+		this.alterarJPanel(jPanel, point, "Sem título");
+	}
+	
+	// Isere um jPanel e sua respectiva localização na JPanelPrincipal
+	public void alterarJPanel(JPanel jPanel, Point point, String tituloDescricao) {	
+		if(getjPanelCenterAnterior() != null) { // Condição para retirar jPanel do JPanelPrincipal, caso haja algum.
 			this.getJPanelPrincipal().remove(getjPanelCenterAnterior());
 		}
+		
+		this.setjLabelDescricaoTela(tituloDescricao);
 		
 		this.getJPanelPrincipal().add(jPanel);
 		jPanel.setLocation(point);
 		
 		this.setjPanelCenterAnterior(jPanel);
 		
-		System.out.println("adicionou nova tela à jpanelprincipal");
 		this.repaint();
 		this.validate();
+		
+		
+		System.out.println("adicionou nova tela à jpanelprincipal");
 	}
 	
 	//** Fim métodos da classe **

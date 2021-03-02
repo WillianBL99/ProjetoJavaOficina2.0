@@ -13,10 +13,12 @@ import model.SetSizeIcon;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
+import view.JPanelEstoque;
 import view.JPanelGeraOS;
 import view.JPanelHome;
 import view.JPanelOrcamentoFinal;
 import view.JPanelPreOrcamento;
+import view.JPanelPreOrcamentoNovo;
 import view.JPanelPrincipal;
 import view.JPanelUsuarios;
 import view.JPanelVendas;
@@ -39,6 +41,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelOrcamentoFinal jPanelOrcamentoFinal;
 	private JPanelUsuarios jPanelUsuarios;
+	private JPanelEstoque jPanelEstoque;
 
 	private ControlJPanelHome controlJPanelHome;
 	private ControlJPanelVendas controlJPanelVendas;
@@ -133,7 +136,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVendas(), Icones.getVendasOn(), Icones.getVendasOff());
-			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point);
+			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point, this.getjPanelVendas().getTituloDescricaoTela());
 			getControlJPanelVendas();
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
@@ -146,11 +149,11 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
-			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point);			
+			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point, this.getjPanelPreOrcamento().getTituloDescricaoTela());			
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
-			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point);			
+			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
@@ -173,6 +176,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
+			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(), point, this.getjPanelEstoque().getTituloDescricaoTela());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -180,7 +184,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			new JDialogProcurarVeiculo(getjFramePricipal(), false);
+			this.getjPanelPrincipal().alterarJPanel(new JPanelPreOrcamentoNovo(), point);
+			//new JDialogProcurarVeiculo(getjFramePricipal(), false);
 		}
 		
 	}
@@ -332,6 +337,13 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		}
 		
 		
+		public JPanelEstoque getjPanelEstoque() {
+			if(jPanelEstoque == null){
+				jPanelEstoque = new JPanelEstoque();
+			}
+			return jPanelEstoque;
+		}
+		
 		public void setLocalizaçãoJButtonsMenuLateral() { // quando os jbuttons OS ou Orçamento forem solicitados
 			//chamar para setar a nova localização dos demais jbuttons
 			this.getjPanelPrincipal().getjButtonVendas().setLocation(4, 185 + getSizeOSOpen());
@@ -392,7 +404,15 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			return sizeOrcamentoOpen;
 		}
 
-
+		
+		/*
+		 * método setSizeOrcamentoOpen(@sizeOrcamentoOpen)
+		 * 
+		 * @sizeOrcamentoOpen - Recebe um valor boolean para exibir as opções de Orçamento.
+		 * Ao chegar um valor true os jbutons abaixo de jButtonInicio "decem" enquanto dois jbuttons ficão visíveis 
+		 * abaixo do jButtonOS
+		 *  
+		 */
 		public void setSizeOrcamentoOpen(boolean sizeOrcamentoOpen) { // Mostra os jButtons gerarOS e ConsultarOS
 			if(sizeOrcamentoOpen) { // se for verdadeiro
 				this.sizeOrcamentoOpen = 60;

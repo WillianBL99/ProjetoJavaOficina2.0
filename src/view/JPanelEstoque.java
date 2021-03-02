@@ -33,6 +33,7 @@ public class JPanelEstoque  extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JButton jButtonAdicionar;
 	private JButton jButtonEditar;
@@ -89,7 +90,14 @@ public class JPanelEstoque  extends JPanel{
 	
 	//** Início getters JLabel **
 		
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Estoque";	
+		}
+		return tituloDescricaoTela;
+	}
 	
+		
 	//** Fim getters JLabel **
 	
 	//** Início getters JButon **
@@ -222,29 +230,6 @@ public class JPanelEstoque  extends JPanel{
 				jComboPesquisarPor.setModel(new javax.swing.
 						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "Código", "Descrição", "Marca"}));
 				jComboPesquisarPor.setBorder(null);
-				
-				jComboPesquisarPor.setUI(new BasicComboBoxUI() {
-				    protected JButton createArrowButton() {
-				        return new JButton() {
-				        	@Override
-				        	public Color getBackground() {		        		
-				        		return super.getBackground().cyan;
-				        	}
-				        	@Override
-				        	public Border getBorder() {
-				        		return BorderFactory.createEmptyBorder();
-				        	}
-				        	@Override
-				            public int getWidth() {
-				            	  return 1;
-				            }
-				        	@Override
-				            public int getHeight() {
-				            	  return 1;
-				            }
-				        };
-				    }
-				});
 				
 			}
 			

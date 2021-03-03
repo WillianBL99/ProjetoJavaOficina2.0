@@ -134,7 +134,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jPanelCentro == null){	
 			jPanelCentro = new JPanel();
 			jPanelCentro.setLayout(null);
-			jPanelCentro.setSize(new Dimension(950, 568));
+			jPanelCentro.setSize(new Dimension(990, 568));
 			jPanelCentro.setVisible(true);
 			jPanelCentro.setBackground(Cores.branco);
 	
@@ -346,11 +346,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
     //** Início getters JLabel **
 	public JLabel getjLabelDadosPreOrcamento() {
 		if(jLabelDadosPreOrcamento == null){
-			jLabelDadosPreOrcamento = new JLabel("N° Casa:");
-			jLabelDadosPreOrcamento.setFont(Fontes.fontJLabelPlain1);
-			jLabelDadosPreOrcamento.setSize(60, 21);
-			jLabelDadosPreOrcamento.setForeground(Cores.preto);
-			jLabelDadosPreOrcamento.setOpaque(false);
+			jLabelDadosPreOrcamento = new JLabel("Dados do Pré Orçamento");
+			jLabelDadosPreOrcamento.setFont(Fontes.fontJLabelBold2);
+			jLabelDadosPreOrcamento.setSize(240, 21);
+			jLabelDadosPreOrcamento.setForeground(Cores.azul1);
+			jLabelDadosPreOrcamento.setBackground(Cores.cinza4);
 		}
 		return jLabelDadosPreOrcamento;
 	}
@@ -358,11 +358,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelNumeroPreOrcamento() {
 		if(jLabelNumeroPreOrcamento == null){
-			jLabelNumeroPreOrcamento = new JLabel("N° Casa:");
+			jLabelNumeroPreOrcamento = new JLabel("N°:");
 			jLabelNumeroPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelNumeroPreOrcamento.setSize(60, 21);
 			jLabelNumeroPreOrcamento.setForeground(Cores.preto);
-			jLabelNumeroPreOrcamento.setOpaque(false);
+			jLabelDadosPreOrcamento.setBackground(Cores.cinza4);
 		}
 		return jLabelNumeroPreOrcamento;
 	}
@@ -370,11 +370,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelDataPreOrcamento() {
 		if(jLabelDataPreOrcamento == null){
-			jLabelDataPreOrcamento = new JLabel("N° Casa:");
+			jLabelDataPreOrcamento = new JLabel("Data:");
 			jLabelDataPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelDataPreOrcamento.setSize(60, 21);
 			jLabelDataPreOrcamento.setForeground(Cores.preto);
-			jLabelDataPreOrcamento.setOpaque(false);
 		}
 		return jLabelDataPreOrcamento;
 	}
@@ -382,11 +381,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelHorarioPreOrcamento() {
 		if(jLabelHorarioPreOrcamento == null){
-			jLabelHorarioPreOrcamento = new JLabel("N° Casa:");
+			jLabelHorarioPreOrcamento = new JLabel("Horário:");
 			jLabelHorarioPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelHorarioPreOrcamento.setSize(60, 21);
 			jLabelHorarioPreOrcamento.setForeground(Cores.preto);
-			jLabelHorarioPreOrcamento.setOpaque(false);
 		}
 		return jLabelHorarioPreOrcamento;
 	}
@@ -394,11 +392,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelResponsavelPreOrcamento() {
 		if(jLabelResponsavelPreOrcamento == null){
-			jLabelResponsavelPreOrcamento = new JLabel("N° Casa:");
+			jLabelResponsavelPreOrcamento = new JLabel("Responsável:");
 			jLabelResponsavelPreOrcamento.setFont(Fontes.fontJLabelPlain1);
-			jLabelResponsavelPreOrcamento.setSize(60, 21);
+			jLabelResponsavelPreOrcamento.setSize(90, 21);
 			jLabelResponsavelPreOrcamento.setForeground(Cores.preto);
-			jLabelResponsavelPreOrcamento.setOpaque(false);
 		}
 		return jLabelResponsavelPreOrcamento;
 	}
@@ -643,7 +640,62 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
 	//** Início getters JTextField **
+
 	
+	public JTextField getjTFieldNumeroPreOrcamento() {
+		if(jTFieldNumeroPreOrcamento == null){
+			jTFieldNumeroPreOrcamento = new JTextField();
+			jTFieldNumeroPreOrcamento.setSize(105, 21);
+			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
+			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldNumeroPreOrcamento.setOpaque(true);
+		}
+		return jTFieldNumeroPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldDataPreOrcamento() {
+		if(jTFieldDataPreOrcamento == null){
+			jTFieldDataPreOrcamento = new JTextField();
+			jTFieldDataPreOrcamento.setSize(94, 21);
+			jTFieldDataPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDataPreOrcamento.setForeground(Cores.preto);
+			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldDataPreOrcamento.setOpaque(true);
+		}
+		return jTFieldDataPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldHorarioPreOrcamento() {
+		if(jTFieldHorarioPreOrcamento == null){
+			jTFieldHorarioPreOrcamento = new JTextField();
+			jTFieldHorarioPreOrcamento.setSize(62, 21);
+			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
+			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldHorarioPreOrcamento.setOpaque(true);
+		}
+		return jTFieldHorarioPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldResponsavelPreOrcamento() {
+		if(jTFieldResponsavelPreOrcamento == null){
+			jTFieldResponsavelPreOrcamento = new JTextField();
+			jTFieldResponsavelPreOrcamento.setSize(297, 21);
+			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
+				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
+			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldResponsavelPreOrcamento.setOpaque(true);
+		}
+		return jTFieldResponsavelPreOrcamento;
+	}
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
@@ -913,61 +965,6 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JTextField getjTFieldNumeroPreOrcamento() {
-		if(jTFieldNumeroPreOrcamento == null){
-			jTFieldNumeroPreOrcamento = new JTextField();
-			jTFieldNumeroPreOrcamento.setSize(125, 21);
-			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
-			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldNumeroPreOrcamento.setOpaque(true);
-		}
-		return jTFieldNumeroPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldDataPreOrcamento() {
-		if(jTFieldDataPreOrcamento == null){
-			jTFieldDataPreOrcamento = new JTextField();
-			jTFieldDataPreOrcamento.setSize(125, 21);
-			jTFieldDataPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldDataPreOrcamento.setForeground(Cores.preto);
-			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldDataPreOrcamento.setOpaque(true);
-		}
-		return jTFieldDataPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldHorarioPreOrcamento() {
-		if(jTFieldHorarioPreOrcamento == null){
-			jTFieldHorarioPreOrcamento = new JTextField();
-			jTFieldHorarioPreOrcamento.setSize(125, 21);
-			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
-			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldHorarioPreOrcamento.setOpaque(true);
-		}
-		return jTFieldHorarioPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldResponsavelPreOrcamento() {
-		if(jTFieldResponsavelPreOrcamento == null){
-			jTFieldResponsavelPreOrcamento = new JTextField();
-			jTFieldResponsavelPreOrcamento.setSize(125, 21);
-			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
-			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldResponsavelPreOrcamento.setOpaque(true);
-		}
-		return jTFieldResponsavelPreOrcamento;
-	}
-	
 	
     //** Fim getters JTextField **
 	
@@ -1038,6 +1035,33 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	void addCompJpanelCentro() {
+		// -- parte descritiva do pre orçamento
+		this.getjPanelCentro().add(getjLabelDadosPreOrcamento());
+		this.getjLabelDadosPreOrcamento().setLocation(28, 20);
+
+		this.getjPanelCentro().add(getjLabelNumeroPreOrcamento());
+		this.getjLabelNumeroPreOrcamento().setLocation(75, 62);
+
+		this.getjPanelCentro().add(getjTFieldNumeroPreOrcamento());
+		this.getjTFieldNumeroPreOrcamento().setLocation(102, 62);
+
+		this.getjPanelCentro().add(getjLabelDataPreOrcamento());
+		this.getjLabelDataPreOrcamento().setLocation(240, 62);
+
+		this.getjPanelCentro().add(getjTFieldDataPreOrcamento());
+		this.getjTFieldDataPreOrcamento().setLocation(287, 62);
+
+		this.getjPanelCentro().add(getjLabelHorarioPreOrcamento());
+		this.getjLabelHorarioPreOrcamento().setLocation(410, 62);
+
+		this.getjPanelCentro().add(getjTFieldHorarioPreOrcamento());
+		this.getjTFieldHorarioPreOrcamento().setLocation(472, 62);
+
+		this.getjPanelCentro().add(getjLabelResponsavelPreOrcamento());
+		this.getjLabelResponsavelPreOrcamento().setLocation(569, 62);
+
+		this.getjPanelCentro().add(getjTFieldResponsavelPreOrcamento());
+		this.getjTFieldResponsavelPreOrcamento().setLocation(664, 62);
 		
 		// -- parte descritiva cliente
 		this.getjPanelCentro().add(getjButtonProcuraCliente());

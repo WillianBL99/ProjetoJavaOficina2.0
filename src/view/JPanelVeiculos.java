@@ -76,7 +76,7 @@ public class JPanelVeiculos extends JPanel{
 			jPanelBuscaVeiculos = new JPanel();
 			jPanelBuscaVeiculos.setLayout(null);
 			jPanelBuscaVeiculos.setBackground(Cores.branco);
-			jPanelBuscaVeiculos.setSize(1000, 50);
+			jPanelBuscaVeiculos.setSize(990, 50);
 			jPanelBuscaVeiculos.setBorder(null);
 		}
 		return jPanelBuscaVeiculos;

@@ -80,7 +80,7 @@ public class JPanelEstoque  extends JPanel{
 			jPanelBuscaEstoque = new JPanel();
 			jPanelBuscaEstoque.setLayout(null);
 			jPanelBuscaEstoque.setBackground(Cores.branco);
-			jPanelBuscaEstoque.setSize(1000, 50);
+			jPanelBuscaEstoque.setSize(990, 50);
 			jPanelBuscaEstoque.setBorder(null);
 		}
 		return jPanelBuscaEstoque;

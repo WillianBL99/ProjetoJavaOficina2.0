@@ -12,8 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import icons.Icones;
@@ -25,6 +23,8 @@ import model.SetSizeIcon;
  * @author josim
  *
  */
+
+@SuppressWarnings("serial")
 public class JPanelProcuraCliente extends JDialog{
 
 	public JPanelProcuraCliente(Frame frame, boolean modal) {
@@ -46,7 +46,7 @@ public class JPanelProcuraCliente extends JDialog{
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
 	
-	private JComboBox jComboBoxPesquisa;
+	private JComboBox<String> jComboBoxPesquisa;
 	//** Fim declaração de variáveis **
 
 
@@ -159,7 +159,7 @@ public class JPanelProcuraCliente extends JDialog{
 	
 	
 	//** Início getters JComboBox **
-		public JComboBox getjComboBoxPesquisa() {
+		public JComboBox<String> getjComboBoxPesquisa() {
 			if(jComboBoxPesquisa == null){
 				
 				jComboBoxPesquisa = new JComboBox<String>();

@@ -344,6 +344,15 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 
     //** Início getters JLabel **
+	
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Novo Pré Orçamento";	
+		}
+		return tituloDescricaoTela;
+	}
+	
+	
 	public JLabel getjLabelDadosPreOrcamento() {
 		if(jLabelDadosPreOrcamento == null){
 			jLabelDadosPreOrcamento = new JLabel("Dados do Pré Orçamento");
@@ -398,14 +407,6 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jLabelResponsavelPreOrcamento.setForeground(Cores.preto);
 		}
 		return jLabelResponsavelPreOrcamento;
-	}
-
-
-	public String getTituloDescricaoTela() {
-		if(tituloDescricaoTela == null){	
-			tituloDescricaoTela = "Novo Pré Orçamento";	
-		}
-		return tituloDescricaoTela;
 	}
 	
 

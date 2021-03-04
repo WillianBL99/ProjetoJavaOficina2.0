@@ -120,7 +120,7 @@ import javax.swing.JRadioButton;
 		
 				jPanelCentro = new JPanel();
 				jPanelCentro.setLayout(null);
-				jPanelCentro.setSize(new Dimension(1002, 568));
+				jPanelCentro.setSize(new Dimension(990, 568));
 				jPanelCentro.setVisible(true);
 				jPanelCentro.setBackground(Cores.branco);
 		

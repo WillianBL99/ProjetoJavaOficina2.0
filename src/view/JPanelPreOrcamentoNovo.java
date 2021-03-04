@@ -646,8 +646,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroPreOrcamento == null){
 			jTFieldNumeroPreOrcamento = new JTextField();
 			jTFieldNumeroPreOrcamento.setSize(105, 21);
-			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroPreOrcamento.setBackground(Cores.cinza4);
+			jTFieldNumeroPreOrcamento.setBorder(null);
+			jTFieldNumeroPreOrcamento.setEditable(false);
 			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
 			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroPreOrcamento.setOpaque(true);
@@ -660,8 +661,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldDataPreOrcamento == null){
 			jTFieldDataPreOrcamento = new JTextField();
 			jTFieldDataPreOrcamento.setSize(94, 21);
-			jTFieldDataPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDataPreOrcamento.setBackground(Cores.cinza4);
+			jTFieldDataPreOrcamento.setBorder(null);
+			jTFieldDataPreOrcamento.setEditable(false);
 			jTFieldDataPreOrcamento.setForeground(Cores.preto);
 			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldDataPreOrcamento.setOpaque(true);
@@ -674,8 +676,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldHorarioPreOrcamento == null){
 			jTFieldHorarioPreOrcamento = new JTextField();
 			jTFieldHorarioPreOrcamento.setSize(62, 21);
-			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldHorarioPreOrcamento.setBackground(Cores.cinza4);
+			jTFieldHorarioPreOrcamento.setBorder(null);
+			jTFieldHorarioPreOrcamento.setEditable(false);
 			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
 			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldHorarioPreOrcamento.setOpaque(true);
@@ -688,8 +691,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldResponsavelPreOrcamento == null){
 			jTFieldResponsavelPreOrcamento = new JTextField();
 			jTFieldResponsavelPreOrcamento.setSize(297, 21);
-			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldResponsavelPreOrcamento.setBackground(Cores.cinza4);
+			jTFieldResponsavelPreOrcamento.setBorder(null);
+			jTFieldResponsavelPreOrcamento.setEditable(false);
 			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
 			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldResponsavelPreOrcamento.setOpaque(true);
@@ -701,8 +705,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldCpf == null){	
 			jTFieldCpf = new JTextField("999.999.999-99");
 			jTFieldCpf.setSize(165, 21);
-			jTFieldCpf.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCpf.setBackground(Cores.cinza4);
+			jTFieldCpf.setBorder(null);
+			jTFieldCpf.setEditable(false);
 			jTFieldCpf.setForeground(Cores.preto);
 			jTFieldCpf.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCpf.setOpaque(true);
@@ -715,8 +720,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldEmail == null){	
 			jTFieldEmail = new JTextField();
 			jTFieldEmail.setSize(149, 21);
-			jTFieldEmail.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldEmail.setBackground(Cores.cinza4);
+			jTFieldEmail.setBorder(null);
+			jTFieldEmail.setEditable(false);
 			jTFieldEmail.setForeground(Cores.preto);
 			jTFieldEmail.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldEmail.setOpaque(true);
@@ -729,8 +735,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldRua == null){	
 			jTFieldRua = new JTextField();
 			jTFieldRua.setSize(166, 21);
-			jTFieldRua.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldRua.setBackground(Cores.cinza4);
+			jTFieldRua.setBorder(null);
+			jTFieldRua.setEditable(false);
 			jTFieldRua.setForeground(Cores.preto);
 			jTFieldRua.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldRua.setOpaque(true);
@@ -744,8 +751,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNome == null){	
 			jTFieldNome = new JTextField("José da Silva");
 			jTFieldNome.setSize(219, 21);
-			jTFieldNome.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNome.setBackground(Cores.cinza4);
+			jTFieldNome.setBorder(null);
+			jTFieldNome.setEditable(false);
 			jTFieldNome.setForeground(Cores.preto);
 			jTFieldNome.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNome.setOpaque(true);
@@ -759,8 +767,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 			jTFieldCidade = new JTextField();
 			jTFieldCidade.setSize(219, 21);
-			jTFieldCidade.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCidade.setBackground(Cores.cinza4);
+			jTFieldCidade.setBorder(null);
+			jTFieldCidade.setEditable(false);
 			jTFieldCidade.setForeground(Cores.preto);
 			jTFieldCidade.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCidade.setOpaque(true);
@@ -773,8 +782,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroCasa == null){
 			jTFieldNumeroCasa = new JTextField();
 			jTFieldNumeroCasa.setSize(120, 21);
-			jTFieldNumeroCasa.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroCasa.setBackground(Cores.cinza4);
+			jTFieldNumeroCasa.setBorder(null);
+			jTFieldNumeroCasa.setEditable(false);
 			jTFieldNumeroCasa.setForeground(Cores.preto);
 			jTFieldNumeroCasa.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroCasa.setOpaque(true);
@@ -787,8 +797,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldTipo == null){	
 			jTFieldTipo = new JTextField("Fisica");
 			jTFieldTipo.setSize(53, 21);
-			jTFieldTipo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldTipo.setBackground(Cores.cinza4);
+			jTFieldTipo.setBorder(null);
+			jTFieldTipo.setEditable(false);
 			jTFieldTipo.setForeground(Cores.preto);
 			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTipo.setOpaque(true);
@@ -801,8 +812,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldBairro == null){	
 			jTFieldBairro = new JTextField();
 			jTFieldBairro.setSize(91, 21);
-			jTFieldBairro.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldBairro.setBackground(Cores.cinza4);
+			jTFieldBairro.setBorder(null);
+			jTFieldBairro.setEditable(false);
 			jTFieldBairro.setForeground(Cores.preto);
 			jTFieldBairro.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldBairro.setOpaque(true);
@@ -815,8 +827,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldTelefone == null){	
 			jTFieldTelefone = new JTextField("(77) 9 9999-9999");
 			jTFieldTelefone.setSize(115, 21);
-			jTFieldTelefone.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldTelefone.setBackground(Cores.cinza4);
+			jTFieldTelefone.setBorder(null);
+			jTFieldTelefone.setEditable(false);
 			jTFieldTelefone.setForeground(Cores.preto);
 			jTFieldTelefone.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTelefone.setOpaque(true);
@@ -829,8 +842,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroVeiculo == null){	
 			jTFieldNumeroVeiculo = new JTextField();
 			jTFieldNumeroVeiculo.setSize(105, 21);
-			jTFieldNumeroVeiculo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroVeiculo.setBackground(Cores.cinza4);
+			jTFieldNumeroVeiculo.setBorder(null);
+			jTFieldNumeroVeiculo.setEditable(false);
 			jTFieldNumeroVeiculo.setForeground(Cores.preto);
 			jTFieldNumeroVeiculo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroVeiculo.setOpaque(true);
@@ -843,8 +857,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldMarca == null){	
 			jTFieldMarca = new JTextField();
 			jTFieldMarca.setSize(105, 21);
-			jTFieldMarca.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldMarca.setBackground(Cores.cinza4);
+			jTFieldMarca.setBorder(null);
+			jTFieldMarca.setEditable(false);
 			jTFieldMarca.setForeground(Cores.preto);
 			jTFieldMarca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMarca.setOpaque(true);
@@ -857,8 +872,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldCor == null){	
 			jTFieldCor = new JTextField();
 			jTFieldCor.setSize(105, 21);
-			jTFieldCor.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCor.setBackground(Cores.cinza4);
+			jTFieldCor.setBorder(null);
+			jTFieldCor.setEditable(false);
 			jTFieldCor.setForeground(Cores.preto);
 			jTFieldCor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCor.setOpaque(true);
@@ -871,8 +887,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldChassi == null){	
 			jTFieldChassi = new JTextField();
 			jTFieldChassi.setSize(219, 21);
-			jTFieldChassi.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldChassi.setBackground(Cores.cinza4);
+			jTFieldChassi.setBorder(null);
+			jTFieldChassi.setEditable(false);
 			jTFieldChassi.setForeground(Cores.preto);
 			jTFieldChassi.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldChassi.setOpaque(true);
@@ -885,8 +902,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldModelo == null){	
 			jTFieldModelo = new JTextField();
 			jTFieldModelo.setSize(219, 21);
-			jTFieldModelo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldModelo.setBackground(Cores.cinza4);
+			jTFieldModelo.setBorder(null);
+			jTFieldModelo.setEditable(false);
 			jTFieldModelo.setForeground(Cores.preto);
 			jTFieldModelo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldModelo.setOpaque(true);
@@ -899,8 +917,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldAno == null){	
 			jTFieldAno = new JTextField();
 			jTFieldAno.setSize(105, 21);
-			jTFieldAno.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldAno.setBackground(Cores.cinza4);
+			jTFieldAno.setBorder(null);
+			jTFieldAno.setEditable(false);
 			jTFieldAno.setForeground(Cores.preto);
 			jTFieldAno.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldAno.setOpaque(true);
@@ -913,8 +932,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldPlaca == null){	
 			jTFieldPlaca = new JTextField();
 			jTFieldPlaca.setSize(125, 21);
-			jTFieldPlaca.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldPlaca.setBackground(Cores.cinza4);
+			jTFieldPlaca.setBorder(null);
+			jTFieldPlaca.setEditable(false);
 			jTFieldPlaca.setForeground(Cores.preto);
 			jTFieldPlaca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldPlaca.setOpaque(true);
@@ -927,8 +947,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldMotor == null){	
 			jTFieldMotor = new JTextField();
 			jTFieldMotor.setSize(125, 21);
-			jTFieldMotor.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldMotor.setBackground(Cores.cinza4);
+			jTFieldMotor.setBorder(null);
+			jTFieldMotor.setEditable(false);
 			jTFieldMotor.setForeground(Cores.preto);
 			jTFieldMotor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMotor.setOpaque(true);
@@ -941,8 +962,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldKMAtual == null){	
 			jTFieldKMAtual = new JTextField();
 			jTFieldKMAtual.setSize(120, 21);
-			jTFieldKMAtual.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldKMAtual.setBackground(Cores.cinza4);
+			jTFieldKMAtual.setBorder(null);
+			jTFieldKMAtual.setEditable(false);
 			jTFieldKMAtual.setForeground(Cores.preto);
 			jTFieldKMAtual.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldKMAtual.setOpaque(true);
@@ -951,12 +973,13 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JTextField getjTFieldCombustivel() {//pode ser pudado para jcombobox!
+	public JTextField getjTFieldCombustivel() {
 		if(jTFieldCombustivel == null){	
 			jTFieldCombustivel = new JTextField();
 			jTFieldCombustivel.setSize(125, 21);
-			jTFieldCombustivel.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCombustivel.setBackground(Cores.cinza4);
+			jTFieldCombustivel.setBorder(null);
+			jTFieldCombustivel.setEditable(false);
 			jTFieldCombustivel.setForeground(Cores.preto);
 			jTFieldCombustivel.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCombustivel.setOpaque(true);

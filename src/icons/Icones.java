@@ -46,6 +46,7 @@ public class Icones {
 	private static String salvar;
 	private static String buscar;
 	private static String editar;
+	private static String adicionar;
 	
 	private static String cartãoAzul;
 	private static String cartãoCinza;
@@ -176,6 +177,14 @@ public class Icones {
 	
 		}
 		return apagar;
+	}
+
+	public static String getAdicionar() {
+		if(adicionar == null){
+			adicionar = ("/icons/add-wht-90.png");
+	
+		}
+		return adicionar;
 	}
 
 	public static String getUser() {

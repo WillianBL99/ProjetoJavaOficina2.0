@@ -105,8 +105,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
-	private JScrollPane JSPListaProdutoServico;
-	private JTable jTableListaProdutoServico;
+	private JScrollPane jSPListaProdutos;
+	private JScrollPane jSPListaServicos;
+	
+	private JTable jTableListaProdutos;
+	private JTable jTableListaServicos;
 	
     //** Fim declaração de variáveis **
 
@@ -264,6 +267,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonListaServicos.setFocusable(false);
 			jButtonListaServicos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonListaServicos.setVisible(false);
 		}
 		return jButtonListaServicos;
 	}
@@ -275,8 +279,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonAdicionarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonAdicionarProdutoServico.setBackground(Cores.azul1);
 			jButtonAdicionarProdutoServico.setForeground(Color.white);
-			jButtonAdicionarProdutoServico.setText("Seleciona Veículo");
-			jButtonAdicionarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonAdicionarProdutoServico, Icones.
+					getAdicionar(), 16, 16);
+			jButtonAdicionarProdutoServico.setSize(55, 20);
 			jButtonAdicionarProdutoServico.setFocusable(false);
 			jButtonAdicionarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -291,8 +296,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonEditarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonEditarProdutoServico.setBackground(Cores.azul1);
 			jButtonEditarProdutoServico.setForeground(Color.white);
-			jButtonEditarProdutoServico.setText("Seleciona Veículo");
-			jButtonEditarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonEditarProdutoServico, Icones.
+					getEditar(), 16, 16);
+			jButtonEditarProdutoServico.setSize(55, 20);
 			jButtonEditarProdutoServico.setFocusable(false);
 			jButtonEditarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -307,8 +313,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonApagarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonApagarProdutoServico.setBackground(Cores.azul1);
 			jButtonApagarProdutoServico.setForeground(Color.white);
-			jButtonApagarProdutoServico.setText("Seleciona Veículo");
-			jButtonApagarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonApagarProdutoServico, Icones.
+					getApagar(), 16, 16);
+			jButtonApagarProdutoServico.setSize(55, 20);
 			jButtonApagarProdutoServico.setFocusable(false);
 			jButtonApagarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -995,48 +1002,94 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	//** Início getters JScrollPane/JTable **
 
-	public JScrollPane getJSPListaProdutoServico() {
-		if(JSPListaProdutoServico == null){
-			JSPListaProdutoServico = new JScrollPane();
-			JSPListaProdutoServico.setViewportView(getjTableListaProdutoServico());
-			JSPListaProdutoServico.setSize(990, 225);	
+	public JScrollPane getjSPListaProdutos() {
+		if(jSPListaProdutos == null){
+			jSPListaProdutos = new JScrollPane();
+			jSPListaProdutos.setViewportView(getjTableListaProdutos());
+			jSPListaProdutos.setSize(650, 130);	
 		}
-		return JSPListaProdutoServico;
+		return jSPListaProdutos;
+	}
+
+	
+	public JScrollPane getjSPListaServicos() {
+		if(jSPListaServicos == null){
+			jSPListaServicos = new JScrollPane();
+			jSPListaServicos.setViewportView(getjTableListaServicos());
+			jSPListaServicos.setSize(650, 130);	
+			jSPListaServicos.setVisible(false);
+		}
+		return jSPListaServicos;
 	}
 
 
-	public JTable getjTableListaProdutoServico() {
-		if(jTableListaProdutoServico == null){
-			jTableListaProdutoServico = new JTable();
-			jTableListaProdutoServico.setModel(new javax.swing.table.DefaultTableModel(
+	public JTable getjTableListaProdutos() {
+		if(jTableListaProdutos == null){
+			jTableListaProdutos = new JTable();
+			jTableListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
 		                
 		            },
 		            new String [] {
-		                "Data", "Cliente", "Placa", "Qtd.Produtos",
-		                "Desconto", "Valor"
+		                "Cod.Produto", "Qtd.Produto",
+		                "Descrição", "Preço", "Total"
 		            }
 		        ));			
 
-			jTableListaProdutoServico.setFont(Fontes.fontJTablePlain2);
-			jTableListaProdutoServico.setOpaque(false);
-			jTableListaProdutoServico.getTableHeader().setFont(Fontes.fontJTableBold2);
-			jTableListaProdutoServico.getTableHeader().setForeground(Cores.branco);
-			jTableListaProdutoServico.getTableHeader().setBackground(Cores.azul1);
+			jTableListaProdutos.setFont(Fontes.fontJTablePlain2);
+			jTableListaProdutos.setOpaque(false);
+			jTableListaProdutos.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableListaProdutos.getTableHeader().setForeground(Cores.branco);
+			jTableListaProdutos.getTableHeader().setBackground(Cores.azul1);
 		}
-		return jTableListaProdutoServico;
+		return jTableListaProdutos;
+	}
+
+
+	public JTable getjTableListaServicos() {
+		if(jTableListaServicos == null){
+			jTableListaServicos = new JTable();
+			jTableListaServicos.setModel(new javax.swing.table.DefaultTableModel(
+		            new Object [][] {
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                
+		            },
+		            new String [] {
+			                "Cod.Serviço", "Descrição",
+			                "Desconto", "Preço", "Total"
+			        }
+		        ));			
+
+			jTableListaServicos.setFont(Fontes.fontJTablePlain2);
+			jTableListaServicos.setOpaque(false);
+			jTableListaServicos.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableListaServicos.getTableHeader().setForeground(Cores.branco);
+			jTableListaServicos.getTableHeader().setBackground(Cores.azul1);
+		}
+		return jTableListaServicos;
 	}
 
 	//** Fim getters JScrollPane/JTable **
@@ -1216,6 +1269,29 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 		this.getjPanelCentro().add(getjTFieldAno());
 		this.getjTFieldAno().setLocation(294, 368);
+		
+		// -- Parte descritiva produtos/serivços
+
+		this.getjPanelCentro().add(getjButtonListaProdutos());
+		this.getjButtonListaProdutos().setLocation(22, 423);
+
+		this.getjPanelCentro().add(getjButtonListaServicos());
+		this.getjButtonListaServicos().setLocation(164, 423);
+
+		this.getjPanelCentro().add(getjSPListaProdutos());
+		this.getjSPListaProdutos().setLocation(22, 461);
+
+		this.getjPanelCentro().add(getjSPListaServicos());
+		this.getjSPListaServicos().setLocation(22, 461);
+
+		this.getjPanelCentro().add(getjButtonAdicionarProdutoServico());
+		this.getjButtonAdicionarProdutoServico().setLocation(900, 459);
+
+		this.getjPanelCentro().add(getjButtonEditarProdutoServico());
+		this.getjButtonEditarProdutoServico().setLocation(900, 484);
+
+		this.getjPanelCentro().add(getjButtonApagarProdutoServico());
+		this.getjButtonApagarProdutoServico().setLocation(900, 509);
 		
 		
 		

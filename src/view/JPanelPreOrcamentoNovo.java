@@ -1022,7 +1022,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jSPListaProdutos == null){
 			jSPListaProdutos = new JScrollPane();
 			jSPListaProdutos.setViewportView(getjTableListaProdutos());
-			jSPListaProdutos.setSize(650, 130);	
+			jSPListaProdutos.setSize(750, 130);	
 		}
 		return jSPListaProdutos;
 	}
@@ -1032,7 +1032,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jSPListaServicos == null){
 			jSPListaServicos = new JScrollPane();
 			jSPListaServicos.setViewportView(getjTableListaServicos());
-			jSPListaServicos.setSize(650, 130);	
+			jSPListaServicos.setSize(750, 130);	
 			jSPListaServicos.setVisible(false);
 		}
 		return jSPListaServicos;

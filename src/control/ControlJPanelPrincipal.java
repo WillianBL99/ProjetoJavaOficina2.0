@@ -324,7 +324,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		
 		public ControlJPanelPreOrcamento getControlJPanelPreOrcamento() {
 			if(controlJPanelPreOrcamento == null){
-				controlJPanelPreOrcamento = new ControlJPanelPreOrcamento(getjPanelPrincipal(), getjPanelPreOrcamento());
+				controlJPanelPreOrcamento = new ControlJPanelPreOrcamento(getjFramePricipal(), getjPanelPrincipal(),
+						getjPanelPreOrcamento());
 		
 			}
 			return controlJPanelPreOrcamento;

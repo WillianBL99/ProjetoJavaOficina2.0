@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import view.JFramePrincipal;
 import view.JPanelPreOrcamento;
 import view.JPanelPreOrcamentoNovo;
 import view.JPanelPrincipal;
@@ -23,19 +25,25 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
+	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
+	
+	private ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo;
 	
 	//** Fim declaração de variáveis **	
 	
 	
 	/**
+	 * @param jFramePrincipal
 	 * @param jPanelPrincipal
 	 * @param jPanelPreOrcamento
 	 */
-	public ControlJPanelPreOrcamento(JPanelPrincipal jPanelPrincipal, JPanelPreOrcamento jPanelPreOrcamento) {
+	public ControlJPanelPreOrcamento(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal,
+			JPanelPreOrcamento jPanelPreOrcamento) {
 		super();
+		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jPanelPreOrcamento = jPanelPreOrcamento;
 		this.AddEvent();
@@ -84,8 +92,8 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 		
 		if(e.getSource() == getjPanelPreOrcamento().getjButtonNovoPreOrcamento()) {
 			// quando o botão nova venda for clicado
-			System.out.println("novo pre orcamento");
-			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamentoNovo(), this.point);
+			this.getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamentoNovo(), this.point);
+			this.getcontrolJpanelPreOrcamentoNovo();
 		}
 		
 	}
@@ -118,6 +126,13 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 	
 	//** Início métodos da classe **
 
+	public JFramePrincipal getjFramePrincipal() {
+		if(jFramePrincipal == null) {
+			jFramePrincipal = new JFramePrincipal();
+		}
+		return jFramePrincipal;
+	}
+
 	public JPanelPrincipal getjPanelPrincipal() {
 		if(jPanelPrincipal == null) {
 			jPanelPrincipal = new JPanelPrincipal();
@@ -139,6 +154,15 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 			jPanelPreOrcamentoNovo = new JPanelPreOrcamentoNovo();	
 		}
 		return jPanelPreOrcamentoNovo;
+	}
+	
+	
+	public ControlJpanelPreOrcamentoNovo getcontrolJpanelPreOrcamentoNovo() {
+		if(controlJpanelPreOrcamentoNovo == null){
+			controlJpanelPreOrcamentoNovo = new ControlJpanelPreOrcamentoNovo(getjFramePrincipal(), getjPanelPrincipal(),
+					getjPanelPreOrcamento(), getjPanelPreOrcamentoNovo());	
+		}
+		return controlJpanelPreOrcamentoNovo;
 	}
 	//** Fim métodos da classe **
 }

@@ -13,6 +13,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -105,6 +107,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
+	private JScrollPane jSPjPanelCentro; // tela de rolagem para o jPanelCentral.
+	
 	private JScrollPane jSPListaProdutos;
 	private JScrollPane jSPListaServicos;
 	
@@ -137,7 +141,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jPanelCentro == null){	
 			jPanelCentro = new JPanel();
 			jPanelCentro.setLayout(null);
-			jPanelCentro.setSize(new Dimension(990, 568));
+			jPanelCentro.setPreferredSize(new Dimension(990, 600));
+			//jPanelCentro.setSize(new Dimension(990, 600));
 			jPanelCentro.setVisible(true);
 			jPanelCentro.setBackground(Cores.branco);
 	
@@ -243,11 +248,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JButton getjButtonListaProdutos() {
 		if(jButtonListaProdutos == null){			
 			jButtonListaProdutos = new JButton();
-			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain3);			
+			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain2);			
 			jButtonListaProdutos.setBackground(Cores.azul1);
 			jButtonListaProdutos.setForeground(Color.white);
 			jButtonListaProdutos.setText("Seleciona Veículo");
-			jButtonListaProdutos.setSize(169,25);
+			jButtonListaProdutos.setSize(133,23);
 			jButtonListaProdutos.setFocusable(false);
 			jButtonListaProdutos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -259,15 +264,15 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JButton getjButtonListaServicos() {
 		if(jButtonListaServicos == null){		
 			jButtonListaServicos = new JButton();
-			jButtonListaServicos.setFont(Fontes.fontJButtonPlain3);			
-			jButtonListaServicos.setBackground(Cores.azul1);
-			jButtonListaServicos.setForeground(Color.white);
+			jButtonListaServicos.setFont(Fontes.fontJButtonPlain2);			
+			jButtonListaServicos.setBackground(Cores.cinza2);
+			jButtonListaServicos.setForeground(Cores.preto);
 			jButtonListaServicos.setText("Seleciona Veículo");
-			jButtonListaServicos.setSize(169,25);
+			jButtonListaServicos.setSize(133,23);
 			jButtonListaServicos.setFocusable(false);
 			jButtonListaServicos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
-			jButtonListaServicos.setVisible(false);
+			jButtonListaServicos.setVisible(true);
 		}
 		return jButtonListaServicos;
 	}
@@ -969,7 +974,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){	
 			jTFieldKMAtual = new JTextField();
-			jTFieldKMAtual.setSize(120, 21);
+			jTFieldKMAtual.setSize(125, 21);
 			jTFieldKMAtual.setBackground(Cores.cinza4);
 			jTFieldKMAtual.setBorder(null);
 			jTFieldKMAtual.setEditable(false);
@@ -1001,6 +1006,17 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
 	//** Início getters JScrollPane/JTable **
+
+	public JScrollPane getjSPjPanelCentro() {
+		if(jSPjPanelCentro == null){
+			jSPjPanelCentro = new JScrollPane();
+			jSPjPanelCentro.setViewportView(getjPanelCentro());
+			jSPjPanelCentro.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			jSPjPanelCentro.setBorder(null);
+			jSPjPanelCentro.setSize(990, 568);	
+		}
+		return jSPjPanelCentro;
+	}
 
 	public JScrollPane getjSPListaProdutos() {
 		if(jSPListaProdutos == null){
@@ -1106,8 +1122,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		this.getJPanelPreOrcamentoNovo().add(getjButtonImprimir());
 		this.getjButtonImprimir().setLocation(199, 21);
 		
-		this.getJPanelPreOrcamentoNovo().add(getjPanelCentro());
-		this.getjPanelCentro().setLocation(14, 78);
+		this.getJPanelPreOrcamentoNovo().add(getjSPjPanelCentro());
+		this.getjSPjPanelCentro().setLocation(14, 78);
 		
 	}
 	

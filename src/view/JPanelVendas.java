@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +15,7 @@ import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
 
+@SuppressWarnings("serial")
 public class JPanelVendas extends JPanel{
 
 

@@ -26,6 +26,7 @@ import model.SetSizeIcon;
  * @author pWili
  *
  */
+@SuppressWarnings("serial")
 public class JPanelEstoque  extends JPanel{
 
 

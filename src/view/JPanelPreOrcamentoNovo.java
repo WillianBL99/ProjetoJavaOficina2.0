@@ -592,8 +592,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
 	public JLabel getjLabelAno() {
-		if(jLabelAno == null){
-	
+		if(jLabelAno == null){	
 			jLabelAno = new JLabel("Ano:");
 			jLabelAno.setFont(Fontes.fontJLabelPlain1);
 			jLabelAno.setSize(32, 21);
@@ -602,9 +601,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelAno;
 	}
-	public JLabel getjLabelPlaca() {
-		if(jLabelPlaca == null){
 	
+	
+	public JLabel getjLabelPlaca() {
+		if(jLabelPlaca == null){	
 			jLabelPlaca = new JLabel("Placa:");
 			jLabelPlaca.setFont(Fontes.fontJLabelPlain1);
 			jLabelPlaca.setSize(40, 21);
@@ -613,9 +613,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelPlaca;
 	}
-	public JLabel getjLabelMotor() {
-		if(jLabelMotor == null){
 	
+	
+	public JLabel getjLabelMotor() {
+		if(jLabelMotor == null){	
 			jLabelMotor = new JLabel("Motor:");
 			jLabelMotor.setFont(Fontes.fontJLabelPlain1);
 			jLabelMotor.setSize(48, 21);
@@ -624,9 +625,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelMotor;
 	}
-	public JLabel getjLabelKMAtual() {
-		if(jLabelKMAtual == null){
 	
+	
+	public JLabel getjLabelKMAtual() {
+		if(jLabelKMAtual == null){	
 			jLabelKMAtual = new JLabel("Km atual:");
 			jLabelKMAtual.setFont(Fontes.fontJLabelPlain1);
 			jLabelKMAtual.setSize(66, 21);
@@ -635,9 +637,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelKMAtual;
 	}
-	public JLabel getjLabelCombustivel() {
-		if(jLabelCombustivel == null){
 	
+	
+	public JLabel getjLabelCombustivel() {
+		if(jLabelCombustivel == null){	
 			jLabelCombustivel = new JLabel("Combustível:");
 			jLabelCombustivel.setFont(Fontes.fontJLabelPlain1);
 			jLabelCombustivel.setSize(91, 21);

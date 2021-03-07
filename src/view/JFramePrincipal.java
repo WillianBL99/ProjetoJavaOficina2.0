@@ -7,7 +7,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+@SuppressWarnings("serial")
 public class JFramePrincipal extends JFrame {
 
 	//** Início declaração de variáveis **

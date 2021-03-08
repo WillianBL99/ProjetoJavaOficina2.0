@@ -3,19 +3,13 @@
  */
 package view;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Frame;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -39,20 +33,28 @@ public class JDialogInserirServico  extends JDialog{
 	private boolean visibleProcurarDescrever; // define os componentes que ficam visivel quando clicado
 		//"procurar serviço" ou "descrever serviço"
 	
-	private JButton jButtonInserirServico;
+	private JButton jButtonProcurarServico;
 	private JButton jButtonDescreverServico;
 	private JButton jButtonProcurarCodigo;
 	private JButton jButtonCancelar;
-	private JButton jButtonIserirServico;
+	private JButton jButtonInserirServico;
+	
 	
 	private JLabel jLabelDadosServico;
 	private JLabel jLabeCodigo;
-	private JLabel jLabelDescricao;
-	private JLabel jLabelPreco;
+	private JLabel jLabelProcurarDescricao;
+	private JLabel jLabelProcurarPreco;
+	
+	private JLabel jLabelDescreverDescricao;
+	private JLabel jLabelDescreverPreco;
+	
 	
 	private JTextField jTFieldCodigo;
-	private JTextField jTFieldDescricao;
-	private JTextField jTFieldPreco;
+	private JTextField jTFieldProcurarDescricao;
+	private JTextField jTFieldProcurarPreco;
+	
+	private JTextField jTFieldDescreverDescricao;
+	private JTextField jTFieldDescreverPreco;
 	
 	//** Fim declaração de variáveis **
 	
@@ -60,6 +62,8 @@ public class JDialogInserirServico  extends JDialog{
 	public JDialogInserirServico(Frame frame, boolean modal) {
 		super(frame, "Inserir Serviço");
 		this.modal = modal;
+		this.setVisibleProcurarDescrever(true); // deixa visivel apenas os componentes referente 
+			//a procurar serviço e oculta os componentes referente a descrever serviço.
 		this.addCompJDialogInserirServico();
 	}	
 
@@ -72,7 +76,7 @@ public class JDialogInserirServico  extends JDialog{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		this.setBackground(Cores.branco);
-		this.setSize(975, 310);
+		this.setSize(975, 236);
 		this.setVisible(true);
 		this.setModal(modal);
 		this.setVisible(true);
@@ -96,7 +100,7 @@ public class JDialogInserirServico  extends JDialog{
 	}
 
 
-	public JLabel getjLabeCodigo() {
+	public JLabel getjLabelCodigo() {
 		if(jLabeCodigo == null){	
 			jLabeCodigo = new JLabel("Código:");
 			jLabeCodigo.setFont(Fontes.fontJLabelPlain1);
@@ -109,29 +113,55 @@ public class JDialogInserirServico  extends JDialog{
 	}
 
 
-	public JLabel getjLabelDescricao() {
-		if(jLabelDescricao == null){	
-			jLabelDescricao = new JLabel("Descrição:");
-			jLabelDescricao.setFont(Fontes.fontJLabelPlain1);
-			jLabelDescricao.setSize(72, 25);
-			jLabelDescricao.setForeground(Cores.preto);
-			jLabelDescricao.setOpaque(false);
-			jLabelDescricao.setVisible(isVisibleProcurarDescrever());
+	public JLabel getjLabelProcurarDescricao() {
+		if(jLabelProcurarDescricao == null){	
+			jLabelProcurarDescricao = new JLabel("Descrição:");
+			jLabelProcurarDescricao.setFont(Fontes.fontJLabelPlain1);
+			jLabelProcurarDescricao.setSize(72, 25);
+			jLabelProcurarDescricao.setForeground(Cores.preto);
+			jLabelProcurarDescricao.setOpaque(false);
+			jLabelProcurarDescricao.setVisible(isVisibleProcurarDescrever());
 		}
-		return jLabelDescricao;
+		return jLabelProcurarDescricao;
 	}
 
 
-	public JLabel getjLabelPreco() {
-		if(jLabelPreco == null){	
-			jLabelPreco = new JLabel("Preço:");
-			jLabelPreco.setFont(Fontes.fontJLabelPlain1);
-			jLabelPreco.setSize(43, 25);
-			jLabelPreco.setForeground(Cores.preto);
-			jLabelPreco.setOpaque(false);
-			jLabelPreco.setVisible(isVisibleProcurarDescrever());
+	public JLabel getjLabelProcurarPreco() {
+		if(jLabelProcurarPreco == null){	
+			jLabelProcurarPreco = new JLabel("Preço:");
+			jLabelProcurarPreco.setFont(Fontes.fontJLabelPlain1);
+			jLabelProcurarPreco.setSize(43, 25);
+			jLabelProcurarPreco.setForeground(Cores.preto);
+			jLabelProcurarPreco.setOpaque(false);
+			jLabelProcurarPreco.setVisible(isVisibleProcurarDescrever());
 		}
-		return jLabelPreco;
+		return jLabelProcurarPreco;
+	}
+
+
+	public JLabel getjLabelDescreverDescricao() {
+		if(jLabelDescreverDescricao == null){	
+			jLabelDescreverDescricao = new JLabel("Descrição:");
+			jLabelDescreverDescricao.setFont(Fontes.fontJLabelPlain1);
+			jLabelDescreverDescricao.setSize(72, 25);
+			jLabelDescreverDescricao.setForeground(Cores.preto);
+			jLabelDescreverDescricao.setOpaque(false);
+			jLabelDescreverDescricao.setVisible(!isVisibleProcurarDescrever());
+		}
+		return jLabelDescreverDescricao;
+	}
+
+
+	public JLabel getjLabelDescreverPreco() {
+		if(jLabelDescreverPreco == null){	
+			jLabelDescreverPreco = new JLabel("Preço:");
+			jLabelDescreverPreco.setFont(Fontes.fontJLabelPlain1);
+			jLabelDescreverPreco.setSize(43, 25);
+			jLabelDescreverPreco.setForeground(Cores.preto);
+			jLabelDescreverPreco.setOpaque(false);
+			jLabelDescreverPreco.setVisible(!isVisibleProcurarDescrever());
+		}
+		return jLabelDescreverPreco;
 	}
 	
 	
@@ -140,19 +170,19 @@ public class JDialogInserirServico  extends JDialog{
 	//** Início getters JButton **
 
 	
-	public JButton getjButtonInserirServico() {
-		if(jButtonInserirServico == null){
-			jButtonInserirServico = new JButton();			
-			jButtonInserirServico.setFont(Fontes.fontJButtonPlain2);
-			jButtonInserirServico.setBackground(Cores.azul1);
-			jButtonInserirServico.setForeground(Color.white);
-			jButtonInserirServico.setText("Inserir serviço");
-			jButtonInserirServico.setSize(82, 25);
-			jButtonInserirServico.setFocusable(false);
-			jButtonInserirServico.setBorder(BorderFactory.
+	public JButton getjButtonProcurarServico() {
+		if(jButtonProcurarServico == null){
+			jButtonProcurarServico = new JButton();			
+			jButtonProcurarServico.setFont(Fontes.fontJButtonPlain2);
+			jButtonProcurarServico.setBackground(Cores.azul1);
+			jButtonProcurarServico.setForeground(Color.white);
+			jButtonProcurarServico.setText("Inserir serviço");
+			jButtonProcurarServico.setSize(125, 25);
+			jButtonProcurarServico.setFocusable(false);
+			jButtonProcurarServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));	        
 		}
-		return jButtonInserirServico;
+		return jButtonProcurarServico;
 	}
 
 
@@ -163,7 +193,7 @@ public class JDialogInserirServico  extends JDialog{
 			jButtonDescreverServico.setBackground(Cores.azul1);
 			jButtonDescreverServico.setForeground(Color.white);
 			jButtonDescreverServico.setText("Descrever serviço");
-			jButtonDescreverServico.setSize(82, 25);
+			jButtonDescreverServico.setSize(140, 25);
 			jButtonDescreverServico.setFocusable(false);
 			jButtonDescreverServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));	        
@@ -179,10 +209,11 @@ public class JDialogInserirServico  extends JDialog{
 			jButtonProcurarCodigo.setForeground(Color.white);
 			setSizeIcon.setIconJButton(jButtonProcurarCodigo,
 					Icones.getBuscar(), 16, 16);
-			jButtonProcurarCodigo.setSize(30, 21);
+			jButtonProcurarCodigo.setSize(30, 25);
 			jButtonProcurarCodigo.setFocusable(false);
 			jButtonProcurarCodigo.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonProcurarCodigo.setVisible(isVisibleProcurarDescrever());	
 		}
 		return jButtonProcurarCodigo;
 	}
@@ -204,19 +235,19 @@ public class JDialogInserirServico  extends JDialog{
 	}
 
 
-	public JButton getjButtonIserirServico() {
-		if(jButtonIserirServico == null){
-			jButtonIserirServico = new JButton();			
-			jButtonIserirServico.setFont(Fontes.fontJButtonPlain2);
-			jButtonIserirServico.setBackground(Cores.azul1);
-			jButtonIserirServico.setForeground(Color.white);
-			jButtonIserirServico.setText("Inserir serviço");
-			jButtonIserirServico.setSize(114, 25);
-			jButtonIserirServico.setFocusable(false);
-			jButtonIserirServico.setBorder(BorderFactory.
+	public JButton getjButtonInserirServico() {
+		if(jButtonInserirServico == null){
+			jButtonInserirServico = new JButton();			
+			jButtonInserirServico.setFont(Fontes.fontJButtonPlain2);
+			jButtonInserirServico.setBackground(Cores.azul1);
+			jButtonInserirServico.setForeground(Color.white);
+			jButtonInserirServico.setText("Inserir serviço");
+			jButtonInserirServico.setSize(114, 25);
+			jButtonInserirServico.setFocusable(false);
+			jButtonInserirServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));	        
 		}
-		return jButtonIserirServico;
+		return jButtonInserirServico;
 	}
 	
 	
@@ -227,32 +258,74 @@ public class JDialogInserirServico  extends JDialog{
 
 	public JTextField getjTFieldCodigo() {
 		if(jTFieldCodigo == null){
-	
-			jTFieldCodigo = new ();
-	
+			jTFieldCodigo = new JTextField();
+			jTFieldCodigo.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCodigo.setForeground(Cores.preto);
+			jTFieldCodigo.setFont(Fontes.fontJTFieldPlain2);
+			jTFieldCodigo.setSize(123, 25);
+			jTFieldCodigo.setOpaque(true);	
+			jTFieldCodigo.setVisible(isVisibleProcurarDescrever());		
 		}
 		return jTFieldCodigo;
 	}
 
 
-	public JTextField getjTFieldDescricao() {
-		if(jTFieldDescricao == null){
-	
-			jTFieldDescricao = new ();
-	
+	public JTextField getjTFieldProcurarDescricao() {
+		if(jTFieldProcurarDescricao == null){
+			jTFieldProcurarDescricao = new JTextField();
+			jTFieldProcurarDescricao.setBorder(null);
+			jTFieldProcurarDescricao.setBackground(Cores.cinza4);
+			jTFieldProcurarDescricao.setFont(Fontes.fontJTFieldPlain2);
+			jTFieldProcurarDescricao.setSize(403, 25);
+			jTFieldProcurarDescricao.setOpaque(true);	
+			jTFieldProcurarDescricao.setVisible(isVisibleProcurarDescrever());		
 		}
-		return jTFieldDescricao;
+		return jTFieldProcurarDescricao;
 	}
 
 
-	public JTextField getjTFieldPreco() {
-		if(jTFieldPreco == null){
-	
-			jTFieldPreco = new ();
-	
+	public JTextField getjTFieldProcurarPreco() {
+		if(jTFieldProcurarPreco == null){
+			jTFieldProcurarPreco = new JTextField();
+			jTFieldProcurarPreco.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldProcurarPreco.setForeground(Cores.azul1);
+			jTFieldProcurarPreco.setFont(Fontes.fontJTFieldPlain2);
+			jTFieldProcurarPreco.setSize(142, 25);
+			jTFieldProcurarPreco.setOpaque(true);	
+			jTFieldProcurarPreco.setVisible(isVisibleProcurarDescrever());		
 		}
-		return jTFieldPreco;
+		return jTFieldProcurarPreco;
 	}	
+
+
+	public JTextField getjTFieldDescreverDescricao() {
+		if(jTFieldDescreverDescricao == null){
+			jTFieldDescreverDescricao = new JTextField();
+			jTFieldDescreverDescricao.setBorder(null);
+			jTFieldDescreverDescricao.setBackground(Cores.cinza4);
+			jTFieldDescreverDescricao.setFont(Fontes.fontJTFieldPlain2);
+			jTFieldDescreverDescricao.setSize(623, 25);
+			jTFieldDescreverDescricao.setOpaque(true);	
+			jTFieldDescreverDescricao.setVisible(!isVisibleProcurarDescrever());		
+		}
+		return jTFieldDescreverDescricao;
+	}
+
+	public JTextField getjTFieldDescreverPreco() {
+		if(jTFieldDescreverPreco == null){
+			jTFieldDescreverPreco = new JTextField();
+			jTFieldDescreverPreco.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDescreverPreco.setForeground(Cores.azul1);
+			jTFieldDescreverPreco.setFont(Fontes.fontJTFieldPlain2);
+			jTFieldDescreverPreco.setSize(142, 25);
+			jTFieldDescreverPreco.setOpaque(true);	
+			jTFieldDescreverPreco.setVisible(!isVisibleProcurarDescrever());		
+		}
+		return jTFieldDescreverPreco;
+	}
 	
 	//** Fim getters JTextField **		
 	
@@ -267,8 +340,54 @@ public class JDialogInserirServico  extends JDialog{
 	
 	public void addCompJDialogInserirServico() {
 		
-		getJDialogProcurarPeca().getContentPane().add(getjButtonSelecionar());
-		getjButtonSelecionar().setLocation(860, 235);
+		getJDialogInserirServico().getContentPane().add(getjButtonProcurarServico());
+		getjButtonProcurarServico().setLocation(36, 21);
+		
+		getJDialogInserirServico().getContentPane().add(getjButtonDescreverServico());
+		getjButtonDescreverServico().setLocation(171, 21);
+		
+		getJDialogInserirServico().getContentPane().add(getjLabelDadosServico());
+		getjLabelDadosServico().setLocation(36, 49);
+		
+		// inicio parte visivel quando jbuttonProcurarServico estiver clicado
+		getJDialogInserirServico().getContentPane().add(getjLabelCodigo());
+		getjLabelCodigo().setLocation(36, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjTFieldCodigo());
+		getjTFieldCodigo().setLocation(96, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjButtonProcurarCodigo());
+		getjButtonProcurarCodigo().setLocation(219, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjLabelProcurarDescricao());
+		getjLabelProcurarDescricao().setLocation(257, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjTFieldProcurarDescricao());
+		getjTFieldProcurarDescricao().setLocation(334, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjLabelProcurarPreco());
+		getjLabelProcurarPreco().setLocation(757, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjTFieldProcurarPreco());
+		getjTFieldProcurarPreco().setLocation(805, 91);
+		
+		// fim parte visivel quando jbuttonProcurarServico estiver clicado
+		
+		// inicio parte visivel quando jbuttonDescreverServico estiver clicado
+		
+		getJDialogInserirServico().getContentPane().add(getjLabelDescreverDescricao());
+		getjLabelDescreverDescricao().setLocation(36, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjTFieldDescreverDescricao());
+		getjTFieldDescreverDescricao().setLocation(113, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjLabelDescreverPreco());
+		getjLabelDescreverPreco().setLocation(757, 91);
+		
+		getJDialogInserirServico().getContentPane().add(getjTFieldDescreverPreco());
+		getjTFieldDescreverPreco().setLocation(805, 91);
+		
+		// fim parte visivel quando jbuttonDescreverServico estiver clicado
 	}
 
 
@@ -278,7 +397,22 @@ public class JDialogInserirServico  extends JDialog{
 
 
 	public void setVisibleProcurarDescrever(boolean visibleProcurarDescrever) {
-		this.visibleProcurarDescrever = visibleProcurarDescrever;
+		if(this.isVisibleProcurarDescrever() != visibleProcurarDescrever) {
+			this.visibleProcurarDescrever = visibleProcurarDescrever;
+			
+			this.getjLabelCodigo().setVisible(this.isVisibleProcurarDescrever());
+			this.getjTFieldCodigo().setVisible(this.isVisibleProcurarDescrever());
+			this.getjButtonProcurarCodigo().setVisible(this.isVisibleProcurarDescrever());
+			this.getjLabelProcurarDescricao().setVisible(this.isVisibleProcurarDescrever());
+			this.getjTFieldProcurarDescricao().setVisible(this.isVisibleProcurarDescrever());
+			this.getjLabelProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
+			this.getjTFieldProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
+
+			this.getjLabelDescreverDescricao().setVisible(!this.isVisibleProcurarDescrever());
+			this.getjTFieldDescreverDescricao().setVisible(!this.isVisibleProcurarDescrever());
+			this.getjLabelDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());
+			this.getjTFieldDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());
+		}
 	}
 	
 	//** Fim métodos adição de componentes **

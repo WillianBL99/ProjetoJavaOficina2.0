@@ -198,8 +198,7 @@ public class JDialogProcurarPeca extends JDialog{
 			jTFieldProcurar.setForeground(Cores.azul1);
 			jTFieldProcurar.setFont(Fontes.fontJTFieldPlain3);
 			jTFieldProcurar.setSize(185, 25);
-			jTFieldProcurar.setOpaque(true);
-			
+			jTFieldProcurar.setOpaque(true);			
 		}
 		return jTFieldProcurar;
 	}

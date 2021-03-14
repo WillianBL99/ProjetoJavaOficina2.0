@@ -251,7 +251,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain2);			
 			jButtonListaProdutos.setBackground(Cores.azul1);
 			jButtonListaProdutos.setForeground(Color.white);
-			jButtonListaProdutos.setText("Seleciona Veículo");
+			jButtonListaProdutos.setText("Lista de produtos");
 			jButtonListaProdutos.setSize(133,23);
 			jButtonListaProdutos.setFocusable(false);
 			jButtonListaProdutos.setBorder(BorderFactory.
@@ -267,7 +267,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonListaServicos.setFont(Fontes.fontJButtonPlain2);			
 			jButtonListaServicos.setBackground(Cores.cinza2);
 			jButtonListaServicos.setForeground(Cores.preto);
-			jButtonListaServicos.setText("Seleciona Veículo");
+			jButtonListaServicos.setText("Lista de serviços");
 			jButtonListaServicos.setSize(133,23);
 			jButtonListaServicos.setFocusable(false);
 			jButtonListaServicos.setBorder(BorderFactory.

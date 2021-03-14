@@ -3,7 +3,6 @@
  */
 package view;
 
-import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -175,7 +174,7 @@ public class JDialogInserirServico  extends JDialog{
 			jButtonProcurarServico = new JButton();			
 			jButtonProcurarServico.setFont(Fontes.fontJButtonPlain2);
 			jButtonProcurarServico.setBackground(Cores.azul1);
-			jButtonProcurarServico.setForeground(Color.white);
+			jButtonProcurarServico.setForeground(Cores.branco);
 			jButtonProcurarServico.setText("Inserir serviço");
 			jButtonProcurarServico.setSize(125, 25);
 			jButtonProcurarServico.setFocusable(false);
@@ -190,8 +189,8 @@ public class JDialogInserirServico  extends JDialog{
 		if(jButtonDescreverServico == null){
 			jButtonDescreverServico = new JButton();			
 			jButtonDescreverServico.setFont(Fontes.fontJButtonPlain2);
-			jButtonDescreverServico.setBackground(Cores.azul1);
-			jButtonDescreverServico.setForeground(Color.white);
+			jButtonDescreverServico.setBackground(Cores.cinza2);
+			jButtonDescreverServico.setForeground(Cores.preto);
 			jButtonDescreverServico.setText("Descrever serviço");
 			jButtonDescreverServico.setSize(140, 25);
 			jButtonDescreverServico.setFocusable(false);
@@ -206,7 +205,7 @@ public class JDialogInserirServico  extends JDialog{
 		if(jButtonProcurarCodigo == null){		
 			jButtonProcurarCodigo = new JButton();			
 			jButtonProcurarCodigo.setBackground(Cores.azul1);
-			jButtonProcurarCodigo.setForeground(Color.white);
+			jButtonProcurarCodigo.setForeground(Cores.branco);
 			setSizeIcon.setIconJButton(jButtonProcurarCodigo,
 					Icones.getBuscar(), 16, 16);
 			jButtonProcurarCodigo.setSize(30, 25);
@@ -224,7 +223,7 @@ public class JDialogInserirServico  extends JDialog{
 			jButtonCancelar = new JButton();			
 			jButtonCancelar.setFont(Fontes.fontJButtonPlain2);
 			jButtonCancelar.setBackground(Cores.azul1);
-			jButtonCancelar.setForeground(Color.white);
+			jButtonCancelar.setForeground(Cores.branco);
 			jButtonCancelar.setText("Cancelar");
 			jButtonCancelar.setSize(82, 25);
 			jButtonCancelar.setFocusable(false);
@@ -240,7 +239,7 @@ public class JDialogInserirServico  extends JDialog{
 			jButtonInserirServico = new JButton();			
 			jButtonInserirServico.setFont(Fontes.fontJButtonPlain2);
 			jButtonInserirServico.setBackground(Cores.azul1);
-			jButtonInserirServico.setForeground(Color.white);
+			jButtonInserirServico.setForeground(Cores.branco);
 			jButtonInserirServico.setText("Inserir serviço");
 			jButtonInserirServico.setSize(114, 25);
 			jButtonInserirServico.setFocusable(false);

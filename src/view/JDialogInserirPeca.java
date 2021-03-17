@@ -21,6 +21,7 @@ import model.SetSizeIcon;
  *
  */
 
+
 @SuppressWarnings("serial")
 public class JDialogInserirPeca  extends JDialog{	
 	

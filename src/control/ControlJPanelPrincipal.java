@@ -11,7 +11,6 @@ import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JDialogInserirPeca;
-import view.JDialogInserirServico;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelEstoque;
@@ -152,10 +151,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
+			jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point, this.getjPanelPreOrcamento().getTituloDescricaoTela());			
 			getControlJPanelPreOrcamento();
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
+			jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			
 			
 			
@@ -172,6 +175,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			jPanelUsuarios = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
 			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point);
 			this.setSizeOSOpen(false);

@@ -21,7 +21,7 @@ import model.Fontes;
  */
 
 @SuppressWarnings("serial")
-public class JDialogCadastrarCliente  extends JDialog{	
+public class JDialogCadastrarCliente extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **

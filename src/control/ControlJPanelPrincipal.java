@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
-import view.JDialogCadastrarCliente;
+import view.JDialogCadastrarVeiculo;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelEstoque;
@@ -193,7 +193,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			new JDialogCadastrarCliente(getjFramePricipal(), true);
+			new JDialogCadastrarVeiculo(getjFramePricipal(), true);
 		}
 		
 	}

@@ -4,19 +4,16 @@
 package view;
 
 import java.awt.Choice;
+import java.awt.ComponentOrientation;
 import java.awt.Frame;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import icons.Icones;
 import model.Cores;
 import model.Fontes;
-import model.SetSizeIcon;
 
 /**
  * @author Paulo Uilian
@@ -24,13 +21,11 @@ import model.SetSizeIcon;
  */
 
 @SuppressWarnings("serial")
-public class JDialogCadastrarCliente   extends JDialog{	
+public class JDialogCadastrarCliente  extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **
-	
-	private SetSizeIcon setSizeIcon = new SetSizeIcon();
-	
+		
 	private boolean modal;
 	
 	
@@ -69,7 +64,7 @@ public class JDialogCadastrarCliente   extends JDialog{
 	
 	//** Início construtor **
 	public JDialogCadastrarCliente(Frame frame, boolean modal) {
-		super(frame, "Inserir Serviço");
+		super(frame, "Cadastrar Cliente");
 		this.modal = modal;
 		this.addCompJDialogCadastrarCliente();
 	}	
@@ -83,7 +78,7 @@ public class JDialogCadastrarCliente   extends JDialog{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		this.setBackground(Cores.branco);
-		this.setSize(975, 360);
+		this.setSize(975, 238);
 		this.setVisible(true);
 		this.setModal(modal);
 		this.setVisible(true);
@@ -97,7 +92,8 @@ public class JDialogCadastrarCliente   extends JDialog{
 		if(jLabelCpf == null){			
 			jLabelCpf = new JLabel("CPF:");
 			jLabelCpf.setFont(Fontes.fontJLabelPlain1);
-			jLabelCpf.setSize(30, 25);
+			jLabelCpf.setSize(70, 25);
+			jLabelCpf.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelCpf.setBackground(Cores.branco);
 			jLabelCpf.setForeground(Cores.azul1);
 			jLabelCpf.setOpaque(false);
@@ -108,9 +104,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelNome() {
 		if(jLabelNome == null){			
-			jLabelNome = new JLabel("CPF:");
+			jLabelNome = new JLabel("Nome:");
 			jLabelNome.setFont(Fontes.fontJLabelPlain1);
-			jLabelNome.setSize(47, 25);
+			jLabelNome.setSize(70, 25);
+			jLabelNome.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelNome.setBackground(Cores.branco);
 			jLabelNome.setForeground(Cores.azul1);
 			jLabelNome.setOpaque(false);
@@ -121,9 +118,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelTelefone() {
 		if(jLabelTelefone == null){			
-			jLabelTelefone = new JLabel("CPF:");
+			jLabelTelefone = new JLabel("Telefone:");
 			jLabelTelefone.setFont(Fontes.fontJLabelPlain1);
-			jLabelTelefone.setSize(63, 25);
+			jLabelTelefone.setSize(70, 25);
+			jLabelTelefone.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelTelefone.setBackground(Cores.branco);
 			jLabelTelefone.setForeground(Cores.azul1);
 			jLabelTelefone.setOpaque(false);
@@ -134,9 +132,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelEmail() {
 		if(jLabelEmail == null){			
-			jLabelEmail = new JLabel("CPF:");
+			jLabelEmail = new JLabel("Email:");
 			jLabelEmail.setFont(Fontes.fontJLabelPlain1);
-			jLabelEmail.setSize(41, 25);
+			jLabelEmail.setSize(70, 25);
+			jLabelEmail.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelEmail.setBackground(Cores.branco);
 			jLabelEmail.setForeground(Cores.azul1);
 			jLabelEmail.setOpaque(false);
@@ -147,9 +146,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelCidade() {
 		if(jLabelCidade == null){			
-			jLabelCidade = new JLabel("CPF:");
+			jLabelCidade = new JLabel("Cidade:");
 			jLabelCidade.setFont(Fontes.fontJLabelPlain1);
-			jLabelCidade.setSize(53, 25);
+			jLabelCidade.setSize(70, 25);
+			jLabelCidade.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelCidade.setBackground(Cores.branco);
 			jLabelCidade.setForeground(Cores.azul1);
 			jLabelCidade.setOpaque(false);
@@ -160,9 +160,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelBairro() {
 		if(jLabelBairro == null){			
-			jLabelBairro = new JLabel("CPF:");
+			jLabelBairro = new JLabel("Bairro:");
 			jLabelBairro.setFont(Fontes.fontJLabelPlain1);
-			jLabelBairro.setSize(45, 25);
+			jLabelBairro.setSize(70, 25);
+			jLabelBairro.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelBairro.setBackground(Cores.branco);
 			jLabelBairro.setForeground(Cores.azul1);
 			jLabelBairro.setOpaque(false);
@@ -173,9 +174,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelRua() {
 		if(jLabelRua == null){			
-			jLabelRua = new JLabel("CPF:");
+			jLabelRua = new JLabel("Rua:");
 			jLabelRua.setFont(Fontes.fontJLabelPlain1);
-			jLabelRua.setSize(30, 25);
+			jLabelRua.setSize(70, 25);
+			jLabelRua.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelRua.setBackground(Cores.branco);
 			jLabelRua.setForeground(Cores.azul1);
 			jLabelRua.setOpaque(false);
@@ -186,9 +188,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelNumeroCasa() {
 		if(jLabelNumeroCasa == null){			
-			jLabelNumeroCasa = new JLabel("CPF:");
+			jLabelNumeroCasa = new JLabel("Casa:");
 			jLabelNumeroCasa.setFont(Fontes.fontJLabelPlain1);
-			jLabelNumeroCasa.setSize(60, 25);
+			jLabelNumeroCasa.setSize(70, 25);
+			jLabelNumeroCasa.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelNumeroCasa.setBackground(Cores.branco);
 			jLabelNumeroCasa.setForeground(Cores.azul1);
 			jLabelNumeroCasa.setOpaque(false);
@@ -199,9 +202,10 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JLabel getjLabelTipoPessoa() {
 		if(jLabelTipoPessoa == null){			
-			jLabelTipoPessoa = new JLabel("CPF:");
+			jLabelTipoPessoa = new JLabel("Tipo:");
 			jLabelTipoPessoa.setFont(Fontes.fontJLabelPlain1);
-			jLabelTipoPessoa.setSize(35, 25);
+			jLabelTipoPessoa.setSize(70, 25);
+			jLabelTipoPessoa.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabelTipoPessoa.setBackground(Cores.branco);
 			jLabelTipoPessoa.setForeground(Cores.azul1);
 			jLabelTipoPessoa.setOpaque(false);
@@ -222,9 +226,12 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JRadioButton getjRadioButtonCpf() {
 		if(jRadioButtonCpf == null){
-	
-			jRadioButtonCpf = new ();
-	
+			jRadioButtonCpf = new JRadioButton("CPF");
+			jRadioButtonCpf.setSize(45, 15);
+			jRadioButtonCpf.setBackground(Cores.branco);
+			jRadioButtonCpf.setForeground(Cores.preto);
+			jRadioButtonCpf.setFocusPainted(false);
+			jRadioButtonCpf.setFont(Fontes.fontJButtonPlain1);
 		}
 		return jRadioButtonCpf;
 	}
@@ -232,9 +239,12 @@ public class JDialogCadastrarCliente   extends JDialog{
 
 	public JRadioButton getjRadioButtonCnpj() {
 		if(jRadioButtonCnpj == null){
-	
-			jRadioButtonCnpj = new ();
-	
+			jRadioButtonCnpj = new JRadioButton("CNPJ");
+			jRadioButtonCnpj.setSize(55, 15);
+			jRadioButtonCnpj.setBackground(Cores.branco);
+			jRadioButtonCnpj.setForeground(Cores.preto);
+			jRadioButtonCnpj.setFocusPainted(false);
+			jRadioButtonCnpj.setFont(Fontes.fontJButtonPlain1);		
 		}
 		return jRadioButtonCnpj;
 	}
@@ -244,9 +254,14 @@ public class JDialogCadastrarCliente   extends JDialog{
 	
 	public Choice getChoiceTipoPessoa() {
 		if(choiceTipoPessoa == null){
-	
-			choiceTipoPessoa = new ();
-	
+			choiceTipoPessoa = new Choice();
+			choiceTipoPessoa.setSize(175, 25);
+			choiceTipoPessoa.setFont(Fontes.fontJTFieldPlain1);
+			choiceTipoPessoa.setVisible(true);
+			choiceTipoPessoa.add("              ");
+			choiceTipoPessoa.add("física        ");
+			choiceTipoPessoa.add("jurídica      ");
+			choiceTipoPessoa.setFocusable(false);	
 		}
 		return choiceTipoPessoa;
 	}
@@ -274,8 +289,8 @@ public class JDialogCadastrarCliente   extends JDialog{
 			jButtonCadastrarCliente.setFont(Fontes.fontJButtonPlain2);
 			jButtonCadastrarCliente.setBackground(Cores.azul1);
 			jButtonCadastrarCliente.setForeground(Cores.branco);
-			jButtonCadastrarCliente.setText("Inserir serviço");
-			jButtonCadastrarCliente.setSize(114, 25);
+			jButtonCadastrarCliente.setText("Cadastrar cliente");
+			jButtonCadastrarCliente.setSize(150, 25);
 			jButtonCadastrarCliente.setFocusable(false);
 			jButtonCadastrarCliente.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));	        
@@ -415,8 +430,75 @@ public class JDialogCadastrarCliente   extends JDialog{
 	
 	public void addCompJDialogCadastrarCliente() {
 		
-		getJDialogCadastrarCliente().getContentPane().add(getjButtonProcurarPeca());
-		getjButtonProcurarPeca().setLocation(36, 21);
+		getJDialogCadastrarCliente().getContentPane().add(getjRadioButtonCpf());
+		getjRadioButtonCpf().setLocation(76, 31);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjRadioButtonCnpj());
+		getjRadioButtonCnpj().setLocation(119, 31);
+
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelCpf());
+		getjLabelCpf().setLocation(1, 48);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldCpf());
+		getjTFieldCpf().setLocation(76, 48);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelNome());
+		getjLabelNome().setLocation(258, 48);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldNome());
+		getjTFieldNome().setLocation(333, 48);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelTelefone());
+		getjLabelTelefone().setLocation(576, 48);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldTelefone());		
+		getjTFieldTelefone().setLocation(649, 48);
+		
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelEmail());
+		getjLabelEmail().setLocation(1, 82);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldEmail());
+		getjTFieldEmail().setLocation(76, 82);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelCidade());
+		getjLabelCidade().setLocation(258, 82);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldCidade());
+		getjTFieldCidade().setLocation(333, 82);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelBairro());
+		getjLabelBairro().setLocation(576, 82);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldBairro());
+		getjTFieldBairro().setLocation(649, 82);
+		
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelRua());
+		getjLabelRua().setLocation(1, 116);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldRua());
+		getjTFieldRua().setLocation(76, 116);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelNumeroCasa());
+		getjLabelNumeroCasa().setLocation(258, 116);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjTFieldNumeroCasa());
+		getjTFieldNumeroCasa().setLocation(333, 116);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjLabelTipoPessoa());
+		getjLabelTipoPessoa().setLocation(576, 116);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getChoiceTipoPessoa());
+		getChoiceTipoPessoa().setLocation(649, 116);
+
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjButtonCancelar());
+		getjButtonCancelar().setLocation(688, 163);
+		
+		getJDialogCadastrarCliente().getContentPane().add(getjButtonCadastrarCliente());
+		getjButtonCadastrarCliente().setLocation(787, 163);
 		
 		}
 	

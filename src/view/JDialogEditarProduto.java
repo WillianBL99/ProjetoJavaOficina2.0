@@ -4,17 +4,13 @@
 package view;
 
 import java.awt.Frame;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import icons.Icones;
 import model.Cores;
 import model.Fontes;
-import model.SetSizeIcon;
 
 /**
  * @author Paulo Uilian
@@ -23,19 +19,15 @@ import model.SetSizeIcon;
 
 
 @SuppressWarnings("serial")
-public class JDialogInserirPeca extends JDialog{	
+public class JDialogEditarProduto extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **
 	
-	private SetSizeIcon setSizeIcon = new SetSizeIcon();
-	
 	private boolean modal;
 	
-	private JButton jButtonProcurarPeca;
-	private JButton jButtonProcurarCodigo;
 	private JButton jButtonCancelar;
-	private JButton jButtonInserirPeca;
+	private JButton jButtonEditarProduto;
 	
 	
 	private JLabel jLabelDadosProduto;
@@ -70,17 +62,17 @@ public class JDialogInserirPeca extends JDialog{
 	//** Fim declaração de variáveis **
 	
 	//** Início construtor **
-	public JDialogInserirPeca(Frame frame, boolean modal) {
-		super(frame, "Inserir Serviço");
+	public JDialogEditarProduto(Frame frame, boolean modal) {
+		super(frame, "Editar produto");
 		this.modal = modal;
-		this.addCompJDialogInserirPeca();
+		this.addCompJDialogEditarProduto();
 	}	
 
 	
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
-	public JDialogInserirPeca  getJDialogInserirPeca() {
+	public JDialogEditarProduto  getJDialogEditarProduto() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
@@ -253,39 +245,6 @@ public class JDialogInserirPeca extends JDialog{
 	
 	//** Início getters JButton **
 
-	
-	public JButton getjButtonProcurarPeca() {
-		if(jButtonProcurarPeca == null){
-			jButtonProcurarPeca = new JButton();			
-			jButtonProcurarPeca.setFont(Fontes.fontJButtonPlain2);
-			jButtonProcurarPeca.setBackground(Cores.azul1);
-			jButtonProcurarPeca.setForeground(Cores.branco);
-			jButtonProcurarPeca.setText("Inserir serviço");
-			jButtonProcurarPeca.setSize(125, 25);
-			jButtonProcurarPeca.setFocusable(false);
-			jButtonProcurarPeca.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1));	        
-		}
-		return jButtonProcurarPeca;
-	}
-
-
-	public JButton getjButtonProcurarCodigo() {
-		if(jButtonProcurarCodigo == null){		
-			jButtonProcurarCodigo = new JButton();			
-			jButtonProcurarCodigo.setBackground(Cores.azul1);
-			jButtonProcurarCodigo.setForeground(Cores.branco);
-			setSizeIcon.setIconJButton(jButtonProcurarCodigo,
-					Icones.getBuscar(), 16, 16);
-			jButtonProcurarCodigo.setSize(30, 25);
-			jButtonProcurarCodigo.setFocusable(false);
-			jButtonProcurarCodigo.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1));
-			jButtonProcurarCodigo.setVisible(true);	
-		}
-		return jButtonProcurarCodigo;
-	}
-
 
 	public JButton getjButtonCancelar() {
 		if(jButtonCancelar == null){
@@ -303,19 +262,19 @@ public class JDialogInserirPeca extends JDialog{
 	}
 
 
-	public JButton getjButtonInserirPeca() {
-		if(jButtonInserirPeca == null){
-			jButtonInserirPeca = new JButton();			
-			jButtonInserirPeca.setFont(Fontes.fontJButtonPlain2);
-			jButtonInserirPeca.setBackground(Cores.azul1);
-			jButtonInserirPeca.setForeground(Cores.branco);
-			jButtonInserirPeca.setText("Inserir serviço");
-			jButtonInserirPeca.setSize(114, 25);
-			jButtonInserirPeca.setFocusable(false);
-			jButtonInserirPeca.setBorder(BorderFactory.
+	public JButton getjButtonEditarProduto() {
+		if(jButtonEditarProduto == null){
+			jButtonEditarProduto = new JButton();			
+			jButtonEditarProduto.setFont(Fontes.fontJButtonPlain2);
+			jButtonEditarProduto.setBackground(Cores.azul1);
+			jButtonEditarProduto.setForeground(Cores.branco);
+			jButtonEditarProduto.setText("Editar produto");
+			jButtonEditarProduto.setSize(114, 25);
+			jButtonEditarProduto.setFocusable(false);
+			jButtonEditarProduto.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));	        
 		}
-		return jButtonInserirPeca;
+		return jButtonEditarProduto;
 	}
 	
 	
@@ -327,11 +286,11 @@ public class JDialogInserirPeca extends JDialog{
 	public JTextField getjTFieldCodigo() {
 		if(jTFieldCodigo == null){
 			jTFieldCodigo = new JTextField();
-			jTFieldCodigo.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCodigo.setBorder(null);
 			jTFieldCodigo.setForeground(Cores.preto);
+			jTFieldCodigo.setBackground(Cores.cinza4);
 			jTFieldCodigo.setFont(Fontes.fontJTFieldPlain2);
-			jTFieldCodigo.setSize(123, 25);
+			jTFieldCodigo.setSize(142, 25);
 			jTFieldCodigo.setOpaque(true);	
 			jTFieldCodigo.setVisible(true);		
 		}
@@ -478,88 +437,82 @@ public class JDialogInserirPeca extends JDialog{
 	//** Início métodos adição de componentes **
 	
 	
-	public void addCompJDialogInserirPeca() {
+	public void addCompJDialogEditarProduto() {
 		
-		getJDialogInserirPeca().getContentPane().add(getjButtonProcurarPeca());
-		getjButtonProcurarPeca().setLocation(36, 21);
-		
-		getJDialogInserirPeca().getContentPane().add(getjLabelDadosProduto());
+		getJDialogEditarProduto().getContentPane().add(getjLabelDadosProduto());
 		getjLabelDadosProduto().setLocation(36, 49);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelCodigo());
+		getJDialogEditarProduto().getContentPane().add(getjLabelCodigo());
 		getjLabelCodigo().setLocation(36, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldCodigo());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldCodigo());
 		getjTFieldCodigo().setLocation(96, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjButtonProcurarCodigo());
-		getjButtonProcurarCodigo().setLocation(219, 91);		
-		
-		getJDialogInserirPeca().getContentPane().add(getjLabelDescricao());
+		getJDialogEditarProduto().getContentPane().add(getjLabelDescricao());
 		getjLabelDescricao().setLocation(274, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldDescricao());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldDescricao());
 		getjTFieldDescricao().setLocation(351, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelQuantidadeEstoque());
+		getJDialogEditarProduto().getContentPane().add(getjLabelQuantidadeEstoque());
 		getjLabelQuantidadeEstoque().setLocation(743, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldQuantidadeEstoque());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldQuantidadeEstoque());
 		getjTFieldQuantidadeEstoque().setLocation(846, 91);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelPreco());
+		getJDialogEditarProduto().getContentPane().add(getjLabelPreco());
 		getjLabelPreco().setLocation(36, 128);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldPreco());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldPreco());
 		getjTFieldPreco().setLocation(95, 128);
 
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelDetalheInsercao());
+		getJDialogEditarProduto().getContentPane().add(getjLabelDetalheInsercao());
 		getjLabelDetalheInsercao().setLocation(36, 167);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelQuantidadeInserir());
+		getJDialogEditarProduto().getContentPane().add(getjLabelQuantidadeInserir());
 		getjLabelQuantidadeInserir().setLocation(36, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldQuantidadeInserir());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldQuantidadeInserir());
 		getjTFieldQuantidadeInserir().setLocation(123, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelAtendidos());
+		getJDialogEditarProduto().getContentPane().add(getjLabelAtendidos());
 		getjLabelAtendidos().setLocation(213, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldAtendidos());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldAtendidos());
 		getjTFieldAtendidos().setLocation(287, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelComprar());
+		getJDialogEditarProduto().getContentPane().add(getjLabelComprar());
 		getjLabelComprar().setLocation(377, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldComprar());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldComprar());
 		getjTFieldComprar().setLocation(459, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelDesconto());
+		getJDialogEditarProduto().getContentPane().add(getjLabelDesconto());
 		getjLabelDesconto().setLocation(549, 209);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldDesconto());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldDesconto());
 		getjTFieldDesconto().setLocation(638, 209);
 
 		
-		getJDialogInserirPeca().getContentPane().add(getjLabelValorDesconto());
+		getJDialogEditarProduto().getContentPane().add(getjLabelValorDesconto());
 		getjLabelValorDesconto().setLocation(36, 260);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldValorDesconto());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldValorDesconto());
 		getjTFieldValorDesconto().setLocation(138, 260);
 
-		getJDialogInserirPeca().getContentPane().add(getjLabelValorTotal());
+		getJDialogEditarProduto().getContentPane().add(getjLabelValorTotal());
 		getjLabelValorTotal().setLocation(243, 260);
 		
-		getJDialogInserirPeca().getContentPane().add(getjTFieldValorTotal());
+		getJDialogEditarProduto().getContentPane().add(getjTFieldValorTotal());
 		getjTFieldValorTotal().setLocation(321, 260);
 		
 		
-		getJDialogInserirPeca().getContentPane().add(getjButtonCancelar());
+		getJDialogEditarProduto().getContentPane().add(getjButtonCancelar());
 		getjButtonCancelar().setLocation(743, 299);
 		
-		getJDialogInserirPeca().getContentPane().add(getjButtonInserirPeca());
-		getjButtonInserirPeca().setLocation(842, 299);
+		getJDialogEditarProduto().getContentPane().add(getjButtonEditarProduto());
+		getjButtonEditarProduto().setLocation(842, 299);
 		
 		}
 	

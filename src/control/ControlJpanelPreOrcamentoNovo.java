@@ -17,6 +17,7 @@ import view.JFramePrincipal;
 import view.JPanelPreOrcamento;
 import view.JPanelPreOrcamentoNovo;
 import view.JPanelPrincipal;
+import view.JPanelProcuraCliente;
 
 /**
  * @author Paulo Uilian
@@ -114,7 +115,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonProcuraCliente()) {
 			// quando o botão "procurar cliente" for clicado
-			
+			new JPanelProcuraCliente(this.getjFramePrincipal(), true);
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			// quando o botão "selecionar veículo" for clicado

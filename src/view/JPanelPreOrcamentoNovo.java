@@ -662,9 +662,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroPreOrcamento == null){
 			jTFieldNumeroPreOrcamento = new JTextField();
 			jTFieldNumeroPreOrcamento.setSize(105, 21);
-			jTFieldNumeroPreOrcamento.setBackground(Cores.cinza4);
-			jTFieldNumeroPreOrcamento.setBorder(null);
-			jTFieldNumeroPreOrcamento.setEditable(false);
+			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroPreOrcamento.setEditable(true);
 			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
 			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroPreOrcamento.setOpaque(true);
@@ -677,9 +677,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldDataPreOrcamento == null){
 			jTFieldDataPreOrcamento = new JTextField();
 			jTFieldDataPreOrcamento.setSize(94, 21);
-			jTFieldDataPreOrcamento.setBackground(Cores.cinza4);
-			jTFieldDataPreOrcamento.setBorder(null);
-			jTFieldDataPreOrcamento.setEditable(false);
+			jTFieldDataPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDataPreOrcamento.setEditable(true);
 			jTFieldDataPreOrcamento.setForeground(Cores.preto);
 			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldDataPreOrcamento.setOpaque(true);
@@ -692,9 +692,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldHorarioPreOrcamento == null){
 			jTFieldHorarioPreOrcamento = new JTextField();
 			jTFieldHorarioPreOrcamento.setSize(62, 21);
-			jTFieldHorarioPreOrcamento.setBackground(Cores.cinza4);
-			jTFieldHorarioPreOrcamento.setBorder(null);
-			jTFieldHorarioPreOrcamento.setEditable(false);
+			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldHorarioPreOrcamento.setEditable(true);
 			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
 			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldHorarioPreOrcamento.setOpaque(true);
@@ -707,9 +707,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldResponsavelPreOrcamento == null){
 			jTFieldResponsavelPreOrcamento = new JTextField();
 			jTFieldResponsavelPreOrcamento.setSize(297, 21);
-			jTFieldResponsavelPreOrcamento.setBackground(Cores.cinza4);
-			jTFieldResponsavelPreOrcamento.setBorder(null);
-			jTFieldResponsavelPreOrcamento.setEditable(false);
+			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldResponsavelPreOrcamento.setEditable(true);
 			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
 			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldResponsavelPreOrcamento.setOpaque(true);

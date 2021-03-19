@@ -20,7 +20,7 @@ import model.SetSizeIcon;
  */
 
 @SuppressWarnings("serial")
-public class JDialogInserirServico  extends JDialog{	
+public class JDialogInserirServico extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **
@@ -386,7 +386,14 @@ public class JDialogInserirServico  extends JDialog{
 		getJDialogInserirServico().getContentPane().add(getjTFieldDescreverPreco());
 		getjTFieldDescreverPreco().setLocation(805, 91);
 		
-		// fim parte visivel quando jbuttonDescreverServico estiver clicado
+		// fim parte visivel quando jbuttonDescreverServico estiver clicado	
+
+		
+		getJDialogInserirServico().getContentPane().add(getjButtonCancelar());
+		getjButtonCancelar().setLocation(736, 160);
+		
+		getJDialogInserirServico().getContentPane().add(getjButtonInserirServico());
+		getjButtonInserirServico().setLocation(831, 160);
 	}
 
 

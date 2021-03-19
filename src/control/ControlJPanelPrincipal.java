@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
-import view.JDialogEditarProduto;
+import view.JDialogEditarServico;
+import view.JDialogInserirServico;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelEstoque;
@@ -193,7 +194,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			new JDialogEditarProduto(getjFramePricipal(), true);
+			new JDialogInserirServico(getjFramePricipal(), true);
 		}
 		
 	}

@@ -25,13 +25,13 @@ import model.SetSizeIcon;
  * @author josim
  *
  */
-public class JPanelProcuraCliente extends JDialog{
+public class JDialogProcuraCliente extends JDialog{
 
-	public JPanelProcuraCliente(Frame frame, boolean modal) {
+	public JDialogProcuraCliente(Frame frame, boolean modal) {
 		super(frame, "Procura Cliente");
 		this.setModal(modal);
-		getJPanelProcuraCliente();
-		addCompJPanelProcuraCliente();
+		getJDialogProcuraCliente();
+		addCompJDialogProcuraCliente();
 	
 	}
 
@@ -51,7 +51,7 @@ public class JPanelProcuraCliente extends JDialog{
 
 
 	//** Início getters JPanels **
-	public JPanelProcuraCliente getJPanelProcuraCliente() {
+	public JDialogProcuraCliente getJDialogProcuraCliente() {
 		
 		getContentPane().setLayout(null);
 		this.setSize(new Dimension(937, 308));
@@ -178,23 +178,23 @@ public class JPanelProcuraCliente extends JDialog{
 	
 	
 	//** Início métodos adição de componentes **
-	void addCompJPanelProcuraCliente() {
-		this.getJPanelProcuraCliente().getContentPane().add(getjLabelPesquisarPor());
+	void addCompJDialogProcuraCliente() {
+		this.getJDialogProcuraCliente().getContentPane().add(getjLabelPesquisarPor());
 		this.getjLabelPesquisarPor().setLocation(51, 64);
 		
-		this.getJPanelProcuraCliente().getContentPane().add(getjComboBoxPesquisa());
+		this.getJDialogProcuraCliente().getContentPane().add(getjComboBoxPesquisa());
 		this.getjComboBoxPesquisa().setLocation(155, 64);
 		
-		this.getJPanelProcuraCliente().getContentPane().add(getjTextFieldCampoPesquisa());
+		this.getJDialogProcuraCliente().getContentPane().add(getjTextFieldCampoPesquisa());
 		this.getjTextFieldCampoPesquisa().setLocation(319, 64);
 		
-		this.getJPanelProcuraCliente().getContentPane().add(getjButtonPesquisar());
+		this.getJDialogProcuraCliente().getContentPane().add(getjButtonPesquisar());
 		this.getjButtonPesquisar().setLocation(511, 64);
 		
-		this.getJPanelProcuraCliente().getContentPane().add(getjButtonCancelar());
+		this.getJDialogProcuraCliente().getContentPane().add(getjButtonCancelar());
 		this.getjButtonCancelar().setLocation(704, 235);
 		
-		this.getJPanelProcuraCliente().getContentPane().add(getjButtonSelecionar());
+		this.getJDialogProcuraCliente().getContentPane().add(getjButtonSelecionar());
 		this.getjButtonSelecionar().setLocation(800, 235);
 	}
 

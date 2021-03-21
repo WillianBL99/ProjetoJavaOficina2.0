@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import icons.Icones;
+import model.SetSizeIcon;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -22,6 +24,11 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 
 	//** Início declaração de variáveis **
+	
+	private boolean cartaoClicado = false; // caso seja verdadeiro haverá alterações dos componentes de "vendasProsseguir"
+	private SetSizeIcon setSizeIcon = new SetSizeIcon(); // iniciando objeto para rendimensionamento de imagens
+	
+	
 	private JFramePrincipal jFramePricipal;
 	private JPanelVendasProsseguir jPanelVendasProsseguir;
 	private JPanelPrincipal jPanelPrincipal;
@@ -93,18 +100,15 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			
 		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartão()) {
 			// quando a opção pagar com cartão for clicada
+			this.isCartaoClicado(true);
 			
-		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartão()) {
-			// quando a opção pagar com cartão for clicada
-			
-		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
+		}  else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
 			// quando a opção pagar com dinheiro for clicada
+			this.isCartaoClicado(false);
 			
 		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
 			// quando o botão finalizar compra for clicado
-			System.out.println("JPanelPrincipal foi chamado por finalizar compra");
-			getjFramePricipal().alterarJPanel(getjPanelPrincipal());
-			
+			this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
 		}
 		
 	}
@@ -163,13 +167,13 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	}		
 	
 	
-public JPanelVendas getjPanelVendas() {
-	if(jPanelVendas == null){
-		jPanelVendas = new JPanelVendas();
+	public JPanelVendas getjPanelVendas() {
+		if(jPanelVendas == null){
+			jPanelVendas = new JPanelVendas();
 
-	}
-	return jPanelVendas;
-}		
+		}
+		return jPanelVendas;
+	}		
 		
 		
 	public JPanelVendasNovo getjPanelVendasNovo() {
@@ -189,6 +193,36 @@ public JPanelVendas getjPanelVendas() {
 	
 		}
 		return controlJPanelVendasNovo;
+	}
+	
+	
+	private void isCartaoClicado(boolean cartaoClicado) {
+		if(this.cartaoClicado != cartaoClicado) {
+			this.cartaoClicado = cartaoClicado;
+			
+			
+			if(cartaoClicado) { // quando o jButtonCartao for clicado
+				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
+						.getjButtonDinheiro(), Icones.getDinheiroCinza(), 50, 50);
+				
+				this.getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(false);				
+
+				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
+						.getjButtonCartão(), Icones.getCartãoAzul(), 50, 50);				
+				
+				
+			} else { // quando o jButtonDinheiro for clicado
+				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
+						.getjButtonDinheiro(), Icones.getDinheiroAzul(), 50, 50);
+				
+				this.getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(true);				
+
+				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
+						.getjButtonCartão(), Icones.getCartãoCinza(), 50, 50);	
+				
+			}
+		}
+		
 	}
 	//** Fim métodos da classe **
 }

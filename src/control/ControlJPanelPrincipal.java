@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
-import view.JDialogProcurarVeiculo;
+import view.JDialogEditarServico;
+import view.JDialogInserirServico;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
 import view.JPanelEstoque;
@@ -18,9 +19,9 @@ import view.JPanelGeraOS;
 import view.JPanelHome;
 import view.JPanelOrcamentoFinal;
 import view.JPanelPreOrcamento;
-import view.JPanelPreOrcamentoNovo;
 import view.JPanelPrincipal;
 import view.JPanelUsuarios;
+import view.JPanelVeiculos;
 import view.JPanelVendas;
 
 public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
@@ -31,6 +32,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
+	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
+	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
 	
@@ -40,18 +43,18 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private JPanelVendas jPanelVendas;
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelOrcamentoFinal jPanelOrcamentoFinal;
+	private JPanelVeiculos jPanelVeiculos;
 	private JPanelUsuarios jPanelUsuarios;
 	private JPanelEstoque jPanelEstoque;
 
 	private ControlJPanelHome controlJPanelHome;
 	private ControlJPanelVendas controlJPanelVendas;
+	private ControlJPanelPreOrcamento controlJPanelPreOrcamento;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
 	private JButton jButtonClicado; // guarda o jbutton clicado
 	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
-	
-	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	
 	
 	//** Fim declaração de variáveis **	
@@ -149,15 +152,20 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
+			jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point, this.getjPanelPreOrcamento().getTituloDescricaoTela());			
-			
+			getControlJPanelPreOrcamento();
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
+			jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
+			getjPanelPrincipal().alterarJPanel(getjPanelVeiculos(), point);
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -168,6 +176,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			jPanelUsuarios = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+				// quando for chamar o mesmo jPanel novamente.
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
 			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point);
 			this.setSizeOSOpen(false);
@@ -184,8 +194,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			this.getjPanelPrincipal().alterarJPanel(new JPanelPreOrcamentoNovo(), point);
-			//new JDialogProcurarVeiculo(getjFramePricipal(), false);
+			new JDialogInserirServico(getjFramePricipal(), true);
 		}
 		
 	}
@@ -321,11 +330,29 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		}
 		
 		
+		public ControlJPanelPreOrcamento getControlJPanelPreOrcamento() {
+			if(controlJPanelPreOrcamento == null){
+				controlJPanelPreOrcamento = new ControlJPanelPreOrcamento(getjFramePricipal(), getjPanelPrincipal(),
+						getjPanelPreOrcamento());
+		
+			}
+			return controlJPanelPreOrcamento;
+		}
+		
+		
 		public JPanelOrcamentoFinal getjPanelOrcamentoFinal() {
 			if(jPanelOrcamentoFinal == null){
 				jPanelOrcamentoFinal = new JPanelOrcamentoFinal();
 			}
 			return jPanelOrcamentoFinal;
+		}
+		
+		
+		public JPanelVeiculos getjPanelVeiculos() {
+			if(jPanelVeiculos == null){
+				jPanelVeiculos = new JPanelVeiculos();
+			}
+			return jPanelVeiculos;
 		}
 		
 		

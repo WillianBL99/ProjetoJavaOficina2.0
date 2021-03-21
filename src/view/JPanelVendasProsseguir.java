@@ -7,11 +7,8 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -25,7 +22,7 @@ import model.SetSizeIcon;
  *
  */
 
-
+@SuppressWarnings("serial")
 public class JPanelVendasProsseguir extends JPanel{
 
 	
@@ -159,6 +156,7 @@ public class JPanelVendasProsseguir extends JPanel{
 							Fontes.fontBorda2,
 							Cores.azul1)
 					);
+			jPanelDadosPagamento.setVisible(true);
 		}
 		return jPanelDadosPagamento;
 	}
@@ -228,7 +226,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jButtonDinheiro.setText(" Dinheiro");
 			jButtonDinheiro.setForeground(Cores.preto);
 			setSizeIcon.setIconJButton(jButtonDinheiro, Icones.
-					getDinheiroCinza(), 50, 50);
+					getDinheiroAzul(), 50, 50);
 			jButtonDinheiro.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonDinheiro.setBorder(null);
 			jButtonDinheiro.setFocusPainted(false);

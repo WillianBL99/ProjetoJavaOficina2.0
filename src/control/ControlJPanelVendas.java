@@ -14,7 +14,7 @@ import view.JPanelVendas;
 import view.JPanelVendasNovo;
 
 /**
- * @author pWili
+ * @author Paulo Uilian
  *
  */
 public class ControlJPanelVendas implements MouseListener, KeyListener {

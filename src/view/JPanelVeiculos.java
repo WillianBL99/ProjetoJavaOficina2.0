@@ -76,7 +76,7 @@ public class JPanelVeiculos extends JPanel{
 			jPanelBuscaVeiculos = new JPanel();
 			jPanelBuscaVeiculos.setLayout(null);
 			jPanelBuscaVeiculos.setBackground(Cores.branco);
-			jPanelBuscaVeiculos.setSize(1000, 50);
+			jPanelBuscaVeiculos.setSize(990, 50);
 			jPanelBuscaVeiculos.setBorder(null);
 		}
 		return jPanelBuscaVeiculos;
@@ -219,7 +219,7 @@ public class JPanelVeiculos extends JPanel{
 		if(jSPVeiculos == null){
 			jSPVeiculos = new JScrollPane();
 			jSPVeiculos.setViewportView(getjTableVeiculos());
-			jSPVeiculos.setSize(1000, 225);	
+			jSPVeiculos.setSize(990, 225);	
 		}
 		return jSPVeiculos;
 	}
@@ -291,10 +291,10 @@ public class JPanelVeiculos extends JPanel{
 		this.getjTFieldBuscarPor().setLocation(180, 16);
 
 		this.getjPanelBuscaVeiculos().add(this.getjButtonFiltrar());
-		this.getjButtonFiltrar().setLocation(800, 16);
+		this.getjButtonFiltrar().setLocation(790, 16);
 
 		this.getjPanelBuscaVeiculos().add(this.getjButtonPesquisarTodos());
-		this.getjButtonPesquisarTodos().setLocation(874, 16);
+		this.getjButtonPesquisarTodos().setLocation(864, 16);
 	}
 	
 	//** Fim métodos adição de componentes **

@@ -311,8 +311,7 @@ public class JPanelPreOrcamento  extends JPanel {
 			choicePesquisarPor.add("Selec. opção");
 			choicePesquisarPor.add("Cliente");
 			choicePesquisarPor.add("Placa");
-			choicePesquisarPor.setFocusable(false);
-	
+			choicePesquisarPor.setFocusable(false);	
 		}
 		return choicePesquisarPor;
 	}		

@@ -13,6 +13,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -105,8 +107,13 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
-	private JScrollPane JSPListaProdutoServico;
-	private JTable jTableListaProdutoServico;
+	private JScrollPane jSPjPanelCentro; // tela de rolagem para o jPanelCentral.
+	
+	private JScrollPane jSPListaProdutos;
+	private JScrollPane jSPListaServicos;
+	
+	private JTable jTableListaProdutos;
+	private JTable jTableListaServicos;
 	
     //** Fim declaração de variáveis **
 
@@ -134,7 +141,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jPanelCentro == null){	
 			jPanelCentro = new JPanel();
 			jPanelCentro.setLayout(null);
-			jPanelCentro.setSize(new Dimension(950, 568));
+			jPanelCentro.setPreferredSize(new Dimension(990, 600));
+			//jPanelCentro.setSize(new Dimension(990, 600));
 			jPanelCentro.setVisible(true);
 			jPanelCentro.setBackground(Cores.branco);
 	
@@ -240,11 +248,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JButton getjButtonListaProdutos() {
 		if(jButtonListaProdutos == null){			
 			jButtonListaProdutos = new JButton();
-			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain3);			
+			jButtonListaProdutos.setFont(Fontes.fontJButtonPlain2);			
 			jButtonListaProdutos.setBackground(Cores.azul1);
 			jButtonListaProdutos.setForeground(Color.white);
-			jButtonListaProdutos.setText("Seleciona Veículo");
-			jButtonListaProdutos.setSize(169,25);
+			jButtonListaProdutos.setText("Lista de produtos");
+			jButtonListaProdutos.setSize(133,23);
 			jButtonListaProdutos.setFocusable(false);
 			jButtonListaProdutos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -256,14 +264,15 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JButton getjButtonListaServicos() {
 		if(jButtonListaServicos == null){		
 			jButtonListaServicos = new JButton();
-			jButtonListaServicos.setFont(Fontes.fontJButtonPlain3);			
-			jButtonListaServicos.setBackground(Cores.azul1);
-			jButtonListaServicos.setForeground(Color.white);
-			jButtonListaServicos.setText("Seleciona Veículo");
-			jButtonListaServicos.setSize(169,25);
+			jButtonListaServicos.setFont(Fontes.fontJButtonPlain2);			
+			jButtonListaServicos.setBackground(Cores.cinza2);
+			jButtonListaServicos.setForeground(Cores.preto);
+			jButtonListaServicos.setText("Lista de serviços");
+			jButtonListaServicos.setSize(133,23);
 			jButtonListaServicos.setFocusable(false);
 			jButtonListaServicos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonListaServicos.setVisible(true);
 		}
 		return jButtonListaServicos;
 	}
@@ -275,8 +284,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonAdicionarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonAdicionarProdutoServico.setBackground(Cores.azul1);
 			jButtonAdicionarProdutoServico.setForeground(Color.white);
-			jButtonAdicionarProdutoServico.setText("Seleciona Veículo");
-			jButtonAdicionarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonAdicionarProdutoServico, Icones.
+					getAdicionar(), 16, 16);
+			jButtonAdicionarProdutoServico.setSize(55, 20);
 			jButtonAdicionarProdutoServico.setFocusable(false);
 			jButtonAdicionarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -291,8 +301,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonEditarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonEditarProdutoServico.setBackground(Cores.azul1);
 			jButtonEditarProdutoServico.setForeground(Color.white);
-			jButtonEditarProdutoServico.setText("Seleciona Veículo");
-			jButtonEditarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonEditarProdutoServico, Icones.
+					getEditar(), 16, 16);
+			jButtonEditarProdutoServico.setSize(55, 20);
 			jButtonEditarProdutoServico.setFocusable(false);
 			jButtonEditarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -307,8 +318,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonApagarProdutoServico.setFont(Fontes.fontJButtonPlain3);			
 			jButtonApagarProdutoServico.setBackground(Cores.azul1);
 			jButtonApagarProdutoServico.setForeground(Color.white);
-			jButtonApagarProdutoServico.setText("Seleciona Veículo");
-			jButtonApagarProdutoServico.setSize(169,25);
+			setSizeIcon.setIconJButton(jButtonApagarProdutoServico, Icones.
+					getApagar(), 16, 16);
+			jButtonApagarProdutoServico.setSize(55, 20);
 			jButtonApagarProdutoServico.setFocusable(false);
 			jButtonApagarProdutoServico.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -344,13 +356,22 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 
     //** Início getters JLabel **
+	
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Novo Pré Orçamento";	
+		}
+		return tituloDescricaoTela;
+	}
+	
+	
 	public JLabel getjLabelDadosPreOrcamento() {
 		if(jLabelDadosPreOrcamento == null){
-			jLabelDadosPreOrcamento = new JLabel("N° Casa:");
-			jLabelDadosPreOrcamento.setFont(Fontes.fontJLabelPlain1);
-			jLabelDadosPreOrcamento.setSize(60, 21);
-			jLabelDadosPreOrcamento.setForeground(Cores.preto);
-			jLabelDadosPreOrcamento.setOpaque(false);
+			jLabelDadosPreOrcamento = new JLabel("Dados do Pré Orçamento");
+			jLabelDadosPreOrcamento.setFont(Fontes.fontJLabelBold2);
+			jLabelDadosPreOrcamento.setSize(240, 21);
+			jLabelDadosPreOrcamento.setForeground(Cores.azul1);
+			jLabelDadosPreOrcamento.setBackground(Cores.cinza4);
 		}
 		return jLabelDadosPreOrcamento;
 	}
@@ -358,11 +379,11 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelNumeroPreOrcamento() {
 		if(jLabelNumeroPreOrcamento == null){
-			jLabelNumeroPreOrcamento = new JLabel("N° Casa:");
+			jLabelNumeroPreOrcamento = new JLabel("N°:");
 			jLabelNumeroPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelNumeroPreOrcamento.setSize(60, 21);
 			jLabelNumeroPreOrcamento.setForeground(Cores.preto);
-			jLabelNumeroPreOrcamento.setOpaque(false);
+			jLabelDadosPreOrcamento.setBackground(Cores.cinza4);
 		}
 		return jLabelNumeroPreOrcamento;
 	}
@@ -370,11 +391,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelDataPreOrcamento() {
 		if(jLabelDataPreOrcamento == null){
-			jLabelDataPreOrcamento = new JLabel("N° Casa:");
+			jLabelDataPreOrcamento = new JLabel("Data:");
 			jLabelDataPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelDataPreOrcamento.setSize(60, 21);
 			jLabelDataPreOrcamento.setForeground(Cores.preto);
-			jLabelDataPreOrcamento.setOpaque(false);
 		}
 		return jLabelDataPreOrcamento;
 	}
@@ -382,11 +402,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelHorarioPreOrcamento() {
 		if(jLabelHorarioPreOrcamento == null){
-			jLabelHorarioPreOrcamento = new JLabel("N° Casa:");
+			jLabelHorarioPreOrcamento = new JLabel("Horário:");
 			jLabelHorarioPreOrcamento.setFont(Fontes.fontJLabelPlain1);
 			jLabelHorarioPreOrcamento.setSize(60, 21);
 			jLabelHorarioPreOrcamento.setForeground(Cores.preto);
-			jLabelHorarioPreOrcamento.setOpaque(false);
 		}
 		return jLabelHorarioPreOrcamento;
 	}
@@ -394,21 +413,12 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JLabel getjLabelResponsavelPreOrcamento() {
 		if(jLabelResponsavelPreOrcamento == null){
-			jLabelResponsavelPreOrcamento = new JLabel("N° Casa:");
+			jLabelResponsavelPreOrcamento = new JLabel("Responsável:");
 			jLabelResponsavelPreOrcamento.setFont(Fontes.fontJLabelPlain1);
-			jLabelResponsavelPreOrcamento.setSize(60, 21);
+			jLabelResponsavelPreOrcamento.setSize(90, 21);
 			jLabelResponsavelPreOrcamento.setForeground(Cores.preto);
-			jLabelResponsavelPreOrcamento.setOpaque(false);
 		}
 		return jLabelResponsavelPreOrcamento;
-	}
-
-
-	public String getTituloDescricaoTela() {
-		if(tituloDescricaoTela == null){	
-			tituloDescricaoTela = "Novo Pré Orçamento";	
-		}
-		return tituloDescricaoTela;
 	}
 	
 
@@ -582,8 +592,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
 	public JLabel getjLabelAno() {
-		if(jLabelAno == null){
-	
+		if(jLabelAno == null){	
 			jLabelAno = new JLabel("Ano:");
 			jLabelAno.setFont(Fontes.fontJLabelPlain1);
 			jLabelAno.setSize(32, 21);
@@ -592,9 +601,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelAno;
 	}
-	public JLabel getjLabelPlaca() {
-		if(jLabelPlaca == null){
 	
+	
+	public JLabel getjLabelPlaca() {
+		if(jLabelPlaca == null){	
 			jLabelPlaca = new JLabel("Placa:");
 			jLabelPlaca.setFont(Fontes.fontJLabelPlain1);
 			jLabelPlaca.setSize(40, 21);
@@ -603,9 +613,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelPlaca;
 	}
-	public JLabel getjLabelMotor() {
-		if(jLabelMotor == null){
 	
+	
+	public JLabel getjLabelMotor() {
+		if(jLabelMotor == null){	
 			jLabelMotor = new JLabel("Motor:");
 			jLabelMotor.setFont(Fontes.fontJLabelPlain1);
 			jLabelMotor.setSize(48, 21);
@@ -614,9 +625,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelMotor;
 	}
-	public JLabel getjLabelKMAtual() {
-		if(jLabelKMAtual == null){
 	
+	
+	public JLabel getjLabelKMAtual() {
+		if(jLabelKMAtual == null){	
 			jLabelKMAtual = new JLabel("Km atual:");
 			jLabelKMAtual.setFont(Fontes.fontJLabelPlain1);
 			jLabelKMAtual.setSize(66, 21);
@@ -625,9 +637,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jLabelKMAtual;
 	}
-	public JLabel getjLabelCombustivel() {
-		if(jLabelCombustivel == null){
 	
+	
+	public JLabel getjLabelCombustivel() {
+		if(jLabelCombustivel == null){	
 			jLabelCombustivel = new JLabel("Combustível:");
 			jLabelCombustivel.setFont(Fontes.fontJLabelPlain1);
 			jLabelCombustivel.setSize(91, 21);
@@ -643,14 +656,74 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	
 	//** Início getters JTextField **
+
 	
+	public JTextField getjTFieldNumeroPreOrcamento() {
+		if(jTFieldNumeroPreOrcamento == null){
+			jTFieldNumeroPreOrcamento = new JTextField();
+			jTFieldNumeroPreOrcamento.setSize(105, 21);
+			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroPreOrcamento.setEditable(true);
+			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
+			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldNumeroPreOrcamento.setOpaque(true);
+		}
+		return jTFieldNumeroPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldDataPreOrcamento() {
+		if(jTFieldDataPreOrcamento == null){
+			jTFieldDataPreOrcamento = new JTextField();
+			jTFieldDataPreOrcamento.setSize(94, 21);
+			jTFieldDataPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldDataPreOrcamento.setEditable(true);
+			jTFieldDataPreOrcamento.setForeground(Cores.preto);
+			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldDataPreOrcamento.setOpaque(true);
+		}
+		return jTFieldDataPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldHorarioPreOrcamento() {
+		if(jTFieldHorarioPreOrcamento == null){
+			jTFieldHorarioPreOrcamento = new JTextField();
+			jTFieldHorarioPreOrcamento.setSize(62, 21);
+			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldHorarioPreOrcamento.setEditable(true);
+			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
+			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldHorarioPreOrcamento.setOpaque(true);
+		}
+		return jTFieldHorarioPreOrcamento;
+	}
+
+
+	public JTextField getjTFieldResponsavelPreOrcamento() {
+		if(jTFieldResponsavelPreOrcamento == null){
+			jTFieldResponsavelPreOrcamento = new JTextField();
+			jTFieldResponsavelPreOrcamento.setSize(297, 21);
+			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldResponsavelPreOrcamento.setEditable(true);
+			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
+			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldResponsavelPreOrcamento.setOpaque(true);
+		}
+		return jTFieldResponsavelPreOrcamento;
+	}
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
 			jTFieldCpf = new JTextField("999.999.999-99");
 			jTFieldCpf.setSize(165, 21);
-			jTFieldCpf.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCpf.setBackground(Cores.cinza4);
+			jTFieldCpf.setBorder(null);
+			jTFieldCpf.setEditable(false);
 			jTFieldCpf.setForeground(Cores.preto);
 			jTFieldCpf.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCpf.setOpaque(true);
@@ -663,8 +736,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldEmail == null){	
 			jTFieldEmail = new JTextField();
 			jTFieldEmail.setSize(149, 21);
-			jTFieldEmail.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldEmail.setBackground(Cores.cinza4);
+			jTFieldEmail.setBorder(null);
+			jTFieldEmail.setEditable(false);
 			jTFieldEmail.setForeground(Cores.preto);
 			jTFieldEmail.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldEmail.setOpaque(true);
@@ -677,8 +751,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldRua == null){	
 			jTFieldRua = new JTextField();
 			jTFieldRua.setSize(166, 21);
-			jTFieldRua.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldRua.setBackground(Cores.cinza4);
+			jTFieldRua.setBorder(null);
+			jTFieldRua.setEditable(false);
 			jTFieldRua.setForeground(Cores.preto);
 			jTFieldRua.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldRua.setOpaque(true);
@@ -692,8 +767,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNome == null){	
 			jTFieldNome = new JTextField("José da Silva");
 			jTFieldNome.setSize(219, 21);
-			jTFieldNome.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNome.setBackground(Cores.cinza4);
+			jTFieldNome.setBorder(null);
+			jTFieldNome.setEditable(false);
 			jTFieldNome.setForeground(Cores.preto);
 			jTFieldNome.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNome.setOpaque(true);
@@ -707,8 +783,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 			jTFieldCidade = new JTextField();
 			jTFieldCidade.setSize(219, 21);
-			jTFieldCidade.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCidade.setBackground(Cores.cinza4);
+			jTFieldCidade.setBorder(null);
+			jTFieldCidade.setEditable(false);
 			jTFieldCidade.setForeground(Cores.preto);
 			jTFieldCidade.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCidade.setOpaque(true);
@@ -721,8 +798,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroCasa == null){
 			jTFieldNumeroCasa = new JTextField();
 			jTFieldNumeroCasa.setSize(120, 21);
-			jTFieldNumeroCasa.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroCasa.setBackground(Cores.cinza4);
+			jTFieldNumeroCasa.setBorder(null);
+			jTFieldNumeroCasa.setEditable(false);
 			jTFieldNumeroCasa.setForeground(Cores.preto);
 			jTFieldNumeroCasa.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroCasa.setOpaque(true);
@@ -735,8 +813,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldTipo == null){	
 			jTFieldTipo = new JTextField("Fisica");
 			jTFieldTipo.setSize(53, 21);
-			jTFieldTipo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldTipo.setBackground(Cores.cinza4);
+			jTFieldTipo.setBorder(null);
+			jTFieldTipo.setEditable(false);
 			jTFieldTipo.setForeground(Cores.preto);
 			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTipo.setOpaque(true);
@@ -749,8 +828,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldBairro == null){	
 			jTFieldBairro = new JTextField();
 			jTFieldBairro.setSize(91, 21);
-			jTFieldBairro.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
+			jTFieldBairro.setBackground(Cores.cinza4);
+			jTFieldBairro.setBorder(null);
+			jTFieldBairro.setEditable(false);
 			jTFieldBairro.setForeground(Cores.preto);
 			jTFieldBairro.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldBairro.setOpaque(true);
@@ -763,8 +843,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldTelefone == null){	
 			jTFieldTelefone = new JTextField("(77) 9 9999-9999");
 			jTFieldTelefone.setSize(115, 21);
-			jTFieldTelefone.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldTelefone.setBackground(Cores.cinza4);
+			jTFieldTelefone.setBorder(null);
+			jTFieldTelefone.setEditable(false);
 			jTFieldTelefone.setForeground(Cores.preto);
 			jTFieldTelefone.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTelefone.setOpaque(true);
@@ -777,8 +858,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldNumeroVeiculo == null){	
 			jTFieldNumeroVeiculo = new JTextField();
 			jTFieldNumeroVeiculo.setSize(105, 21);
-			jTFieldNumeroVeiculo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldNumeroVeiculo.setBackground(Cores.cinza4);
+			jTFieldNumeroVeiculo.setBorder(null);
+			jTFieldNumeroVeiculo.setEditable(false);
 			jTFieldNumeroVeiculo.setForeground(Cores.preto);
 			jTFieldNumeroVeiculo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroVeiculo.setOpaque(true);
@@ -791,8 +873,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldMarca == null){	
 			jTFieldMarca = new JTextField();
 			jTFieldMarca.setSize(105, 21);
-			jTFieldMarca.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldMarca.setBackground(Cores.cinza4);
+			jTFieldMarca.setBorder(null);
+			jTFieldMarca.setEditable(false);
 			jTFieldMarca.setForeground(Cores.preto);
 			jTFieldMarca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMarca.setOpaque(true);
@@ -805,8 +888,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldCor == null){	
 			jTFieldCor = new JTextField();
 			jTFieldCor.setSize(105, 21);
-			jTFieldCor.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCor.setBackground(Cores.cinza4);
+			jTFieldCor.setBorder(null);
+			jTFieldCor.setEditable(false);
 			jTFieldCor.setForeground(Cores.preto);
 			jTFieldCor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCor.setOpaque(true);
@@ -819,8 +903,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldChassi == null){	
 			jTFieldChassi = new JTextField();
 			jTFieldChassi.setSize(219, 21);
-			jTFieldChassi.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldChassi.setBackground(Cores.cinza4);
+			jTFieldChassi.setBorder(null);
+			jTFieldChassi.setEditable(false);
 			jTFieldChassi.setForeground(Cores.preto);
 			jTFieldChassi.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldChassi.setOpaque(true);
@@ -833,8 +918,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldModelo == null){	
 			jTFieldModelo = new JTextField();
 			jTFieldModelo.setSize(219, 21);
-			jTFieldModelo.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldModelo.setBackground(Cores.cinza4);
+			jTFieldModelo.setBorder(null);
+			jTFieldModelo.setEditable(false);
 			jTFieldModelo.setForeground(Cores.preto);
 			jTFieldModelo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldModelo.setOpaque(true);
@@ -847,8 +933,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldAno == null){	
 			jTFieldAno = new JTextField();
 			jTFieldAno.setSize(105, 21);
-			jTFieldAno.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldAno.setBackground(Cores.cinza4);
+			jTFieldAno.setBorder(null);
+			jTFieldAno.setEditable(false);
 			jTFieldAno.setForeground(Cores.preto);
 			jTFieldAno.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldAno.setOpaque(true);
@@ -861,8 +948,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldPlaca == null){	
 			jTFieldPlaca = new JTextField();
 			jTFieldPlaca.setSize(125, 21);
-			jTFieldPlaca.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldPlaca.setBackground(Cores.cinza4);
+			jTFieldPlaca.setBorder(null);
+			jTFieldPlaca.setEditable(false);
 			jTFieldPlaca.setForeground(Cores.preto);
 			jTFieldPlaca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldPlaca.setOpaque(true);
@@ -875,8 +963,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTFieldMotor == null){	
 			jTFieldMotor = new JTextField();
 			jTFieldMotor.setSize(125, 21);
-			jTFieldMotor.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldMotor.setBackground(Cores.cinza4);
+			jTFieldMotor.setBorder(null);
+			jTFieldMotor.setEditable(false);
 			jTFieldMotor.setForeground(Cores.preto);
 			jTFieldMotor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMotor.setOpaque(true);
@@ -888,9 +977,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){	
 			jTFieldKMAtual = new JTextField();
-			jTFieldKMAtual.setSize(120, 21);
-			jTFieldKMAtual.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldKMAtual.setSize(125, 21);
+			jTFieldKMAtual.setBackground(Cores.cinza4);
+			jTFieldKMAtual.setBorder(null);
+			jTFieldKMAtual.setEditable(false);
 			jTFieldKMAtual.setForeground(Cores.preto);
 			jTFieldKMAtual.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldKMAtual.setOpaque(true);
@@ -899,12 +989,13 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JTextField getjTFieldCombustivel() {//pode ser pudado para jcombobox!
+	public JTextField getjTFieldCombustivel() {
 		if(jTFieldCombustivel == null){	
 			jTFieldCombustivel = new JTextField();
 			jTFieldCombustivel.setSize(125, 21);
-			jTFieldCombustivel.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
+			jTFieldCombustivel.setBackground(Cores.cinza4);
+			jTFieldCombustivel.setBorder(null);
+			jTFieldCombustivel.setEditable(false);
 			jTFieldCombustivel.setForeground(Cores.preto);
 			jTFieldCombustivel.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCombustivel.setOpaque(true);
@@ -913,109 +1004,111 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JTextField getjTFieldNumeroPreOrcamento() {
-		if(jTFieldNumeroPreOrcamento == null){
-			jTFieldNumeroPreOrcamento = new JTextField();
-			jTFieldNumeroPreOrcamento.setSize(125, 21);
-			jTFieldNumeroPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldNumeroPreOrcamento.setForeground(Cores.preto);
-			jTFieldNumeroPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldNumeroPreOrcamento.setOpaque(true);
-		}
-		return jTFieldNumeroPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldDataPreOrcamento() {
-		if(jTFieldDataPreOrcamento == null){
-			jTFieldDataPreOrcamento = new JTextField();
-			jTFieldDataPreOrcamento.setSize(125, 21);
-			jTFieldDataPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldDataPreOrcamento.setForeground(Cores.preto);
-			jTFieldDataPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldDataPreOrcamento.setOpaque(true);
-		}
-		return jTFieldDataPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldHorarioPreOrcamento() {
-		if(jTFieldHorarioPreOrcamento == null){
-			jTFieldHorarioPreOrcamento = new JTextField();
-			jTFieldHorarioPreOrcamento.setSize(125, 21);
-			jTFieldHorarioPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldHorarioPreOrcamento.setForeground(Cores.preto);
-			jTFieldHorarioPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldHorarioPreOrcamento.setOpaque(true);
-		}
-		return jTFieldHorarioPreOrcamento;
-	}
-
-
-	public JTextField getjTFieldResponsavelPreOrcamento() {
-		if(jTFieldResponsavelPreOrcamento == null){
-			jTFieldResponsavelPreOrcamento = new JTextField();
-			jTFieldResponsavelPreOrcamento.setSize(125, 21);
-			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
-				createLineBorder(Cores.cinza2, 1, false));
-			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
-			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldResponsavelPreOrcamento.setOpaque(true);
-		}
-		return jTFieldResponsavelPreOrcamento;
-	}
-	
 	
     //** Fim getters JTextField **
 	
 	
 	//** Início getters JScrollPane/JTable **
 
-	public JScrollPane getJSPListaProdutoServico() {
-		if(JSPListaProdutoServico == null){
-			JSPListaProdutoServico = new JScrollPane();
-			JSPListaProdutoServico.setViewportView(getjTableListaProdutoServico());
-			JSPListaProdutoServico.setSize(990, 225);	
+	public JScrollPane getjSPjPanelCentro() {
+		if(jSPjPanelCentro == null){
+			jSPjPanelCentro = new JScrollPane();
+			jSPjPanelCentro.setViewportView(getjPanelCentro());
+			jSPjPanelCentro.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			jSPjPanelCentro.setBorder(null);
+			jSPjPanelCentro.setSize(990, 568);	
 		}
-		return JSPListaProdutoServico;
+		return jSPjPanelCentro;
+	}
+
+	public JScrollPane getjSPListaProdutos() {
+		if(jSPListaProdutos == null){
+			jSPListaProdutos = new JScrollPane();
+			jSPListaProdutos.setViewportView(getjTableListaProdutos());
+			jSPListaProdutos.setSize(750, 130);	
+		}
+		return jSPListaProdutos;
+	}
+
+	
+	public JScrollPane getjSPListaServicos() {
+		if(jSPListaServicos == null){
+			jSPListaServicos = new JScrollPane();
+			jSPListaServicos.setViewportView(getjTableListaServicos());
+			jSPListaServicos.setSize(750, 130);	
+			jSPListaServicos.setVisible(false);
+		}
+		return jSPListaServicos;
 	}
 
 
-	public JTable getjTableListaProdutoServico() {
-		if(jTableListaProdutoServico == null){
-			jTableListaProdutoServico = new JTable();
-			jTableListaProdutoServico.setModel(new javax.swing.table.DefaultTableModel(
+	public JTable getjTableListaProdutos() {
+		if(jTableListaProdutos == null){
+			jTableListaProdutos = new JTable();
+			jTableListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
 		                
 		            },
 		            new String [] {
-		                "Data", "Cliente", "Placa", "Qtd.Produtos",
-		                "Desconto", "Valor"
+		                "Cod.Produto", "Qtd.Produto",
+		                "Descrição", "Preço", "Total"
 		            }
 		        ));			
 
-			jTableListaProdutoServico.setFont(Fontes.fontJTablePlain2);
-			jTableListaProdutoServico.setOpaque(false);
-			jTableListaProdutoServico.getTableHeader().setFont(Fontes.fontJTableBold2);
-			jTableListaProdutoServico.getTableHeader().setForeground(Cores.branco);
-			jTableListaProdutoServico.getTableHeader().setBackground(Cores.azul1);
+			jTableListaProdutos.setFont(Fontes.fontJTablePlain2);
+			jTableListaProdutos.setOpaque(false);
+			jTableListaProdutos.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableListaProdutos.getTableHeader().setForeground(Cores.branco);
+			jTableListaProdutos.getTableHeader().setBackground(Cores.azul1);
 		}
-		return jTableListaProdutoServico;
+		return jTableListaProdutos;
+	}
+
+
+	public JTable getjTableListaServicos() {
+		if(jTableListaServicos == null){
+			jTableListaServicos = new JTable();
+			jTableListaServicos.setModel(new javax.swing.table.DefaultTableModel(
+		            new Object [][] {
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                {null, null, null, null, null, null},
+		                
+		            },
+		            new String [] {
+			                "Cod.Serviço", "Descrição",
+			                "Desconto", "Preço", "Total"
+			        }
+		        ));			
+
+			jTableListaServicos.setFont(Fontes.fontJTablePlain2);
+			jTableListaServicos.setOpaque(false);
+			jTableListaServicos.getTableHeader().setFont(Fontes.fontJTableBold2);
+			jTableListaServicos.getTableHeader().setForeground(Cores.branco);
+			jTableListaServicos.getTableHeader().setBackground(Cores.azul1);
+		}
+		return jTableListaServicos;
 	}
 
 	//** Fim getters JScrollPane/JTable **
@@ -1032,12 +1125,39 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		this.getJPanelPreOrcamentoNovo().add(getjButtonImprimir());
 		this.getjButtonImprimir().setLocation(199, 21);
 		
-		this.getJPanelPreOrcamentoNovo().add(getjPanelCentro());
-		this.getjPanelCentro().setLocation(14, 78);
+		this.getJPanelPreOrcamentoNovo().add(getjSPjPanelCentro());
+		this.getjSPjPanelCentro().setLocation(14, 78);
 		
 	}
 	
 	void addCompJpanelCentro() {
+		// -- parte descritiva do pre orçamento
+		this.getjPanelCentro().add(getjLabelDadosPreOrcamento());
+		this.getjLabelDadosPreOrcamento().setLocation(28, 20);
+
+		this.getjPanelCentro().add(getjLabelNumeroPreOrcamento());
+		this.getjLabelNumeroPreOrcamento().setLocation(75, 62);
+
+		this.getjPanelCentro().add(getjTFieldNumeroPreOrcamento());
+		this.getjTFieldNumeroPreOrcamento().setLocation(102, 62);
+
+		this.getjPanelCentro().add(getjLabelDataPreOrcamento());
+		this.getjLabelDataPreOrcamento().setLocation(240, 62);
+
+		this.getjPanelCentro().add(getjTFieldDataPreOrcamento());
+		this.getjTFieldDataPreOrcamento().setLocation(287, 62);
+
+		this.getjPanelCentro().add(getjLabelHorarioPreOrcamento());
+		this.getjLabelHorarioPreOrcamento().setLocation(410, 62);
+
+		this.getjPanelCentro().add(getjTFieldHorarioPreOrcamento());
+		this.getjTFieldHorarioPreOrcamento().setLocation(472, 62);
+
+		this.getjPanelCentro().add(getjLabelResponsavelPreOrcamento());
+		this.getjLabelResponsavelPreOrcamento().setLocation(569, 62);
+
+		this.getjPanelCentro().add(getjTFieldResponsavelPreOrcamento());
+		this.getjTFieldResponsavelPreOrcamento().setLocation(664, 62);
 		
 		// -- parte descritiva cliente
 		this.getjPanelCentro().add(getjButtonProcuraCliente());
@@ -1168,6 +1288,29 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 		this.getjPanelCentro().add(getjTFieldAno());
 		this.getjTFieldAno().setLocation(294, 368);
+		
+		// -- Parte descritiva produtos/serivços
+
+		this.getjPanelCentro().add(getjButtonListaProdutos());
+		this.getjButtonListaProdutos().setLocation(22, 423);
+
+		this.getjPanelCentro().add(getjButtonListaServicos());
+		this.getjButtonListaServicos().setLocation(164, 423);
+
+		this.getjPanelCentro().add(getjSPListaProdutos());
+		this.getjSPListaProdutos().setLocation(22, 461);
+
+		this.getjPanelCentro().add(getjSPListaServicos());
+		this.getjSPListaServicos().setLocation(22, 461);
+
+		this.getjPanelCentro().add(getjButtonAdicionarProdutoServico());
+		this.getjButtonAdicionarProdutoServico().setLocation(900, 459);
+
+		this.getjPanelCentro().add(getjButtonEditarProdutoServico());
+		this.getjButtonEditarProdutoServico().setLocation(900, 484);
+
+		this.getjPanelCentro().add(getjButtonApagarProdutoServico());
+		this.getjButtonApagarProdutoServico().setLocation(900, 509);
 		
 		
 		

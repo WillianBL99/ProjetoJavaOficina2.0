@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import icons.Icones;
 import model.Cores;
 import model.SetSizeIcon;
-import view.JDialogEditarServico;
 import view.JDialogInserirServico;
 import view.JFramePrincipal;
 import view.JPanelConsultarOS;
@@ -62,6 +61,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	public ControlJPanelPrincipal(JFramePrincipal jFramePricipal, JPanelPrincipal jPanelPrincipal) {		
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jFramePrincipal = jFramePricipal;
+		
 		
 		jButtonClicado = this.getjPanelPrincipal().getJButtonInicio();
 		iconeJButtonClicado = Icones.getHomeOff();

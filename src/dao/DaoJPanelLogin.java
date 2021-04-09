@@ -2,6 +2,7 @@ package dao;
 
 public class DaoJPanelLogin {
 	
+	// recebe o usuario e a senha e realiza a validação.
 	public boolean confLoginSenha(String usuario, String senha) {
 		
 		try {

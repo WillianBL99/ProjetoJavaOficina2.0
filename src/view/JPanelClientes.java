@@ -3,20 +3,16 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -26,6 +22,8 @@ import model.SetSizeIcon;
  * @author pWili
  *
  */
+
+@SuppressWarnings("serial")
 public class JPanelClientes  extends JPanel{
 
 
@@ -47,7 +45,7 @@ public class JPanelClientes  extends JPanel{
 	
 	private JTable jTableClientes;
 	
-	private JComboBox<String> jComboPesquisarPor;
+	private Choice choicePesquisarPor;
 		
 	//** Fim declaração de variáveis **
 	
@@ -194,45 +192,19 @@ public class JPanelClientes  extends JPanel{
 	
 	//** Início getters JComboBox **
 	
-		public JComboBox<String> getjComboPesquisarPor() { // OK
-			if(jComboPesquisarPor == null) {
-				jComboPesquisarPor = new JComboBox<String>();
-				jComboPesquisarPor.setForeground(Cores.preto);
-				jComboPesquisarPor.setFont(Fontes.fontJLabelPlain1);
-				jComboPesquisarPor.setSize(150, 25);
-				jComboPesquisarPor.setOpaque(false);
-				jComboPesquisarPor.setFocusable(false);
-				jComboPesquisarPor.setModel(new javax.swing.
-						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "CPF", "CNPJ", "Nome"}));
-				jComboPesquisarPor.setBorder(null);
-				
-				jComboPesquisarPor.setUI(new BasicComboBoxUI() {
-				    protected JButton createArrowButton() {
-				        return new JButton() {
-				        	@Override
-				        	public Color getBackground() {		        		
-				        		return super.getBackground().cyan;
-				        	}
-				        	@Override
-				        	public Border getBorder() {
-				        		return BorderFactory.createEmptyBorder();
-				        	}
-				        	@Override
-				            public int getWidth() {
-				            	  return 1;
-				            }
-				        	@Override
-				            public int getHeight() {
-				            	  return 1;
-				            }
-				        };
-				    }
-				});
-				
-			}
-			
-			return jComboPesquisarPor;
+	public Choice getChoicePesquisarPor() {
+		if(choicePesquisarPor == null){
+			choicePesquisarPor = new Choice();
+			choicePesquisarPor.setSize(150, 25);
+			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
+			choicePesquisarPor.setVisible(true);
+			choicePesquisarPor.add("Selec. opção");
+			choicePesquisarPor.add("Cliente");
+			choicePesquisarPor.add("Placa");
+			choicePesquisarPor.setFocusable(false);	
 		}
+		return choicePesquisarPor;
+	}
 		
 		
 		
@@ -309,8 +281,8 @@ public class JPanelClientes  extends JPanel{
 	
 	public void addCompJPanelBuscaClientes() {		
 
-		this.getjPanelBuscaClientes().add(this.getjComboPesquisarPor());
-		this.getjComboPesquisarPor().setLocation(14, 16);
+		this.getjPanelBuscaClientes().add(this.getChoicePesquisarPor());
+		this.getChoicePesquisarPor().setLocation(14, 16);
 		
 		this.getjPanelBuscaClientes().add(this.getjTFieldBuscarPor());
 		this.getjTFieldBuscarPor().setLocation(180, 16);

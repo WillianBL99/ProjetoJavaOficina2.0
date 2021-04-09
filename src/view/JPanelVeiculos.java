@@ -3,6 +3,7 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -45,7 +46,7 @@ public class JPanelVeiculos extends JPanel{
 	
 	private JTable jTableVeiculos;
 	
-	private JComboBox<String> jComboPesquisarPor;
+	private Choice choicePesquisarPor;
 		
 	//** Fim declaração de variáveis **
 	
@@ -192,21 +193,18 @@ public class JPanelVeiculos extends JPanel{
 	
 	//** Início getters JComboBox **
 	
-		public JComboBox<String> getjComboPesquisarPor() { // OK
-			if(jComboPesquisarPor == null) {
-				jComboPesquisarPor = new JComboBox<String>();
-				jComboPesquisarPor.setForeground(Cores.preto);
-				jComboPesquisarPor.setFont(Fontes.fontJLabelPlain1);
-				jComboPesquisarPor.setSize(150, 25);
-				jComboPesquisarPor.setOpaque(false);
-				jComboPesquisarPor.setFocusable(false);
-				jComboPesquisarPor.setModel(new javax.swing.
-						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "Chassi", "Placa"}));
-				jComboPesquisarPor.setBorder(null);
-				
+		public Choice choicePesquisarPor() {
+			if(choicePesquisarPor == null){
+				choicePesquisarPor = new Choice();
+				choicePesquisarPor.setSize(150, 25);
+				choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
+				choicePesquisarPor.setVisible(true);
+				choicePesquisarPor.add("Selec. opção");
+				choicePesquisarPor.add("Cliente");
+				choicePesquisarPor.add("Placa");
+				choicePesquisarPor.setFocusable(false);	
 			}
-			
-			return jComboPesquisarPor;
+			return choicePesquisarPor;
 		}
 		
 		
@@ -284,8 +282,8 @@ public class JPanelVeiculos extends JPanel{
 	
 	public void addCompJPanelBuscaVeiculos() {		
 
-		this.getjPanelBuscaVeiculos().add(this.getjComboPesquisarPor());
-		this.getjComboPesquisarPor().setLocation(14, 16);
+		this.getjPanelBuscaVeiculos().add(this.choicePesquisarPor());
+		this.choicePesquisarPor().setLocation(14, 16);
 		
 		this.getjPanelBuscaVeiculos().add(this.getjTFieldBuscarPor());
 		this.getjTFieldBuscarPor().setLocation(180, 16);

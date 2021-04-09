@@ -1,16 +1,15 @@
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import model.Cores;
 import model.Fontes;
 
@@ -35,7 +34,7 @@ public class JPanelVendasNovo extends JPanel {
 	
 	private JTextField JTFieldTotal;
 	
-	private JComboBox<String> jComboBoxDesc;
+	private Choice choiceBoxDesc;
 	
 	private JScrollPane jSPInserirProduto;
 	private JScrollPane jSPProdutosCompra;
@@ -391,18 +390,17 @@ public class JPanelVendasNovo extends JPanel {
 	
 	//** Início getters JComboBox **
 	
-	public JComboBox<String> getjComboBoxDesc() { // OK
-		if(jComboBoxDesc == null) {
-			jComboBoxDesc = new JComboBox<String>();
-			jComboBoxDesc.setForeground(Cores.preto);
-			jComboBoxDesc.setFont(Fontes.fontJLabelBold1);
-			jComboBoxDesc.setSize(170, 23);
-			jComboBoxDesc.setOpaque(false);
-			jComboBoxDesc.setFocusable(false);
-			jComboBoxDesc.setModel(new javax.swing.
-					DefaultComboBoxModel<>(new String[] { "Descrição produto", "Codigo produto"}));
+	public Choice getchoiceBoxDesc() {
+		if(choiceBoxDesc == null){
+			choiceBoxDesc = new Choice();
+			choiceBoxDesc.setSize(170, 23);
+			choiceBoxDesc.setFont(Fontes.fontJTFieldPlain1);
+			choiceBoxDesc.setVisible(true);
+			choiceBoxDesc.add("Descrição produto");
+			choiceBoxDesc.add("Codigo produto");
+			choiceBoxDesc.setFocusable(false);	
 		}
-		return jComboBoxDesc;
+		return choiceBoxDesc;
 	}
 	
 	
@@ -541,8 +539,8 @@ public class JPanelVendasNovo extends JPanel {
 	
 	public void addCompJPanelInserirProduto() { // OK
 		
-		this.getjPanelInserirProduto().add(this.getjComboBoxDesc());
-		this.getjComboBoxDesc().setLocation(15, 42);
+		this.getjPanelInserirProduto().add(this.getchoiceBoxDesc());
+		this.getchoiceBoxDesc().setLocation(15, 42);
 
 		
 		this.getjPanelInserirProduto().add(this.getjLabelQuantidade());

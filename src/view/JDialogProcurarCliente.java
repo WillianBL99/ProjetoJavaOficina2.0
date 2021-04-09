@@ -30,13 +30,13 @@ public class JDialogProcurarCliente extends JDialog{
 
 public JDialogProcurarCliente(Frame frame, boolean modal) {
 		super(frame, "Procura Cliente");
-		this.setModal(modal);
-		getJDialogProcurarCliente();
+		this.modal = modal;
 		addCompJDialogProcurarCliente();
 	
 	}
 
 	//** Início declaração de variáveis **
+	private boolean modal;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
 	private JLabel jLabelPesquisarPor;
@@ -53,11 +53,12 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 
 	//** Início getters JPanels **
 	public JDialogProcurarCliente getJDialogProcurarCliente() {
-		
-		getContentPane().setLayout(null);
-		this.setSize(new Dimension(937, 308));
-		this.setBackground(Cores.cinza4);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setLayout(null);
+		this.getContentPane().setBackground(Cores.cinza5);
+		this.setSize(937, 308);
 		this.setVisible(true);
+		this.setModal(modal);
 		
 		return this;
 	}

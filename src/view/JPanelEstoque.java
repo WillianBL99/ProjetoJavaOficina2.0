@@ -3,20 +3,17 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -50,7 +47,7 @@ public class JPanelEstoque  extends JPanel{
 	
 	private JTable jTableEstoque;
 	
-	private JComboBox<String> jComboPesquisarPor;
+	private Choice choicePesquisarPor;
 		
 	//** Fim declaração de variáveis **
 	
@@ -220,21 +217,18 @@ public class JPanelEstoque  extends JPanel{
 	
 	//** Início getters JComboBox **
 	
-		public JComboBox<String> getjComboPesquisarPor() { // OK
-			if(jComboPesquisarPor == null) {
-				jComboPesquisarPor = new JComboBox<String>();
-				jComboPesquisarPor.setForeground(Cores.preto);
-				jComboPesquisarPor.setFont(Fontes.fontJLabelPlain1);
-				jComboPesquisarPor.setSize(150, 25);
-				jComboPesquisarPor.setOpaque(false);
-				jComboPesquisarPor.setFocusable(false);
-				jComboPesquisarPor.setModel(new javax.swing.
-						DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "Código", "Descrição", "Marca"}));
-				jComboPesquisarPor.setBorder(null);
-				
+		public Choice getchoicePesquisarPor() {
+			if(choicePesquisarPor == null){
+				choicePesquisarPor = new Choice();
+				choicePesquisarPor.setSize(150, 25);
+				choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
+				choicePesquisarPor.setVisible(true);
+				choicePesquisarPor.add("Selec. opção");
+				choicePesquisarPor.add("Cliente");
+				choicePesquisarPor.add("Placa");
+				choicePesquisarPor.setFocusable(false);	
 			}
-			
-			return jComboPesquisarPor;
+			return choicePesquisarPor;
 		}
 		
 		
@@ -315,8 +309,8 @@ public class JPanelEstoque  extends JPanel{
 	
 	public void addCompJPanelBuscaEstoque() {		
 
-		this.getjPanelBuscaEstoque().add(this.getjComboPesquisarPor());
-		this.getjComboPesquisarPor().setLocation(14, 16);
+		this.getjPanelBuscaEstoque().add(this.getchoicePesquisarPor());
+		this.getchoicePesquisarPor().setLocation(14, 16);
 		
 		this.getjPanelBuscaEstoque().add(this.getjTFieldBuscarPor());
 		this.getjTFieldBuscarPor().setLocation(180, 16);

@@ -66,11 +66,11 @@ public class JDialogProcurarPeca extends JDialog{
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
-		this.setBackground(Cores.branco);
+		this.getContentPane().setBackground(Cores.cinza5);
 		this.setSize(975, 310);
 		this.setVisible(true);
 		this.setModal(modal);
-		this.setVisible(true);
+		
 		return this;
 	}
 	

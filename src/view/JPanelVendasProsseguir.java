@@ -297,7 +297,7 @@ public class JPanelVendasProsseguir extends JPanel{
 					);
 			jTFildDesconto.setForeground(Cores.azul1);
 			jTFildDesconto.setFont(Fontes.fontJTFieldBold2);
-			jTFildDesconto.setSize(345, 55);
+			jTFildDesconto.setSize(345, 77);
 			jTFildDesconto.setOpaque(false);
 			
 		}
@@ -319,7 +319,7 @@ public class JPanelVendasProsseguir extends JPanel{
 					);
 			jTFildValorPagar.setForeground(Cores.azul1);
 			jTFildValorPagar.setFont(Fontes.fontJTFieldBold2);
-			jTFildValorPagar.setSize(345, 55);
+			jTFildValorPagar.setSize(345, 77);
 			jTFildValorPagar.setOpaque(false);
 			
 		}
@@ -341,7 +341,7 @@ public class JPanelVendasProsseguir extends JPanel{
 					);
 			jTFieldValorPago.setForeground(Cores.azul1);
 			jTFieldValorPago.setFont(Fontes.fontJTFieldBold2);
-			jTFieldValorPago.setSize(226, 55);
+			jTFieldValorPago.setSize(226, 68);
 			jTFieldValorPago.setOpaque(false);
 			
 		}
@@ -363,7 +363,7 @@ public class JPanelVendasProsseguir extends JPanel{
 					);
 			jTFieldTroco.setForeground(Cores.azul1);
 			jTFieldTroco.setFont(Fontes.fontJTFieldBold2);
-			jTFieldTroco.setSize(226, 55);
+			jTFieldTroco.setSize(226, 68);
 			jTFieldTroco.setOpaque(false);
 			
 		}

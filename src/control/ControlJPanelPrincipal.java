@@ -49,6 +49,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private ControlJPanelHome controlJPanelHome;
 	private ControlJPanelVendas controlJPanelVendas;
 	private ControlJPanelPreOrcamento controlJPanelPreOrcamento;
+	private ControlJPanelOrcamentoFinal controlJPanelOrcamentoFinal;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
@@ -154,12 +155,16 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
 			jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
 				// quando for chamar o mesmo jPanel novamente.
+			
+			//ATENÇÃO!!!!!!!!!!!!! CODIGO ACIMA PARECE ESTÁ DANDO PROBEMA COM O CONTROLADOR
+			
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point, this.getjPanelPreOrcamento().getTituloDescricaoTela());			
 			getControlJPanelPreOrcamento();
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
 			jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
 				// quando for chamar o mesmo jPanel novamente.
+			getjControlOrcamentoFinal();
 			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			
 			
 			
@@ -345,6 +350,17 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 				jPanelOrcamentoFinal = new JPanelOrcamentoFinal();
 			}
 			return jPanelOrcamentoFinal;
+		}
+		
+		
+		public ControlJPanelOrcamentoFinal getjControlOrcamentoFinal() {
+			if(controlJPanelOrcamentoFinal == null){
+				controlJPanelOrcamentoFinal = new ControlJPanelOrcamentoFinal(
+						getjFramePricipal(),
+						getjPanelPrincipal(),
+						getjPanelOrcamentoFinal());
+			}
+			return controlJPanelOrcamentoFinal;
 		}
 		
 		

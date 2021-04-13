@@ -546,13 +546,15 @@ public class JPanelConsultarOS extends JPanel {
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
 	
-			jTFieldCpf = new JTextField("999.999.999-99");
+			jTFieldCpf = new JTextField("999.999.999-00");
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldCpf.setForeground(Cores.preto);
 			jTFieldCpf.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldCpf.setEditable(false);
 			jTFieldCpf.setOpaque(true);
+			
 		}
 		return jTFieldCpf;
 	}
@@ -566,6 +568,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldEmail.setForeground(Cores.preto);
 			jTFieldEmail.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldEmail.setOpaque(true);
+			jTFieldEmail.setEditable(false);
 		}
 		return jTFieldEmail;
 	}
@@ -579,6 +582,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldRua.setForeground(Cores.preto);
 			jTFieldRua.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldRua.setOpaque(true);
+			jTFieldRua.setEditable(false);
 		}
 		return jTFieldRua;
 	}
@@ -593,6 +597,8 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldNome.setForeground(Cores.preto);
 			jTFieldNome.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNome.setOpaque(true);
+			jTFieldNome.setEditable(false);
+			
 		}
 		return jTFieldNome;
 	}
@@ -606,6 +612,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldCidade.setForeground(Cores.preto);
 			jTFieldCidade.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCidade.setOpaque(true);
+			jTFieldCidade.setEditable(false);
 		}
 		return jTFieldCidade;
 	}
@@ -619,6 +626,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldNumeroCasa.setForeground(Cores.preto);
 			jTFieldNumeroCasa.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroCasa.setOpaque(true);
+			jTFieldNumeroCasa.setEditable(false);
 		}
 		return jTFieldNumeroCasa;
 	}
@@ -632,6 +640,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldTipo.setForeground(Cores.preto);
 			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTipo.setOpaque(true);
+			jTFieldTipo.setEditable(false);
 		}
 		return jTFieldTipo;
 	}
@@ -645,6 +654,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldBairro.setForeground(Cores.preto);
 			jTFieldBairro.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldBairro.setOpaque(true);
+			jTFieldBairro.setEditable(false);
 		}
 		return jTFieldBairro;
 	}
@@ -658,6 +668,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldTelefone.setForeground(Cores.preto);
 			jTFieldTelefone.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldTelefone.setOpaque(true);
+			jTFieldTelefone.setEditable(false);
 		}
 		return jTFieldTelefone;
 	}
@@ -673,6 +684,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldNumeroVeiculo.setForeground(Cores.preto);
 			jTFieldNumeroVeiculo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroVeiculo.setOpaque(true);
+			jTFieldNumeroVeiculo.setEditable(false);
 		}
 		return jTFieldNumeroVeiculo;
 	}
@@ -686,6 +698,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldMarca.setForeground(Cores.preto);
 			jTFieldMarca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMarca.setOpaque(true);
+			jTFieldMarca.setEditable(false);
 		}
 		return jTFieldMarca;
 	}
@@ -699,6 +712,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldCor.setForeground(Cores.preto);
 			jTFieldCor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCor.setOpaque(true);
+			jTFieldCor.setEditable(false);
 		}
 		return jTFieldCor;
 	}
@@ -712,6 +726,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldChassi.setForeground(Cores.preto);
 			jTFieldChassi.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldChassi.setOpaque(true);
+			jTFieldChassi.setEditable(false);
 		}
 		return jTFieldChassi;
 	}
@@ -725,6 +740,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldModelo.setForeground(Cores.preto);
 			jTFieldModelo.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldModelo.setOpaque(true);
+			jTFieldModelo.setEditable(false);
 		}
 		return jTFieldModelo;
 	}
@@ -738,6 +754,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldAno.setForeground(Cores.preto);
 			jTFieldAno.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldAno.setOpaque(true);
+			jTFieldAno.setEditable(false);
 		}
 		return jTFieldAno;
 	}
@@ -751,6 +768,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldPlaca.setForeground(Cores.preto);
 			jTFieldPlaca.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldPlaca.setOpaque(true);
+			jTFieldPlaca.setEditable(false);
 		}
 		return jTFieldPlaca;
 	}
@@ -764,6 +782,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldMotor.setForeground(Cores.preto);
 			jTFieldMotor.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMotor.setOpaque(true);
+			jTFieldMotor.setEditable(false);
 		}
 		return jTFieldMotor;
 	}
@@ -777,6 +796,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldKMAtual.setForeground(Cores.preto);
 			jTFieldKMAtual.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldKMAtual.setOpaque(true);
+			jTFieldKMAtual.setEditable(false);
 		}
 		return jTFieldKMAtual;
 	}
@@ -791,6 +811,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldCombustivel.setForeground(Cores.preto);
 			jTFieldCombustivel.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldCombustivel.setOpaque(true);
+			jTFieldCombustivel.setEditable(false);
 		}
 		return jTFieldCombustivel;
 	}
@@ -806,6 +827,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldNumeroOS.setForeground(Cores.preto);
 			jTFieldNumeroOS.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldNumeroOS.setOpaque(true);
+			jTFieldNumeroOS.setEditable(false);
 		}
 		return jTFieldNumeroOS;
 	}
@@ -819,6 +841,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldServico.setForeground(Cores.preto);
 			jTFieldServico.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldServico.setOpaque(true);
+			jTFieldServico.setEditable(false);
 		}
 		return jTFieldServico;
 	}
@@ -832,6 +855,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldReclamacao.setForeground(Cores.preto);
 			jTFieldReclamacao.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldReclamacao.setOpaque(true);
+			jTFieldReclamacao.setEditable(false);
 		}
 		return jTFieldReclamacao;
 	}
@@ -845,6 +869,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldData.setForeground(Cores.preto);
 			jTFieldData.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldData.setOpaque(true);
+			jTFieldData.setEditable(false);
 		}
 		return jTFieldData;
 	}
@@ -858,6 +883,7 @@ public class JPanelConsultarOS extends JPanel {
 			jTFieldMotorista.setForeground(Cores.preto);
 			jTFieldMotorista.setFont(Fontes.fontJTFieldPlain1);
 			jTFieldMotorista.setOpaque(true);
+			jTFieldMotorista.setEditable(false);
 		}
 		return jTFieldMotorista;
 	}

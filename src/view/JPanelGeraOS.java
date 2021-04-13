@@ -20,6 +20,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
+
+/**
+ * @author josim
+ *
+ */
 	public class JPanelGeraOS extends JPanel {
 		
 		public JPanelGeraOS() {

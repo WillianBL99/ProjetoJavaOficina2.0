@@ -2,22 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
 
@@ -25,6 +19,7 @@ import javax.swing.JRadioButton;
  * @author josim
  *
  */
+	@SuppressWarnings("serial")
 	public class JPanelGeraOS extends JPanel {
 		
 		public JPanelGeraOS() {
@@ -104,7 +99,7 @@ import javax.swing.JRadioButton;
 		private JTextField jTFieldReclamacao;
 		private JTextField jTFieldData;
 		private JTextField jTFieldMotorista;
-		private JComboBox jComboBoxResponsavel;
+		private JComboBox<String> jComboBoxResponsavel;
 		
 	//** Fim declaração de variáveis **
 
@@ -881,7 +876,7 @@ import javax.swing.JRadioButton;
 		
 	//** Início getters JComboBox **
 		
-		public JComboBox getjComboBoxResponsavel() {
+		public JComboBox<String> getjComboBoxResponsavel() {
 			if(jComboBoxResponsavel == null){
 		
 				jComboBoxResponsavel = new JComboBox<String>();

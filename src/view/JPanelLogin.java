@@ -16,6 +16,7 @@ import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
 
+@SuppressWarnings("serial")
 public class JPanelLogin extends JPanel{
 	
 	//** Início declaração de variáveis **

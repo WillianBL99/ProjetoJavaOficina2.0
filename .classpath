@@ -11,7 +11,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Programas/Librerias LookAndFeel/Librerias LookAndFeel/JTattooDemo/JTattooDemo.jar">
+	<classpathentry kind="lib" path="C:/projetos/Projeto Programa java/ProjetoJavaOficina2.0/Libraries/JTattoo-1.6.11.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

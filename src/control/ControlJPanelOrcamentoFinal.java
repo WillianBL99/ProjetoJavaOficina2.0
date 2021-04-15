@@ -3,7 +3,7 @@
  */
 package control;
 
-import java.awt.Point;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 
 import view.JFramePrincipal;
 import view.JPanelOrcamentoFinal;
-import view.JPanelPreOrcamento;
 import view.JPanelPreOrcamentoNovo;
 import view.JPanelPrincipal;
 
@@ -26,7 +25,7 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 
 	//** Início declaração de variáveis **
 	
-	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
+	//private Point point; // posição que a tela e setada na jpanelprincipal
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
@@ -152,6 +151,13 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 	//** Fim métodos sobrescritos **
 	
 	//** Início métodos da classe **
+	
+	/*private Point getpoint() {
+		if(point == null) {
+			point  = new Point(250, 47);
+		}
+		return point;
+	}*/
 
 	public JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null) {

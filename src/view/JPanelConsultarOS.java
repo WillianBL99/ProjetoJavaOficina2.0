@@ -23,6 +23,7 @@ import model.SetSizeIcon;
  * @author josim
  *
  */
+@SuppressWarnings("serial")
 public class JPanelConsultarOS extends JPanel {
 	public JPanelConsultarOS() {
 		getJPanelConsultarOS();
@@ -102,7 +103,7 @@ public class JPanelConsultarOS extends JPanel {
 	private JTextField jTFieldReclamacao;
 	private JTextField jTFieldData;
 	private JTextField jTFieldMotorista;
-	private JComboBox jComboBoxResponsavel;
+	private JComboBox<String> jComboBoxResponsavel;
 	
 //** Fim declaração de variáveis **
 
@@ -893,7 +894,7 @@ public class JPanelConsultarOS extends JPanel {
 	
 //** Início getters JComboBox **
 	
-	public JComboBox getjComboBoxResponsavel() {
+	public JComboBox<String> getjComboBoxResponsavel() {
 		if(jComboBoxResponsavel == null){
 	
 			jComboBoxResponsavel = new JComboBox<String>();

@@ -30,7 +30,7 @@ public class ControlMain {
 	     }
 	     
 
-		// getjFramePrincipal().alterarJPanel(getjPanelLogin());
+		 getjFramePrincipal().alterarJPanel(getjPanelLogin());
 		 getcontrolJPanelLogin();
 		
 	}

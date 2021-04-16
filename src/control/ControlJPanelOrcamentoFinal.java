@@ -42,7 +42,6 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 	public ControlJPanelOrcamentoFinal(JFramePrincipal jFramePrincipal, JPanelPrincipal jPanelPrincipal,
 			JPanelOrcamentoFinal jPanelOrcamentoFinal) {
 		super();
-		System.out.println("chamou");
 		this.jFramePrincipal = jFramePrincipal;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jPanelOrcamentoFinal = jPanelOrcamentoFinal;
@@ -87,39 +86,10 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("clicou");
 		
 		if(e.getSource() == getjPanelOrcamentoFinal().getjButtonNovoOrcamentoFinal()) {
 			// quando o botão novo pré orçamento for clicado
-			String message = "Deseja originar a partir de um pré orçamento?";
-			String title = "Gerar novo orçamento final";
-			String[] options = {"Cancelar"}; // botoes disponíves na tela
-			int optionSelect = 0; //rebe o valor do botão selecionado pelo usuário.
-			
-			optionSelect = JOptionPane.showOptionDialog(null,
-					message,
-					title,
-					JOptionPane.QUESTION_MESSAGE,
-					JOptionPane.YES_NO_OPTION,
-					null,
-					options,
-					options[0]);
-			
-			// define ações de acor do o botão clicado no JOptionPane
-			switch (optionSelect) {
-				case 0:
-					System.out.println("cancelar");
-					break;
-					
-				case 1:
-					System.out.println("sim");
-					break;
-					
-				case 2:
-					System.out.println("não");
-					break;
-					
-			}
+			this.gerarNovoOrcamentoFinal();
 		}
 		
 	}
@@ -158,7 +128,93 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 		}
 		return point;
 	}*/
+	
+	
+	/*
+	 * Exibe uma um JOptionPane com a messagem "Deseja originar a partir de um pré orçamento?"
+	 * e disponibiliza as opções: Sim, não e cancelar.
+	 * 
+	 */
+	private void gerarNovoOrcamentoFinal() {
+		
+		int optionSelect = 0; //rebe o valor do botão selecionado pelo usuário.
 
+		String message = "Deseja originar a partir de um pré orçamento?";
+		String title = "Gerar novo orçamento final";
+		String[] options = {"Sim", "Não", "Cancelar"}; // botoes disponíves na tela
+		
+		optionSelect = JOptionPane.showOptionDialog(null,
+				message,
+				title,
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null,
+				options,
+				options[0]);
+		
+		switch (optionSelect) {
+		//opção "SIM"
+		case 0:			
+			this.gerarParcialOuCompleto();
+			break;
+			
+		//opção "NÃO"
+		case 1:
+			// ? leva direto para novo orçamento final
+			break;
+			
+		//opção "CANCELAR"
+		case 2:
+			
+			break;
+			
+		}
+	}
+
+	
+	/*
+	 * Exibe uma um JOptionPane com a messagem "Selecionar ítens expecificos ou todos do pre orçamento?"
+	 * e disponibiliza as opções: Parcial, todos e voltar.
+	 * 
+	 */
+	private void gerarParcialOuCompleto() {
+		
+		int optionSelect = 0; //rebe o valor do botão selecionado pelo usuário.
+
+		String message = "Selecionar ítens expecificos ou todos do pre orçamento?";
+		String title = "Gerar novo orçamento final";
+		String[] options = {"Parcial", "Todos", "Voltar"}; // botoes disponíves na tela
+		
+		optionSelect = JOptionPane.showOptionDialog(null,
+				message,
+				title,
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null,
+				options,
+				options[0]);
+		
+		switch (optionSelect) {
+		//opção "PARCIAL"
+		case 0:			
+			// ? leva para tela de seleção de ítens
+			
+			break;
+			
+		//opção "TODOS"
+		case 1:
+			// ? leva direto para novo orçamento final
+			
+			break;
+			
+		//opção "VOLTAR"
+		case 2:
+			
+			break;
+		}
+	}
+	
+	
 	public JFramePrincipal getjFramePrincipal() {
 		if(jFramePrincipal == null) {
 			jFramePrincipal = new JFramePrincipal();

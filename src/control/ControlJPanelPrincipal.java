@@ -153,7 +153,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
-			jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+			//jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
 				// quando for chamar o mesmo jPanel novamente.
 			
 			//ATENÇÃO!!!!!!!!!!!!! CODIGO ACIMA PARECE ESTÁ DANDO PROBEMA COM O CONTROLADOR
@@ -162,7 +162,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			getControlJPanelPreOrcamento();
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
-			jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
+			//jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
 				// quando for chamar o mesmo jPanel novamente.
 			getjControlOrcamentoFinal();
 			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			

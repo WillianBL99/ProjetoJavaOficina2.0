@@ -16,6 +16,7 @@ public class JPanelHome extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JLabel jLabelHoras;
 	private JLabel jLabelLogo;
@@ -48,6 +49,14 @@ public class JPanelHome extends JPanel{
 	//** Fim getters JButon **
 	
 	//** Início getters JLabel **
+	
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Home";	
+		}
+		return tituloDescricaoTela;
+	}
+	
 	public JLabel getjLabelHoras() {
 		if(jLabelHoras == null) {
 			jLabelHoras = new JLabel();

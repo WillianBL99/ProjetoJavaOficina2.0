@@ -31,6 +31,7 @@ public class JPanelUsuarios  extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JButton jButtonNovoUsuario;
 	private JButton jButtonEditar;
@@ -86,7 +87,13 @@ public class JPanelUsuarios  extends JPanel{
 	//** Fim getters JPanel **
 	
 	//** Início getters JLabel **
-		
+	
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){	
+			tituloDescricaoTela = "Pré Orçamento";	
+		}
+		return tituloDescricaoTela;
+	}		
 	
 	//** Fim getters JLabel **
 	

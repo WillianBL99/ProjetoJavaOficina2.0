@@ -66,8 +66,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		
 		jButtonClicado = this.getjPanelPrincipal().getJButtonInicio();
 		iconeJButtonClicado = Icones.getHomeOff();
-		
-		getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);
+		getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point,
+				this.getjPanelHome().getTituloDescricaoTela());		
 		getControlJPanelHome();
 
 		AddEvent();
@@ -119,7 +119,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		
 		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {		
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getJButtonInicio(), Icones.getHomeOn(), Icones.getHomeOff());
-			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point);	
+			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point,
+					this.getjPanelHome().getTituloDescricaoTela());		
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -132,11 +133,11 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSCriar()) {
 			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point);	
-			
+			// !!! colocar título
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSConsulta()) {
 			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point);	
-			
+			// !!! colocar título			
 			
 		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVendas(), Icones.getVendasOn(), Icones.getVendasOff());
@@ -170,7 +171,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
-			getjPanelPrincipal().alterarJPanel(getjPanelVeiculos(), point);
+			getjPanelPrincipal().alterarJPanel(getjPanelVeiculos(), point,
+					this.getjPanelVeiculos().getTituloDescricaoTela());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -184,14 +186,16 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			jPanelUsuarios = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
 				// quando for chamar o mesmo jPanel novamente.
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
-			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point);
+			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point,
+					this.getjPanelUsuarios().getTituloDescricaoTela());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
-			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(), point, this.getjPanelEstoque().getTituloDescricaoTela());
+			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(),
+					point, this.getjPanelEstoque().getTituloDescricaoTela());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			

@@ -10,7 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import icons.Icones;
 import model.Cores;
@@ -46,21 +49,38 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 	private JButton jButtonSelecionar;
 	
 	private JComboBox<String> jComboBoxPesquisa;
+	
+	private JTable jTableCliente;
+	
+	private JScrollPane jSPanel;
+	
 	//** Fim declaração de variáveis **
 
 
 	//** Início getters JPanels **
-	public JDialogProcurarCliente getJDialogProcurarCliente() {
+ 	public JDialogProcurarCliente getJDialogProcurarCliente() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		this.getContentPane().setBackground(Cores.cinza5);
-		this.setSize(937, 308);
+		this.setSize(973, 308);
 		this.setVisible(true);
 		this.setModal(modal);
 		
 		return this;
 	}
+
 	
+	public JScrollPane getjSPanel() {
+		if(jSPanel == null){
+	
+			jSPanel = new JScrollPane();
+			jSPanel.setViewportView(getjTableCliente());
+			jSPanel.setSize(880,112);
+	
+		}
+		return jSPanel;
+	}
+
 	
 	//** Fim getters JPanel **
 
@@ -159,7 +179,7 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 	
 	
 	//** Início getters JComboBox **
-		public JComboBox<String> getjComboBoxPesquisa() {
+	public JComboBox<String> getjComboBoxPesquisa() {
 			if(jComboBoxPesquisa == null){
 				
 				jComboBoxPesquisa = new JComboBox<String>();
@@ -176,7 +196,48 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 
 	//** Fim getters JComboBox **
 	
+	//** Início getters Table **
 	
+	public JTable getjTableCliente() {
+			if(jTableCliente == null){
+		
+				jTableCliente = new JTable();
+				jTableCliente.setModel(new DefaultTableModel(
+						 new Object [][] {
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                {null, null, null, null, null, null},
+				                
+				            },
+				            new String [] {
+				                "CNPJ", "CPF", "NOME", "CIDADE",
+				                "TELEFONE"
+				            }
+				        ));	
+						
+				jTableCliente.setFont(Fontes.fontJTablePlain2);
+				jTableCliente.setOpaque(false);
+				jTableCliente.getTableHeader().setFont(Fontes.fontJTableBold2);
+				jTableCliente.getTableHeader().setForeground(Cores.branco);
+				jTableCliente.getTableHeader().setBackground(Cores.azul1);
+			}// coloca a tabela dentro de um jscroll pane
+			return jTableCliente;
+		}
+		
+	//** Fim getters Table **
+
+
+		
+		
 	//** Início métodos adição de componentes **
 	void addCompJDialogProcurarCliente() {
 		this.getJDialogProcurarCliente().getContentPane().add(getjLabelPesquisarPor());
@@ -196,7 +257,20 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjButtonSelecionar());
 		this.getjButtonSelecionar().setLocation(800, 235);
+		
+		this.getJDialogProcurarCliente().getContentPane().add(getjSPanel());
+		this.getjSPanel().setLocation(50,112);
 	}
+
+
+	/*return newdfha jSPane;
+	*/
+
+	
+
+	/*return newdfha jTableCliente;
+	*/
+
 
 
 	

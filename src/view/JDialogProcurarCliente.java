@@ -204,18 +204,18 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 				jTableCliente = new JTable();
 				jTableCliente.setModel(new DefaultTableModel(
 						 new Object [][] {
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
-				                {null, null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
+				                {null, null, null, null, null},
 				                
 				            },
 				            new String [] {
@@ -229,7 +229,7 @@ public JDialogProcurarCliente(Frame frame, boolean modal) {
 				jTableCliente.getTableHeader().setFont(Fontes.fontJTableBold2);
 				jTableCliente.getTableHeader().setForeground(Cores.branco);
 				jTableCliente.getTableHeader().setBackground(Cores.azul1);
-			}// coloca a tabela dentro de um jscroll pane
+			}
 			return jTableCliente;
 		}
 		

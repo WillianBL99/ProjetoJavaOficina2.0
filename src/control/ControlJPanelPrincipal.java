@@ -132,11 +132,11 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSCriar()) {
-			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point);	
+			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point,  this.getjPanelGerarOS().getTituloDescricaoTela());	
 			// !!! colocar título
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSConsulta()) {
-			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point);	
+			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point,  this.getjPanelConsultarOS().getTituloDescricaoTela());	
 			// !!! colocar título			
 			
 		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {

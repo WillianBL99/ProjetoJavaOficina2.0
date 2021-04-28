@@ -31,6 +31,7 @@ import javax.swing.JRadioButton;
 	
 	//** Início declaração de variáveis **
 		private SetSizeIcon setSizeIcon = new SetSizeIcon();
+		private String tituloDescricaoTela;
 		
 		private JPanel jPanelCentro;
 		
@@ -910,6 +911,17 @@ import javax.swing.JRadioButton;
 			
 		}
 		
+		/*return newdfha tituloDescricaoTela;
+		*/
+		public String getTituloDescricaoTela() {
+			if(tituloDescricaoTela == null){
+		
+				tituloDescricaoTela = "Gera OS";
+		
+			}
+			return tituloDescricaoTela;
+		}
+
 		void addCompJpanelCentro() {
 			this.getjPanelCentro().add(getjButtonProcuraCliente());
 			this.getjButtonProcuraCliente().setLocation(22, 27);

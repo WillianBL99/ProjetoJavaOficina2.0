@@ -29,9 +29,9 @@ import model.SetSizeIcon;
 public class JDialogProcurarCliente extends JDialog{
 
 
-public JDialogProcurarCliente(Frame frame, boolean modal) {
+	public JDialogProcurarCliente(Frame frame, boolean modal) {
 		super(frame, "Procura Cliente");
-		this.modal = modal;
+		this.setModal(modal);//erro esta setando dois paineis um esta funcionando como modal e o outro não, so que o que funciona bem em branco
 		addCompJDialogProcurarCliente();
 	
 	}

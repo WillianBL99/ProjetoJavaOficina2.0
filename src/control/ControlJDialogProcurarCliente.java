@@ -20,4 +20,6 @@ public class ControlJDialogProcurarCliente {
 	
 	//** Fim declaração de variáveis **
 	
+	
+	
 }

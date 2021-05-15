@@ -34,6 +34,7 @@ public class JPanelConsultarOS extends JPanel {
 
 //** Início declaração de variáveis **
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private String tituloDescricaoTela;
 	
 	private JPanel jPanelCentro;
 	
@@ -912,7 +913,18 @@ public class JPanelConsultarOS extends JPanel {
 //** Fim getters JComboBox **
 	
 	
-//** Início métodos adição de componentes **
+/* tituloDescricaoTela;
+	*/
+	public String getTituloDescricaoTela() {
+		if(tituloDescricaoTela == null){
+	
+			tituloDescricaoTela = " Consultar OS";
+	
+		}
+		return tituloDescricaoTela;
+	}
+
+	//** Início métodos adição de componentes **
 	void addCompJPanelConsultarOS() {
 		
 		this.getJPanelConsultarOS().add(getjButtonProcuraOS());

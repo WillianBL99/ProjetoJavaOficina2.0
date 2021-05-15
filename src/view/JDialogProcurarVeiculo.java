@@ -57,7 +57,8 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	//** Início construtor **
 	public JDialogProcurarVeiculo(Frame frame, boolean modal) {
-		super(frame, "Procurar veículo");
+		super(frame, "Procurar veículo dd");
+		//super(frame, "Procurar veículo  mod", true);
 		this.modal = modal;
 		this.addCompJDialogProcurarVeiculo();
 	}	
@@ -69,12 +70,18 @@ public class JDialogProcurarVeiculo extends JDialog{
 	public JDialogProcurarVeiculo getJDialogProcurarVeiculo() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
-		this.getContentPane().setBackground(Cores.cinza5);
+		//this.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
+		this.setModalityType(ModalityType.APPLICATION_MODAL);
+		
+		this.getContentPane().setLayout(null);
+		
+		//this.getContentPane().setBackground(Cores.cinza5);
 		this.setSize(975, 310);
+		this.getContentPane().setVisible(true);
 		this.setVisible(true);
-		this.setModal(modal);
-		this.setVisible(true);
+		//this.setModal(modal);
+		System.out.println(this.getModalExclusionType() + " / " + 
+				this.getModalityType() + " / " + this.isModal());
 		return this;
 	}
 	
@@ -118,6 +125,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 			jLabelPesquisarPor.setText("Pesquisar por:");
 			jLabelPesquisarPor.setOpaque(false);
 			jLabelPesquisarPor.setSize(100, 25);
+			jLabelPesquisarPor.setVisible(true);
 		}
 		return jLabelPesquisarPor;
 	}

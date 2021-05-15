@@ -63,7 +63,8 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	public JDialogCadastrarVeiculo(Frame frame, boolean modal) {
 		super(frame, "Cadastrar Veículo");
-		this.modal = modal;
+		 //super(frame, "Cadastrar Veículo", true);
+		//this.modal = modal;
 		this.addCompJDialogCadastrarVeiculo();
 	}	
 	

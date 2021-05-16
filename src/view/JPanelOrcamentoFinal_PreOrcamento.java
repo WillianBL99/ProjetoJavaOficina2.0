@@ -3,7 +3,6 @@
  */
 package view;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -13,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import icons.Icones;

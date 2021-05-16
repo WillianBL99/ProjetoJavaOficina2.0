@@ -37,6 +37,8 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
+	
+	@SuppressWarnings("unused")
 	private boolean modal;
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;

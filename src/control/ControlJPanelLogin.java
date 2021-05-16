@@ -153,7 +153,7 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 			String usuario = getjPanelLogin().getjTFieldUsuario().getText();
 			String senha = new String(getjPanelLogin().getjPFieldSenha().getPassword()) ;
 			
-			if(daoJPanelLogin.confLoginSenha(usuario, senha)) { // altera a tela
+			if(daoJPanelLogin.loginSenha(usuario, senha)) { // altera a tela
 				
 				getjFramePricipal().alterarJPanel(getjPanelPrincipal());
 				getcControlJPanelPrincipal();

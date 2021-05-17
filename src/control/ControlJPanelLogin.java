@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
 import dao.DaoJPanelLogin;
 import view.JFramePrincipal;
 import view.JPanelLogin;
@@ -152,20 +154,27 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 		private void validaLogin() {
 			String usuario = getjPanelLogin().getjTFieldUsuario().getText();
 			String senha = new String(getjPanelLogin().getjPFieldSenha().getPassword()) ;
-			
-			if(daoJPanelLogin.loginSenha(usuario, senha)) { // altera a tela
-				
+			switch (daoJPanelLogin.loginSenha(usuario, senha)) {
+			// erro ao consultar banco de dados
+			case 0:
+				JOptionPane.showMessageDialog(jFramePrincipal, "Erro ao se conectar com o Banco de Dados!");
+				getjPanelLogin().getjLabelErro().setVisible(false);
+				break;
+			// validação realizada com sucesso
+			case 1:
 				getjFramePricipal().alterarJPanel(getjPanelPrincipal());
 				getcControlJPanelPrincipal();
 				getjPanelLogin().getjLabelErro().setVisible(false);
 				jPanelLogin = null; // setando jpanelLogin como nulo para ele ser encerrado
-				
-			} else { // apresenta mensagem de erro
+				break;
+			// usuario e/ou senha não não encotrados
+			case 2:
 				getjPanelLogin().getjLabelErro().setVisible(true);
 				getjPanelLogin().getjTFieldUsuario().setText("");
 				getjPanelLogin().getjTFieldUsuario().requestFocus();
-				
+				break;
 			}
+			
 		}
 	
 	

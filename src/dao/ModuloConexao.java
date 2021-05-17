@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -51,7 +52,8 @@ public class ModuloConexao {
 			
 		} catch (Exception e) {
 			System.out.printf("Erro ao tentar se conectar com o DB: %s", e); // Uso para testes
-			setConectado(false);
+			if(isConectado())
+				setConectado(false);
 			return null;
 		}
 	}
@@ -65,40 +67,47 @@ public class ModuloConexao {
 		
 	// Método uitilizada para execução de uma query
 	public void executeQuery(String sql, String[] campos) {
+		int countConnection = 5; // define a quantidade de tentativas de conexão
 		do {
-			System.out.println(".");
 			getConnection();
+			countConnection--;
+			if(countConnection == 0) {
+				countConnection = 5;
+				break;
+			}
 		} while(!isConectado()); 
 		
-		// Verifica se a quantidade de "?" na string sql é
-		// compatível com a quantidade de strings no vetor campos
-		int sizeCampos = (campos == null ? 0 :campos.length);
-		System.out.println(campos.length + " = " + contarCarceter(sql));
-		if (contarCarceter(sql) == sizeCampos) {
-			
-			try {
-				// As linhas abaixo realizam a consulta de dados do banco de dados
-				setPreparedStatement(getConnection().prepareStatement(sql,
-                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                    ResultSet.CONCUR_UPDATABLE));
+		// se estiver conectado executa o código
+		if(isConectado()) {
+			// Verifica se a quantidade de "?" na string sql é
+			// compatível com a quantidade de strings no vetor campos
+			int sizeCampos = (campos == null ? 0 :campos.length);
+			//System.out.println(campos.length + " = " + contarCarceter(sql));
+			if (contarCarceter(sql) == sizeCampos) {
 				
-				for(int i = 0; i < sizeCampos; i++) {
-					System.out.printf("setString(%d, %s)%n", i + 1, campos[i]);
-					getPreparedStatement().setString(i + 1, campos[i]); // Substitui o (i + 1)º "?" pelo valor de campos[i]
+				try {
+					// As linhas abaixo realizam a consulta de dados do banco de dados
+					setPreparedStatement(getConnection().prepareStatement(sql,
+	                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+	                    ResultSet.CONCUR_UPDATABLE));
+					
+					for(int i = 0; i < sizeCampos; i++) {
+						//System.out.printf("setString(%d, %s)%n", i + 1, campos[i]);
+						getPreparedStatement().setString(i + 1, campos[i]); // Substitui o (i + 1)º "?" pelo valor de campos[i]
+					}
+					
+					// A linha abaixo executa a query
+					setResultSet(getPreparedStatement().executeQuery());
+					
+				} catch (Exception e) {
+					System.out.println("erro no método executeQuery da classe ModuloConexao\n" + e);
 				}
-				
-				// A linha abaixo executa a query
-				setResultSet(getPreparedStatement().executeQuery());
-				
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "erro no método executeQuery da classe ModuloConexao\n" + e);
+			} else {
+				System.out.println("a quantidade de \"?\" não é compativel com \na quantidade de comandos inseridos");
 			}
-		} else {
-			System.out.println("a quantidade de \"?\" não é compativel com \na quantidade de comandos inseridos");
+			
 		}
-		
 	}
-	
 	
 	// Método para verificar a quantidade de "?" em uma string
 	private  int contarCarceter(String sql) {
@@ -116,9 +125,21 @@ public class ModuloConexao {
 	}
 
 	
+	// Método para encerrar a conexão com o banco  de dados
+	public void closeConnection() {
+		try {
+			if(isConectado()) {
+				getConnection().close();
+				setConectado(false);
+			}
+		} catch (SQLException e) {
+			System.out.println("Banco de dados - erro ao encerrar: " + e);;
+		}
+	}
+	
+	
 	public static Connection getConnection() {
 		if(!isConectado()) {
-			System.out.println("Conectando..");
 			connection = ModuloConexao.conector();
 		}
 		return connection;
@@ -140,7 +161,6 @@ public class ModuloConexao {
 		if(resultSet == null) {
 			System.out.println("resultset está vazio");
 		}
-		System.out.println("Chamou resultSet\n"+resultSet);
 		return resultSet;
 	}
 
@@ -152,7 +172,7 @@ public class ModuloConexao {
 		return conectado;
 	}
 
-	public static void setConectado(boolean conectado) {
+	private static void setConectado(boolean conectado) {
 		ModuloConexao.conectado = conectado;
 	}
 	

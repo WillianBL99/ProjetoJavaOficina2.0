@@ -59,7 +59,7 @@ public class JDialogInserirServico extends JDialog{
 	
 	//** Início construtor **
 	public JDialogInserirServico(Frame frame, boolean modal) {
-		super(frame, "Inserir Serviço");
+		super(frame, "Inserir Serviço", true);
 		this.modal = modal;
 		this.setVisibleProcurarDescrever(true); // deixa visivel apenas os componentes referente 
 			//a procurar serviço e oculta os componentes referente a descrever serviço.
@@ -77,7 +77,7 @@ public class JDialogInserirServico extends JDialog{
 		this.setBackground(Cores.branco);
 		this.setSize(975, 236);
 		this.setVisible(true);
-		this.setModal(modal);
+		//this.setModal(modal);
 		this.setVisible(true);
 		return this;
 	}

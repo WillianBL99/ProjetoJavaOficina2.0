@@ -53,7 +53,11 @@ public class PreencherTabela extends AbstractTableModel{
 	 */
 	public AbstractTableModel preencher(ResultSet resultSet, String... colunas) {
 		setColunasPreDef(colunas);
-		setColunas(colunas);
+		// define que será usado os titulos passado pelo parâmetro @colunas[]
+		setrenomeandoTitulo(true);
+		// chama o cosntrutor principal
+		this.preencher(resultSet);
+		// retorna o TabelModel
 		return this;
 	}
 	

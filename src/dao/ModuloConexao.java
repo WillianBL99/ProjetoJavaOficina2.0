@@ -42,14 +42,14 @@ public class ModuloConexao {
 				Class.forName(driver);
 				// Inicia a conexão com o banco de dados
 				setConnection(DriverManager.getConnection(url, user, password));
-				System.out.printf("moduloConexao Conexão bem sucedida:%n%s",connection); // Uso para testes
+				//System.out.printf("moduloConexao Conexão bem sucedida:%n%s",connection); // Uso para testes
 				setConectado(true);
 			}
 			
 			return connection;
 			
 		} catch (Exception e) {
-			System.out.printf("Erro ao tentar se conectar com o DB: %s", e); // Uso para testes
+			//System.out.printf("Erro ao tentar se conectar com o DB: %s", e); // Uso para testes
 			if(isConectado())
 				setConectado(false);
 			return null;

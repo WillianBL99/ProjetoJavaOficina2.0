@@ -61,7 +61,7 @@ public class PreencherTabela extends AbstractTableModel{
 		return this;
 	}
 	
-	
+		
 	/*
 	 *  Método sobrescrito preencher(@resultSet)
 	 *  - @resultSet - recebe o resultSet da consulta de um banco de dados.

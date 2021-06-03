@@ -33,7 +33,7 @@ public class JDialogProcurarCliente extends JDialog{
 		super(frame, "Procura Cliente");
 		this.setModal(modal);//erro esta setando dois paineis um esta funcionando como modal e o outro não, so que o que funciona bem em branco
 		addCompJDialogProcurarCliente();
-	
+		
 	}
 
 	//** Início declaração de variáveis **

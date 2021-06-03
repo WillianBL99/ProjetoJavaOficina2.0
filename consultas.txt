@@ -1,0 +1,4 @@
+comando para procura cliente
+	select cpf, cnpj, nome, cidade, telefone from tb_clientes where nome = 'josimar';
+comando para procura carro
+	select id_veiculo, placa, chassi, marca, modelo, motor, combustivel, cor, ano from tb_veiculos; where marca = 'fiat'

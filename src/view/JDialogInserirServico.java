@@ -27,8 +27,6 @@ public class JDialogInserirServico extends JDialog{
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
-	private boolean modal;
-	
 	private boolean visibleProcurarDescrever; // define os componentes que ficam visivel quando clicado
 		//"procurar serviço" ou "descrever serviço"
 	
@@ -60,7 +58,6 @@ public class JDialogInserirServico extends JDialog{
 	//** Início construtor **
 	public JDialogInserirServico(Frame frame, boolean modal) {
 		super(frame, "Inserir Serviço", true);
-		this.modal = modal;
 		this.setVisibleProcurarDescrever(true); // deixa visivel apenas os componentes referente 
 			//a procurar serviço e oculta os componentes referente a descrever serviço.
 		this.addCompJDialogInserirServico();

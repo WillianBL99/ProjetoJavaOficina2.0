@@ -288,13 +288,7 @@ public class JPanelUsuarios  extends JPanel{
 					"Usuário",
 					"Senha",
 					"Função"));		
-					
-					
-		           /* new String [] {
-		                "CPF", "Nome", "Email",
-		                "Telefone", "Cidade", "Usuário", "Senha","Função"
-		            }
-		        ));	*/		
+				
 
 			jTableUsuarios.setFont(Fontes.fontJTablePlain2);
 			jTableUsuarios.setOpaque(false);

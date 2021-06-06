@@ -274,11 +274,10 @@ public class JPanelUsuarios  extends JPanel{
 						+ " usuario,"
 						+ " senha,"
 						+ " funcao"
-						+ " from tb_usuarios where usuario  = ?";
+						+ " from tb_usuarios";
 			
-			String[] campo = {"uilian"};
 			
-			getModuloConexao().executeQuery(sql, campo);
+			getModuloConexao().executeQuery(sql);
 						
 			jTableUsuarios.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), "CPF",
 					"Nome",

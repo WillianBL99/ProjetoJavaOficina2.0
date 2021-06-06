@@ -79,7 +79,7 @@ public class ModuloConexao {
 		if(isConectado()) {
 			// Verifica se a quantidade de "?" na string sql é
 			// compatível com a quantidade de strings no vetor campos
-			int sizeCampos = (campos == null ? 0 :campos.length);
+			int sizeCampos = (campos == null ? 0 : campos.length);
 			//System.out.println(campos.length + " = " + contarCarceter(sql));
 			if (contarCarceter(sql) == sizeCampos) {
 				
@@ -90,7 +90,7 @@ public class ModuloConexao {
 	                    ResultSet.CONCUR_UPDATABLE));
 					
 					for(int i = 0; i < sizeCampos; i++) {
-						//System.out.printf("setString(%d, %s)%n", i + 1, campos[i]);
+						System.out.printf("setString(%d, %s)%n", i + 1, campos[i]);
 						getPreparedStatement().setString(i + 1, campos[i]); // Substitui o (i + 1)º "?" pelo valor de campos[i]
 					}
 					

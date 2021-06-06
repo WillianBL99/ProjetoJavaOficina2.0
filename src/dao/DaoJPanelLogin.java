@@ -5,9 +5,6 @@ public class DaoJPanelLogin {
 	// Classe de consulta de dados no banco de dados
 	private ModuloConexao moduloConexao;
 	
-	// Comando sql para validação do login. Os "?" serão substituidos por valores específicos
-	private String sql = "select * from tb_usuarios where usuario =? and senha =?";
-	
 	
 	/*
 	 *  recebe o usuario e a senha e realiza a validação.
@@ -20,7 +17,7 @@ public class DaoJPanelLogin {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(sql, new String[]{usuario, senha});
+			getModuloConexao().executeQuery(ComandosSQL.getvalidarLogin(), new String[]{usuario, senha});
 			
 			// Se os valores forem encontrados
 			if(getModuloConexao().getResultSet().next()) {

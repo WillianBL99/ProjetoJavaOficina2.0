@@ -8,7 +8,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.JButton;
+
+import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import view.JDialogProcurarCliente;
 import view.JDialogProcurarVeiculo;
@@ -33,6 +39,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
+	private DaoJPanelPreOrcamentoNovo daoJPanelPreOrcamentoNovo;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -50,7 +57,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
 		
 		this.jButtonClicado = getjPanelPreOrcamentoNovo().getjButtonListaProdutos(); // botão que está selecionado previamente.
-		
+		this.preencherCabecalho();
 		this.AddEvent();
 	}
 	
@@ -196,6 +203,14 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		return jPanelPreOrcamentoNovo;
 	}
 	
+	
+	public DaoJPanelPreOrcamentoNovo getdaoJPanelPreOrcamentoNovo() {
+		if(daoJPanelPreOrcamentoNovo == null){
+			daoJPanelPreOrcamentoNovo = new DaoJPanelPreOrcamentoNovo();	
+		}
+		return daoJPanelPreOrcamentoNovo;
+	}
+	
 	/*
 	 * método mudarCorJButtonSelecionado(@jButton)
 	 * 
@@ -214,6 +229,30 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			// guardando os caminhos dos ícones do JButton que está selecionado.
 			jButtonClicado = jButton;
 		}
+	}
+	
+	/*
+	 * método mudarCorJButtonSelecionado(@jButton)
+	 * 
+	 * @jButton - Recebe como parâmetro o JButton para realização de mudança de ícone,
+	 * mudança de background e mudança de foreground.
+	 * 
+	 */
+	public void preencherCabecalho() {
+		// seta o jTextField do numero do pre orçamento
+		getjPanelPreOrcamentoNovo().getjTFieldNumeroPreOrcamento().setText(
+				Integer.toString(getdaoJPanelPreOrcamentoNovo().getnumeroPreOrcamento())				
+		);
+		
+		// seta a data no jTextField data
+		getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento().setText(
+				new SimpleDateFormat("dd/mm/yy").format(new Date())
+		);
+		
+		// seta o horário no jTextField horario
+		getjPanelPreOrcamentoNovo().getjTFieldHorarioPreOrcamento().setText(
+				new SimpleDateFormat("hh:mm:ss").format(new Date())
+		);
 	}
 	//** Fim métodos da classe **
 }

@@ -28,43 +28,41 @@ import model.SetSizeIcon;
 @SuppressWarnings("serial")
 public class JDialogProcurarCliente extends JDialog{
 
-
-	public JDialogProcurarCliente(Frame frame, boolean modal) {
-		super(frame, "Procura Cliente");
-		this.setModal(modal);//erro esta setando dois paineis um esta funcionando como modal e o outro não, so que o que funciona bem em branco
-		addCompJDialogProcurarCliente();
-	
-	}
-
 	//** Início declaração de variáveis **
-	private boolean modal;
+	private boolean modalTela;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
-	
+		
 	private JLabel jLabelPesquisarPor;
-	
+		
 	private JTextField jTextFieldCampoPesquisa;
-	
+		
 	private JButton jButtonPesquisar;
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
-	
+		
 	private JComboBox<String> jComboBoxPesquisa;
-	
+		
 	private JTable jTableCliente;
-	
+		
 	private JScrollPane jSPanel;
+		
+	public JDialogProcurarCliente(Frame frame, boolean modalTela) {
+		super(frame, "Procurar clientes");
+		setmodalTela(modalTela);
+		getJDialogProcurarCliente();
+		addCompJDialogProcurarCliente();
+	}	
+
 	
-	//** Fim declaração de variáveis **
-
-
+	//** Fim construtor **
+	
 	//** Início getters JPanels **
- 	public JDialogProcurarCliente getJDialogProcurarCliente() {
+	public JDialogProcurarCliente getJDialogProcurarCliente() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
+		this.setLayout(null);
 		this.getContentPane().setBackground(Cores.cinza5);
-		this.setSize(973, 308);
+		this.setSize(975, 310);
 		this.setVisible(true);
-		this.setModal(modal);
 		
 		return this;
 	}
@@ -72,11 +70,9 @@ public class JDialogProcurarCliente extends JDialog{
 	
 	public JScrollPane getjSPanel() {
 		if(jSPanel == null){
-	
 			jSPanel = new JScrollPane();
 			jSPanel.setViewportView(getjTableCliente());
 			jSPanel.setSize(880,112);
-	
 		}
 		return jSPanel;
 	}
@@ -239,7 +235,7 @@ public class JDialogProcurarCliente extends JDialog{
 		
 		
 	//** Início métodos adição de componentes **
-	void addCompJDialogProcurarCliente() {
+	private void addCompJDialogProcurarCliente() {
 		this.getJDialogProcurarCliente().getContentPane().add(getjLabelPesquisarPor());
 		this.getjLabelPesquisarPor().setLocation(51, 64);
 		
@@ -261,20 +257,16 @@ public class JDialogProcurarCliente extends JDialog{
 		this.getJDialogProcurarCliente().getContentPane().add(getjSPanel());
 		this.getjSPanel().setLocation(50,112);
 	}
-
-
-	/*return newdfha jSPane;
-	*/
-
-	
-
-	/*return newdfha jTableCliente;
-	*/
-
-
-
 	
 	
+	public boolean ismodalTela() {
+		return modalTela;
+	}
+	
+	
+	public void setmodalTela(boolean modalTela) {
+		this.modalTela = modalTela;
+	}
 	
 		
 }

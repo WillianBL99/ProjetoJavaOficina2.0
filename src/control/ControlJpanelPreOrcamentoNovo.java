@@ -40,6 +40,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
 	private DaoJPanelPreOrcamentoNovo daoJPanelPreOrcamentoNovo;
+	private JDialogProcurarCliente jDialogProcurarCliente;
+	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -120,7 +122,10 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonProcuraCliente()) {
 			// quando o botão "procurar cliente" for clicado
-			new JDialogProcurarCliente(this.getjFramePrincipal(), true);
+			jDialogProcurarCliente = null;
+			controlJDialogProcurarCliente = null;
+			getjDialogProCliente();
+			getconControlJDialogProcurarCliente();
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			// quando o botão "selecionar veículo" for clicado
@@ -255,4 +260,23 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		);
 	}
 	//** Fim métodos da classe **
+	
+	
+	public JDialogProcurarCliente getjDialogProCliente() {
+		if(jDialogProcurarCliente == null) {
+			System.out.println("novo jdialog procurar cliente");
+			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePrincipal(), true);
+		}
+		return jDialogProcurarCliente;
+	}
+	
+	
+	public ControlJDialogProcurarCliente getconControlJDialogProcurarCliente() {
+		if(controlJDialogProcurarCliente == null) {
+
+			System.out.println("novo controlador jdialog procurar cliente");
+			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente());
+		}
+		return controlJDialogProcurarCliente;
+	}
 }

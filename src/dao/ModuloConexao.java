@@ -32,7 +32,7 @@ public class ModuloConexao {
 		String driver = "com.mysql.cj.jdbc.Driver";
 		
 		// Armazenando informações referente ao banco de dados
-		String url = "jdbc:mysql://localhost:3306/controle_estoque_01";
+		String url = "jdbc:mysql://localhost:3306/controle_estoque_02";
 		String user = "root";
 		String password = "root";
 		

@@ -6,7 +6,7 @@ public class DaoJPanelLogin {
 	private ModuloConexao moduloConexao;
 	
 	// Comando sql para validação do login. Os "?" serão substituidos por valores específicos
-	private String sql = "select * from tbusuarios where usuario =? and senha =?";
+	private String sql = "select * from tb_usuarios where usuario =? and senha =?";
 	
 	
 	/*

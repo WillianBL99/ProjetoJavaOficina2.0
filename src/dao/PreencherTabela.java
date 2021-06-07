@@ -141,7 +141,8 @@ public class PreencherTabela extends AbstractTableModel{
 	 *  - Retorna a quantidade de colunas da tabela.
 	 *  
 	 */
-	public int getColumnCount() {		
+	public int getColumnCount() {	
+		System.out.println("quantidade de colunas :" + getColunas().length);
 		return getColunas().length;
 	}
 
@@ -215,7 +216,8 @@ public class PreencherTabela extends AbstractTableModel{
 				// Passa o nome das colunas para uma variável local atraves do metodo set.
 				setColunas(nomeColunas);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "erro em getColunas da casse PreencherTabela");
+				System.out.printf("quantidade de colunas no método getColunas: %s %n", e);
+				JOptionPane.showMessageDialog(null, "erro em getColunas da classe PreencherTabela ");
 			}			
 		}		
 		return colunas;

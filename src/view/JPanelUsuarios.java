@@ -13,6 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -31,6 +34,7 @@ public class JPanelUsuarios  extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JButton jButtonNovoUsuario;
@@ -254,29 +258,43 @@ public class JPanelUsuarios  extends JPanel{
 	
 
 	public JTable getjTableUsuarios() {
+		
+		String sql;
+		
 		if(jTableUsuarios == null){
 			jTableUsuarios = new JTable();
-			jTableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null},
-		                
-		            },
-		            new String [] {
+			
+			// Metodo que executa a query sql
+			sql = "select"
+						+ " cpf,"
+						+ " nome,"
+						+ " email,"
+						+ " telefone,"
+						+ " cidade,"
+						+ " usuario,"
+						+ " senha,"
+						+ " funcao"
+						+ " from tb_usuarios where usuario  = ?";
+			
+			String[] campo = {"uilian"};
+			
+			getModuloConexao().executeQuery(sql, campo);
+						
+			jTableUsuarios.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), "CPF",
+					"Nome",
+					"Email",
+					"Telefone",
+					"Cidade",
+					"Usuário",
+					"Senha",
+					"Função"));		
+					
+					
+		           /* new String [] {
 		                "CPF", "Nome", "Email",
 		                "Telefone", "Cidade", "Usuário", "Senha","Função"
 		            }
-		        ));			
+		        ));	*/		
 
 			jTableUsuarios.setFont(Fontes.fontJTablePlain2);
 			jTableUsuarios.setOpaque(false);
@@ -329,6 +347,15 @@ public class JPanelUsuarios  extends JPanel{
 	}
 	
 	//** Fim métodos adição de componentes **
+	
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
 	
 
 }

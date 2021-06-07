@@ -8,7 +8,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.swing.JButton;
+
+import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import view.JDialogProcurarCliente;
 import view.JDialogProcurarVeiculo;
@@ -33,6 +39,9 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelPreOrcamento jPanelPreOrcamento;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
+	private DaoJPanelPreOrcamentoNovo daoJPanelPreOrcamentoNovo;
+	private JDialogProcurarCliente jDialogProcurarCliente;
+	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -50,7 +59,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
 		
 		this.jButtonClicado = getjPanelPreOrcamentoNovo().getjButtonListaProdutos(); // botão que está selecionado previamente.
-		
+		this.preencherCabecalho();
 		this.AddEvent();
 	}
 	
@@ -113,7 +122,10 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonProcuraCliente()) {
 			// quando o botão "procurar cliente" for clicado
-			new JDialogProcurarCliente(this.getjFramePrincipal(), true);
+			jDialogProcurarCliente = null;
+			controlJDialogProcurarCliente = null;
+			getjDialogProCliente();
+			getconControlJDialogProcurarCliente();
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			// quando o botão "selecionar veículo" for clicado
@@ -196,6 +208,14 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		return jPanelPreOrcamentoNovo;
 	}
 	
+	
+	public DaoJPanelPreOrcamentoNovo getdaoJPanelPreOrcamentoNovo() {
+		if(daoJPanelPreOrcamentoNovo == null){
+			daoJPanelPreOrcamentoNovo = new DaoJPanelPreOrcamentoNovo();	
+		}
+		return daoJPanelPreOrcamentoNovo;
+	}
+	
 	/*
 	 * método mudarCorJButtonSelecionado(@jButton)
 	 * 
@@ -215,5 +235,48 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			jButtonClicado = jButton;
 		}
 	}
+	
+	/*
+	 * método mudarCorJButtonSelecionado(@jButton)
+	 * 
+	 * @jButton - Recebe como parâmetro o JButton para realização de mudança de ícone,
+	 * mudança de background e mudança de foreground.
+	 * 
+	 */
+	public void preencherCabecalho() {
+		// seta o jTextField do numero do pre orçamento
+		getjPanelPreOrcamentoNovo().getjTFieldNumeroPreOrcamento().setText(
+				Integer.toString(getdaoJPanelPreOrcamentoNovo().getnumeroPreOrcamento())				
+		);
+		
+		// seta a data no jTextField data
+		getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento().setText(
+				new SimpleDateFormat("dd/mm/yy").format(new Date())
+		);
+		
+		// seta o horário no jTextField horario
+		getjPanelPreOrcamentoNovo().getjTFieldHorarioPreOrcamento().setText(
+				new SimpleDateFormat("hh:mm:ss").format(new Date())
+		);
+	}
 	//** Fim métodos da classe **
+	
+	
+	public JDialogProcurarCliente getjDialogProCliente() {
+		if(jDialogProcurarCliente == null) {
+			System.out.println("novo jdialog procurar cliente");
+			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePrincipal(), true);
+		}
+		return jDialogProcurarCliente;
+	}
+	
+	
+	public ControlJDialogProcurarCliente getconControlJDialogProcurarCliente() {
+		if(controlJDialogProcurarCliente == null) {
+
+			System.out.println("novo controlador jdialog procurar cliente");
+			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente());
+		}
+		return controlJDialogProcurarCliente;
+	}
 }

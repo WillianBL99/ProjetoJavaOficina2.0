@@ -274,11 +274,10 @@ public class JPanelUsuarios  extends JPanel{
 						+ " usuario,"
 						+ " senha,"
 						+ " funcao"
-						+ " from tb_usuarios where usuario  = ?";
+						+ " from tb_usuarios";
 			
-			String[] campo = {"uilian"};
 			
-			getModuloConexao().executeQuery(sql, campo);
+			getModuloConexao().executeQuery(sql);
 						
 			jTableUsuarios.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), "CPF",
 					"Nome",
@@ -288,13 +287,7 @@ public class JPanelUsuarios  extends JPanel{
 					"Usuário",
 					"Senha",
 					"Função"));		
-					
-					
-		           /* new String [] {
-		                "CPF", "Nome", "Email",
-		                "Telefone", "Cidade", "Usuário", "Senha","Função"
-		            }
-		        ));	*/		
+				
 
 			jTableUsuarios.setFont(Fontes.fontJTablePlain2);
 			jTableUsuarios.setOpaque(false);

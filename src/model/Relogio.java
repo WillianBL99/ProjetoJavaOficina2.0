@@ -32,9 +32,9 @@ public class Relogio extends Thread{
             String horas = dateFormat.format(date);
             
             jLabelHoras.setText(horas);//joga para o TextField
-            System.out.println(horas);
+           // System.out.println(horas);
 
-    		System.out.println("treads = " + Thread.activeCount());
+    		//System.out.println("treads = " + Thread.activeCount());
     		
             try{
                 

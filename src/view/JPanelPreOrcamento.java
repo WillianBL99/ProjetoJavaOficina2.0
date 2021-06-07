@@ -16,6 +16,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -34,6 +37,7 @@ public class JPanelPreOrcamento  extends JPanel {
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 
 	private JPanel jPanelBuscaOrcamentos; // barra que contem componentes para realizar busca de orcamentos
@@ -330,30 +334,19 @@ public class JPanelPreOrcamento  extends JPanel {
 	}
 	
 
-	public JTable getjTableOrcamentos() {
+	public JTable getjTableOrcamentos() {					
 		if(jTableOrcamentos == null){
 			jTableOrcamentos = new JTable();
-			jTableOrcamentos.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null},
-		                
-		            },
-		            new String [] {
-		                "Data", "Cliente", "Placa", "Qtd.Produtos",
-		                "Desconto", "Valor"
-		            }
-		        ));			
+			getModuloConexao().executeQuery(ComandosSQL.getvisualizarTodosPreOrcamentos());
+									
+			jTableOrcamentos.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
+					"Data",
+					"Placa",
+					"Cliente",
+					"Serviços",
+					"Produtos",
+					"Desconto",
+					"Total"));						
 
 			jTableOrcamentos.setFont(Fontes.fontJTablePlain2);
 			jTableOrcamentos.setOpaque(false);
@@ -422,5 +415,13 @@ public class JPanelPreOrcamento  extends JPanel {
 	
 	//** Fim métodos adição de componentes **
 	
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
 
 }

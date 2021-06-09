@@ -15,6 +15,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -28,20 +31,11 @@ import model.SetSizeIcon;
 @SuppressWarnings("serial")
 public class JDialogProcurarCliente extends JDialog{
 
-<<<<<<< HEAD
 
-	public JDialogProcurarCliente(Frame frame, boolean modal) {
-		super(frame, "Procura Cliente");
-		this.setModal(modal);//erro esta setando dois paineis um esta funcionando como modal e o outro não, so que o que funciona bem em branco
-		addCompJDialogProcurarCliente();
-		
-	}
-
-=======
->>>>>>> d5b7818ff16aa9568a73191f24bbf581aec63694
 	//** Início declaração de variáveis **
 	private boolean modalTela;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 		
 	private JLabel jLabelPesquisarPor;
 		
@@ -206,30 +200,16 @@ public class JDialogProcurarCliente extends JDialog{
 	//** Início getters Table **
 	
 	public JTable getjTableCliente() {
-			if(jTableCliente == null){
-		
+			if(jTableCliente == null){		
 				jTableCliente = new JTable();
-				jTableCliente.setModel(new DefaultTableModel(
-						 new Object [][] {
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                
-				            },
-				            new String [] {
-				                "CNPJ", "CPF", "NOME", "CIDADE",
-				                "TELEFONE"
-				            }
-				        ));	
+				getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), "");
+				jTableCliente.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
+						"CNPj",
+						"CPF",
+						"Nome",
+						"email",
+						"Telefone",
+						"Cidade"));
 						
 				jTableCliente.setFont(Fontes.fontJTablePlain2);
 				jTableCliente.setOpaque(false);
@@ -279,5 +259,13 @@ public class JDialogProcurarCliente extends JDialog{
 		this.modalTela = modalTela;
 	}
 	
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
 		
 }

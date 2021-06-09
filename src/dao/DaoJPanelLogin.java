@@ -17,7 +17,7 @@ public class DaoJPanelLogin {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getvalidarLogin(), new String[]{usuario, senha});
+			getModuloConexao().executeQuery(ComandosSQL.getvalidarLogin(), usuario, senha);
 			
 			// Se os valores forem encontrados
 			if(getModuloConexao().getResultSet().next()) {

@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import dao.ModuloConexao;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 
@@ -23,6 +24,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	private JFramePrincipal jFramePrincipal;
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private boolean modal;
+	private ModuloConexao moduloConexao;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -36,6 +38,11 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	private void AddEvent() {
 		getjDialogProcurarCliente().addWindowListener(this);
+		getjDialogProcurarCliente().getjButtonCancelar().addMouseListener(this);
+		getjDialogProcurarCliente().getjButtonPesquisar().addMouseListener(this);
+		getjDialogProcurarCliente().getjButtonSelecionar().addMouseListener(this);
+		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);
+		
 	}
 		
 		
@@ -62,7 +69,11 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == getjDialogProcurarCliente().getjButtonPesquisar()) {
+			
+		} else if() {
+			
+		}
 	}
 
 

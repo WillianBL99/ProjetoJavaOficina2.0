@@ -64,7 +64,7 @@ public class ModuloConexao {
 		
 		
 	// Método uitilizada para execução de uma query
-	public void executeQuery(String sql, String[] campos) {
+	public void executeQuery(String sql, String... campos) {
 		int countConnection = 5; // define a quantidade de tentativas de conexão
 		do {
 			getConnection();

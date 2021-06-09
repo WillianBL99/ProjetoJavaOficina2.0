@@ -15,6 +15,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -31,6 +34,7 @@ public class JDialogProcurarCliente extends JDialog{
 	//** Início declaração de variáveis **
 	private boolean modalTela;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 		
 	private JLabel jLabelPesquisarPor;
 		
@@ -195,30 +199,16 @@ public class JDialogProcurarCliente extends JDialog{
 	//** Início getters Table **
 	
 	public JTable getjTableCliente() {
-			if(jTableCliente == null){
-		
+			if(jTableCliente == null){		
 				jTableCliente = new JTable();
-				jTableCliente.setModel(new DefaultTableModel(
-						 new Object [][] {
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                {null, null, null, null, null},
-				                
-				            },
-				            new String [] {
-				                "CNPJ", "CPF", "NOME", "CIDADE",
-				                "TELEFONE"
-				            }
-				        ));	
+				getModuloConexao().executeQuery(ComandosSQL.getcnsultarClientes(), "");
+				jTableCliente.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
+						"CNPj",
+						"CPF",
+						"Nome",
+						"email",
+						"Telefone",
+						"Cidade"));
 						
 				jTableCliente.setFont(Fontes.fontJTablePlain2);
 				jTableCliente.setOpaque(false);
@@ -268,5 +258,13 @@ public class JDialogProcurarCliente extends JDialog{
 		this.modalTela = modalTela;
 	}
 	
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
 		
 }

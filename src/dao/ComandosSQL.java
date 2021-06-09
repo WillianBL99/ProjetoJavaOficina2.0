@@ -4,7 +4,7 @@
 package dao;
 
 /**
- * @author pWili
+ * @author Paulo Uilian
  *
  */
 public class ComandosSQL {
@@ -14,6 +14,28 @@ public class ComandosSQL {
 	private static String visualizarTodosPreOrcamentos_data;
 	private static String validarLogin;
 	private static String consultarNumeroPreOrcamento;
+	private static String consultarClientesNome;
+	
+	
+	/*
+	 * Método String getvisualizarTodosPreOrcamentos()
+	 * Retorna a query que tem a função de exibir todos os pré orçamentos criados
+	 */
+	public static String getconsultarClientesNome() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "CNPj", "CPF", "Nome", "email", "Telefone", "Cidade"
+		 */
+		if(consultarClientesNome == null){
+			consultarClientesNome = (
+				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				+ "where nome like concat('%', ?,'%')\r\n"
+				+ "order by nome;"
+			);
+	
+		}
+		return consultarClientesNome;
+	}
 	
 	
 	/*
@@ -33,6 +55,7 @@ public class ComandosSQL {
 		}
 		return consultarNumeroPreOrcamento;
 	}
+	
 	
 	/*
 	 * Método String getvisualizarTodosPreOrcamentos()

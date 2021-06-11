@@ -34,7 +34,7 @@ public class ModuloConexao {
 		// Armazenando informações referente ao banco de dados
 		String url = "jdbc:mysql://localhost:3306/controle_estoque_02";
 		String user = "root";
-		String password = "root";
+		String password = "admin";
 		
 		// Estabelecendo conexão com o banco de dados
 		try {

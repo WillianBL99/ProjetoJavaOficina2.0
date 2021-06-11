@@ -2,15 +2,21 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.ParseException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 import model.SetSizeIcon;
 import javax.swing.JRadioButton;
 
@@ -555,14 +561,16 @@ import javax.swing.JRadioButton;
 		//** Início getters JTextField **
 		public JTextField getjTFieldCpf() {
 			if(jTFieldCpf == null){
-		
-				jTFieldCpf = new JTextField("999.999.999-99");
+				
+				jTFieldCpf = Mascara.mascaraCPF();
 				jTFieldCpf.setSize(165, 21);
 				jTFieldCpf.setBorder(BorderFactory.
 						createLineBorder(Cores.cinza2, 1, false));
 				jTFieldCpf.setForeground(Cores.preto);
 				jTFieldCpf.setFont(Fontes.fontJTFieldPlain1);
 				jTFieldCpf.setOpaque(true);
+
+				
 			}
 			return jTFieldCpf;
 		}
@@ -754,7 +762,7 @@ import javax.swing.JRadioButton;
 		public JTextField getjTFieldPlaca() {
 			if(jTFieldPlaca == null){
 		
-				jTFieldPlaca = new JTextField();
+				jTFieldPlaca = Mascara.mascaraPlaca();
 				jTFieldPlaca.setSize(125, 21);
 				jTFieldPlaca.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

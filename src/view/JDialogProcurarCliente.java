@@ -6,6 +6,7 @@ package view;
 import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultSingleSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import dao.ComandosSQL;
@@ -37,6 +39,7 @@ public class JDialogProcurarCliente extends JDialog{
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	private ModuloConexao moduloConexao;
 		
+	
 	private JLabel jLabelPesquisarPor;
 		
 	private JTextField jTextFieldCampoPesquisa;
@@ -206,13 +209,15 @@ public class JDialogProcurarCliente extends JDialog{
 				jTableCliente = new JTable();
 				getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), "");
 				jTableCliente.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
+						"Nº",
 						"CNPj",
 						"CPF",
 						"Nome",
 						"email",
 						"Telefone",
 						"Cidade"));
-						
+
+				jTableCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				jTableCliente.setFont(Fontes.fontJTablePlain2);
 				jTableCliente.setOpaque(false);
 				jTableCliente.getTableHeader().setFont(Fontes.fontJTableBold2);

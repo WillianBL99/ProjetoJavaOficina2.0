@@ -96,7 +96,6 @@ public class ModuloConexao {
 					
 					// A linha abaixo executa a query
 					setResultSet(getPreparedStatement().executeQuery());
-					
 				} catch (Exception e) {
 					System.out.println("erro no método executeQuery da classe ModuloConexao\n" + e);
 				}

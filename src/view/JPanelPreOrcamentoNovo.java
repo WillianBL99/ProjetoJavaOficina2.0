@@ -333,6 +333,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jRadioButtonCpf == null){	
 			jRadioButtonCpf = new JRadioButton("CPF");
 			jRadioButtonCpf.setSize(45, 15);
+			jRadioButtonCpf.setEnabled(false);
 			jRadioButtonCpf.setBackground(Cores.branco);
 			jRadioButtonCpf.setForeground(Color.black);
 			jRadioButtonCpf.setFont(Fontes.fontJButtonPlain0);
@@ -345,6 +346,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jRadioButtonCnpj == null){	
 			jRadioButtonCnpj = new JRadioButton("CNPJ");
 			jRadioButtonCnpj.setSize(50, 15);
+			jRadioButtonCnpj.setEnabled(false);
 			jRadioButtonCnpj.setBackground(Cores.branco);
 			jRadioButtonCnpj.setForeground(Color.black);
 			jRadioButtonCnpj.setFont(Fontes.fontJButtonPlain0);
@@ -719,7 +721,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
-			jTFieldCpf = new JTextField("999.999.999-99");
+			jTFieldCpf = new JTextField();
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBackground(Cores.cinza4);
 			jTFieldCpf.setBorder(null);
@@ -735,7 +737,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JTextField getjTFieldEmail() {
 		if(jTFieldEmail == null){	
 			jTFieldEmail = new JTextField();
-			jTFieldEmail.setSize(149, 21);
+			jTFieldEmail.setSize(165, 21);
 			jTFieldEmail.setBackground(Cores.cinza4);
 			jTFieldEmail.setBorder(null);
 			jTFieldEmail.setEditable(false);
@@ -765,7 +767,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	public JTextField getjTFieldNome() {
 		
 		if(jTFieldNome == null){	
-			jTFieldNome = new JTextField("José da Silva");
+			jTFieldNome = new JTextField();
 			jTFieldNome.setSize(219, 21);
 			jTFieldNome.setBackground(Cores.cinza4);
 			jTFieldNome.setBorder(null);
@@ -811,7 +813,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldTipo() {
 		if(jTFieldTipo == null){	
-			jTFieldTipo = new JTextField("Fisica");
+			jTFieldTipo = new JTextField();
 			jTFieldTipo.setSize(53, 21);
 			jTFieldTipo.setBackground(Cores.cinza4);
 			jTFieldTipo.setBorder(null);
@@ -841,8 +843,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){	
-			jTFieldTelefone = new JTextField("(77) 9 9999-9999");
-			jTFieldTelefone.setSize(115, 21);
+			jTFieldTelefone = new JTextField();
+			jTFieldTelefone.setSize(125, 21);
 			jTFieldTelefone.setBackground(Cores.cinza4);
 			jTFieldTelefone.setBorder(null);
 			jTFieldTelefone.setEditable(false);

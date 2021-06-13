@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -17,6 +18,7 @@ import dao.DaoJDialogProcurarCliente;
 import dao.ModuloConexao;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
+import view.JPanelPreOrcamentoNovo;
 
 /**
  * @author Perseu
@@ -27,13 +29,15 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
 	private JDialogProcurarCliente jDialogProcurarCliente;
+	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
 	private DaoJDialogProcurarCliente daoJDialogProcurarCliente;
 	private boolean modal;
 	
 	//** Fim declaração de variáveis **	
 	
-	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente) {	
+	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente, JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo) {	
 		this.jFramePrincipal = jFramePricipal;	
+		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
 		this.jDialogProcurarCliente = jDialogProcurarCliente;
 		AddEvent();
 		setmodal(getjDialogProcurarCliente().ismodalTela());
@@ -113,7 +117,27 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		
 		// Quando o botão selecionar cliente na tela procurar clientes for clicado
 		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonSelecionar()) {
-			
+			/*
+			 *  Verifica se foi selecionado algum cliente
+			 *  se getSelectedRow() retornar um numero menor que 0 
+			 *  siguinifica que nenhuma linha foi selecionada
+			 */
+			if(getjDialogProcurarCliente().getjTableCliente().getSelectedRow() < 0) {
+				JOptionPane.showConfirmDialog(
+						jDialogProcurarCliente, // componente
+						"Selecione um cliente primeiro.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+
+			} else {
+				preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
+						getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
+						0).toString());
+				getjFramePricipal().setEnabled(true);
+				getjDialogProcurarCliente().dispose();
+			}
 			
 		// Quando o botão cancelar na tela procurar clientes for clicado
 		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonCancelar()) {
@@ -229,6 +253,54 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	//** Fim métodos sobrescritos **
 	
 	//** Início métodos da classe **
+	
+	
+	private void preencherPreOrcamentoNovoCliente(String row) {
+		getdaoJDialogProcurarCliente().getModuloConexao().
+			executeQuery(ComandosSQL.getconsultarClientesTodosCampos(), row);
+		try {
+			getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().next();
+			System.out.println("nome = " + getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4));
+			
+			boolean fisica = (getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4) == "física"? true : false);
+			String cpf = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(2);
+			String nome = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(5);
+			String tipo = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4);
+			String telefone = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(7);
+			String email = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(6);
+			String cidade = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(8);
+			String bairro = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(9);
+			String rua = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(10);
+			String numeroCasa = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(11);
+			
+			if(fisica) {
+				getjPanelPreOrcamentoNovo().getjRadioButtonCnpj().setSelected(true);
+				getjPanelPreOrcamentoNovo().getjRadioButtonCpf().setSelected(false);
+				
+			} else {
+				getjPanelPreOrcamentoNovo().getjRadioButtonCnpj().setSelected(false);
+				getjPanelPreOrcamentoNovo().getjRadioButtonCpf().setSelected(true);
+			}
+			
+			getjPanelPreOrcamentoNovo().getjTFieldCpf().setText(cpf);
+			getjPanelPreOrcamentoNovo().getjTFieldNome().setText(nome);
+			getjPanelPreOrcamentoNovo().getjTFieldTipo().setText(tipo);
+			getjPanelPreOrcamentoNovo().getjTFieldTelefone().setText(telefone);
+			getjPanelPreOrcamentoNovo().getjTFieldEmail().setText(email);
+			getjPanelPreOrcamentoNovo().getjTFieldCidade().setText(cidade);
+			getjPanelPreOrcamentoNovo().getjTFieldBairro().setText(bairro);
+			getjPanelPreOrcamentoNovo().getjTFieldRua().setText(rua);
+			getjPanelPreOrcamentoNovo().getjTFieldNumeroCasa().setText(numeroCasa);
+			
+			// Fecha a conexão com o banco de dados
+			getdaoJDialogProcurarCliente().getModuloConexao().closeConnection();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getErrorCode());
+		}
+	}
+	
 
 	public JFramePrincipal getjFramePricipal() {
 		if(jFramePrincipal == null){
@@ -237,11 +309,20 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		return jFramePrincipal;
 	}
 	
+	
 	public JDialogProcurarCliente getjDialogProcurarCliente() {
 		if(jDialogProcurarCliente == null){
 			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePricipal(), true);
 		}
 		return jDialogProcurarCliente;
+	}
+	
+	
+	public JPanelPreOrcamentoNovo getjPanelPreOrcamentoNovo() {
+		if(jPanelPreOrcamentoNovo == null){
+			jPanelPreOrcamentoNovo = new JPanelPreOrcamentoNovo();
+		}
+		return jPanelPreOrcamentoNovo;
 	}
 	
 	

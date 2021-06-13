@@ -3,6 +3,8 @@
  */
 package dao;
 
+import javax.swing.JOptionPane;
+
 import view.JDialogProcurarCliente;
 
 /**
@@ -36,17 +38,31 @@ public class DaoJDialogProcurarCliente {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), nome);
 			
-			// Realiza o preenchimento da tabela de jdialogprocurarcliente
+			// Verifica se foi retornado algum valor do banco de dados
+			if(getModuloConexao().getResultSet().next()) {
+				// Realiza o preenchimento da tabela de jdialogprocurarcliente
+				getjDialogProcurarCliente().getjTableCliente().
+						setModel(new PreencherTabela().
+								preencher(getModuloConexao().getResultSet(),
+										"CNPj",
+										"CPF",
+										"Nome",
+										"email",
+										"Telefone",
+										"Cidade"));
+				getModuloConexao().closeConnection();
 			
-			getjDialogProcurarCliente().getjTableCliente().
-					setModel(new PreencherTabela().
-							preencher(getModuloConexao().getResultSet(),
-									"CNPj",
-									"CPF",
-									"Nome",
-									"email",
-									"Telefone",
-									"Cidade"));
+			// Se não retornou nenhum valor exibe um caixa de alerta	
+			} else {
+				JOptionPane.showConfirmDialog(
+						jDialogProcurarCliente, // componente
+						"Não foi encontrado nenhum cliente com o nome procurardo.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
+			
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
@@ -66,17 +82,31 @@ public class DaoJDialogProcurarCliente {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCpf(), cpf);
 			
-			// Realiza o preenchimento da tabela de jdialogprocurarcliente
+			// Verifica se foi retornado algum valor do banco de dados
+			if(getModuloConexao().getResultSet().next()) {
+				// Realiza o preenchimento da tabela de jdialogprocurarcliente
+				getjDialogProcurarCliente().getjTableCliente().
+				setModel(new PreencherTabela().
+						preencher(getModuloConexao().getResultSet(),
+								"CNPj",
+								"CPF",
+								"Nome",
+								"email",
+								"Telefone",
+								"Cidade"));
+				getModuloConexao().closeConnection();
 			
-			getjDialogProcurarCliente().getjTableCliente().
-					setModel(new PreencherTabela().
-							preencher(getModuloConexao().getResultSet(),
-									"CNPj",
-									"CPF",
-									"Nome",
-									"email",
-									"Telefone",
-									"Cidade"));
+			// Se não retornou nenhum valor exibe um caixa de alerta	
+			} else {
+				JOptionPane.showConfirmDialog(
+						jDialogProcurarCliente, // componente
+						"Não foi encontrado nenhum cliente com o CPF procurardo.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
+
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
@@ -96,17 +126,30 @@ public class DaoJDialogProcurarCliente {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCnpj(), cnpj);
 			
-			// Realiza o preenchimento da tabela de jdialogprocurarcliente
+			// Verifica se foi retornado algum valor do banco de dados
+			if(getModuloConexao().getResultSet().next()) {
+				// Realiza o preenchimento da tabela de jdialogprocurarcliente
+				getjDialogProcurarCliente().getjTableCliente().
+				setModel(new PreencherTabela().
+						preencher(getModuloConexao().getResultSet(),
+								"CNPj",
+								"CPF",
+								"Nome",
+								"email",
+								"Telefone",
+								"Cidade"));
+				getModuloConexao().closeConnection();
 			
-			getjDialogProcurarCliente().getjTableCliente().
-					setModel(new PreencherTabela().
-							preencher(getModuloConexao().getResultSet(),
-									"CNPj",
-									"CPF",
-									"Nome",
-									"email",
-									"Telefone",
-									"Cidade"));
+			// Se não retornou nenhum valor exibe um caixa de alerta	
+			} else {
+				JOptionPane.showConfirmDialog(
+						jDialogProcurarCliente, // componente
+						"Não foi encontrado nenhum cliente com o CNPj procurardo.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
@@ -126,7 +169,7 @@ public class DaoJDialogProcurarCliente {
 	}
 	
 	
-	private ModuloConexao getModuloConexao() {
+	public ModuloConexao getModuloConexao() {
 		if(moduloConexao == null) {
 			moduloConexao = new ModuloConexao();
 		}

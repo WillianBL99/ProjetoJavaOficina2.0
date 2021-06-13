@@ -57,6 +57,8 @@ public class PreencherTabela extends AbstractTableModel{
 		setrenomeandoTitulo(true);
 		// chama o cosntrutor principal
 		this.preencher(resultSet);
+		getModuloConexao().closeConnection();
+		
 		// retorna o TabelModel
 		return this;
 	}
@@ -119,7 +121,7 @@ public class PreencherTabela extends AbstractTableModel{
 			}while(getModuloConexao().getResultSet().next());
 			
 		} catch (SQLException e) {
-			JOptionPane.showInternalMessageDialog(null, "Erro ao preencher a tabela classe preenche tabela\n" + e);
+			System.out.println("Erro ao preencher a tabela classe preenche tabela\n" + e);
 		}		
 	}
 	

@@ -33,7 +33,8 @@ public class DaoJPanelPreOrcamentoNovo {
 			getModuloConexao().getResultSet().next();
 			// retorna o numero do preorcamento e soma 1 para criar novo numero
 			numeroPreOrcamento = getModuloConexao().getResultSet().getInt(1) + 1;
-			
+			getModuloConexao().closeConnection();
+
 			return numeroPreOrcamento;
 			
 		} catch(Exception e) {

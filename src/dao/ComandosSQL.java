@@ -14,9 +14,30 @@ public class ComandosSQL {
 	private static String visualizarTodosPreOrcamentos_data;
 	private static String validarLogin;
 	private static String consultarNumeroPreOrcamento;
+	private static String consultarClientesTodosCampos;
 	private static String consultarClientesNome;
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
+	
+	
+	/*
+	 * Método String getconsultarClientesCpf()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getconsultarClientesTodosCampos() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "ID", "CPF", "CNPj", "Tipo", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		 */
+		if(consultarClientesTodosCampos == null){
+			consultarClientesTodosCampos = (
+				"select * from tb_clientes\r\n"
+				+ "where id_cliente = ?;"
+			);
+	
+		}
+		return consultarClientesTodosCampos;
+	}
 	
 	
 	/*
@@ -30,7 +51,7 @@ public class ComandosSQL {
 		 */
 		if(consultarClientesCpf == null){
 			consultarClientesCpf = (
-				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				"select id_cliente, cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
 				+ "where cpf = ?\r\n"
 				+ "order by nome;"
 			);
@@ -51,7 +72,7 @@ public class ComandosSQL {
 		 */
 		if(consultarClientesCnpj == null){
 			consultarClientesCnpj = (
-				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				"select id_cliente, cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
 				+ "where cnpj = ?\r\n"
 				+ "order by nome;"
 			);
@@ -72,7 +93,7 @@ public class ComandosSQL {
 		 */
 		if(consultarClientesNome == null){
 			consultarClientesNome = (
-				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				"select id_cliente, cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
 				+ "where nome like concat('%', ?,'%')\r\n"
 				+ "order by nome;"
 			);

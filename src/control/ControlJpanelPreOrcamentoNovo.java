@@ -264,8 +264,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	public JDialogProcurarCliente getjDialogProCliente() {
 		if(jDialogProcurarCliente == null) {
-			System.out.println("novo jdialog procurar cliente");
 			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePrincipal(), true);
+			jDialogProcurarCliente.setLocationRelativeTo(getjFramePrincipal());
 		}
 		return jDialogProcurarCliente;
 	}
@@ -273,9 +273,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	public ControlJDialogProcurarCliente getconControlJDialogProcurarCliente() {
 		if(controlJDialogProcurarCliente == null) {
-
-			System.out.println("novo controlador jdialog procurar cliente");
-			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente());
+			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente(), getjPanelPreOrcamentoNovo());
 		}
 		return controlJDialogProcurarCliente;
 	}

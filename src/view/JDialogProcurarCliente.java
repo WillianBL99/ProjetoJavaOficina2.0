@@ -31,6 +31,7 @@ import model.SetSizeIcon;
 @SuppressWarnings("serial")
 public class JDialogProcurarCliente extends JDialog{
 
+
 	//** Início declaração de variáveis **
 	private boolean modalTela;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
@@ -201,7 +202,7 @@ public class JDialogProcurarCliente extends JDialog{
 	public JTable getjTableCliente() {
 			if(jTableCliente == null){		
 				jTableCliente = new JTable();
-				getModuloConexao().executeQuery(ComandosSQL.getcnsultarClientes(), "");
+				getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), "");
 				jTableCliente.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
 						"CNPj",
 						"CPF",

@@ -15,11 +15,55 @@ public class ComandosSQL {
 	private static String validarLogin;
 	private static String consultarNumeroPreOrcamento;
 	private static String consultarClientesNome;
+	private static String consultarClientesCnpj;
+	private static String consultarClientesCpf;
 	
 	
 	/*
-	 * Método String getvisualizarTodosPreOrcamentos()
-	 * Retorna a query que tem a função de exibir todos os pré orçamentos criados
+	 * Método String getconsultarClientesCpf()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getconsultarClientesCpf() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "CNPj", "CPF", "Nome", "email", "Telefone", "Cidade"
+		 */
+		if(consultarClientesNome == null){
+			consultarClientesNome = (
+				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				+ "where cpf = ?\r\n"
+				+ "order by nome;"
+			);
+	
+		}
+		return consultarClientesNome;
+	}
+	
+	
+	/*
+	 * Método String getconsultarClientesCpf()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getconsultarClientesCnpj() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "CNPj", "CPF", "Nome", "email", "Telefone", "Cidade"
+		 */
+		if(consultarClientesNome == null){
+			consultarClientesNome = (
+				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+				+ "where cnpj = ?\r\n"
+				+ "order by nome;"
+			);
+	
+		}
+		return consultarClientesNome;
+	}
+	
+	
+	/*
+	 * Método String getconsultarClientesCpf()
+	 * Retorna a query que tem a função de exibir todos os clientes
 	 */
 	public static String getconsultarClientesNome() {
 		/*

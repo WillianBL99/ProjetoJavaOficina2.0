@@ -10,6 +10,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JOptionPane;
+
+import dao.ComandosSQL;
+import dao.DaoJDialogProcurarCliente;
 import dao.ModuloConexao;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -23,8 +27,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
 	private JDialogProcurarCliente jDialogProcurarCliente;
+	private DaoJDialogProcurarCliente daoJDialogProcurarCliente;
 	private boolean modal;
-	private ModuloConexao moduloConexao;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -69,9 +73,50 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// quando o botão de pesquisar for clicado na tela de proucar clientes
 		if(e.getSource() == getjDialogProcurarCliente().getjButtonPesquisar()) {
+			// ser for a caixa de texto estiver vazia exibe uma mensagem de alerta
+			if(!getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText().isEmpty()) {
+				/*
+				 * Cliente pode ser procurado de três formas diferentes
+				 * - Nome - Realiza uma query retornando todos os clientes com o nome inserido
+				 * - CPF - Executa uma query que retorna os dados do cliente com o numero do cpf inserido
+				 * - CNPj - Executa uma query que retorna os dados do cliente com o numero do cnpj inserido
+				 */
+
+				switch (getjDialogProcurarCliente().getjComboBoxPesquisa().getSelectedItem().toString()) {
+				
+				// procurando cliente pelo nome
+				case "Nome":
+					getdaoJDialogProcurarCliente().getClienteNome(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+					break;
+					
+				// procurando cliente pelo CPF
+				case "CPF":
+					getdaoJDialogProcurarCliente().getClienteCpf(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+					break;
+					
+				// procurando cliente pelo CNPj
+				case "CNPj":
+					getdaoJDialogProcurarCliente().getClienteCnpj(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+					break;
+				}
+				
+			} else {
+				// exibe uma mensage avisando que a caixa de texto está vasia
+				JOptionPane.showMessageDialog(getjDialogProcurarCliente(),
+					    "A caixa de texto esta vazia. Preencha e pesquise novamente.",
+					    "Erro na consulta",
+					    JOptionPane.WARNING_MESSAGE);
+			}
 			
-		} else if() {
+		
+		// Quando o botão selecionar cliente na tela procurar clientes for clicado
+		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonSelecionar()) {
+			
+			
+		// Quando o botão cancelar na tela procurar clientes for clicado
+		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonCancelar()) {
 			
 		}
 	}
@@ -170,6 +215,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePricipal(), true);
 		}
 		return jDialogProcurarCliente;
+	}
+	
+	
+	public DaoJDialogProcurarCliente getdaoJDialogProcurarCliente() {
+		if(daoJDialogProcurarCliente == null){
+			daoJDialogProcurarCliente = new DaoJDialogProcurarCliente(getjDialogProcurarCliente());
+		}
+		return daoJDialogProcurarCliente;
 	}
 
 

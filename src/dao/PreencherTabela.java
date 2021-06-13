@@ -118,8 +118,8 @@ public class PreencherTabela extends AbstractTableModel{
 						
 			}while(getModuloConexao().getResultSet().next());
 			
-		} catch (Exception e) {
-			JOptionPane.showInternalMessageDialog(null, "Erro ao preencher a tabela\n" + e);
+		} catch (SQLException e) {
+			JOptionPane.showInternalMessageDialog(null, "Erro ao preencher a tabela classe preenche tabela\n" + e);
 		}		
 	}
 	

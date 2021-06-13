@@ -64,7 +64,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), cpf);
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCpf(), cpf);
 			
 			// Realiza o preenchimento da tabela de jdialogprocurarcliente
 			
@@ -94,7 +94,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), cnpj);
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCnpj(), cnpj);
 			
 			// Realiza o preenchimento da tabela de jdialogprocurarcliente
 			

@@ -191,6 +191,8 @@ public class JDialogProcurarCliente extends JDialog{
 				jComboBoxPesquisa.setFont(Fontes.fontJTFieldPlain1);
 				jComboBoxPesquisa.setOpaque(true);
 				jComboBoxPesquisa.addItem("Nome");
+				jComboBoxPesquisa.addItem("CPF");
+				jComboBoxPesquisa.addItem("CNPj");
 			}
 			return jComboBoxPesquisa;
 		}

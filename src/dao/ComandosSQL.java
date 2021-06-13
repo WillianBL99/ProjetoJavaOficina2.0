@@ -28,15 +28,15 @@ public class ComandosSQL {
 		 * Lista dos nomes dos campos:
 		 * "CNPj", "CPF", "Nome", "email", "Telefone", "Cidade"
 		 */
-		if(consultarClientesNome == null){
-			consultarClientesNome = (
+		if(consultarClientesCpf == null){
+			consultarClientesCpf = (
 				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
 				+ "where cpf = ?\r\n"
 				+ "order by nome;"
 			);
 	
 		}
-		return consultarClientesNome;
+		return consultarClientesCpf;
 	}
 	
 	
@@ -49,15 +49,15 @@ public class ComandosSQL {
 		 * Lista dos nomes dos campos:
 		 * "CNPj", "CPF", "Nome", "email", "Telefone", "Cidade"
 		 */
-		if(consultarClientesNome == null){
-			consultarClientesNome = (
+		if(consultarClientesCnpj == null){
+			consultarClientesCnpj = (
 				"select cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
 				+ "where cnpj = ?\r\n"
 				+ "order by nome;"
 			);
 	
 		}
-		return consultarClientesNome;
+		return consultarClientesCnpj;
 	}
 	
 	

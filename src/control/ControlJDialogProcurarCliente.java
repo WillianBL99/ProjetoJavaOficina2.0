@@ -117,7 +117,34 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			
 		// Quando o botão cancelar na tela procurar clientes for clicado
 		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonCancelar()) {
+			/*
+			 * Quando o botão cancelar da tela procurar cliente for clicado ele ira fechar a tela
+			 * e perguntar se quer realmente que feche sem selecionar um cliente.
+			 */
+			// Vetro de String com os nomes das opções que apareceram no joptionpane.
+			String[] options = {"OK", "Cancelar"}; 
 			
+			/*
+			 * int option
+			 * recebe 0 ou 1 de acordo com a mensage selecionada
+			 * - 0: Foi secionada a opção ok
+			 * - 1: Foi selecionada a opção cancelar
+			 */
+			int option = JOptionPane.showOptionDialog(getjDialogProcurarCliente(),
+					"Nenhum cliente foi selecionado. Deseja sair?", // mensagem
+					"Alerta", // título
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[1]); // opção selecionada inicialmente
+			
+			// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+			if(option == 0) {
+				getjFramePricipal().setEnabled(true);
+				getjDialogProcurarCliente().dispose();
+				
+			}
 		}
 	}
 

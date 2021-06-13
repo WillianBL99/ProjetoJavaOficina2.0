@@ -99,7 +99,7 @@ public class JDialogProcurarCliente extends JDialog{
 			jButtonPesquisar.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
 			setSizeIcon.setIconJButton(jButtonPesquisar, Icones.
-					getBuscar(), 30, 30);
+					getBuscar(), 22, 22);
 		}	
 		return jButtonPesquisar;
 
@@ -242,10 +242,10 @@ public class JDialogProcurarCliente extends JDialog{
 		this.getjButtonPesquisar().setLocation(511, 64);
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjButtonCancelar());
-		this.getjButtonCancelar().setLocation(704, 235);
+		this.getjButtonCancelar().setLocation(748, 235);
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjButtonSelecionar());
-		this.getjButtonSelecionar().setLocation(800, 235);
+		this.getjButtonSelecionar().setLocation(844, 235);
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjSPanel());
 		this.getjSPanel().setLocation(50,112);

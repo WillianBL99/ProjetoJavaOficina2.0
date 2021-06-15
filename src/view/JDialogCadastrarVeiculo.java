@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 
 /**
  * @author Paulo Uilian
@@ -311,7 +312,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 
 	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){
-			jTFieldChassi = new JTextField();
+			jTFieldChassi = Mascara.mascaraChassi();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -353,7 +354,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 
 	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){
-			jTFieldPlaca = new JTextField();
+			jTFieldPlaca = Mascara.mascaraPlaca();
 			jTFieldPlaca.setSize(122, 21);
 			jTFieldPlaca.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -381,7 +382,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 
 	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
-			jTFieldKMAtual = new JTextField();
+			jTFieldKMAtual = Mascara.mascaraQuilometragem();
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

@@ -75,7 +75,7 @@ public class JDialogEditarProduto extends JDialog{
 	public JDialogEditarProduto  getJDialogEditarProduto() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 375);
 		this.setVisible(true);
@@ -92,7 +92,7 @@ public class JDialogEditarProduto extends JDialog{
 		if(jLabelDetalheInsercao == null){	
 			jLabelDetalheInsercao = new JLabel("Destalhes da inserção");
 			jLabelDetalheInsercao.setFont(Fontes.fontJLabelBold2);
-			jLabelDetalheInsercao.setSize(200, 25);
+			jLabelDetalheInsercao.setSize(213, 25);
 			jLabelDetalheInsercao.setForeground(Cores.azul1);
 			jLabelDetalheInsercao.setOpaque(false);
 		}

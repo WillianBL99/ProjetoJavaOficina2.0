@@ -3,6 +3,7 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
@@ -18,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 import model.SetSizeIcon;
 
 /**
@@ -92,7 +94,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldNome;
 	private JTextField jTFieldCidade;
 	private JTextField jTFieldNumeroCasa;
-	private JTextField jTFieldTipo;
+	private Choice choiceTipo;
 	private JTextField jTFieldBairro;
 	private JTextField jTFieldTelefone;
 	
@@ -677,7 +679,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JTextField getjTFieldDataPreOrcamento() {
 		if(jTFieldDataPreOrcamento == null){
-			jTFieldDataPreOrcamento = new JTextField();
+			jTFieldDataPreOrcamento = Mascara.mascaraData();
 			jTFieldDataPreOrcamento.setSize(94, 21);
 			jTFieldDataPreOrcamento.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -721,7 +723,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
-			jTFieldCpf = new JTextField();
+			jTFieldCpf = Mascara.mascaraCPF();
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBackground(Cores.cinza4);
 			jTFieldCpf.setBorder(null);
@@ -811,18 +813,18 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JTextField getjTFieldTipo() {
-		if(jTFieldTipo == null){	
-			jTFieldTipo = new JTextField();
-			jTFieldTipo.setSize(53, 21);
-			jTFieldTipo.setBackground(Cores.cinza4);
-			jTFieldTipo.setBorder(null);
-			jTFieldTipo.setEditable(false);
-			jTFieldTipo.setForeground(Cores.preto);
-			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldTipo.setOpaque(true);
+	public Choice getChoiceTipo() {
+		if(choiceTipo == null){
+			
+			choiceTipo = new Choice();
+			choiceTipo.setSize(92, 21);
+			choiceTipo.setForeground(Cores.preto);
+			choiceTipo.setFont(Fontes.fontJTFieldPlain1);
+			choiceTipo.setFocusable(true);
+			choiceTipo.add("Física");
+			choiceTipo.add("Jurídica");
 		}
-		return jTFieldTipo;
+		return choiceTipo;
 	}
 	
 	
@@ -843,7 +845,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){	
-			jTFieldTelefone = new JTextField();
+			jTFieldTelefone = Mascara.mascaraTelefone();
 			jTFieldTelefone.setSize(125, 21);
 			jTFieldTelefone.setBackground(Cores.cinza4);
 			jTFieldTelefone.setBorder(null);
@@ -903,7 +905,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){	
-			jTFieldChassi = new JTextField();
+			jTFieldChassi = Mascara.mascaraChassi();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBackground(Cores.cinza4);
 			jTFieldChassi.setBorder(null);
@@ -948,7 +950,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){	
-			jTFieldPlaca = new JTextField();
+			jTFieldPlaca = Mascara.mascaraPlaca();
 			jTFieldPlaca.setSize(125, 21);
 			jTFieldPlaca.setBackground(Cores.cinza4);
 			jTFieldPlaca.setBorder(null);
@@ -978,7 +980,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){	
-			jTFieldKMAtual = new JTextField();
+			jTFieldKMAtual = Mascara.mascaraQuilometragem();
 			jTFieldKMAtual.setSize(125, 21);
 			jTFieldKMAtual.setBackground(Cores.cinza4);
 			jTFieldKMAtual.setBorder(null);
@@ -1186,8 +1188,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		this.getjPanelCentro().add(getjLabelTipo());
 		this.getjLabelTipo().setLocation(613, 153);
 		
-		this.getjPanelCentro().add(getjTFieldTipo());
-		this.getjTFieldTipo().setLocation(656, 153);
+		this.getjPanelCentro().add(getChoiceTipo());
+		this.getChoiceTipo().setLocation(656, 153);
 		
 		this.getjPanelCentro().add(getjLabelTelefone());
 		this.getjLabelTelefone().setLocation(754, 153);

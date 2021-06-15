@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 
 /**
  * @author Paulo Uilian
@@ -76,7 +77,7 @@ public class JDialogCadastrarCliente extends JDialog{
 	public JDialogCadastrarCliente  getJDialogCadastrarCliente() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 238);
 		this.setVisible(true);
@@ -227,7 +228,7 @@ public class JDialogCadastrarCliente extends JDialog{
 	public JRadioButton getjRadioButtonCpf() {
 		if(jRadioButtonCpf == null){
 			jRadioButtonCpf = new JRadioButton("CPF");
-			jRadioButtonCpf.setSize(45, 15);
+			jRadioButtonCpf.setSize(48, 15);
 			jRadioButtonCpf.setBackground(Cores.branco);
 			jRadioButtonCpf.setForeground(Cores.preto);
 			jRadioButtonCpf.setFocusPainted(false);
@@ -308,7 +309,7 @@ public class JDialogCadastrarCliente extends JDialog{
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
-			jTFieldCpf = new JTextField();
+			jTFieldCpf = Mascara.mascaraCPF();
 			jTFieldCpf.setSize(166, 21);
 			jTFieldCpf.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -336,7 +337,7 @@ public class JDialogCadastrarCliente extends JDialog{
 
 	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){
-			jTFieldTelefone = new JTextField();
+			jTFieldTelefone = Mascara.mascaraTelefone();
 			jTFieldTelefone.setSize(140, 21);
 			jTFieldTelefone.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -434,7 +435,7 @@ public class JDialogCadastrarCliente extends JDialog{
 		getjRadioButtonCpf().setLocation(76, 31);
 		
 		getJDialogCadastrarCliente().getContentPane().add(getjRadioButtonCnpj());
-		getjRadioButtonCnpj().setLocation(119, 31);
+		getjRadioButtonCnpj().setLocation(126, 31);
 
 		
 		getJDialogCadastrarCliente().getContentPane().add(getjLabelCpf());

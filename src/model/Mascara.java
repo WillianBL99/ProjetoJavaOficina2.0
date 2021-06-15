@@ -21,7 +21,7 @@ public class  Mascara {
 		try {
 		
 			f = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-
+			
 			return f;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

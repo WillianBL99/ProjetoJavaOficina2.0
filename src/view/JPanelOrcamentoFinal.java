@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 import model.SetSizeIcon;
 
 /**
@@ -255,7 +256,7 @@ public class JPanelOrcamentoFinal  extends JPanel {
 	
 	public JTextField getjTFieldDTInicial() {
 		if(jTFieldDTInicial == null){
-			jTFieldDTInicial = new JTextField();
+			jTFieldDTInicial = Mascara.mascaraData();
 			jTFieldDTInicial.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
@@ -269,7 +270,7 @@ public class JPanelOrcamentoFinal  extends JPanel {
 	
 	public JTextField getjTFieldDTFinal() {
 		if(jTFieldDTFinal == null){
-			jTFieldDTFinal = new JTextField();
+			jTFieldDTFinal = Mascara.mascaraData();
 			jTFieldDTFinal.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);

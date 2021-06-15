@@ -41,8 +41,6 @@ public class JDialogInserirServico extends JDialog{
 	private JLabel jLabeCodigo;
 	private JLabel jLabelProcurarDescricao;
 	private JLabel jLabelProcurarPreco;
-	
-	private JLabel jLabelDescreverDescricao;
 	private JLabel jLabelDescreverPreco;
 	
 	
@@ -70,7 +68,7 @@ public class JDialogInserirServico extends JDialog{
 	public JDialogInserirServico  getJDialogInserirServico() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 236);
 		this.setVisible(true);
@@ -132,19 +130,6 @@ public class JDialogInserirServico extends JDialog{
 			jLabelProcurarPreco.setVisible(isVisibleProcurarDescrever());
 		}
 		return jLabelProcurarPreco;
-	}
-
-
-	public JLabel getjLabelDescreverDescricao() {
-		if(jLabelDescreverDescricao == null){	
-			jLabelDescreverDescricao = new JLabel("Descrição:");
-			jLabelDescreverDescricao.setFont(Fontes.fontJLabelPlain1);
-			jLabelDescreverDescricao.setSize(72, 25);
-			jLabelDescreverDescricao.setForeground(Cores.preto);
-			jLabelDescreverDescricao.setOpaque(false);
-			jLabelDescreverDescricao.setVisible(!isVisibleProcurarDescrever());
-		}
-		return jLabelDescreverDescricao;
 	}
 
 
@@ -367,13 +352,6 @@ public class JDialogInserirServico extends JDialog{
 		getJDialogInserirServico().getContentPane().add(getjTFieldProcurarPreco());
 		getjTFieldProcurarPreco().setLocation(805, 91);
 		
-		// fim parte visivel quando jbuttonProcurarServico estiver clicado
-		
-		// inicio parte visivel quando jbuttonDescreverServico estiver clicado
-		
-		getJDialogInserirServico().getContentPane().add(getjLabelDescreverDescricao());
-		getjLabelDescreverDescricao().setLocation(36, 91);
-		
 		getJDialogInserirServico().getContentPane().add(getjTFieldDescreverDescricao());
 		getjTFieldDescreverDescricao().setLocation(113, 91);
 		
@@ -411,7 +389,7 @@ public class JDialogInserirServico extends JDialog{
 			this.getjLabelProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
 			this.getjTFieldProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
 
-			this.getjLabelDescreverDescricao().setVisible(!this.isVisibleProcurarDescrever());
+		
 			this.getjTFieldDescreverDescricao().setVisible(!this.isVisibleProcurarDescrever());
 			this.getjLabelDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());
 			this.getjTFieldDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());

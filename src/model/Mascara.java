@@ -110,7 +110,6 @@ public class  Mascara {
 		
 		try {
 			MaskFormatter mask = new MaskFormatter("##########");
-			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 			km = new JFormattedTextField(mask);
 	
 			return km;

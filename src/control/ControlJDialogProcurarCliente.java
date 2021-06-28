@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 
 import dao.ComandosSQL;
 import dao.DaoJDialogProcurarCliente;
-import dao.ModuloConexao;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamentoNovo;
@@ -208,7 +207,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	}
 
 
-	@SuppressWarnings("deprecation")
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub

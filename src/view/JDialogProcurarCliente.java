@@ -45,6 +45,7 @@ public class JDialogProcurarCliente extends JDialog{
 	private JTextField jTextFieldCampoPesquisa;
 		
 	private JButton jButtonPesquisar;
+	private JButton jButtonNovoCliente;
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
 		
@@ -97,7 +98,7 @@ public class JDialogProcurarCliente extends JDialog{
 			jButtonPesquisar.setFont(Fontes.fontJButtonPlain3);
 			jButtonPesquisar.setBackground(Cores.azul1);
 			jButtonPesquisar.setForeground(Color.white);
-			jButtonPesquisar.setSize(48, 22);
+			jButtonPesquisar.setSize(48, 23);
 			jButtonPesquisar.setFocusable(false);
 			jButtonPesquisar.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
@@ -108,9 +109,24 @@ public class JDialogProcurarCliente extends JDialog{
 
 	}
 
+	public JButton getjButtonNovoCliente() {
+		if(jButtonNovoCliente == null){
+			jButtonNovoCliente = new JButton();			
+			jButtonNovoCliente.setFont(Fontes.fontJButtonPlain3);
+			jButtonNovoCliente.setBackground(Cores.azul1);
+			jButtonNovoCliente.setForeground(Color.white);
+			setSizeIcon.setIconJButton(jButtonNovoCliente, Icones.
+					getNewUser(), 20, 20);
+			jButtonNovoCliente.setSize(48, 23);
+			jButtonNovoCliente.setFocusable(false);
+			jButtonNovoCliente.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}	
+		return jButtonNovoCliente;
+	}
+
 	public JButton getjButtonCancelar() {
 		if(jButtonCancelar == null){
-			
 			jButtonCancelar = new JButton();			
 			jButtonCancelar.setFont(Fontes.fontJButtonPlain3);
 			jButtonCancelar.setBackground(Cores.azul1);
@@ -122,7 +138,6 @@ public class JDialogProcurarCliente extends JDialog{
 					createLineBorder(Cores.cinza2, 1));
 		}	
 		return jButtonCancelar;
-
 	}
 
 	public JButton getjButtonSelecionar() {
@@ -245,6 +260,9 @@ public class JDialogProcurarCliente extends JDialog{
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjButtonPesquisar());
 		this.getjButtonPesquisar().setLocation(511, 64);
+		
+		this.getJDialogProcurarCliente().getContentPane().add(getjButtonNovoCliente());
+		this.getjButtonNovoCliente().setLocation(874, 64);
 		
 		this.getJDialogProcurarCliente().getContentPane().add(getjButtonCancelar());
 		this.getjButtonCancelar().setLocation(748, 235);

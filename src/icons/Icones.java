@@ -6,6 +6,8 @@ public class Icones {
 	
 	private static String user;
 	
+	private static String newUser;
+	
 	private static String homeOn;
 	private static String homeOff;
 	
@@ -54,12 +56,17 @@ public class Icones {
 	private static String dinheiroCinza;
 	
 	
+	public static String getNewUser() {
+		if(newUser == null){
+			newUser = ("/icons/new-user-100.png");
+		}
+		return newUser;
+	}
+	
 	
 	public static String getBuscar() {
 		if(buscar == null){
-	
 			buscar = ("/icons/buscar-24.png");
-	
 		}
 		return buscar;
 	}

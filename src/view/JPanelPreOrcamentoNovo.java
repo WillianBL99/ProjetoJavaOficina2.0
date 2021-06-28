@@ -3,7 +3,6 @@
  */
 package view;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
@@ -15,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -94,7 +92,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldNome;
 	private JTextField jTFieldCidade;
 	private JTextField jTFieldNumeroCasa;
-	private Choice choiceTipo;
+	private JTextField jTFieldTipo;
 	private JTextField jTFieldBairro;
 	private JTextField jTFieldTelefone;
 	
@@ -813,18 +811,18 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public Choice getChoiceTipo() {
-		if(choiceTipo == null){
-			
-			choiceTipo = new Choice();
-			choiceTipo.setSize(92, 21);
-			choiceTipo.setForeground(Cores.preto);
-			choiceTipo.setFont(Fontes.fontJTFieldPlain1);
-			choiceTipo.setFocusable(true);
-			choiceTipo.add("Física");
-			choiceTipo.add("Jurídica");
+	public JTextField getjTFieldTipo() {
+		if(jTFieldTipo == null){
+			jTFieldTipo = new JTextField();
+			jTFieldTipo.setSize(91, 21);
+			jTFieldTipo.setBackground(Cores.cinza4);
+			jTFieldTipo.setBorder(null);
+			jTFieldTipo.setEditable(false);
+			jTFieldTipo.setForeground(Cores.preto);
+			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldTipo.setOpaque(true);
 		}
-		return choiceTipo;
+		return jTFieldTipo;
 	}
 	
 	
@@ -1188,8 +1186,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		this.getjPanelCentro().add(getjLabelTipo());
 		this.getjLabelTipo().setLocation(613, 153);
 		
-		this.getjPanelCentro().add(getChoiceTipo());
-		this.getChoiceTipo().setLocation(656, 153);
+		this.getjPanelCentro().add(getjTFieldTipo());
+		this.getjTFieldTipo().setLocation(656, 153);
 		
 		this.getjPanelCentro().add(getjLabelTelefone());
 		this.getjLabelTelefone().setLocation(754, 153);

@@ -6,7 +6,6 @@ package view;
 import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultSingleSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -15,8 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-
 import dao.ComandosSQL;
 import dao.ModuloConexao;
 import dao.PreencherTabela;

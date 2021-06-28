@@ -66,7 +66,6 @@ public class JDialogCadastrarCliente extends JDialog{
 	//** Início construtor **
 	public JDialogCadastrarCliente(Frame frame, boolean modal) {
 		super(frame, "Cadastrar Cliente");
-		this.modal = modal;
 		this.addCompJDialogCadastrarCliente();
 	}	
 

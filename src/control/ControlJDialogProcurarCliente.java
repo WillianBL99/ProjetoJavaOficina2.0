@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import dao.ComandosSQL;
 import dao.DaoJDialogProcurarCliente;
+import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamentoNovo;
@@ -45,8 +46,9 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	private void AddEvent() {
 		getjDialogProcurarCliente().addWindowListener(this);
-		getjDialogProcurarCliente().getjButtonCancelar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonPesquisar().addMouseListener(this);
+		getjDialogProcurarCliente().getjButtonNovoCliente().addMouseListener(this);
+		getjDialogProcurarCliente().getjButtonCancelar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonSelecionar().addMouseListener(this);
 		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);
 		
@@ -112,10 +114,49 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 					    "Erro na consulta",
 					    JOptionPane.WARNING_MESSAGE);
 			}
+		}
+
+		
+		// Quando o botão novo cliente na tela procurar clientes for clicado
+		else if(e.getSource() == getjDialogProcurarCliente().getjButtonNovoCliente()) {
+			/*
+			 * Exibe uma mensagem de pergunta se a pessoa quer adicionar um novo cliente.
+			 * Caso seja confirmada a escolha sera aberta uma novo jdialog para cadastrar
+			 * um novo cliente.
+			 */
 			
+			// Vetor de String contendo os nomes das opções do JOptionpane abaixo.
+			String options[] = {"Sim", "Cancelar"};
+			
+			/*
+			 * int option
+			 * recebe 0 ou 1 de acordo com a mensage selecionada
+			 * - 0: Foi secionada a opção ok
+			 * - 1: Foi selecionada a opção cancelar
+			 */
+			int option = JOptionPane.showOptionDialog(
+					jDialogProcurarCliente,
+					"Você deseja adiconar um novo cliente à lista de clientes?", // texto
+					"Alerta", // título
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[1]);
+			
+			/*
+			 * Caso a condicional seja verdadeira, será aberta a tela de 
+			 * cadastro de clientes.
+			 * Caso contraio a o joptionpane será fechado.
+			 */
+			if (option == 0) {
+				new JDialogCadastrarCliente(getjFramePricipal(), true);
+			}
+			
+		}
 		
 		// Quando o botão selecionar cliente na tela procurar clientes for clicado
-		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonSelecionar()) {
+		else if(e.getSource() == getjDialogProcurarCliente().getjButtonSelecionar()) {
 			/*
 			 *  Verifica se foi selecionado algum cliente
 			 *  se getSelectedRow() retornar um numero menor que 0 
@@ -153,10 +194,11 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			 * - 0: Foi secionada a opção ok
 			 * - 1: Foi selecionada a opção cancelar
 			 */
-			int option = JOptionPane.showOptionDialog(getjDialogProcurarCliente(),
+			int option = JOptionPane.showOptionDialog(
+					getjDialogProcurarCliente(), // tela pai
 					"Nenhum cliente foi selecionado. Deseja sair?", // mensagem
 					"Alerta", // título
-					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.DEFAULT_OPTION, 
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
 					options,

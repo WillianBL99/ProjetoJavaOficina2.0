@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * 
@@ -18,7 +17,6 @@ public class ModuloConexao {
 	private static Connection connection;
 	private  PreparedStatement preparedStatement;
 	private  ResultSet resultSet;
-	private static boolean conectado;
 	
 	// Construtor
 	public ModuloConexao() {
@@ -26,46 +24,53 @@ public class ModuloConexao {
 		conector();
 	}
 	
-	// Método responsável por estabelecer uma conexão com o banco de dados
+	/**
+	 * Método conector() responsável por estabelecer uma conexão com o banco de dados
+	 * @return Connection
+	 */
 	public static Connection conector() {
-		// A linha abaixo recebe o caminho do driver de conexão com o banco de dados
-		String driver = "com.mysql.cj.jdbc.Driver";
+		/*
+		 *  Armazenando informações referente ao banco de dados
+		 */
+		String dataBase = "controle_estoque_02"; // nome do banco de dados
+		String url = "jdbc:mysql://localhost:3306/" + dataBase; // caminho do conecector jdbc
+		String user = "root"; // usuário
+		String password = "root"; // senha
 		
-		// Armazenando informações referente ao banco de dados
-		String url = "jdbc:mysql://localhost:3306/controle_estoque_02";
-		String user = "root";
-		String password = "root";
-		
-		// Estabelecendo conexão com o banco de dados
 		try {
-			if(!isConectado()) {
-				Class.forName(driver);
-				// Inicia a conexão com o banco de dados
-				setConnection(DriverManager.getConnection(url, user, password));
-				//System.out.printf("moduloConexao Conexão bem sucedida:%n%s",connection); // Uso para testes
-				setConectado(true);
-			}
-			
+			// Seta Connection com os dados de conexão com o banco de dados
+			setConnection(DriverManager.getConnection(url, user, password));
 			return connection;
 			
 		} catch (Exception e) {
-			//System.out.printf("Erro ao tentar se conectar com o DB: %s", e); // Uso para testes
-			if(isConectado())
-				setConectado(false);
+			System.out.println("Erro-Class:ModuloConexao.conector: " + e.getMessage());
 			return null;
 		}
 	}
 	
 	
-	// Método uitilizada para execução de uma query
+	/**
+	 * Método executeQuery(sql) uitilizada para execução de uma query
+	 * @param sql
+	 */
 	public void executeQuery(String sql) {
 		this.executeQuery(sql, null);
 	}
 		
 		
-	// Método uitilizada para execução de uma query
+	/**
+	 * Método executeQuery(sql, campos...) uitilizada para execução de uma query
+	 * passando capos para serem inseridos na query sql
+	 * @param sql
+	 * @param campos
+	 */
 	public void executeQuery(String sql, String... campos) {
 		int countConnection = 5; // define a quantidade de tentativas de conexão
+		
+		/* laço de repetição que tenta realizar uma conexão
+		 * depois de countConnection tentivas sem obter 
+		 * conexão o laço é fechado
+		 */
 		do {
 			getConnection();
 			countConnection--;
@@ -73,47 +78,68 @@ public class ModuloConexao {
 				countConnection = 5;
 				break;
 			}
-		} while(!isConectado()); 
+		} while(connection == null); 
 		
-		// se estiver conectado executa o código
-		if(isConectado()) {
-			// Verifica se a quantidade de "?" na string sql é
-			// compatível com a quantidade de strings no vetor campos
+		/*
+		 * Caso a conexão com o banco de dados tenha ocorrida com sucesso
+		 * os comandos dentro da condicional serão executados.
+		 */
+		if(connection != null) {
+
+			/*
+			 * Inteiro sizeCampos recebe o tamanho do vetor campos
+			 * caso o vetor seja null, a variavel sizeCampos receberá
+			 * o valor de 0.
+			 */
 			int sizeCampos = (campos == null ? 0 : campos.length);
-			//System.out.println(campos.length + " = " + contarCarceter(sql));
+			/*
+			 * Verifica se a quantidade de "?" na string sql é
+			 * compatível com a quantidade de strings no vetor campos
+			 */
 			if (contarCarceter(sql) == sizeCampos) {
-				
 				try {
-					// As linhas abaixo realizam a consulta de dados do banco de dados
+					// Seta o preparedStatmente com o camando sql
 					setPreparedStatement(getConnection().prepareStatement(sql,
 	                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
 	                    ResultSet.CONCUR_UPDATABLE));
 					
+					/*
+					 * O for() abaixo é executado se sizeCampos for maior que 0
+					 * Se for, é executados os camandos que realizam as subistiuição
+					 * dos "?" contidos na String sql pelos valores do vetor campos
+					 */
 					for(int i = 0; i < sizeCampos; i++) {
 						System.out.printf("setString(%d, %s)%n", i + 1, campos[i]);
 						getPreparedStatement().setString(i + 1, campos[i]); // Substitui o (i + 1)º "?" pelo valor de campos[i]
 					}
 					
-					// A linha abaixo executa a query
+					// Executa a query
 					setResultSet(getPreparedStatement().executeQuery());
+					
 				} catch (Exception e) {
-					System.out.println("erro no método executeQuery da classe ModuloConexao\n" + e);
-				}
+					System.out.println("Erro-Class:ModuloConexao-executeQuery: " + e.getMessage());
+				}				
+				
 			} else {
-				System.out.println("a quantidade de \"?\" não é compativel com \na quantidade de comandos inseridos");
+				System.out.println("Erro-Class:ModuloConexao-executeQuery: " + "A quantidade de \"?\" não é compativel com a quantidade de comandos inseridos");
 			}
 			
 		}
 	}
 	
-	// Método para verificar a quantidade de "?" em uma string
+	/**
+	 * Método contarCarceter(sql) para verificar a quantidade de "?" em uma string
+	 * @param sql
+	 * @return countCaracter
+	 */
 	private  int contarCarceter(String sql) {
-		// Receberá a quantidade de "?" contido na string sql
 		int countCaracter = 0;
 		// Itera a string sql
 		for(int i = 0; i < sql.length(); i++) {
-			// Se a verificação for verdadeira adiciona 1 à
-			// variável countCaracter
+			/*
+			 * Se encontrar algum '?' na string sql
+			 * incrementa 1 no inteiro countCaracter
+			 */
 			if(sql.charAt(i) == '?') {
 				countCaracter++;
 			}
@@ -122,21 +148,8 @@ public class ModuloConexao {
 	}
 
 	
-	// Método para encerrar a conexão com o banco  de dados
-	public void closeConnection() {
-		try {
-			if(isConectado()) {
-				getConnection().close();
-				setConectado(false);
-			}
-		} catch (SQLException e) {
-			System.out.println("Banco de dados - erro ao encerrar: " + e);;
-		}
-	}
-	
-	
 	public static Connection getConnection() {
-		if(!isConectado()) {
+		if(connection == null) {
 			connection = ModuloConexao.conector();
 		}
 		return connection;
@@ -163,14 +176,6 @@ public class ModuloConexao {
 
 	public void setResultSet(ResultSet resultSet) {
 		this.resultSet = resultSet;
-	}
-
-	public static boolean isConectado() {
-		return conectado;
-	}
-
-	private static void setConectado(boolean conectado) {
-		ModuloConexao.conectado = conectado;
 	}
 	
 

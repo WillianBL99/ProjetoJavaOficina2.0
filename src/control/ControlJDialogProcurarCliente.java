@@ -31,6 +31,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
 	private DaoJDialogProcurarCliente daoJDialogProcurarCliente;
+	private JDialogCadastrarCliente jDialogCadastrarCliente;
+	private ControlJDialogCadastrarCliente controlJDialogCadastrarCliente;
 	private boolean modal;
 	
 	//** Fim declaração de variáveis **	
@@ -150,7 +152,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			 * Caso contraio a o joptionpane será fechado.
 			 */
 			if (option == 0) {
-				new JDialogCadastrarCliente(getjFramePricipal(), true);
+				getjDialogCadastrarCliente();
+				getcontrolJDialogCadastrarCliente();
 			}
 			
 		}
@@ -333,9 +336,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			getjPanelPreOrcamentoNovo().getjTFieldRua().setText(rua);
 			getjPanelPreOrcamentoNovo().getjTFieldNumeroCasa().setText(numeroCasa);
 			
-			// Fecha a conexão com o banco de dados
-			getdaoJDialogProcurarCliente().getModuloConexao().closeConnection();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getErrorCode());
@@ -372,6 +372,22 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			daoJDialogProcurarCliente = new DaoJDialogProcurarCliente(getjDialogProcurarCliente());
 		}
 		return daoJDialogProcurarCliente;
+	}
+	
+	
+	public JDialogCadastrarCliente getjDialogCadastrarCliente() {
+		if(jDialogCadastrarCliente == null){
+			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjFramePricipal(), true);
+		}
+		return jDialogCadastrarCliente;
+	}
+	
+	
+	public ControlJDialogCadastrarCliente getcontrolJDialogCadastrarCliente() {
+		if(controlJDialogCadastrarCliente == null){
+			controlJDialogCadastrarCliente = new ControlJDialogCadastrarCliente(getjFramePricipal(), getjDialogCadastrarCliente());
+		}
+		return controlJDialogCadastrarCliente;
 	}
 
 

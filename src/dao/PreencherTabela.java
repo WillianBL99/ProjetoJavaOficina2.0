@@ -57,7 +57,6 @@ public class PreencherTabela extends AbstractTableModel{
 		setrenomeandoTitulo(true);
 		// chama o cosntrutor principal
 		this.preencher(resultSet);
-		getModuloConexao().closeConnection();
 		
 		// retorna o TabelModel
 		return this;

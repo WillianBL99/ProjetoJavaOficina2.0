@@ -27,7 +27,7 @@ public class JDialogCadastrarCliente extends JDialog{
 	
 	//** Início declaração de variáveis **
 		
-	private boolean modal;
+	private boolean modalTela;
 	
 	
 	private JRadioButton jRadioButtonCpf;
@@ -80,8 +80,7 @@ public class JDialogCadastrarCliente extends JDialog{
 		this.setBackground(Cores.branco);
 		this.setSize(975, 238);
 		this.setVisible(true);
-		this.setModal(modal);
-		this.setVisible(true);
+		setmodalTela(modalTela);
 		return this;
 	}
 	
@@ -231,6 +230,7 @@ public class JDialogCadastrarCliente extends JDialog{
 			jRadioButtonCpf.setBackground(Cores.branco);
 			jRadioButtonCpf.setForeground(Cores.preto);
 			jRadioButtonCpf.setFocusPainted(false);
+			jRadioButtonCpf.setSelected(true);
 			jRadioButtonCpf.setFont(Fontes.fontJButtonPlain1);
 		}
 		return jRadioButtonCpf;
@@ -486,12 +486,12 @@ public class JDialogCadastrarCliente extends JDialog{
 		
 		getJDialogCadastrarCliente().getContentPane().add(getjTFieldNumeroCasa());
 		getjTFieldNumeroCasa().setLocation(333, 116);
-		
+		/*
 		getJDialogCadastrarCliente().getContentPane().add(getjLabelTipoPessoa());
 		getjLabelTipoPessoa().setLocation(576, 116);
 		
 		getJDialogCadastrarCliente().getContentPane().add(getChoiceTipoPessoa());
-		getChoiceTipoPessoa().setLocation(649, 116);
+		getChoiceTipoPessoa().setLocation(649, 116);*/
 
 		
 		getJDialogCadastrarCliente().getContentPane().add(getjButtonCancelar());
@@ -502,7 +502,17 @@ public class JDialogCadastrarCliente extends JDialog{
 		
 		}
 	
-		
+
+	
+	
+	public boolean ismodalTela() {
+		return modalTela;
+	}
+	
+	
+	public void setmodalTela(boolean modalTela) {
+		this.modalTela = modalTela;
+	}
 	
 	
 	

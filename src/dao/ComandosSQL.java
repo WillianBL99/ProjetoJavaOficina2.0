@@ -18,7 +18,48 @@ public class ComandosSQL {
 	private static String consultarClientesNome;
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
+	private static String cadastrarClientesCnpj;
+	private static String cadastrarClienteCpf;
 	
+	
+	/*
+	 * Método String getcadastrarClientesCnpj()
+	 * Cadastrar um cliente com os dados inseridos
+	 */
+	public static String getcadastrarClientesCpf() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "CPF", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		 */
+		if(cadastrarClientesCnpj == null){
+			cadastrarClientesCnpj = (
+				"insert into tb_clientes(cpf, nome, email, telefone, cidade, bairro, rua, numero) values\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarClientesCnpj;
+	}
+	
+	
+	/*
+	 * Método String getconsultarClientesCpf()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getcadastrarClientesCnpj() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "CNPj", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		 */
+		if(cadastrarClienteCpf == null){
+			cadastrarClienteCpf = (
+				"insert into tb_clientes(cnpj, nome, email, telefone, cidade, bairro, rua, numero) values\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?);"
+			);
+	
+		}
+		return cadastrarClienteCpf;
+	}
+		
 	
 	/*
 	 * Método String getconsultarClientesCpf()

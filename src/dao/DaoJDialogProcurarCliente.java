@@ -50,7 +50,6 @@ public class DaoJDialogProcurarCliente {
 										"email",
 										"Telefone",
 										"Cidade"));
-				getModuloConexao().closeConnection();
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
@@ -94,7 +93,6 @@ public class DaoJDialogProcurarCliente {
 								"email",
 								"Telefone",
 								"Cidade"));
-				getModuloConexao().closeConnection();
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
@@ -138,7 +136,6 @@ public class DaoJDialogProcurarCliente {
 								"email",
 								"Telefone",
 								"Cidade"));
-				getModuloConexao().closeConnection();
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {

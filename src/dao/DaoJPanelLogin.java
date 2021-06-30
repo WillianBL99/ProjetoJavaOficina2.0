@@ -22,17 +22,14 @@ public class DaoJPanelLogin {
 			// Se os valores forem encontrados
 			if(getModuloConexao().getResultSet().next()) {
 				// O usuário e senha foram encontrados no banco de dados
-				getModuloConexao().closeConnection();
 				return 1;
 			} else {
 				// não foram encontrado os valores
-				getModuloConexao().closeConnection();
 				return 2;
 			}
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao consultar banco de dados.\n" + e);
-			getModuloConexao().closeConnection();
 			return 0;
 		}
 	}

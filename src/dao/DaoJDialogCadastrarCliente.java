@@ -2,7 +2,10 @@
  * 
  */
 package dao;
+import javax.swing.JFrame;
+
 import view.JDialogCadastrarCliente;
+import view.JFramePrincipal;
 
 /**
  * @author Paulo Uilian
@@ -12,9 +15,11 @@ public class DaoJDialogCadastrarCliente {
 	
 	// Classe de consulta de dados no banco de dados
 	private JDialogCadastrarCliente jDialogCadastrarCliente;
+	private JFramePrincipal jFramePrincipal;
 	private Cadastrar cadastrar;
 	
-	public DaoJDialogCadastrarCliente(JDialogCadastrarCliente jDialogCadastrarCliente) {
+	public DaoJDialogCadastrarCliente(JFramePrincipal jFramePrincipal, JDialogCadastrarCliente jDialogCadastrarCliente) {
+		this.jFramePrincipal = jFramePrincipal;
 		this.jDialogCadastrarCliente = jDialogCadastrarCliente;
 	}
 	
@@ -76,9 +81,16 @@ public class DaoJDialogCadastrarCliente {
 	
 	// Metodos getters e setters
 	
+	private JFramePrincipal getjFramePrincipal() {
+		if(jFramePrincipal == null) {
+			jFramePrincipal = new JFramePrincipal();
+		}
+		return jFramePrincipal;
+	}
+	
 	private JDialogCadastrarCliente getjDialogProcurarCliente() {
 		if(jDialogCadastrarCliente == null) {
-			jDialogCadastrarCliente = new JDialogCadastrarCliente(null, false);
+			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjFramePrincipal(), false);
 		}
 		return jDialogCadastrarCliente;
 	}

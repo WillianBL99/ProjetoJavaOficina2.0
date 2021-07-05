@@ -4,7 +4,9 @@
 package view;
 
 import java.awt.Choice;
+import java.awt.Component;
 import java.awt.ComponentOrientation;
+import java.awt.Dialog;
 import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -66,17 +68,27 @@ public class JDialogCadastrarCliente extends JDialog{
 	//** Início construtor **
 	public JDialogCadastrarCliente(Frame frame, boolean modal) {
 		super(frame, "Cadastrar Cliente");
+		setmodalTela(modal);
 		this.addCompJDialogCadastrarCliente();
 	}	
+	
+	
+	public JDialogCadastrarCliente(Dialog dialog, boolean modal) {
+		super(dialog, "Cadastrar Cliente");
+		getJDialogCadastrarCliente();
+		setmodalTela(modal);
+		this.addCompJDialogCadastrarCliente();
+	}	
+	
 
 	
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
 	public JDialogCadastrarCliente  getJDialogCadastrarCliente() {
-		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
+		this.setLocationRelativeTo(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 238);
 		this.setVisible(true);

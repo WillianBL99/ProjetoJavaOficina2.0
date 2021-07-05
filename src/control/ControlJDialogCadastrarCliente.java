@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import dao.DaoJDialogCadastrarCliente;
 import view.JDialogCadastrarCliente;
+import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 
 /**
@@ -26,13 +27,15 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	private JFramePrincipal jFramePrincipal;
 	private JDialogCadastrarCliente jDialogCadastrarCliente;
 	private DaoJDialogCadastrarCliente daoJDialogCadastrarCliente;
+	private JDialogProcurarCliente jDialogProcurarCliente;
 	private boolean modal;
 	
 	//** Fim declaração de variáveis **	
-	
-	public ControlJDialogCadastrarCliente(JFramePrincipal jFramePricipal, JDialogCadastrarCliente jDialogCadastrarCliente) {	
+	public ControlJDialogCadastrarCliente(JFramePrincipal jFramePricipal, JDialogCadastrarCliente jDialogCadastrarCliente, JDialogProcurarCliente jDialogProcurarCliente) {	
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogCadastrarCliente = jDialogCadastrarCliente;
+		this.jDialogProcurarCliente = jDialogProcurarCliente;
+		setmodal(this.jDialogCadastrarCliente.ismodalTela());
 		AddEvent();
 		setmodal(getjDialogCadastrarCliente().ismodalTela());
 	}
@@ -118,7 +121,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		this.getjFramePricipal().setEnabled(!isModal());
+		this.getjDialogProcurarCliente().setEnabled(!ismodal());
 	}
 
 
@@ -126,7 +129,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		this.getjFramePricipal().setEnabled(true);
+		this.getjDialogProcurarCliente().setEnabled(true);
 	}
 
 
@@ -185,15 +188,23 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	}
 	
 	
+	public JDialogProcurarCliente getjDialogProcurarCliente() {
+		if(jDialogProcurarCliente == null){
+			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePricipal(), true);
+		}
+		return jDialogProcurarCliente;
+	}
+	
+	
 	public DaoJDialogCadastrarCliente getdaoJDialogCadastrarCliente() {
 		if(daoJDialogCadastrarCliente == null){
-			daoJDialogCadastrarCliente = new DaoJDialogCadastrarCliente(getjDialogCadastrarCliente());
+			daoJDialogCadastrarCliente = new DaoJDialogCadastrarCliente(getjFramePricipal(),getjDialogCadastrarCliente());
 		}
 		return daoJDialogCadastrarCliente;
 	}
 	
 	
-	public boolean isModal() {
+	public boolean ismodal() {
 		return modal;
 	}
 	

@@ -41,7 +41,7 @@ public class DaoJDialogCadastrarCliente {
 						getjDialogProcurarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
 						getjDialogProcurarCliente().getjTFieldNome().getText(),
 						getjDialogProcurarCliente().getjTFieldEmail().getText(),
-						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
 						getjDialogProcurarCliente().getjTFieldCidade().getText(),
 						getjDialogProcurarCliente().getjTFieldBairro().getText(),
 						getjDialogProcurarCliente().getjTFieldRua().getText(),
@@ -57,7 +57,7 @@ public class DaoJDialogCadastrarCliente {
 						getjDialogProcurarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
 						getjDialogProcurarCliente().getjLabelNome().getText(),
 						getjDialogProcurarCliente().getjTFieldEmail().getText(),
-						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
 						getjDialogProcurarCliente().getjTFieldCidade().getText(),
 						getjDialogProcurarCliente().getjTFieldBairro().getText(),
 						getjDialogProcurarCliente().getjTFieldRua().getText(),

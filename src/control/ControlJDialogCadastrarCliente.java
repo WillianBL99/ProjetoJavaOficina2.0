@@ -71,6 +71,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Quando o botão cadastrar cliente for clicado
 		if(e.getSource() == getjDialogCadastrarCliente().getjButtonCadastrarCliente()) {
 			// Se o cadastro for bem sucedido o método cadastrarCliente() retorna o valor 1
 			if(getdaoJDialogCadastrarCliente().cadastrarCliente()) {
@@ -84,6 +85,49 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 				);
 				// limpa os campos da tela de cadastro de clientes.
 				limpaCampos();
+			}
+		}
+		
+		// Quando o botão cancelar for clicado
+		else if(e.getSource() == getjDialogCadastrarCliente().getjButtonCancelar()) {
+			// se todos os campos estiverem vazios a tela será fechada sem exibir alerta
+			if(camposIsEmpty()) {	
+				getjDialogProcurarCliente().setEnabled(true);
+				getjDialogCadastrarCliente().dispose();
+			} 
+			
+			// se algum campo ter algum caracter será exibida uma menssagem de alerta
+			else {
+
+				/*
+				 * Quando o botão cancelar da tela cadastrar cliente for clicado ele irá 
+				 * exibir uma caixa de dialogo perguntando se realmente deseja sair
+				 */
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Sim", "Cancelar"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensagem selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Cancelar
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjDialogProcurarCliente(), // tela pai
+						"Todas as informaçoes digitadas serão perdidas.Tem certesa que deseja sair sem cadastrar o cliente?", // mensagem
+						"Alerta", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+				if(option == 0) {
+					getjDialogProcurarCliente().setEnabled(true);
+					getjDialogCadastrarCliente().dispose();
+					
+				}
 			}
 		}
 		
@@ -213,6 +257,28 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		this.modal = modal;
 	}		
 	
+	/**
+	 * Método camposIsEmpty() verifica se todos os 
+	 * campos da tela cadastrar cliente estão vazios.
+	 * @return boolean // Se todos os capos de cadastrar clientes estiverem
+	 * vazios será retornado o valor true
+	 */
+	private boolean camposIsEmpty() {
+		if(
+			getjDialogCadastrarCliente().getjTFieldCpf().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldNome().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldEmail().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldTelefone().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldCidade().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldBairro().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldRua().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText().isEmpty()	
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	private void limpaCampos() {
 		getjDialogCadastrarCliente().getjRadioButtonCnpj().setSelected(false);

@@ -305,7 +305,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		try {
 			getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().next();
 			System.out.println("nome = " + getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4));
-			
 			boolean fisica = (getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4) == "física"? true : false);
 			String id = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(1);
 			String cpf = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(2);

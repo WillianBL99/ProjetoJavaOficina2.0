@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -83,6 +84,13 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			
 		}
 		
+		// Quando o botão selecionar for clicado
+		else if(e.getSource() == getjDialogProcurarVeiculo().getjButtonSelecionar()) {
+			preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().
+					getjTableVeiculos().getSelectedRow());
+		}
+		getjFramePricipal().setEnabled(true);
+		getjDialogProcurarVeiculo().dispose();		
 	}
 
 
@@ -273,44 +281,30 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		this.modal = modal;
 	}		
 	
-	/**
-	 * Método camposIsEmpty() verifica se todos os 
-	 * campos da tela cadastrar cliente estão vazios.
-	 * @return boolean // Se todos os capos de cadastrar clientes estiverem
-	 * vazios será retornado o valor true
-	 */
-	/*private boolean camposIsEmpty() {
-				
-		if(
-			getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", "").replace(" ", "").isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldNome().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldEmail().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", "").isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldCidade().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldBairro().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldRua().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText().isEmpty()
-		) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	private void limpaCampos() {
-		getjDialogCadastrarCliente().getjRadioButtonCnpj().setSelected(false);
-		getjDialogCadastrarCliente().getjRadioButtonCpf().setSelected(true);
-		getjDialogCadastrarCliente().getjTFieldCpf().setText("");
-		getjDialogCadastrarCliente().getjTFieldNome().setText("");
-		getjDialogCadastrarCliente().getjTFieldEmail().setText("");
-		getjDialogCadastrarCliente().getjTFieldTelefone().setText("");
-		getjDialogCadastrarCliente().getjTFieldCidade().setText("");
-		getjDialogCadastrarCliente().getjTFieldBairro().setText("");
-		getjDialogCadastrarCliente().getjTFieldRua().setText("");
-		getjDialogCadastrarCliente().getjTFieldNumeroCasa().setText("");
+	// Início métodos da classe
+	
+	private void preencherPreOrcamentoNovoVeiculo(int row) {
+		String id = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString();
+		String placa = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 1).toString();
+		String chassi = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 2).toString();
+		String marca = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 3).toString();
+		String modelo = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 4).toString();
+		String motor = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 5).toString();
+		String combustivel = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 6).toString();
+		String cor = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 7).toString();
+		String ano = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 8).toString();
 		
-	}*/
-	//** Fim métodos da classe **
+		getjPanelPreOrcamentoNovo().getjTFieldNumeroVeiculo().setText(id);
+		getjPanelPreOrcamentoNovo().getjTFieldPlaca().setText(placa);
+		getjPanelPreOrcamentoNovo().getjTFieldChassi().setText(chassi);
+		getjPanelPreOrcamentoNovo().getjTFieldMarca().setText(marca);
+		getjPanelPreOrcamentoNovo().getjTFieldModelo().setText(modelo);
+		getjPanelPreOrcamentoNovo().getjTFieldMotor().setText(motor);
+		getjPanelPreOrcamentoNovo().getjTFieldCombustivel().setText(combustivel);
+		getjPanelPreOrcamentoNovo().getjTFieldCor().setText(cor);
+		getjPanelPreOrcamentoNovo().getjTFieldAno().setText(ano);	
+	}
 	
 
 }

@@ -241,7 +241,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 					"Marca",
 					"Modelo",
 					"Motor",
-					"Combustivel",
+					"Combustível",
 					"Cor",
 					"Ano"));		
 

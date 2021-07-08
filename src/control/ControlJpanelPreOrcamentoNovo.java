@@ -42,6 +42,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private DaoJPanelPreOrcamentoNovo daoJPanelPreOrcamentoNovo;
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
+	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
+	private ControlJDialogProcurarVeiculo controlJDialogProcurarVeiculo;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -129,7 +131,10 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			// quando o botão "selecionar veículo" for clicado
-			new JDialogProcurarVeiculo(getjFramePrincipal(), true);
+			jDialogProcurarVeiculo = null;
+			controlJDialogProcurarVeiculo = null;
+			getcontrolJDialogProcurarVeiculo();
+			getcontrolJDialogProcurarVeiculo();
 			
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaProdutos()) {
@@ -276,5 +281,22 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente(), getjPanelPreOrcamentoNovo());
 		}
 		return controlJDialogProcurarCliente;
+	}
+	
+	
+	public ControlJDialogProcurarVeiculo getcontrolJDialogProcurarVeiculo() {
+		if(controlJDialogProcurarVeiculo == null) {
+			controlJDialogProcurarVeiculo = new ControlJDialogProcurarVeiculo(getjFramePrincipal(), getjDialogProcurarVeiculo());
+		}
+		return controlJDialogProcurarVeiculo;
+	}
+	
+	
+	public JDialogProcurarVeiculo getjDialogProcurarVeiculo() {
+		if(jDialogProcurarVeiculo == null) {
+			jDialogProcurarVeiculo = new JDialogProcurarVeiculo(getjFramePrincipal(), true);
+			jDialogProcurarVeiculo.setLocationRelativeTo(getjFramePrincipal());
+		}
+		return jDialogProcurarVeiculo;
 	}
 }

@@ -108,7 +108,8 @@ public class ComandosSQL {
 				+ "tb_clientes "
 				+ "on "
 				+ "tb_veiculos.id_cliente = ?"
-				+ "where tb_veiculos.placa like concat('%', ?, '%');"
+				+ "where tb_veiculos.placa like concat('%', ?, '%') "
+				+ "group by id_veiculo;"
 			);
 		}
 		return consultarVeiculoPlacaByCliente;
@@ -132,7 +133,8 @@ public class ComandosSQL {
 				+ "tb_clientes "
 				+ "on "
 				+ "tb_veiculos.id_cliente = ?"
-				+ "where tb_veiculos.chassi like concat('%', ?, '%');"
+				+ "where tb_veiculos.chassi like concat('%', ?, '%') \"\r\n"
+				+ "group by id_veiculo;"
 			);
 		}
 		return consultarVeiculoChassiByCliente;

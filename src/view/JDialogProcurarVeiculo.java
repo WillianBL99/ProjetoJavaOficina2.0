@@ -65,7 +65,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 	//** Início construtor **
 	public JDialogProcurarVeiculo(Frame frame, boolean modal) {
 		super(frame, "Procurar veiculos");
-		setmodalTela(modalTela);
+		setmodalTela(modal);
 		getJDialogProcurarVeiculo();
 		addCompJDialogProcurarVeiculo();
 	}	

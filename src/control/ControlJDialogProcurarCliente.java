@@ -178,6 +178,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
 						getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
 						0).toString());
+				limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarCliente().dispose();
 			}
@@ -341,6 +342,20 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			// TODO Auto-generated catch block
 			System.out.println(e.getErrorCode());
 		}
+	}
+	
+	
+	private void limparCamposVeiculo() {
+		getjPanelPreOrcamentoNovo().getjTFieldNumeroVeiculo().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldPlaca().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldChassi().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldKMAtual().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldMarca().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldModelo().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldMotor().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldCombustivel().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldCor().setText("");
+		getjPanelPreOrcamentoNovo().getjTFieldAno().setText("");
 	}
 	
 

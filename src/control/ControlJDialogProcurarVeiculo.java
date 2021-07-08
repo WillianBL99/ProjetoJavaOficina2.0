@@ -78,19 +78,68 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Quando o botão procurar for clicado
+		if(e.getSource() == getjDialogProcurarVeiculo().getjButtonProcurar()) {
+			// ser for a caixa de texto estiver vazia exibe uma mensagem de alerta
+			if(!getjDialogProcurarVeiculo().getjTFieldProcurar().getText().isEmpty()) {
+				/*
+				 *  Veículo pode ser procurado de duas formas diferentes
+				 * - Placa - Executa uma query que retorna todos os veiculos com a placa inserida
+				 * - Chassi - Executa uma query que retorna todos os veiculos com o chassi inserido
+				 */
+
+				switch (getjDialogProcurarVeiculo().getChoicePesquisarPor().getSelectedItem().toString()) {
 				
+				// procurando veículo por chassi
+				case "Chassi":
+					getdaoJDialogProcurarVeiculo().getveiculoChassi(getjDialogProcurarVeiculo().getjTFieldProcurar().getText());
+					break;
+					
+				// procurando veículo por placa
+				case "Placa":
+					getdaoJDialogProcurarVeiculo().getveiculoPlaca(getjDialogProcurarVeiculo().getjTFieldProcurar().getText());
+					break;
+					
+				}
+				
+			} else {
+				// exibe uma mensage avisando que a caixa de texto está vasia
+				JOptionPane.showMessageDialog(getjDialogProcurarVeiculo(),
+					    "A caixa de texto esta vazia. Preencha e pesquise novamente.",
+					    "Erro na consulta",
+					    JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		
 		// Quando o botão cancelar for clicado
-		if(e.getSource() == getjDialogProcurarVeiculo().getjButtonCancelar()) {
-			
+		else if(e.getSource() == getjDialogProcurarVeiculo().getjButtonCancelar()) {
+			getjFramePricipal().setEnabled(true);
+			getjDialogProcurarVeiculo().dispose();
 		}
 		
 		// Quando o botão selecionar for clicado
 		else if(e.getSource() == getjDialogProcurarVeiculo().getjButtonSelecionar()) {
-			int row =getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
-			preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString());
-		}
-		getjFramePricipal().setEnabled(true);
-		getjDialogProcurarVeiculo().dispose();		
+			/*
+			 *  Verifica se foi selecionado algum veículo
+			 *  se getSelectedRow() retornar um numero menor que 0 
+			 *  siguinifica que nenhuma linha foi selecionada
+			 */
+			if(getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow() < 0) {
+				JOptionPane.showConfirmDialog(
+						getjDialogProcurarVeiculo(), // componente
+						"Selecione um veículo primeiro.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+
+			} else {
+				int row =getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
+				preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString());
+				getjFramePricipal().setEnabled(true);
+				getjDialogProcurarVeiculo().dispose();
+			}
+		}		
 	}
 
 
@@ -258,7 +307,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	public DaoJDialogProcurarVeiculo getdaoJDialogProcurarVeiculo() {
 		if(daoJDialogProcurarVeiculo == null){
-			daoJDialogProcurarVeiculo = new DaoJDialogProcurarVeiculo(getjDialogProcurarVeiculo());
+			daoJDialogProcurarVeiculo = new DaoJDialogProcurarVeiculo(getjDialogProcurarVeiculo(), getjPanelPreOrcamentoNovo());
 		}
 		return daoJDialogProcurarVeiculo;
 	}

@@ -264,15 +264,16 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	 * vazios será retornado o valor true
 	 */
 	private boolean camposIsEmpty() {
+				
 		if(
-			getjDialogCadastrarCliente().getjTFieldCpf().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", "").replace(" ", "").isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldNome().getText().isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldEmail().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldTelefone().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", "").isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldCidade().getText().isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldBairro().getText().isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldRua().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText().isEmpty()	
+			getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText().isEmpty()
 		) {
 			return true;
 		} else {

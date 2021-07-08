@@ -16,6 +16,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -37,6 +40,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	private boolean modalTela;
+	private ModuloConexao moduloConexao;
 	
 	
 	@SuppressWarnings("unused")
@@ -229,27 +233,17 @@ public class JDialogProcurarVeiculo extends JDialog{
 	public JTable getjTableVeiculos() {
 		if(jTableVeiculos == null){
 			jTableVeiculos = new JTable();
-			jTableVeiculos.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                {null, null, null, null, null, null, null, null, null},
-		                
-		            },
-		            new String [] {
-		                "Nº Veículo", "Placa", "Chassi", "Marca",
-		                "Modelo", "Motor", "Combustível", "Cor", "Ano"
-		            }
-		        ));				
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodos());
+			jTableVeiculos.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
+					"Nº Veiculo",
+					"Placa",
+					"Chassi",
+					"Marca",
+					"Modelo",
+					"Motor",
+					"Combustivel",
+					"Cor",
+					"Ano"));		
 
 			jTableVeiculos.setFont(Fontes.fontJTablePlain1);
 			jTableVeiculos.setOpaque(false);
@@ -306,6 +300,15 @@ public class JDialogProcurarVeiculo extends JDialog{
 
 		getJDialogProcurarVeiculo().getContentPane().add(getjButtonSelecionar());
 		getjButtonSelecionar().setLocation(860, 235);
+	}
+	
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
 	}
 	
 	

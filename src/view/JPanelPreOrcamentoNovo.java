@@ -32,6 +32,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
     //** Início declaração de variáveis **
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
+	private String idCliente; // guarda o valor do id do cliente selecionado
 	
 	private JPanel jPanelCentro;
 	
@@ -1316,6 +1317,15 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		
 		
 		
+	}
+	
+	
+	public String getidCliente() {
+		return this.idCliente;
+	}
+	
+	public void setidCliente(String id) {
+		this.idCliente = id;
 	}
 	
 }

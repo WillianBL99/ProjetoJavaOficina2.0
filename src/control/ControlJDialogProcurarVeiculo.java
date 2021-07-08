@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import view.JDialogProcurarCliente;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
 
@@ -22,6 +21,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
+	private DaoJDialogProcurarVeiculo daoJDialogProcurarVeiculo;
 	private boolean modal;
 	
 	//** Fim declaração de variáveis **	
@@ -169,6 +169,14 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			jDialogProcurarVeiculo = new JDialogProcurarVeiculo(getjFramePricipal(), true);
 		}
 		return jDialogProcurarVeiculo;
+	}
+	
+	
+	public DaoJDialogProcurarVeiculo getdaoJDialogProcurarVeiculo() {
+		if(daoJDialogProcurarVeiculo == null){
+			daoJDialogProcurarVeiculo = new DaoJDialogProcurarVeiculo(getjDialogProcurarVeiculo());
+		}
+		return daoJDialogProcurarVeiculo;
 	}
 	
 	

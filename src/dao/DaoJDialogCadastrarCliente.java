@@ -2,8 +2,6 @@
  * 
  */
 package dao;
-import javax.swing.JFrame;
-
 import view.JDialogCadastrarCliente;
 import view.JFramePrincipal;
 

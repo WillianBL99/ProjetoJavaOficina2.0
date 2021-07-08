@@ -307,6 +307,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			System.out.println("nome = " + getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4));
 			
 			boolean fisica = (getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4) == "física"? true : false);
+			String id = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(1);
 			String cpf = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(2);
 			String nome = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(5);
 			String tipo = getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4);
@@ -326,6 +327,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				getjPanelPreOrcamentoNovo().getjRadioButtonCpf().setSelected(true);
 			}
 			
+			getjPanelPreOrcamentoNovo().setidCliente(id);
 			getjPanelPreOrcamentoNovo().getjTFieldCpf().setText(cpf);
 			getjPanelPreOrcamentoNovo().getjTFieldNome().setText(nome);
 			getjPanelPreOrcamentoNovo().getjTFieldTipo().setText(tipo);

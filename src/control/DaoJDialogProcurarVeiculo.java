@@ -3,12 +3,8 @@
  */
 package control;
 
-import javax.swing.JOptionPane;
-
-import dao.ComandosSQL;
 import dao.ModuloConexao;
-import dao.PreencherTabela;
-import view.JDialogProcurarCliente;
+import view.JDialogProcurarVeiculo;
 
 /**
  * @author Paulo Uilian
@@ -17,11 +13,11 @@ import view.JDialogProcurarCliente;
 public class DaoJDialogProcurarVeiculo {
 	
 	// Classe de consulta de dados no banco de dados
-	private JDialogProcurarCliente jDialogProcurarCliente;
+	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
 	private ModuloConexao moduloConexao;
 	
-	public DaoJDialogProcurarVeiculo(JDialogProcurarCliente jDialogProcurarCliente) {
-		this.jDialogProcurarCliente = jDialogProcurarCliente;
+	public DaoJDialogProcurarVeiculo(JDialogProcurarVeiculo jDialogProcurarVeiculo) {
+		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
 	}
 	
 	
@@ -31,12 +27,12 @@ public class DaoJDialogProcurarVeiculo {
 	// Metodos getters e setters
 	
 	
-	private JDialogProcurarCliente getjDialogProcurarCliente() {
-		if(jDialogProcurarCliente == null) {
-			jDialogProcurarCliente = new JDialogProcurarCliente(null, false);
+	private JDialogProcurarVeiculo getjDialogProcurarCliente() {
+		if(jDialogProcurarVeiculo == null) {
+			jDialogProcurarVeiculo = new JDialogProcurarVeiculo(null, false);
 		}
 		
-		return jDialogProcurarCliente;
+		return jDialogProcurarVeiculo;
 	}
 	
 	

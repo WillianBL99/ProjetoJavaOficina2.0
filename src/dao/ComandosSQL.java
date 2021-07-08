@@ -14,12 +14,108 @@ public class ComandosSQL {
 	private static String visualizarTodosPreOrcamentos_data;
 	private static String validarLogin;
 	private static String consultarNumeroPreOrcamento;
+	
 	private static String consultarClientesTodosCampos;
 	private static String consultarClientesNome;
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
+	
 	private static String cadastrarClientesCnpj;
 	private static String cadastrarClienteCpf;
+	
+	private static String consultarVeiculoTodos;
+	private static String consultarVeiculoTodosByCliente;
+	private static String consultarVeiculoChassiByCliente;
+	private static String consultarVeiculoPlacaByCliente;
+	
+	
+	/*
+	 * Método String getconsultarVeiculoTodos()
+	 * Consulta todos os veiculos
+	 */
+	public static String getconsultarVeiculoTodos() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nº Veiculo", "Placa", "Chassi", "Marca", "Modelo", "Motor", "Combustivel", "Cor", "Ano"
+		 */
+		if(consultarVeiculoTodos == null){
+			consultarVeiculoTodos = (
+				"select id_veiculo, chassi, placa, marca, modelo, motor, combustivel, cor, ano from tb_veiculos;"
+			);
+		}
+		return consultarVeiculoTodos;
+	}
+	
+	
+	/*
+	 * Método String getconsultarVeiculoTodosByCliente()
+	 * Consulta um veiculo apartir da placa e do cliente
+	 */
+	public static String getconsultarVeiculoTodosByCliente() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nº Veiculo", "Placa", "Chassi", "Marca", "Modelo", "Motor", "Combustivel", "Cor", "Ano"
+		 */
+		if(consultarVeiculoTodosByCliente == null){
+			consultarVeiculoTodosByCliente = (
+				"select id_veiculo, chassi, placa, marca, modelo, motor, combustivel, cor, ano from "
+				+ "tb_veiculos "
+				+ "join "
+				+ "tb_clientes "
+				+ "on "
+				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente;"
+			);
+		}
+		return consultarVeiculoTodosByCliente;
+	}
+	
+	
+	/*
+	 * Método String getconsultarVeiculoPlacaByCliente()
+	 * Consulta um veiculo apartir da placa  e do cliente
+	 */
+	public static String getconsultarVeiculoPlacaByCliente() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nº Veiculo", "Placa", "Chassi", "Marca", "Modelo", "Motor", "Combustivel", "Cor", "Ano"
+		 */
+		if(consultarVeiculoPlacaByCliente == null){
+			consultarVeiculoPlacaByCliente = (
+				"select id_veiculo, chassi, placa, marca, modelo, motor, combustivel, cor, ano from "
+				+ "tb_veiculos "
+				+ "join "
+				+ "tb_clientes "
+				+ "on "
+				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente "
+				+ "where tb_veiculos.placa like concat('%', ?, '%');"
+			);
+		}
+		return consultarVeiculoPlacaByCliente;
+	}
+	
+	
+	/*
+	 * Método String getconsultarVeiculoChassiByCliente()
+	 * Consulta um veiculo apartir do chassi e do cliente
+	 */
+	public static String getconsultarVeiculoChassiByCliente() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nº Veiculo", "Placa", "Chassi", "Marca", "Modelo", "Motor", "Combustivel", "Cor", "Ano"
+		 */
+		if(consultarVeiculoChassiByCliente == null){
+			consultarVeiculoChassiByCliente = (
+				"select id_veiculo, chassi, placa, marca, modelo, motor, combustivel, cor, ano from "
+				+ "tb_veiculos "
+				+ "join "
+				+ "tb_clientes "
+				+ "on "
+				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente "
+				+ "where tb_veiculos.chassi like concat('%', ?, '%');"
+			);
+		}
+		return consultarVeiculoChassiByCliente;
+	}
 	
 	
 	/*

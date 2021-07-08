@@ -63,7 +63,8 @@ public class ComandosSQL {
 				+ "join "
 				+ "tb_clientes "
 				+ "on "
-				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente;"
+				+ "tb_veiculos.id_cliente = ? "
+				+ "group by id_veiculo;"
 			);
 		}
 		return consultarVeiculoTodosByCliente;
@@ -86,7 +87,7 @@ public class ComandosSQL {
 				+ "join "
 				+ "tb_clientes "
 				+ "on "
-				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente "
+				+ "tb_veiculos.id_cliente = ?"
 				+ "where tb_veiculos.placa like concat('%', ?, '%');"
 			);
 		}
@@ -110,7 +111,7 @@ public class ComandosSQL {
 				+ "join "
 				+ "tb_clientes "
 				+ "on "
-				+ "tb_veiculos.id_cliente = tb_clientes.id_cliente "
+				+ "tb_veiculos.id_cliente = ?"
 				+ "where tb_veiculos.chassi like concat('%', ?, '%');"
 			);
 		}

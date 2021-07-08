@@ -42,15 +42,14 @@ public class PreencherTabela extends AbstractTableModel{
 		getModuloConexao();
 	}
 
-	
-	/*
-	 *  Método sobrescrito preencher(@resultSet, @colunas)
-	 *  - @resultSet - recebe o resultSet da consulta de um banco de dados.
-	 *  - @colunas - recebe os nomes das colunas da tabela.
-	 *  
-	 *  - recebe o resultSet da query (@resultSet) e o vetor como o nome 
-	 *  	de cada coluna da tabela predefinido pelo usuário (@colunas[]).
-	 */
+	 /**
+	  * Método sobrescrito preencher(@resultSet, @colunas)
+	  * Recebe o resultSet da query (@resultSet) e o vetor como o nome 
+	  * de cada coluna da tabela predefinido pelo usuário (@colunas[]).
+	  * @param resultSet // recebe o resultSet da consulta de um banco de dados.
+	  * @param colunas // recebe os nomes das colunas da tabela.
+	  * @return this
+	  */
 	public AbstractTableModel preencher(ResultSet resultSet, String... colunas) {
 		setColunasPreDef(colunas);
 		// define que será usado os titulos passado pelo parâmetro @colunas[]
@@ -64,37 +63,50 @@ public class PreencherTabela extends AbstractTableModel{
 	
 		
 	/*
-	 *  Método sobrescrito preencher(@resultSet)
-	 *  - @resultSet - recebe o resultSet da consulta de um banco de dados.
 	 *  
-	 *  - realiza o preencimento da tabela de acordo com os 
-	 *  	valores contidos em resultSet.
+	 *  - @resultSet -
 	 *  
+	 *  - 
+	 *  
+	 */
+	/**
+	 * Método sobrescrito preencher(@resultSet)
+	 * Realiza o preencimento da tabela de acordo com os 
+	 * valores contidos em resultSet.
+	 * @param resultSet // recebe o resultSet da consulta de um banco de dados.
+	 * @return this
 	 */
 	public AbstractTableModel preencher(ResultSet resultSet) {
 		// seta o resultSet da classe com o resultSet passado por parametro.
-		getModuloConexao().setResultSet(resultSet);
+		getModuloConexao().setResultSet(resultSet);	
+		// Recebe a tabela do result set
 		receberTabelaDB();
 		return this;
 	}
 	
 	
 	/*
-	 *  Método receberTabelaDB()
-	 *  - realiza obtenão dos dados para insersão na tabela.
+	 *  
+	 *  - 
 	 *  
 	 */
-	private void receberTabelaDB() {
+	/**
+	 * Método int receberTabelaDB()
+	 * Realiza obtenão dos dados para insersão na tabela.
+	 * @return int status
+	 * Existem três retornos
+	 * 0 - Caso ocorra erros durante a execução do método
+	 * 1 - Caso o result set retorne linhas e tudo ocorreu certo
+	 */
+	private int receberTabelaDB() {
+		int status;
 		try {
 			// Posiciona o resultSet na primera linha da consulta
-			getModuloConexao().getResultSet().first();
-			
+			getModuloConexao().getResultSet().first();				
 			// Recebe a quantidade de colunas da tabela
-			int qtdColunas = getResultSetMetaData().getColumnCount();
-			
+			int qtdColunas = getResultSetMetaData().getColumnCount();				
 			// Cria e seta o tamanho do vetor de Strings
-			String[] nomeColunas = new String[qtdColunas];
-			
+			String[] nomeColunas = new String[qtdColunas];				
 			// Realiza a itereção de todas as linhas da consulta
 			do {
 				// A linha abaixo cria um new Object[quantidade de colunas da tabela]
@@ -118,10 +130,14 @@ public class PreencherTabela extends AbstractTableModel{
 				getLinhas().add(object);
 						
 			}while(getModuloConexao().getResultSet().next());
-			
+			status = 1;
+					
 		} catch (SQLException e) {
-			System.out.println("Erro ao preencher a tabela classe preenche tabela\n" + e);
+			System.err.println("Erro-Class:PreencherTabela-preencherTabelaDB: "
+					+ "Erro ao preencher a tabela classe preenche tabela\n-- " + e.getMessage() + "\n");
+			status = 0;
 		}		
+		return status;
 	}
 	
 	

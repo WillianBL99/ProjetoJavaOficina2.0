@@ -286,7 +286,6 @@ public class JDialogProcurarCliente extends JDialog{
 		if(moduloConexao == null) {
 			moduloConexao = new ModuloConexao();
 		}
-		
 		return moduloConexao;
 	}
 		

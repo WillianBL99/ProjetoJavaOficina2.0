@@ -9,11 +9,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.JButton;
-
+import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import view.JDialogProcurarCliente;
@@ -131,10 +129,26 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			// quando o botão "selecionar veículo" for clicado
-			jDialogProcurarVeiculo = null;
-			controlJDialogProcurarVeiculo = null;
-			getcontrolJDialogProcurarVeiculo();
-			getcontrolJDialogProcurarVeiculo();
+			/*
+			 * Realizar verificação se já foi selecionada algum cliente
+			 * se sim faz a chamada da tela para selecionar um veículo
+			 */
+			if(getjPanelPreOrcamentoNovo().getidCliente() != null) {
+				jDialogProcurarVeiculo = null;
+				controlJDialogProcurarVeiculo = null;
+				getcontrolJDialogProcurarVeiculo();
+				getcontrolJDialogProcurarVeiculo();
+				
+			// Caixa de dialogo
+			} else {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Selecione um cliente primeiro.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 			
 			
 		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaProdutos()) {
@@ -286,7 +300,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	public ControlJDialogProcurarVeiculo getcontrolJDialogProcurarVeiculo() {
 		if(controlJDialogProcurarVeiculo == null) {
-			controlJDialogProcurarVeiculo = new ControlJDialogProcurarVeiculo(getjFramePrincipal(), getjDialogProcurarVeiculo());
+			controlJDialogProcurarVeiculo = new ControlJDialogProcurarVeiculo(getjFramePrincipal(), getjDialogProcurarVeiculo(), getjPanelPreOrcamentoNovo());
 		}
 		return controlJDialogProcurarVeiculo;
 	}

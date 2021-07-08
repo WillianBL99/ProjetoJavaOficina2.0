@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * 
@@ -121,7 +122,7 @@ public class ModuloConexao {
 				}				
 				
 			} else {
-				System.out.println("Erro-Class:ModuloConexao-executeQuery: " + "A quantidade de \"?\" não é compativel com a quantidade de comandos inseridos");
+				System.err.println("Erro-Class:ModuloConexao-executeQuery: " + "A quantidade de \"?\" não é compativel com a quantidade de comandos inseridos");
 			}
 			
 		}
@@ -178,6 +179,21 @@ public class ModuloConexao {
 		this.resultSet = resultSet;
 	}
 	
+	public boolean resultSetIsEmpty(){
+		// Verificar se a consulta retornou algum valor
+		try {
+			if(getResultSet().first()) {
+				return false;
+			} else {
+				System.out.println("" + getResultSet().first());
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return true;
+		}
+	}
 
 	// Métodos getters e setters
 	

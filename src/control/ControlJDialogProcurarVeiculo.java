@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import dao.ComandosSQL;
+import dao.DaoJDialogProcurarVeiculo;
 import dao.ModuloConexao;
 import dao.PreencherTabela;
 import view.JDialogProcurarVeiculo;
@@ -27,7 +28,6 @@ import view.JPanelPreOrcamentoNovo;
 public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener, WindowListener{
 	
 	//** Início declaração de variáveis **
-	private ModuloConexao moduloConexao;
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
@@ -86,8 +86,8 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		
 		// Quando o botão selecionar for clicado
 		else if(e.getSource() == getjDialogProcurarVeiculo().getjButtonSelecionar()) {
-			preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().
-					getjTableVeiculos().getSelectedRow());
+			int row =getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
+			preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString());
 		}
 		getjFramePricipal().setEnabled(true);
 		getjDialogProcurarVeiculo().dispose();		
@@ -182,14 +182,14 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	 */
 	private void carrosCliente() {
 		// Reaiza a chamada da query que realiza a busca de um veículo através do cliente
-		getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), getjPanelPreOrcamentoNovo().getidCliente());
+		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), getjPanelPreOrcamentoNovo().getidCliente());
 		// Verifica se a consulta retornou alguma linha do banco de dados
-		if(!getModuloConexao().resultSetIsEmpty()) {
+		if(!getdaoJDialogProcurarVeiculo().getModuloConexao().resultSetIsEmpty()) {
 			// seta com visible(true) caso esteja (false)
 			getjDialogProcurarVeiculo().getjTableVeiculos().setVisible(true);
 			// Preenche a tabela com o resultset.
 			getjDialogProcurarVeiculo().getjTableVeiculos().setModel(
-					new PreencherTabela().preencher(getModuloConexao().getResultSet()));
+					new PreencherTabela().preencher(getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet()));
 		
 		// Caso não tenha retornado nenhuma linha pede para o cliente inserir um novo veículo.
 		} else {
@@ -264,14 +264,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	}
 	
 	
-	private ModuloConexao getModuloConexao() {
-		if(moduloConexao == null) {
-			moduloConexao = new ModuloConexao();
-		}
-		return moduloConexao;
-	}
-	
-	
 	public boolean ismodal() {
 		return modal;
 	}
@@ -284,20 +276,44 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	// Início métodos da classe
 	
-	private void preencherPreOrcamentoNovoVeiculo(int row) {
-		String id = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString();
-		String placa = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 1).toString();
-		String chassi = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 2).toString();
-		String marca = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 3).toString();
-		String modelo = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 4).toString();
-		String motor = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 5).toString();
-		String combustivel = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 6).toString();
-		String cor = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 7).toString();
-		String ano = getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 8).toString();
+	private void preencherPreOrcamentoNovoVeiculo(String id_veiculo) {
+		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(
+				ComandosSQL.getconsultarVeiculoID(), id_veiculo);
+
+		String id = null;
+		String chassi = null;
+		String placa = null;
+		String kmAtual = null;
+		String marca = null;
+		String modelo = null;
+		String motor = null;
+		String combustivel = null;
+		String cor = null;
+		String ano = null;
+		
+		try {
+			getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().next();
+			id = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(1);
+			chassi = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(2);
+			placa = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(3);
+			System.out.println(placa);
+			kmAtual = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(4);
+			marca = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(5);
+			modelo = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(6);
+			motor = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(7);
+			combustivel = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(8);
+			cor = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(9);
+			ano = getdaoJDialogProcurarVeiculo().getModuloConexao().getResultSet().getString(10);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		getjPanelPreOrcamentoNovo().getjTFieldNumeroVeiculo().setText(id);
 		getjPanelPreOrcamentoNovo().getjTFieldPlaca().setText(placa);
 		getjPanelPreOrcamentoNovo().getjTFieldChassi().setText(chassi);
+		getjPanelPreOrcamentoNovo().getjTFieldKMAtual().setText(kmAtual);
 		getjPanelPreOrcamentoNovo().getjTFieldMarca().setText(marca);
 		getjPanelPreOrcamentoNovo().getjTFieldModelo().setText(modelo);
 		getjPanelPreOrcamentoNovo().getjTFieldMotor().setText(motor);

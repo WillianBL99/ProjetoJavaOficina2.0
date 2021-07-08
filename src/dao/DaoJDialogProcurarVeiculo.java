@@ -1,9 +1,8 @@
 /**
  * 
  */
-package control;
+package dao;
 
-import dao.ModuloConexao;
 import view.JDialogProcurarVeiculo;
 
 /**

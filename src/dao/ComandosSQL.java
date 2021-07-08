@@ -23,10 +23,30 @@ public class ComandosSQL {
 	private static String cadastrarClientesCnpj;
 	private static String cadastrarClienteCpf;
 	
+	private static String consultarVeiculoID;
 	private static String consultarVeiculoTodos;
 	private static String consultarVeiculoTodosByCliente;
 	private static String consultarVeiculoChassiByCliente;
 	private static String consultarVeiculoPlacaByCliente;
+	
+	
+	/*
+	 * Método String getconsultarVeiculoTodos()
+	 * Consulta todos os veiculos
+	 */
+	public static String getconsultarVeiculoID() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nº Veiculo", "Chassi", "Placa", km atual "Marca", "Modelo", "Motor", "Combustivel", "Cor", "Ano"
+		 */
+		if(consultarVeiculoID == null){
+			consultarVeiculoID = (
+				"select id_veiculo, chassi, placa, km_atual, marca, modelo, motor, combustivel, cor, ano from tb_veiculos "
+				+ "where id_veiculo = ?;"
+			);
+		}
+		return consultarVeiculoID;
+	}
 	
 	
 	/*

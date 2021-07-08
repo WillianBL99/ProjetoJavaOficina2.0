@@ -32,8 +32,9 @@ public class  Mascara {
 		
 		JFormattedTextField placa ;
 		try {
-			MaskFormatter mask = new MaskFormatter("UUU #A##");
-			mask.setValidCharacters("ABCDEFGHIJ0123456789"); // serve para permitir apenas esses caracteres
+			MaskFormatter mask = new MaskFormatter("UUU #A## UU");
+			//mask.setValidCharacters("ABCDEFGHIJ0123456789"); // serve para permitir apenas esses caracteres
+			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"); // inserido para testes, apagar depois
 			placa = new JFormattedTextField(mask);
 			return placa;
 			

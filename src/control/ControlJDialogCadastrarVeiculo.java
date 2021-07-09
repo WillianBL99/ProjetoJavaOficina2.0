@@ -75,7 +75,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// Quando o botão cadastrar cliente for clicado
+		// Quando o botão cadastrar veiculo for clicado
 		if(e.getSource() == getjDialogCadastrarVeiculo().getjButtonCadastrarVeiculo()) {
 			// Se o cadastro for bem sucedido o método cadastrarCliente() retorna o valor 1
 			if(getdaoJDialogCadastrarVeiculo().cadastrarVeiculo()) {

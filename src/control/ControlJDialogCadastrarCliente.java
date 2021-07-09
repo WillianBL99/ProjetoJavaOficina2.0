@@ -95,7 +95,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 			// se todos os campos estiverem vazios a tela será fechada sem exibir alerta
 			if(camposIsEmpty()) {	
 				getjDialogProcurarCliente().setEnabled(true);
-				getjDialogProcurarCliente().dispose();
+				getjDialogCadastrarCliente().dispose();
 			} 
 			
 			// se algum campo ter algum caracter será exibida uma menssagem de alerta

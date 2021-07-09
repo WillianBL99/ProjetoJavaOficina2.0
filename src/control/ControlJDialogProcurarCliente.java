@@ -34,6 +34,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	private JDialogCadastrarCliente jDialogCadastrarCliente;
 	private ControlJDialogCadastrarCliente controlJDialogCadastrarCliente;
 	private boolean modal;
+	private int coutWindowAtivated; // Verifica se a tela ja foi ativada antes
 	
 	//** Fim declaração de variáveis **	
 	
@@ -82,7 +83,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	public void mouseClicked(MouseEvent e) {
 		// quando o botão de pesquisar for clicado na tela de proucar clientes
 		if(e.getSource() == getjDialogProcurarCliente().getjButtonPesquisar()) {
-			// ser for a caixa de texto estiver vazia exibe uma mensagem de alerta
+			// ser a caixa de texto estiver vazia exibe uma mensagem de alerta
 			if(!getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText().isEmpty()) {
 				/*
 				 * Cliente pode ser procurado de três formas diferentes
@@ -152,6 +153,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			 * Caso contraio a o joptionpane será fechado.
 			 */
 			if (option == 0) {
+				jDialogCadastrarCliente = null;
+				controlJDialogCadastrarCliente = null;
 				getjDialogCadastrarCliente();
 				getcontrolJDialogCadastrarCliente();
 			}
@@ -286,8 +289,59 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	@Override
 	public void windowActivated(WindowEvent e) {
+		System.out.println("ativou tela. getwindow = " + getcountWindowAtivated());
 		// TODO Auto-generated method stub
-		getdaoJDialogProcurarCliente().getClienteTodos();
+		// verifica se a caixa foi ou não exibida anteriormente
+		if(getcountWindowAtivated() == 3) {
+			setcouWindowAtivated(0);
+		}
+		if(getcountWindowAtivated() < 1) {
+			/*
+			 * adiciona um à countwindowativated para evitar que a caixa de texto seja exibida
+			 * novamente assim que essa for fechada
+			 */
+			setcouWindowAtivated(1); 
+			/*
+			 * O método getdaoJDialogProcurarCliente() retorna falso caso a consulta no banco de
+			 * dados não retorne nenhuma linha
+			 */
+			if(!getdaoJDialogProcurarCliente().getClienteTodos()) {
+				/*
+				 * Quando a tela procurar cliente for chamada e nao ter nenhum cliente cadastrado
+				 * será exibida uma caxa de diálogo perguntando se quer cadastrar um cliente.
+				 */
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Sim", "Cancelar"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensage selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Cancelar
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjDialogProcurarCliente(), // tela pai
+						"Não foi encontrado nenhum cliente cadastrado.\n"
+						+ "Deseja cadastrar um cliente?", // mensagem
+						"Sem Clientes Cadastrados", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+				if(option == 0) {
+					jDialogCadastrarCliente = null;
+					controlJDialogCadastrarCliente = null;
+					getjDialogCadastrarCliente();
+					getcontrolJDialogCadastrarCliente();
+					
+				}
+			}
+		} else {
+			setcouWindowAtivated(1);
+		}
 	}
 
 
@@ -396,6 +450,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	public JDialogCadastrarCliente getjDialogCadastrarCliente() {
 		if(jDialogCadastrarCliente == null){
 			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjDialogProcurarCliente(), true);
+			// quando a tela cadastrar cliente for chamada a mensagem de nenhum cliente cadastrado pode ser exibida novamente
+			setcouWindowAtivated(1);
 		}
 		return jDialogCadastrarCliente;
 	}
@@ -416,7 +472,21 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	
 	public void setmodal(boolean modal) {
 		this.modal = modal;
-	}		
+	}	
+
+
+	public int getcountWindowAtivated() {
+		return coutWindowAtivated;
+	}
+	
+	
+	public void setcouWindowAtivated(int coutWindowAtivated) {
+		if(coutWindowAtivated == 0) {
+			this.coutWindowAtivated = 0;
+		} else {
+			this.coutWindowAtivated++;
+		}
+	}	
 	//** Fim métodos da classe **
 	
 

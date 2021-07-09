@@ -30,15 +30,22 @@ public class DaoJDialogProcurarCliente {
 	 *  Tem a função de preencher a table depois de executar uma query
 	 *  de busca de todos os clientes.
 	 */
-	public void getClienteTodos() {
-		
+	/**
+	 * Método void getClienteTodos().
+	 * Tem a função de preencher a table depois de executar uma query
+	 * @return boolean next
+	 * false - Se a consulta não retornar nenhuma linha
+	 * true - Se a consulta retornar linhas
+	 */
+	public boolean getClienteTodos() {
+		boolean next;
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesTodaLinhas());
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(getModuloConexao().getResultSet().next()) {
+			if(!getModuloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarCliente().getjTableCliente().
 						setModel(new PreencherTabela().
@@ -50,22 +57,20 @@ public class DaoJDialogProcurarCliente {
 										"email",
 										"Telefone",
 										"Cidade"));
+				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						jDialogProcurarCliente, // componente
-						"Não existem clientes cadastrado ainda.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 			
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		
+		return next;
 	}
 	
 	
@@ -82,7 +87,7 @@ public class DaoJDialogProcurarCliente {
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), nome);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(getModuloConexao().getResultSet().next()) {
+			if(!getModuloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarCliente().getjTableCliente().
 						setModel(new PreencherTabela().
@@ -126,7 +131,7 @@ public class DaoJDialogProcurarCliente {
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCpf(), cpf);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(getModuloConexao().getResultSet().next()) {
+			if(!getModuloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarCliente().getjTableCliente().
 				setModel(new PreencherTabela().
@@ -170,7 +175,7 @@ public class DaoJDialogProcurarCliente {
 			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCnpj(), cnpj);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(getModuloConexao().getResultSet().next()) {
+			if(!getModuloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarCliente().getjTableCliente().
 				setModel(new PreencherTabela().

@@ -16,6 +16,7 @@ public class ComandosSQL {
 	private static String consultarNumeroPreOrcamento;
 	
 	private static String consultarClientesTodosCampos;
+	private static String consultarClientesTodasLinhas;
 	private static String consultarClientesNome;
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
@@ -200,10 +201,30 @@ public class ComandosSQL {
 		}
 		return cadastrarClienteCpf;
 	}
+	
+	
+	/*
+	 * Método String getconsultarClientesTodaLinhas()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getconsultarClientesTodaLinhas() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "ID", "CPF", "CNPj", "Tipo", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		 */
+		if(consultarClientesTodasLinhas == null){
+			consultarClientesTodasLinhas = (
+				"select id_cliente, cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+						+ "order by nome;"
+			);
+	
+		}
+		return consultarClientesTodasLinhas;
+	}
 		
 	
 	/*
-	 * Método String getconsultarClientesCpf()
+	 * Método String getconsultarClientesTodosCampos()
 	 * Retorna a query que tem a função de exibir todos os clientes
 	 */
 	public static String getconsultarClientesTodosCampos() {

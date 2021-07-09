@@ -22,6 +22,7 @@ public class DaoJDialogCadastrarCliente {
 	}
 	
 	
+	
 	/**
 	 * Método cadastrarCliente() Realiza o cadastro dos clientes
 	 * @return boolean inseert // se a inserção for bem sussedida será retornado true.

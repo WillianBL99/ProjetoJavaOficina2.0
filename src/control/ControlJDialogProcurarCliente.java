@@ -264,13 +264,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("windowClosed");
 	}
 
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("windowIconified");
 		
 	}
 
@@ -278,6 +279,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("windowDeiconified");
 		
 	}
 
@@ -285,7 +287,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		getdaoJDialogProcurarCliente().getClienteTodos();
 	}
 
 

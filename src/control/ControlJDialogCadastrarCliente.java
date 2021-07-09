@@ -85,6 +85,8 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 				);
 				// limpa os campos da tela de cadastro de clientes.
 				limpaCampos();
+				getjDialogCadastrarCliente().dispose();
+				getjDialogProcurarCliente().setEnabled(true);;
 			}
 		}
 		

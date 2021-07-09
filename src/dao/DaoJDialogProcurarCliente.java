@@ -26,6 +26,50 @@ public class DaoJDialogProcurarCliente {
 	
 	
 	/*
+	 *  Método void getClienteTodos().
+	 *  Tem a função de preencher a table depois de executar uma query
+	 *  de busca de todos os clientes.
+	 */
+	public void getClienteTodos() {
+		
+		// Tratamento de exceções no momento de consulta do banco de dados
+		try {
+			// As linhas abaixo realizam a consulta de dados do banco de dados
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesTodaLinhas());
+			
+			// Verifica se foi retornado algum valor do banco de dados
+			if(getModuloConexao().getResultSet().next()) {
+				// Realiza o preenchimento da tabela de jdialogprocurarcliente
+				getjDialogProcurarCliente().getjTableCliente().
+						setModel(new PreencherTabela().
+								preencher(getModuloConexao().getResultSet(),
+										"Nº",
+										"CNPj",
+										"CPF",
+										"Nome",
+										"email",
+										"Telefone",
+										"Cidade"));
+			
+			// Se não retornou nenhum valor exibe um caixa de alerta	
+			} else {
+				JOptionPane.showConfirmDialog(
+						jDialogProcurarCliente, // componente
+						"Não existem clientes cadastrado ainda.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
+			
+			
+		} catch(Exception e) {
+			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+		}
+	}
+	
+	
+	/*
 	 *  Método void getClienteNome().
 	 *  Tem a função de preencher a table depois de executar uma query
 	 *  de busca de clientes através do nome.
@@ -43,6 +87,7 @@ public class DaoJDialogProcurarCliente {
 				getjDialogProcurarCliente().getjTableCliente().
 						setModel(new PreencherTabela().
 								preencher(getModuloConexao().getResultSet(),
+										"Nº",
 										"CNPj",
 										"CPF",
 										"Nome",
@@ -86,6 +131,7 @@ public class DaoJDialogProcurarCliente {
 				getjDialogProcurarCliente().getjTableCliente().
 				setModel(new PreencherTabela().
 						preencher(getModuloConexao().getResultSet(),
+								"Nº",
 								"CNPj",
 								"CPF",
 								"Nome",
@@ -129,6 +175,7 @@ public class DaoJDialogProcurarCliente {
 				getjDialogProcurarCliente().getjTableCliente().
 				setModel(new PreencherTabela().
 						preencher(getModuloConexao().getResultSet(),
+								"Nº",
 								"CNPj",
 								"CPF",
 								"Nome",

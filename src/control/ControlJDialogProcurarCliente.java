@@ -401,7 +401,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	
 	public ControlJDialogCadastrarCliente getcontrolJDialogCadastrarCliente() {
 		if(controlJDialogCadastrarCliente == null){
-			controlJDialogCadastrarCliente = new ControlJDialogCadastrarCliente(getjFramePricipal(), getjDialogCadastrarCliente(), getjDialogProcurarCliente());
+			controlJDialogCadastrarCliente = new ControlJDialogCadastrarCliente(getjFramePricipal(), getjDialogProcurarCliente(), getjDialogCadastrarCliente());
 		}
 		return controlJDialogCadastrarCliente;
 	}

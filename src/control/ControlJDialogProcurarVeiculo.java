@@ -10,13 +10,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
-
 import dao.ComandosSQL;
 import dao.DaoJDialogProcurarVeiculo;
-import dao.ModuloConexao;
 import dao.PreencherTabela;
+import view.JDialogCadastrarVeiculo;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamentoNovo;
@@ -32,6 +30,8 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo;
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
 	private DaoJDialogProcurarVeiculo daoJDialogProcurarVeiculo;
+	private JDialogCadastrarVeiculo jDialogCadastrarVeiculo;
+	private ControlJDialogCadastrarVeiculo controlJDialogCadastrarVeiculo;
 	private boolean modal;
 	
 	//** Fim declaração de variáveis **	
@@ -87,7 +87,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 				 * - Placa - Executa uma query que retorna todos os veiculos com a placa inserida
 				 * - Chassi - Executa uma query que retorna todos os veiculos com o chassi inserido
 				 */
-
 				switch (getjDialogProcurarVeiculo().getChoicePesquisarPor().getSelectedItem().toString()) {
 				
 				// procurando veículo por chassi
@@ -99,7 +98,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 				case "Placa":
 					getdaoJDialogProcurarVeiculo().getveiculoPlaca(getjDialogProcurarVeiculo().getjTFieldProcurar().getText());
 					break;
-					
 				}
 				
 			} else {
@@ -270,9 +268,10 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 					options,
 					options[1]); // opção selecionada inicialmente
 			
-			// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+			// Se foi selecionado a opção sim (option == 0) será aberta a tela de cadastro de veículo
 			if(option == 0) {
-
+				jDialogCadastrarVeiculo = null;
+				getjDialogCadastrarVeiculo();
 			} else {
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarVeiculo().dispose();
@@ -310,6 +309,22 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			daoJDialogProcurarVeiculo = new DaoJDialogProcurarVeiculo(getjDialogProcurarVeiculo(), getjPanelPreOrcamentoNovo());
 		}
 		return daoJDialogProcurarVeiculo;
+	}
+	
+	
+	public ControlJDialogCadastrarVeiculo getcontrolJDialogCadastrarVeiculo() {
+		if(controlJDialogCadastrarVeiculo == null){
+			controlJDialogCadastrarVeiculo = new ControlJDialogCadastrarVeiculo(getjFramePricipal(), getjDialogCadastrarVeiculo(), getjDialogProcurarVeiculo());
+		}
+		return controlJDialogCadastrarVeiculo;
+	}
+	
+	
+	public JDialogCadastrarVeiculo getjDialogCadastrarVeiculo() {
+		if(jDialogCadastrarVeiculo == null){
+			jDialogCadastrarVeiculo = new JDialogCadastrarVeiculo(getjFramePricipal(), true);
+		}
+		return jDialogCadastrarVeiculo;
 	}
 	
 	
@@ -370,6 +385,8 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		getjPanelPreOrcamentoNovo().getjTFieldCor().setText(cor);
 		getjPanelPreOrcamentoNovo().getjTFieldAno().setText(ano);	
 	}
+	
+	
 	
 
 }

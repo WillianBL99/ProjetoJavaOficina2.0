@@ -26,8 +26,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	//** Início declaração de variáveis **
 		
-	private boolean modal;
-	
+	private boolean modalTela;	
 
 	private JButton jButtonCancelar;
 	private JButton jButtonCadastrarVeiculo;
@@ -64,8 +63,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	public JDialogCadastrarVeiculo(Frame frame, boolean modal) {
 		super(frame, "Cadastrar Veículo");
-		 //super(frame, "Cadastrar Veículo", true);
-		//this.modal = modal;
+		setmodalTela(modal);
 		this.addCompJDialogCadastrarVeiculo();
 	}	
 	
@@ -74,14 +72,13 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	//** Início getters JPanels **
 	
 	public JDialogCadastrarVeiculo  getJDialogCadastrarVeiculo() {
-		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setLayout(null);
+		this.getContentPane().setLayout(null);
+		this.setLocationRelativeTo(null);
 		this.setBackground(Cores.branco);
-		this.setSize(975, 221);
+		this.setSize(975, 238);
 		this.setVisible(true);
-		this.setModal(modal);
-		this.setVisible(true);
+		setmodalTela(modalTela);
 		return this;
 	}
 	
@@ -494,13 +491,18 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 		getJDialogCadastrarVeiculo().getContentPane().add(getjButtonCadastrarVeiculo());
 		getjButtonCadastrarVeiculo().setLocation(787, 155);
 		
-		}
-	
-		
-	
-	
+	}
 	
 	//** Fim métodos adição de componentes **
 	
+	
+	public boolean ismodalTela() {
+		return modalTela;
+	}
+	
+	
+	public void setmodalTela(boolean modalTela) {
+		this.modalTela = modalTela;
+	}
 
 }

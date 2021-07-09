@@ -106,29 +106,34 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		// quando o botão "cancelar pré orçamento" for clicado
 		if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonCancelar()) {
-			// quando o botão "cancelar pré orçamento" for clicado
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), this.point);
+		}
+		
+		
+		// quando o botão "salvar pré orçamento" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSalvar()) {
+		}
+		
+		
+		// quando o botão "imprimir pré orçamento" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonImprimir()) {
 			
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSalvar()) {
-			// quando o botão "salvar pré orçamento" for clicado
-			
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonImprimir()) {
-			// quando o botão "imprimir pré orçamento" for clicado
-			
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonProcuraCliente()) {
-			// quando o botão "procurar cliente" for clicado
+		}
+		
+		
+		// quando o botão "procurar cliente" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonProcuraCliente()) {
 			jDialogProcurarCliente = null;
 			controlJDialogProcurarCliente = null;
 			getjDialogProCliente();
 			getconControlJDialogProcurarCliente();
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
-			// quando o botão "selecionar veículo" for clicado
+		}
+		
+		
+		// quando o botão "selecionar veículo" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonSelecionarVeiculo()) {
 			/*
 			 * Realizar verificação se já foi selecionada algum cliente
 			 * se sim faz a chamada da tela para selecionar um veículo
@@ -136,7 +141,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			if(getjPanelPreOrcamentoNovo().getidCliente() != null) {
 				jDialogProcurarVeiculo = null;
 				controlJDialogProcurarVeiculo = null;
-				getcontrolJDialogProcurarVeiculo();
+				getjDialogProcurarVeiculo();
 				getcontrolJDialogProcurarVeiculo();
 				
 			// Caixa de dialogo
@@ -149,25 +154,25 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 				);
 			}
-			
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaProdutos()) {
-			// quando o botão "lista de produtos" for clicado
+		}
+		
+		
+		// quando o botão "lista de produtos" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaProdutos()) {
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaProdutos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(true);
-			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(false);
-			
-			
-		} else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
-			// quando o botão "lista de servisos" for clicado
+			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(false);	
+		}
+		
+		
+		// quando o botão "lista de servisos" for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaServicos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(false);
 			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(true);
-			
-			
-		}
-		
+		}	
 	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {

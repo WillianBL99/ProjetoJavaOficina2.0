@@ -512,7 +512,7 @@ public class JDialogCadastrarCliente extends JDialog{
 		getJDialogCadastrarCliente().getContentPane().add(getjButtonCadastrarCliente());
 		getjButtonCadastrarCliente().setLocation(787, 163);
 		
-		}
+	}
 	
 
 	

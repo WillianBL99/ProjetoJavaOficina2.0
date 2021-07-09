@@ -34,12 +34,17 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private ControlJDialogCadastrarVeiculo controlJDialogCadastrarVeiculo;
 	private boolean modal;
 	
+	private String idCliente; // salva o numero do id do cliente selecionado na tela jdialogprocurarcliente
+	
 	//** Fim declaração de variáveis **	
 	public ControlJDialogProcurarVeiculo(JFramePrincipal jFramePricipal, JDialogProcurarVeiculo jDialogProcurarVeiculo,
 			JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo) {	
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
+		
+		setidCliente(getjPanelPreOrcamentoNovo().getidCliente());
+		
 		setmodal(this.getjDialogProcurarVeiculo().ismodalTela());
 		AddEvent();
 		setmodal(getjDialogProcurarVeiculo().ismodalTela());
@@ -229,7 +234,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	 */
 	private void carrosCliente() {
 		// Reaiza a chamada da query que realiza a busca de um veículo através do cliente
-		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), getjPanelPreOrcamentoNovo().getidCliente());
+		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), this.getidCliente());
 		// Verifica se a consulta retornou alguma linha do banco de dados
 		if(!getdaoJDialogProcurarVeiculo().getModuloConexao().resultSetIsEmpty()) {
 			// seta com visible(true) caso esteja (false)
@@ -272,6 +277,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			if(option == 0) {
 				jDialogCadastrarVeiculo = null;
 				getjDialogCadastrarVeiculo();
+				getcontrolJDialogCadastrarVeiculo();
 			} else {
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarVeiculo().dispose();
@@ -314,7 +320,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	public ControlJDialogCadastrarVeiculo getcontrolJDialogCadastrarVeiculo() {
 		if(controlJDialogCadastrarVeiculo == null){
-			controlJDialogCadastrarVeiculo = new ControlJDialogCadastrarVeiculo(getjFramePricipal(), getjDialogCadastrarVeiculo(), getjDialogProcurarVeiculo());
+			controlJDialogCadastrarVeiculo = new ControlJDialogCadastrarVeiculo(getjFramePricipal(), getjDialogCadastrarVeiculo(), getjDialogProcurarVeiculo(),this.getidCliente());
 		}
 		return controlJDialogCadastrarVeiculo;
 	}
@@ -336,6 +342,16 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	public void setmodal(boolean modal) {
 		this.modal = modal;
 	}		
+	
+	
+	public String getidCliente() {
+		return idCliente;
+	}
+	
+	
+	public void setidCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
 	
 	
 	// Início métodos da classe

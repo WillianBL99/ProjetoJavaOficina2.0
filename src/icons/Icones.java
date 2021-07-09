@@ -20,6 +20,8 @@ public class Icones {
 	private static String orcamentoOn;
 	private static String orcamentoOff;
 
+	private static String newVeiculo;
+	
 	private static String veiculosOn;
 	private static String veiculosOff;
 	
@@ -54,6 +56,14 @@ public class Icones {
 	private static String cartãoCinza;
 	private static String dinheiroAzul;
 	private static String dinheiroCinza;
+	
+	
+	public static String getNewVeiculo() {
+		if(newVeiculo == null){
+			newVeiculo = ("/icons/new-car-25.png");
+		}
+		return newVeiculo;
+	}
 	
 	
 	public static String getNewUser() {

@@ -9,10 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.JOptionPane;
-
-import dao.DaoJDialogCadastrarCliente;
 import dao.DaoJDialogCadastrarVeiculo;
 import view.JDialogCadastrarVeiculo;
 import view.JDialogProcurarVeiculo;
@@ -31,11 +28,17 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
 	private boolean modal;
 	
+	private String idCliente;
+	
 	//** Fim declaração de variáveis **	
-	public ControlJDialogCadastrarVeiculo(JFramePrincipal jFramePricipal, JDialogCadastrarVeiculo jDialogCadastrarVeiculo, JDialogProcurarVeiculo jDialogProcurarVeiculo) {	
+	public ControlJDialogCadastrarVeiculo(JFramePrincipal jFramePricipal, JDialogCadastrarVeiculo jDialogCadastrarVeiculo,
+			JDialogProcurarVeiculo jDialogProcurarVeiculo, String idCliente) {	
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogCadastrarVeiculo = jDialogCadastrarVeiculo;
 		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
+		
+		setidCliente(idCliente);
+		
 		setmodal(this.jDialogCadastrarVeiculo.ismodalTela());
 		AddEvent();
 		setmodal(getjDialogCadastrarVeiculo().ismodalTela());
@@ -75,7 +78,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		// Quando o botão cadastrar cliente for clicado
 		if(e.getSource() == getjDialogCadastrarVeiculo().getjButtonCadastrarVeiculo()) {
 			// Se o cadastro for bem sucedido o método cadastrarCliente() retorna o valor 1
-			if(getdaoJDialogCadastrarVeiculo().cadastrarCliente()) {
+			if(getdaoJDialogCadastrarVeiculo().cadastrarVeiculo()) {
 				// Exibe uma mensagem de confirmação do cadastro.
 				JOptionPane.showConfirmDialog(
 						getjDialogCadastrarVeiculo(), // componente
@@ -243,7 +246,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	
 	public DaoJDialogCadastrarVeiculo getdaoJDialogCadastrarVeiculo() {
 		if(daoJDialogCadastrarVeiculo == null){
-			daoJDialogCadastrarVeiculo = new DaoJDialogCadastrarVeiculo();
+			daoJDialogCadastrarVeiculo = new DaoJDialogCadastrarVeiculo(getjFramePricipal(), getjDialogCadastrarVeiculo(), this.getidCliente());
 		}
 		return daoJDialogCadastrarVeiculo;
 	}
@@ -256,7 +259,17 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	
 	public void setmodal(boolean modal) {
 		this.modal = modal;
-	}		
+	}	
+	
+	
+	public String getidCliente() {
+		return idCliente;
+	}
+	
+	
+	public void setidCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}	
 	
 	/**
 	 * Método camposIsEmpty() verifica se todos os 

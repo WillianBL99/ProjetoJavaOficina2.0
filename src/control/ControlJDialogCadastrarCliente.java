@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import dao.DaoJDialogCadastrarVeiculo;
+import dao.DaoJDialogCadastrarCliente;
 import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -22,7 +22,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
-	private DaoJDialogCadastrarVeiculo daoJDialogCadastrarVeiculo;
+	private DaoJDialogCadastrarCliente daoJDialogCadastrarCliente;
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private JDialogCadastrarCliente jDialogCadastrarCliente;	
 	private boolean modal;
@@ -183,11 +183,11 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	}
 	
 	
-	public DaoJDialogCadastrarVeiculo getdaoCadastrarVeiculo() {
-		if(daoJDialogCadastrarVeiculo == null){
-			daoJDialogCadastrarVeiculo = new DaoJDialogCadastrarVeiculo();
+	public DaoJDialogCadastrarCliente getdaoCadastrarVeiculo() {
+		if(daoJDialogCadastrarCliente == null){
+			daoJDialogCadastrarCliente = new DaoJDialogCadastrarCliente(getjFramePricipal(), getjDialogCadastrarVeiculo());
 		}
-		return daoJDialogCadastrarVeiculo;
+		return daoJDialogCadastrarCliente;
 	}
 	
 	

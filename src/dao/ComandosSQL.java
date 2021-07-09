@@ -29,6 +29,28 @@ public class ComandosSQL {
 	private static String consultarVeiculoChassiByCliente;
 	private static String consultarVeiculoPlacaByCliente;
 	
+	private static String cadastrarVeiculo;
+	
+	
+	/*
+	 * Método String getcadastrarVeiculo()
+	 * Cadastrar um veículo com os dados inseridos
+	 * e associa à um cliente prviamente selecionado
+	 */
+	public static String getcadastrarVeiculo() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Chassi", "Placa", "km atual", "Marca", "Modelo", "Motor", "Combustível", "Cor", "Ano", "ID Cliente"
+		 */
+		if(cadastrarVeiculo == null){
+			cadastrarVeiculo = (
+				"insert into tb_veiculos(chassi, placa, km_atual, marca, modelo, motor, combustivel, cor, ano, id_cliente) values\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarVeiculo;
+	}
+	
 	
 	/*
 	 * Método String getconsultarVeiculoTodos()

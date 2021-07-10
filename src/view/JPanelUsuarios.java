@@ -229,11 +229,9 @@ public class JPanelUsuarios  extends JPanel{
 			choicePesquisarPor.setSize(150, 25);
 			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
 			choicePesquisarPor.setVisible(true);
-			choicePesquisarPor.add("Selecione uma opção");
-			choicePesquisarPor.add("CPF");
-			choicePesquisarPor.add("Nome");
-			choicePesquisarPor.setFocusable(false);
-	
+			choicePesquisarPor.add("CPF                 ");
+			choicePesquisarPor.add("Nome                ");
+			choicePesquisarPor.setFocusable(false);	
 		}
 		return choicePesquisarPor;
 	}

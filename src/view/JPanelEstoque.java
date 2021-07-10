@@ -217,19 +217,18 @@ public class JPanelEstoque  extends JPanel{
 	
 	//** Início getters JComboBox **
 	
-		public Choice getchoicePesquisarPor() {
-			if(choicePesquisarPor == null){
-				choicePesquisarPor = new Choice();
-				choicePesquisarPor.setSize(150, 25);
-				choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
-				choicePesquisarPor.setVisible(true);
-				choicePesquisarPor.add("Selec. opção");
-				choicePesquisarPor.add("Cliente");
-				choicePesquisarPor.add("Placa");
-				choicePesquisarPor.setFocusable(false);	
-			}
-			return choicePesquisarPor;
+	public Choice getchoicePesquisarPor() {
+		if(choicePesquisarPor == null){
+			choicePesquisarPor = new Choice();
+			choicePesquisarPor.setSize(150, 25);
+			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
+			choicePesquisarPor.setVisible(true);
+			choicePesquisarPor.add("Cliente             ");
+			choicePesquisarPor.add("Placa               ");
+			choicePesquisarPor.setFocusable(false);	
 		}
+		return choicePesquisarPor;
+	}
 		
 		
 		

@@ -275,7 +275,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		// seta a data no jTextField data
 		getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento().setText(
-				new SimpleDateFormat("dd/mm/yy").format(new Date())
+				new SimpleDateFormat("dd/MM/yy").format(new Date())
 		);
 		
 		// seta o horário no jTextField horario

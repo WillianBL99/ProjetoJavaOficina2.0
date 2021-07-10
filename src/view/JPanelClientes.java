@@ -198,9 +198,8 @@ public class JPanelClientes  extends JPanel{
 			choicePesquisarPor.setSize(150, 25);
 			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
 			choicePesquisarPor.setVisible(true);
-			choicePesquisarPor.add("Selec. opção");
-			choicePesquisarPor.add("Cliente");
-			choicePesquisarPor.add("Placa");
+			choicePesquisarPor.add("Cliente          ");
+			choicePesquisarPor.add("Placa            ");
 			choicePesquisarPor.setFocusable(false);	
 		}
 		return choicePesquisarPor;

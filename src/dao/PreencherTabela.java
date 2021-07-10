@@ -48,7 +48,7 @@ public class PreencherTabela extends AbstractTableModel{
 	  * de cada coluna da tabela predefinido pelo usuário (@colunas[]).
 	  * @param resultSet // recebe o resultSet da consulta de um banco de dados.
 	  * @param colunas // recebe os nomes das colunas da tabela.
-	  * @return this
+	  * @return Retorna o AbstractTableModel contendo os valores da tabela consultada no banco de dados
 	  */
 	public AbstractTableModel preencher(ResultSet resultSet, String... colunas) {
 		setColunasPreDef(colunas);
@@ -74,7 +74,7 @@ public class PreencherTabela extends AbstractTableModel{
 	 * Realiza o preencimento da tabela de acordo com os 
 	 * valores contidos em resultSet.
 	 * @param resultSet // recebe o resultSet da consulta de um banco de dados.
-	 * @return this
+	 * @return Retorna o AbstractTableModel contendo os valores da tabela consultada no banco de dados
 	 */
 	public AbstractTableModel preencher(ResultSet resultSet) {
 		// seta o resultSet da classe com o resultSet passado por parametro.

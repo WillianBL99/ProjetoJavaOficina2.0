@@ -9,6 +9,7 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String consultarNomesUsuarios;
 	
 	private static String visualizarTodosPreOrcamentos;
 	private static String visualizarTodosPreOrcamentos_data;
@@ -31,6 +32,24 @@ public class ComandosSQL {
 	private static String consultarVeiculoPlacaByCliente;
 	
 	private static String cadastrarVeiculo;
+	
+	
+	/**
+	 * Método getconsultarNomesUsuarios() realiza a consulta dos nomes dos usuarios
+	 * @return retorna a query de consulta dos nomes dos usuarios.
+	 */
+	public static String getconsultarNomesUsuarios() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nome"
+		 */
+		if(consultarNomesUsuarios == null){
+			consultarNomesUsuarios = (
+				"select nome from tb_clientes"
+			);
+		}
+		return consultarNomesUsuarios;
+	}
 	
 	
 	/*

@@ -33,6 +33,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private JDialogCadastrarVeiculo jDialogCadastrarVeiculo;
 	private ControlJDialogCadastrarVeiculo controlJDialogCadastrarVeiculo;
 	private boolean modal;
+	private int coutWindowAtivated; // Verifica se a tela ja foi ativada antes
 	
 	private String idCliente; // salva o numero do id do cliente selecionado na tela jdialogprocurarcliente
 	
@@ -42,6 +43,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
+		coutWindowAtivated = 1; // seta para não entra de primeira
 		
 		setidCliente(getjPanelPreOrcamentoNovo().getidCliente());
 		
@@ -55,6 +57,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private void AddEvent() {
 		getjDialogProcurarVeiculo().addWindowListener(this);
 		getjDialogProcurarVeiculo().getjButtonProcurar().addMouseListener(this);
+		getjDialogProcurarVeiculo().getjButtonNovoVeiculo().addMouseListener(this);
 		getjDialogProcurarVeiculo().getjButtonSelecionar().addMouseListener(this);
 		getjDialogProcurarVeiculo().getjButtonCancelar().addMouseListener(this);
 	}
@@ -96,12 +99,36 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 				
 				// procurando veículo por chassi
 				case "Chassi":
-					getdaoJDialogProcurarVeiculo().getveiculoChassi(getjDialogProcurarVeiculo().getjTFieldProcurar().getText());
+					/*
+					 * O método getdaoJDialogProcurarVeiculo().getveiculoChassi(chassi) retorna falso caso a consulta no banco de
+					 * dados não retorne nenhuma linha
+					 */
+					if(!getdaoJDialogProcurarVeiculo().getveiculoChassi(getjDialogProcurarVeiculo().getjTFieldProcurar().getText())) {
+						JOptionPane.showConfirmDialog(
+								getjDialogProcurarVeiculo(), // componente
+								"Não foi encontrado nenhum veículo com a chassi procurarda.", // texto
+								"Alerta", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					}
 					break;
 					
 				// procurando veículo por placa
 				case "Placa":
-					getdaoJDialogProcurarVeiculo().getveiculoPlaca(getjDialogProcurarVeiculo().getjTFieldProcurar().getText());
+					/*
+					 * O método getdaoJDialogProcurarVeiculo().getveiculoPlaca(placa) retorna falso caso a consulta no banco de
+					 * dados não retorne nenhuma linha
+					 */
+					if(!getdaoJDialogProcurarVeiculo().getveiculoPlaca(getjDialogProcurarVeiculo().getjTFieldProcurar().getText())) {
+						JOptionPane.showConfirmDialog(
+								getjDialogProcurarVeiculo(), // componente
+								"Não foi encontrado nenhum veículo com a placa procurarda.", // texto
+								"Alerta", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					}
 					break;
 				}
 				
@@ -112,6 +139,47 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 					    "Erro na consulta",
 					    JOptionPane.WARNING_MESSAGE);
 			}
+		}
+		
+		// Quando o botão novo veículo for clicado
+		else if(e.getSource() == getjDialogProcurarVeiculo().getjButtonNovoVeiculo()) {
+			/*
+			 * Exibe uma mensagem de pergunta se a pessoa quer adicionar um novo veículo.
+			 * Caso seja confirmada a escolha, será chamado uma novo jdialog para cadastrar
+			 * um novo veiculo.
+			 */
+			
+			// Vetor de String contendo os nomes das opções do JOptionpane abaixo.
+			String options[] = {"Sim", "Cancelar"};
+			
+			/*
+			 * int option
+			 * recebe 0 ou 1 de acordo com a mensage selecionada
+			 * - 0: Foi secionada a opção Sim
+			 * - 1: Foi selecionada a opção Cancelar
+			 */
+			int option = JOptionPane.showOptionDialog(
+					getjDialogProcurarVeiculo(),
+					"Você deseja adiconar um novo veículo à lista de veículos?", // texto
+					"Alerta", // título
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[1]);
+			
+			/*
+			 * Caso a condicional seja verdadeira, será aberta a tela de 
+			 * cadastro de clientes.
+			 * Caso contraio a o joptionpane será fechado.
+			 */
+			if (option == 0) {
+				jDialogCadastrarVeiculo = null;
+				controlJDialogCadastrarVeiculo = null;
+				getjDialogCadastrarVeiculo();
+				getcontrolJDialogCadastrarVeiculo();
+			}
+			
 		}
 		
 		// Quando o botão cancelar for clicado
@@ -212,8 +280,8 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("chamando ativated");
+		getdaoJDialogProcurarVeiculo().getveiculoTodos();
 	}
 
 
@@ -266,7 +334,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 					getjDialogProcurarVeiculo(), // tela pai
 					"Nenhum veículo cadastrardo está associado a esse cliente.\n"
 					+ "Deseja associar um veículo ou cadastrar um novo?", // mensagem
-					"Alerta", // título
+					"Nenhum veículo encontrado", // título
 					JOptionPane.DEFAULT_OPTION, 
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
@@ -276,6 +344,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			// Se foi selecionado a opção sim (option == 0) será aberta a tela de cadastro de veículo
 			if(option == 0) {
 				jDialogCadastrarVeiculo = null;
+				controlJDialogCadastrarVeiculo = null;
 				getjDialogCadastrarVeiculo();
 				getcontrolJDialogCadastrarVeiculo();
 			} else {
@@ -351,6 +420,20 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	public void setidCliente(String idCliente) {
 		this.idCliente = idCliente;
+	}	
+
+
+	public int getcountWindowAtivated() {
+		return coutWindowAtivated;
+	}
+	
+	
+	public void setcouWindowAtivated(int coutWindowAtivated) {
+		if(coutWindowAtivated == 0) {
+			this.coutWindowAtivated = 0;
+		} else {
+			this.coutWindowAtivated++;
+		}
 	}
 	
 	

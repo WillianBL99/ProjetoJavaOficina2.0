@@ -94,19 +94,58 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 				switch (getjDialogProcurarCliente().getjComboBoxPesquisa().getSelectedItem().toString()) {
 				
+				
 				// procurando cliente pelo nome
-				case "Nome":
-					getdaoJDialogProcurarCliente().getClienteNome(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+				case "Nome": 
+					/*
+					 * O método getdaoJDialogProcurarCliente().getClienteNome(nome) retorna falso caso a consulta no banco de
+					 * dados não retorne nenhuma linha
+					 */
+					if(!getdaoJDialogProcurarCliente().getClienteNome(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText())) {
+						JOptionPane.showConfirmDialog(
+								jDialogProcurarCliente, // componente
+								"Não foi encontrado nenhum cliente com o nome procurardo.", // texto
+								"Alerta", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					}					
 					break;
+					
 					
 				// procurando cliente pelo CPF
 				case "CPF":
-					getdaoJDialogProcurarCliente().getClienteCpf(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+					/*
+					 * O método getdaoJDialogProcurarCliente().getClienteCpf(cpf) retorna falso caso a consulta no banco de
+					 * dados não retorne nenhuma linha
+					 */
+					if(!getdaoJDialogProcurarCliente().getClienteCpf(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText())) {
+						JOptionPane.showConfirmDialog(
+								jDialogProcurarCliente, // componente
+								"Não foi encontrado nenhum cliente com o CPF procurardo.", // texto
+								"Alerta", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					}
 					break;
+					
 					
 				// procurando cliente pelo CNPj
 				case "CNPj":
-					getdaoJDialogProcurarCliente().getClienteCnpj(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText());
+					/*
+					 * O método getdaoJDialogProcurarCliente().getClienteCnpj(cnpj) retorna falso caso a consulta no banco de
+					 * dados não retorne nenhuma linha
+					 */
+					if(!getdaoJDialogProcurarCliente().getClienteCnpj(getjDialogProcurarCliente().getjTextFieldCampoPesquisa().getText())) {
+						JOptionPane.showConfirmDialog(
+								jDialogProcurarCliente, // componente
+								"Não foi encontrado nenhum cliente com o CNPj procurardo.", // texto
+								"Alerta", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					}
 					break;
 				}
 				
@@ -289,7 +328,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		System.out.println("ativou tela. getwindow = " + getcountWindowAtivated());
 		// TODO Auto-generated method stub
 		// verifica se a caixa foi ou não exibida anteriormente
 		if(getcountWindowAtivated() == 3) {

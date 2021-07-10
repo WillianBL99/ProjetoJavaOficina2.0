@@ -24,12 +24,6 @@ public class DaoJDialogProcurarCliente {
 		this.jDialogProcurarCliente = jDialogProcurarCliente;
 	}
 	
-	
-	/*
-	 *  Método void getClienteTodos().
-	 *  Tem a função de preencher a table depois de executar uma query
-	 *  de busca de todos os clientes.
-	 */
 	/**
 	 * Método void getClienteTodos().
 	 * Tem a função de preencher a table depois de executar uma query
@@ -74,13 +68,16 @@ public class DaoJDialogProcurarCliente {
 	}
 	
 	
-	/*
-	 *  Método void getClienteNome().
-	 *  Tem a função de preencher a table depois de executar uma query
-	 *  de busca de clientes através do nome.
+	/**
+	 * Método void getClienteNome(@nome).
+	 * Tem a função de preencher a table depois de executar uma query
+	 * @param nome // recebe nome do cliente a ser procurado
+	 * @return boolean next
+	 * false - Se a consulta não retornar nenhuma linha
+	 * true - Se a consulta retornar linhas
 	 */
-	public void getClienteNome(String nome) {
-		
+	public boolean getClienteNome(String nome) {
+		boolean next;
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
@@ -99,32 +96,33 @@ public class DaoJDialogProcurarCliente {
 										"email",
 										"Telefone",
 										"Cidade"));
+				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						jDialogProcurarCliente, // componente
-						"Não foi encontrado nenhum cliente com o nome procurardo.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 			
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		return next;
 	}
 	
 
-	/*
-	 *  Método void getClienteCpf().
-	 *  Tem a função de preencher a table depois de executar uma query
-	 *  de busca de clientes através do cpf.
+	/**
+	 * Método void getClienteCpf(@cpf).
+	 * Tem a função de preencher a table depois de executar uma query
+	 * @param cpf // recebe cpf do cliente a ser procurado
+	 * @return boolean next
+	 * false - Se a consulta não retornar nenhuma linha
+	 * true - Se a consulta retornar linhas
 	 */
-	public void getClienteCpf(String cpf) {
-		
+	public boolean getClienteCpf(String cpf) {
+
+		boolean next;
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
@@ -143,32 +141,33 @@ public class DaoJDialogProcurarCliente {
 								"email",
 								"Telefone",
 								"Cidade"));
+				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						jDialogProcurarCliente, // componente
-						"Não foi encontrado nenhum cliente com o CPF procurardo.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		return next;
 	}
 	
 	
-	/*
-	 *  Método void getClienteCnpj().
-	 *  Tem a função de preencher a table depois de executar uma query
-	 *  de busca de clientes através do cnpj.
+	/**
+	 * Método void getClienteCnpj(@cnpj).
+	 * Tem a função de preencher a table depois de executar uma query
+	 * @param cnpj // recebe cnpj do cliente a ser procurado
+	 * @return boolean next
+	 * false - Se a consulta não retornar nenhuma linha
+	 * true - Se a consulta retornar linhas
 	 */
-	public void getClienteCnpj(String cnpj) {
-		
+	public boolean getClienteCnpj(String cnpj) {
+
+		boolean next;
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
@@ -186,22 +185,18 @@ public class DaoJDialogProcurarCliente {
 								"Nome",
 								"email",
 								"Telefone",
-								"Cidade"));
+								"Cidade"));next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						jDialogProcurarCliente, // componente
-						"Não foi encontrado nenhum cliente com o CNPj procurardo.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		return next;
 	}
 	
 	

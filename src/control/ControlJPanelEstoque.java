@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JDialogEditarProduto;
-import view.JDialogInserirProduto;
+import view.JDialogCadastrarProduto;
+import view.JDialogCadastrarServico;
 import view.JFramePrincipal;
 import view.JPanelEstoque;
 
@@ -26,8 +27,7 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 	private SetSizeIcon setSizeIcon;
 	private JFramePrincipal jFramePrincipal;
 	private JPanelEstoque jPanelEstoque;
-	private JDialogInserirProduto jDialogInserirProduto;
-	private JDialogEditarProduto jDialogEditarProduto;
+	private JDialogCadastrarProduto jDialogCadastrarProduto;
 	private JButton jButtonClicado; // guarda o jbutton clicado
 	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
 	
@@ -75,14 +75,13 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 	public void mouseClicked(MouseEvent e) {
 		// Quando o botão adicionar produto for clicado
 		if(e.getSource() == getjPanelEstoque().getjButtonAdicionar()) {
-			jDialogInserirProduto = null;
-			getjdialogInserirProduto();
+			jDialogCadastrarProduto = null;
+			getjdialogCadastrarProduto();
 		}
 		
 		// Quando o botão editar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonEditar()) {
-			jDialogEditarProduto = null;
-			getjdialogEditarProduto();
+			
 		}
 		
 		// Quando o botão apagar produto for clicado
@@ -161,19 +160,11 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 	}
 	
 	
-	private JDialogEditarProduto getjdialogEditarProduto() {
-		if(this.jDialogEditarProduto == null) {
-			this.jDialogEditarProduto = new JDialogEditarProduto(getjFramePrincipal(), true);
+	private JDialogCadastrarProduto getjdialogCadastrarProduto() {
+		if(this.jDialogCadastrarProduto == null) {
+			this.jDialogCadastrarProduto = new JDialogCadastrarProduto(getjFramePrincipal(), true);
 		}
-		return this.jDialogEditarProduto;
-	}
-	
-	
-	private JDialogInserirProduto getjdialogInserirProduto() {
-		if(this.jDialogInserirProduto == null) {
-			this.jDialogInserirProduto = new JDialogInserirProduto(getjFramePrincipal(), true);
-		}
-		return this.jDialogInserirProduto;
+		return this.jDialogCadastrarProduto;
 	}
 	
 	//** Fim métodos sobrescritos **

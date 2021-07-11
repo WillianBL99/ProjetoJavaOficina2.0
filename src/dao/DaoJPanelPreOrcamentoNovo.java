@@ -32,7 +32,7 @@ public class DaoJPanelPreOrcamentoNovo {
 			// Recebe o id do pré orçamento
 			String id_orcamento = getjpanelPreOrcamentoNovo().getjTFieldNumeroPreOrcamento().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosPreOrcamento(), id_orcamento);
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarServicosPreOrcamento(), id_orcamento);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -50,11 +50,12 @@ public class DaoJPanelPreOrcamentoNovo {
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
 				next = false;
+				System.out.println("sem serviços");
 			}
 			
 			
 		} catch(Exception e) {
-			System.out.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
+			System.err.println("Erro ao setar o jtable de jdialogprocurarcliente\n" + e);
 			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
 		

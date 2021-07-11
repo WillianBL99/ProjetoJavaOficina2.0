@@ -2,9 +2,6 @@
  * 
  */
 package dao;
-
-import javax.swing.JOptionPane;
-
 import view.JDialogProcurarVeiculo;
 import view.JPanelPreOrcamentoNovo;
 
@@ -26,12 +23,57 @@ public class DaoJDialogProcurarVeiculo {
 	
 	
 	/*
+	 *  Método void getveiculoTodos().
+	 *  Tem a função de preencher a table depois de executar uma query
+	 *  de busca de veiculos através de um cliente.
+	 */
+	public boolean getveiculoTodos() {
+		boolean next;
+		// Tratamento de exceções no momento de consulta do banco de dados
+		try {
+			String idCliente = getjPanelPreOrcamentoNovo().getidCliente();
+			// As linhas abaixo realizam a consulta de dados do banco de dados
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), idCliente);
+			
+			// Verifica se foi retornado algum valor do banco de dados
+			if(!getModuloConexao().resultSetIsEmpty()) {
+				getjDialogProcurarVeiculo().getjTableVeiculos().setVisible(true);
+				// Realiza o preenchimento da tabela de jdialogprocurarcliente
+				getjDialogProcurarVeiculo().getjTableVeiculos().
+						setModel(new PreencherTabela().
+								preencher(getModuloConexao().getResultSet(),
+										"Nº Veiculo",
+										"Placa",
+										"Chassi",
+										"Marca",
+										"Modelo",
+										"Motor",
+										"Combustível",
+										"Cor",
+										"Ano"));
+				next = true;
+			
+			// Se não retornou nenhum valor exibe um caixa de alerta	
+			} else {
+				next = false;
+			}
+			
+			
+		} catch(Exception e) {
+			System.out.println("Erro ao setar o jtable de jdialogprocurarveiculo\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
+		}
+		return next;
+	}
+	
+	
+	/*
 	 *  Método void getveiculoPlaca().
 	 *  Tem a função de preencher a table depois de executar uma query
 	 *  de busca de veiculos através da placa.
 	 */
-	public void getveiculoPlaca(String placa) {
-		
+	public boolean getveiculoPlaca(String placa) {
+		boolean next;
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			String idCliente = getjPanelPreOrcamentoNovo().getidCliente();
@@ -40,6 +82,7 @@ public class DaoJDialogProcurarVeiculo {
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
+				getjDialogProcurarVeiculo().getjTableVeiculos().setVisible(true);
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarVeiculo().getjTableVeiculos().
 						setModel(new PreencherTabela().
@@ -53,22 +96,19 @@ public class DaoJDialogProcurarVeiculo {
 										"Combustível",
 										"Cor",
 										"Ano"));
+				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						getjDialogProcurarVeiculo(), // componente
-						"Não foi encontrado nenhum veículo com a placa procurarda.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 			
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarveiculo\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		return next;
 	}
 	
 	
@@ -77,7 +117,8 @@ public class DaoJDialogProcurarVeiculo {
 	 *  Tem a função de preencher a table depois de executar uma query
 	 *  de busca de veiculos através da chassi.
 	 */
-	public void getveiculoChassi(String chassi) {
+	public boolean getveiculoChassi(String chassi) {
+		boolean next;
 		String idCliente = getjPanelPreOrcamentoNovo().getidCliente();
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
@@ -86,6 +127,7 @@ public class DaoJDialogProcurarVeiculo {
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
+				getjDialogProcurarVeiculo().getjTableVeiculos().setVisible(true);
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				getjDialogProcurarVeiculo().getjTableVeiculos().
 						setModel(new PreencherTabela().
@@ -99,22 +141,19 @@ public class DaoJDialogProcurarVeiculo {
 										"Combustível",
 										"Cor",
 										"Ano"));
+				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
 			} else {
-				JOptionPane.showConfirmDialog(
-						getjDialogProcurarVeiculo(), // componente
-						"Não foi encontrado nenhum veículo com a chassi procurarda.", // texto
-						"Alerta", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+				next = false;
 			}
 			
 			
 		} catch(Exception e) {
 			System.out.println("Erro ao setar o jtable de jdialogprocurarveiculo\n" + e);
+			next = true; // tenta preencher a tabela mesmo gerando o erro
 		}
+		return next;
 	}
 	
 	

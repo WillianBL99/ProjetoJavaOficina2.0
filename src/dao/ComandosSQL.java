@@ -9,6 +9,10 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String consultarNomesUsuarios;
+	
+	private static String consultarProdutosPreOrcamento;
+	private static String consultarServicosPreOrcamento;
 	
 	private static String visualizarTodosPreOrcamentos;
 	private static String visualizarTodosPreOrcamentos_data;
@@ -16,6 +20,7 @@ public class ComandosSQL {
 	private static String consultarNumeroPreOrcamento;
 	
 	private static String consultarClientesTodosCampos;
+	private static String consultarClientesTodasLinhas;
 	private static String consultarClientesNome;
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
@@ -28,6 +33,105 @@ public class ComandosSQL {
 	private static String consultarVeiculoTodosByCliente;
 	private static String consultarVeiculoChassiByCliente;
 	private static String consultarVeiculoPlacaByCliente;
+	
+	private static String cadastrarVeiculo;
+	
+	
+
+	
+	
+	/**
+	 * Método getconsultarNomesUsuarios() realiza a consulta dos nomes dos usuarios
+	 * @return retorna a query de consulta dos nomes dos usuarios.
+	 */
+	public static String getconsultarNomesUsuarios() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Nome"
+		 */
+		if(consultarNomesUsuarios == null){
+			consultarNomesUsuarios = (
+				"select nome from tb_usuarios"
+			);
+		}
+		return consultarNomesUsuarios;
+	}
+	
+	
+	/**
+	 * Método getconsultarServicosPreOrcamento() realiza a consulta dos produtos associados
+	 * a um pré orçamento.
+	 * @param passar como segundo parametro no método preencher() da classe PreencherTabela()
+	 * o id do pre_orcamento
+	 * @return retorna a query de consulta dos produtos requisitados em um pré orçamento.
+	 */
+	public static String getconsultarServicosPreOrcamento() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Cod.", "Descrição.", "Desconto", "Preço", "Total"
+		 */
+		if(consultarServicosPreOrcamento == null){
+			consultarServicosPreOrcamento = (
+					"select \r\n"
+					+ "	id_servico,\r\n"
+					+ "	(select descricao from tb_servicos where id_servico = tb_pre_orcamento_servico.id_servico),\r\n"
+					+ "	quantidade,\r\n"
+					+ "	preco_produto, (quantidade * preco_produto)\r\n"
+					+ "	from tb_pre_orcamento_servico \r\n"
+					+ "	where id_pre_orcamento = ?\r\n"
+					+ "	order by id_servico;"
+			);
+		}
+		return consultarServicosPreOrcamento;
+	}
+	
+	
+	/**
+	 * Método getconsultarProdutosPreOrcamento() realiza a consulta dos produtos associados
+	 * a um pré orçamento.
+	 * @param passar como segundo parametro no método preencher() da classe PreencherTabela()
+	 * o id do pre_orcamento
+	 * @return retorna a query de consulta dos produtos requisitados em um pré orçamento.
+	 */
+	public static String getconsultarProdutosPreOrcamento() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Cod.", "Qtd.", "Descrição", "Preço", "Total"
+		 */
+		if(consultarProdutosPreOrcamento == null){
+			consultarProdutosPreOrcamento = (
+					"select \r\n"
+					+ "id_produto,\r\n"
+					+ "quantidade,\r\n"
+					+ "(select descricao from tb_produtos where id_produto = tb_pre_orcamento_produto.id_produto),\r\n"
+					+ "preco_produto, (quantidade * preco_produto)\r\n"
+					+ "from tb_pre_orcamento_produto \r\n"
+					+ "where id_pre_orcamento = ?\r\n"
+					+ "order by id_produto;"
+			);
+		}
+		return consultarProdutosPreOrcamento;
+	}
+	
+	
+	/*
+	 * Método String getcadastrarVeiculo()
+	 * Cadastrar um veículo com os dados inseridos
+	 * e associa à um cliente prviamente selecionado
+	 */
+	public static String getcadastrarVeiculo() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Chassi", "Placa", "km atual", "Marca", "Modelo", "Motor", "Combustível", "Cor", "Ano", "ID Cliente"
+		 */
+		if(cadastrarVeiculo == null){
+			cadastrarVeiculo = (
+				"insert into tb_veiculos(chassi, placa, km_atual, marca, modelo, motor, combustivel, cor, ano, id_cliente) values\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarVeiculo;
+	}
 	
 	
 	/*
@@ -178,10 +282,30 @@ public class ComandosSQL {
 		}
 		return cadastrarClienteCpf;
 	}
+	
+	
+	/*
+	 * Método String getconsultarClientesTodaLinhas()
+	 * Retorna a query que tem a função de exibir todos os clientes
+	 */
+	public static String getconsultarClientesTodaLinhas() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "ID", "CPF", "CNPj", "Tipo", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
+		 */
+		if(consultarClientesTodasLinhas == null){
+			consultarClientesTodasLinhas = (
+				"select id_cliente, cnpj, cpf, nome, email, telefone, cidade from tb_clientes\r\n"
+						+ "order by nome;"
+			);
+	
+		}
+		return consultarClientesTodasLinhas;
+	}
 		
 	
 	/*
-	 * Método String getconsultarClientesCpf()
+	 * Método String getconsultarClientesTodosCampos()
 	 * Retorna a query que tem a função de exibir todos os clientes
 	 */
 	public static String getconsultarClientesTodosCampos() {

@@ -9,7 +9,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import dao.DaoJDialogCadastrarVeiculo;
+
+import javax.swing.JOptionPane;
+
+import dao.DaoJDialogCadastrarCliente;
 import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -22,7 +25,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
-	private DaoJDialogCadastrarVeiculo daoJDialogCadastrarVeiculo;
+	private DaoJDialogCadastrarCliente daoJDialogCadastrarCliente;
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private JDialogCadastrarCliente jDialogCadastrarCliente;	
 	private boolean modal;
@@ -38,6 +41,9 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 
 	private void AddEvent() {
+		getjDialogCadastrarCliente().addWindowListener(this);
+		getjDialogCadastrarCliente().getjButtonCadastrarCliente().addMouseListener(this);
+		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);
 	}
 		
 		
@@ -65,13 +71,66 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Quando o botão cadastrar cliente for clicado
-		if(e.getSource() == getjDialogCadastrarVeiculo().getjButtonCadastrarCliente()) {
-			
+		if(e.getSource() == getjDialogCadastrarCliente().getjButtonCadastrarCliente()) {
+		
+			// Se o cadastro for bem sucedido o método cadastrarCliente() retorna o valor 1
+			if(getdaoCadastrarCliente().cadastrarCliente()) {
+				// Exibe uma mensagem de confirmação do cadastro.
+				JOptionPane.showConfirmDialog(
+						getjDialogProcurarCliente(), // componente
+						"Cadastro realizado com sucesso!.", // texto
+						"Cadastro realizado.", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+				// limpa os campos da tela de cadastro de clientes.
+				limpaCampos();
+				getjDialogCadastrarCliente().dispose();
+				getjDialogProcurarCliente().setEnabled(true);;
+			}
 		}
 		
 		// Quando o botão cancelar for clicado
-		else if(e.getSource() == getjDialogCadastrarVeiculo().getjButtonCancelar()) {
+		else if(e.getSource() == getjDialogCadastrarCliente().getjButtonCancelar()) {
+			// se todos os campos estiverem vazios a tela será fechada sem exibir alerta
+			if(camposIsEmpty()) {	
+				getjDialogProcurarCliente().setEnabled(true);
+				getjDialogCadastrarCliente().dispose();
+			} 
 			
+			// se algum campo ter algum caracter será exibida uma menssagem de alerta
+			else {
+
+				/*
+				 * Quando o botão cancelar da tela cadastrar cliente for clicado ele irá 
+				 * exibir uma caixa de dialogo perguntando se realmente deseja sair
+				 */
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Sim", "Cancelar"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensagem selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Cancelar
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjDialogProcurarCliente(), // tela pai
+						"Todas as informaçoes digitadas serão perdidas.Tem certesa que deseja sair sem cadastrar o cliente?", // mensagem
+						"Alerta", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+				if(option == 0) {
+					getjDialogProcurarCliente().setEnabled(true);
+					getjDialogProcurarCliente().dispose();
+					
+				}
+			}
 		}
 		
 	}
@@ -167,7 +226,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	}
 	
 	
-	public JDialogCadastrarCliente getjDialogCadastrarVeiculo() {
+	public JDialogCadastrarCliente getjDialogCadastrarCliente() {
 		if(jDialogCadastrarCliente == null){
 			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjFramePricipal(), true);
 		}
@@ -183,11 +242,11 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	}
 	
 	
-	public DaoJDialogCadastrarVeiculo getdaoCadastrarVeiculo() {
-		if(daoJDialogCadastrarVeiculo == null){
-			daoJDialogCadastrarVeiculo = new DaoJDialogCadastrarVeiculo();
+	public DaoJDialogCadastrarCliente getdaoCadastrarCliente() {
+		if(daoJDialogCadastrarCliente == null){
+			daoJDialogCadastrarCliente = new DaoJDialogCadastrarCliente(getjFramePricipal(), getjDialogCadastrarCliente());
 		}
-		return daoJDialogCadastrarVeiculo;
+		return daoJDialogCadastrarCliente;
 	}
 	
 	
@@ -208,7 +267,15 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	 */
 	private boolean camposIsEmpty() {
 				
-		if(true
+		if(
+			getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", "").replace(" ", "").isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldNome().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", "").isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldEmail().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldCidade().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldBairro().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldRua().getText().isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText().isEmpty()
 		) {
 			return true;
 		} else {
@@ -217,7 +284,14 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	}
 	
 	private void limpaCampos() {
-		
+		getjDialogCadastrarCliente().getjTFieldCpf().setText("");
+		getjDialogCadastrarCliente().getjTFieldNome().setText("");
+		getjDialogCadastrarCliente().getjTFieldTelefone().setText("");
+		getjDialogCadastrarCliente().getjTFieldEmail().setText("");
+		getjDialogCadastrarCliente().getjTFieldCidade().setText("");
+		getjDialogCadastrarCliente().getjTFieldBairro().setText("");
+		getjDialogCadastrarCliente().getjTFieldRua().setText("");
+		getjDialogCadastrarCliente().getjTFieldNumeroCasa().setText("");
 	}
 	//** Fim métodos da classe **
 	

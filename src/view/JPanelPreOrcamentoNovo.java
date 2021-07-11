@@ -3,8 +3,11 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.ResultSet;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherChoice;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -30,11 +37,15 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
     //** Início declaração de variáveis **
+	private ModuloConexao moduloConexao;
+	private PreencherChoice preencherChoice;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	private String idCliente; // guarda o valor do id do cliente selecionado
 	
 	private JPanel jPanelCentro;
+	
+	private Choice choiceResponsavelPreOrcamento;
 	
 	private JButton jButtonCancelar;
 	private JButton jButtonSalvar;
@@ -85,7 +96,6 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldNumeroPreOrcamento;
 	private JTextField jTFieldDataPreOrcamento;
 	private JTextField jTFieldHorarioPreOrcamento;
-	private JTextField jTFieldResponsavelPreOrcamento;
 	
 	private JTextField jTFieldCpf;
 	private JTextField jTFieldEmail;
@@ -152,10 +162,30 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
     //** Fim getters JPanel **
+	
+	
+	//** Início getters Choice **
+	
+	public Choice getchiceResponsavelPreOrcamento() {
+		if(choiceResponsavelPreOrcamento == null){
+			choiceResponsavelPreOrcamento = new Choice();
+			choiceResponsavelPreOrcamento.setSize(297, 21);
+			choiceResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
+			choiceResponsavelPreOrcamento.setVisible(true);
+			choiceResponsavelPreOrcamento.setFocusable(false);
+			choiceResponsavelPreOrcamento.add("                                                    ");
+			// Executa a query que retorna os nomes dos usuarios
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarNomesUsuarios());
+			// Seta os itens do Choice com os valores da consulta sql
+			getPreencherChoice(getModuloConexao().getResultSet());
+		}
+		return choiceResponsavelPreOrcamento;
+	}
+	
+	//** Fim getters Choice **
 
 
     //** Início getters JButon **
-
 
 	public JButton getjButtonCancelar() {
 		if(jButtonCancelar == null){			
@@ -704,21 +734,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		}
 		return jTFieldHorarioPreOrcamento;
 	}
-
-
-	public JTextField getjTFieldResponsavelPreOrcamento() {
-		if(jTFieldResponsavelPreOrcamento == null){
-			jTFieldResponsavelPreOrcamento = new JTextField();
-			jTFieldResponsavelPreOrcamento.setSize(297, 21);
-			jTFieldResponsavelPreOrcamento.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
-			jTFieldResponsavelPreOrcamento.setEditable(true);
-			jTFieldResponsavelPreOrcamento.setForeground(Cores.preto);
-			jTFieldResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldResponsavelPreOrcamento.setOpaque(true);
-		}
-		return jTFieldResponsavelPreOrcamento;
-	}
+	
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
@@ -1159,8 +1175,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		this.getjPanelCentro().add(getjLabelResponsavelPreOrcamento());
 		this.getjLabelResponsavelPreOrcamento().setLocation(569, 62);
 
-		this.getjPanelCentro().add(getjTFieldResponsavelPreOrcamento());
-		this.getjTFieldResponsavelPreOrcamento().setLocation(664, 62);
+		this.getjPanelCentro().add(getchiceResponsavelPreOrcamento());
+		this.getchiceResponsavelPreOrcamento().setLocation(664, 62);
 		
 		// -- parte descritiva cliente
 		this.getjPanelCentro().add(getjButtonProcuraCliente());
@@ -1314,9 +1330,22 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 		this.getjPanelCentro().add(getjButtonApagarProdutoServico());
 		this.getjButtonApagarProdutoServico().setLocation(900, 509);
-		
-		
-		
+	}
+	
+	
+	private PreencherChoice getPreencherChoice(ResultSet resultSet) {
+		if(this.preencherChoice == null) {
+			this.preencherChoice = new PreencherChoice(resultSet, this.getchiceResponsavelPreOrcamento());
+		}
+		return this.preencherChoice;
+	}
+	
+	
+	private ModuloConexao getModuloConexao() {
+		if(this.moduloConexao == null) {
+			this.moduloConexao = new ModuloConexao();
+		}
+		return this.moduloConexao;
 	}
 	
 	

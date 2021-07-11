@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Frame;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -48,6 +49,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
 	private JButton jButtonProcurar;	
+	private JButton jButtonNovoVeiculo;
 
 	private JTextField jTFieldProcurar;
 	
@@ -198,7 +200,27 @@ public class JDialogProcurarVeiculo extends JDialog{
 		return jButtonProcurar;
 	}
 	
+
+	public JButton getjButtonNovoVeiculo() {
+		if(jButtonNovoVeiculo == null){
+			jButtonNovoVeiculo = new JButton();			
+			jButtonNovoVeiculo.setFont(Fontes.fontJButtonPlain3);
+			jButtonNovoVeiculo.setBackground(Cores.azul1);
+			jButtonNovoVeiculo.setForeground(Color.white);
+			jButtonNovoVeiculo.setIcon(new ImageIcon(this.getClass().getResource(Icones.getNewVeiculo())));
+			/*setSizeIcon.setIconJButton(jButtonNovoVeiculo, Icones.
+					getNewUser(), 20, 20);*/
+			jButtonNovoVeiculo.setSize(48, 23);
+			jButtonNovoVeiculo.setFocusable(false);
+			jButtonNovoVeiculo.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}	
+		return jButtonNovoVeiculo;
+	}
+	
+	
 	//** Início getters JFields **
+	
 	
 	public JTextField getjTFieldProcurar() {
 		if(jTFieldProcurar == null){
@@ -291,6 +313,9 @@ public class JDialogProcurarVeiculo extends JDialog{
 		
 		getJDialogProcurarVeiculo().getContentPane().add(getjButtonProcurar());
 		getjButtonProcurar().setLocation(511, 40);
+		
+		this.getJDialogProcurarVeiculo().getContentPane().add(getjButtonNovoVeiculo());
+		this.getjButtonNovoVeiculo().setLocation(874, 64);
 
 		getJDialogProcurarVeiculo().getContentPane().add(getjSPaneVeiculos());
 		getjSPaneVeiculos().setLocation(50, 100);

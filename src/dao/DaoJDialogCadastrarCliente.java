@@ -22,6 +22,7 @@ public class DaoJDialogCadastrarCliente {
 	}
 	
 	
+	
 	/**
 	 * Método cadastrarCliente() Realiza o cadastro dos clientes
 	 * @return boolean inseert // se a inserção for bem sussedida será retornado true.
@@ -37,18 +38,18 @@ public class DaoJDialogCadastrarCliente {
 			 * Caso contrario, será executada a query de inserção de cliente
 			 * utilizando o cnpj.
 			 */
-			if (getjDialogProcurarCliente().getjRadioButtonCpf().isSelected()) {
+			if (getjDialogCadastrarCliente().getjRadioButtonCpf().isSelected()) {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
 						ComandosSQL.getcadastrarClientesCpf(),
-						getjDialogProcurarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
-						getjDialogProcurarCliente().getjTFieldNome().getText(),
-						getjDialogProcurarCliente().getjTFieldEmail().getText(),
-						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
-						getjDialogProcurarCliente().getjTFieldCidade().getText(),
-						getjDialogProcurarCliente().getjTFieldBairro().getText(),
-						getjDialogProcurarCliente().getjTFieldRua().getText(),
-						getjDialogProcurarCliente().getjTFieldNumeroCasa().getText()
+						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
+						getjDialogCadastrarCliente().getjTFieldNome().getText(),
+						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
+						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
+						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
+						getjDialogCadastrarCliente().getjTFieldRua().getText(),
+						getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText()
 				))
 				// define insert como true caso inserção tenha sido bem executada.
 				insert = true;
@@ -57,14 +58,14 @@ public class DaoJDialogCadastrarCliente {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
 						ComandosSQL.getcadastrarClientesCnpj(),
-						getjDialogProcurarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
-						getjDialogProcurarCliente().getjLabelNome().getText(),
-						getjDialogProcurarCliente().getjTFieldEmail().getText(),
-						getjDialogProcurarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
-						getjDialogProcurarCliente().getjTFieldCidade().getText(),
-						getjDialogProcurarCliente().getjTFieldBairro().getText(),
-						getjDialogProcurarCliente().getjTFieldRua().getText(),
-						getjDialogProcurarCliente().getjTFieldNumeroCasa().getText()
+						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
+						getjDialogCadastrarCliente().getjLabelNome().getText(),
+						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
+						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
+						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
+						getjDialogCadastrarCliente().getjTFieldRua().getText(),
+						getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText()
 				))
 				// define insert como true caso inserção tenha sido bem executada.
 				insert = true;
@@ -86,7 +87,7 @@ public class DaoJDialogCadastrarCliente {
 		return jFramePrincipal;
 	}
 	
-	private JDialogCadastrarCliente getjDialogProcurarCliente() {
+	private JDialogCadastrarCliente getjDialogCadastrarCliente() {
 		if(jDialogCadastrarCliente == null) {
 			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjFramePrincipal(), false);
 		}

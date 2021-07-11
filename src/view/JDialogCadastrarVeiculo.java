@@ -31,8 +31,6 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	private JButton jButtonCancelar;
 	private JButton jButtonCadastrarVeiculo;
 	
-	
-	private JLabel jLabelNumeroVeiculo;
 	private JLabel jLabelMarca;
 	private JLabel jLabelCor;
 	private JLabel jLabelChassi;
@@ -41,10 +39,8 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	private JLabel jLabelPlaca;
 	private JLabel jLabelMotor;
 	private JLabel jLabelKMAtual;
-	private JLabel jLabelCombustivel;
+	private JLabel jLabelCombustivel;	
 	
-	
-	private JTextField jTFieldNumeroVeiculo;
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
 	private JTextField jTFieldChassi;
@@ -85,19 +81,6 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	//** Fim getters JPanel **
 	
 	//** Início getters JLabel **
-	
-	public JLabel getjLabelNumeroVeiculo() {
-		if(jLabelNumeroVeiculo == null){			
-			jLabelNumeroVeiculo = new JLabel("N°:");
-			jLabelNumeroVeiculo.setFont(Fontes.fontJLabelPlain1);
-			jLabelNumeroVeiculo.setSize(80, 25);
-			jLabelNumeroVeiculo.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-			jLabelNumeroVeiculo.setBackground(Cores.branco);
-			jLabelNumeroVeiculo.setForeground(Cores.azul1);
-			jLabelNumeroVeiculo.setOpaque(false);
-		}
-		return jLabelNumeroVeiculo;
-	}
 
 
 	public JLabel getjLabelMarca() {
@@ -265,19 +248,6 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	//** Início getters JTextFields **
 
-	public JTextField getjTFieldNumeroVeiculo() {
-		if(jTFieldNumeroVeiculo == null){
-			jTFieldNumeroVeiculo = new JTextField();
-			jTFieldNumeroVeiculo.setSize(105, 21);
-			jTFieldNumeroVeiculo.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1, false));
-			jTFieldNumeroVeiculo.setForeground(Cores.preto);
-			jTFieldNumeroVeiculo.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldNumeroVeiculo.setOpaque(true);
-		}
-		return jTFieldNumeroVeiculo;
-	}
-
 
 	public JTextField getjTFieldMarca() {
 		if(jTFieldMarca == null){
@@ -397,13 +367,12 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 			choiceCombustivel.setSize(150, 25);
 			choiceCombustivel.setFont(Fontes.fontJTFieldPlain1);
 			choiceCombustivel.setVisible(true);
-			choiceCombustivel.add("             ");
-			choiceCombustivel.add("alcool       ");
-			choiceCombustivel.add("diesel       ");
-			choiceCombustivel.add("elétrico     ");
-			choiceCombustivel.add("flex         ");
-			choiceCombustivel.add("gasolina     ");
-			choiceCombustivel.add("híbrido      ");
+			choiceCombustivel.add("Flex         ");
+			choiceCombustivel.add("Álcool       ");
+			choiceCombustivel.add("Diesel       ");
+			choiceCombustivel.add("Elétrico     ");
+			choiceCombustivel.add("Gasolina     ");
+			choiceCombustivel.add("Híbrido      ");
 			choiceCombustivel.setFocusable(false);	
 		}
 		return choiceCombustivel;
@@ -421,12 +390,6 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	
 	public void addCompJDialogCadastrarVeiculo() {
-		
-		getJDialogCadastrarVeiculo().getContentPane().add(getjLabelNumeroVeiculo());
-		getjLabelNumeroVeiculo().setLocation(0, 35);
-		
-		getJDialogCadastrarVeiculo().getContentPane().add(getjTFieldNumeroVeiculo());
-		getjTFieldNumeroVeiculo().setLocation(85, 35);
 		
 		getJDialogCadastrarVeiculo().getContentPane().add(getjLabelChassi());
 		getjLabelChassi().setLocation(198, 35);

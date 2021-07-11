@@ -3,11 +3,12 @@
  */
 package control;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -17,7 +18,7 @@ import view.JPanelVendasNovo;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelVendas implements MouseListener, KeyListener {
+public class ControlJPanelVendas implements MouseListener, KeyListener, FocusListener {
 	
 
 	//** Início declaração de variáveis **
@@ -53,6 +54,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		getjPanelVendas().getjButtonImprimir().addMouseListener(this);
 		getjPanelVendas().getjButtonFiltrar().addMouseListener(this);
 		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
+		getjPanelVendas().getjTFieldDTInicial().addFocusListener(this);
 		
 	}
 
@@ -90,7 +92,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 			getControlJPanelVendasNovo();
 		}
 		
+		
 	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -115,6 +119,25 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+			
+			System.out.println("tste bem sucedido");
+			
+		
+		}
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 		
 	//** Fim métodos sobrescritos **
 	
@@ -165,4 +188,15 @@ public class ControlJPanelVendas implements MouseListener, KeyListener {
 		return controlJPanelVendasNovo;
 	}
 	//** Fim métodos da classe **
+
+
+
+
+
+
+
+
+
+	
+	
 }

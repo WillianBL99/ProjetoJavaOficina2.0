@@ -5,6 +5,7 @@ package model;
 
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -109,7 +110,11 @@ public class  Mascara {
 			return null;
 		}
 	}
-
+	public static void setMascara(JFormattedTextField mask, JTextField campo) {
+		
+		campo = mask;
+		
+	}
 	
 	
 }

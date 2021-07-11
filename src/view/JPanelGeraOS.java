@@ -3,16 +3,12 @@ package view;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.text.ParseException;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 
 import icons.Icones;
 import model.Cores;

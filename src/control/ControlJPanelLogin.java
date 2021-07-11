@@ -5,11 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JOptionPane;
-
 import dao.DaoJPanelLogin;
-import dao.ModuloConexao;
 import view.JFramePrincipal;
 import view.JPanelLogin;
 import view.JPanelPrincipal;

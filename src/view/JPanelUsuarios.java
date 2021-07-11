@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import dao.ComandosSQL;
 import dao.ModuloConexao;
 import dao.PreencherTabela;
 import icons.Icones;
@@ -257,25 +258,11 @@ public class JPanelUsuarios  extends JPanel{
 
 	public JTable getjTableUsuarios() {
 		
-		String sql;
-		
 		if(jTableUsuarios == null){
 			jTableUsuarios = new JTable();
 			
 			// Metodo que executa a query sql
-			sql = "select"
-						+ " cpf,"
-						+ " nome,"
-						+ " email,"
-						+ " telefone,"
-						+ " cidade,"
-						+ " usuario,"
-						+ " senha,"
-						+ " funcao"
-						+ " from tb_usuarios";
-			
-			
-			getModuloConexao().executeQuery(sql);
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarUsuarios());
 						
 			jTableUsuarios.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), "CPF",
 					"Nome",

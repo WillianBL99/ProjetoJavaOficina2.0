@@ -50,6 +50,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	private ControlJPanelVendas controlJPanelVendas;
 	private ControlJPanelPreOrcamento controlJPanelPreOrcamento;
 	private ControlJPanelOrcamentoFinal controlJPanelOrcamentoFinal;
+	private ControlJPanelEstoque controlJPanelEstoque;
 
 	private int sizeOSOpen;
 	private int sizeOrcamentoOpen;
@@ -196,6 +197,7 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
 			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(),
 					point, this.getjPanelEstoque().getTituloDescricaoTela());
+			this.getcontrolJPanelEstoque();
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
 			
@@ -365,6 +367,14 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 						getjPanelOrcamentoFinal());
 			}
 			return controlJPanelOrcamentoFinal;
+		}
+		
+		
+		public ControlJPanelEstoque getcontrolJPanelEstoque() {
+			if(controlJPanelEstoque == null){
+				controlJPanelEstoque = new ControlJPanelEstoque(getjFramePricipal(), getjPanelEstoque());
+			}
+			return controlJPanelEstoque;
 		}
 		
 		

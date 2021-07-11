@@ -4,7 +4,6 @@
 package view;
 
 import java.awt.Choice;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dialog;
 import java.awt.Frame;

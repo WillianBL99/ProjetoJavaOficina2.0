@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import view.JDialogProcurarCliente;
+import view.JDialogProcurarPeca;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamento;
@@ -194,7 +195,13 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 				);
 			}	
-		}	
+		}
+		
+		
+		// Quando o botão adicionar for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico()) {
+			new JDialogProcurarPeca(getjFramePrincipal(), true);
+		}
 	}
 	
 

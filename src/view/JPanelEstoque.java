@@ -14,6 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -31,6 +35,7 @@ public class JPanelEstoque  extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
 	private JButton jButtonAdicionar;
@@ -249,28 +254,15 @@ public class JPanelEstoque  extends JPanel{
 	public JTable getjTableEstoque() {
 		if(jTableEstoque == null){
 			jTableEstoque = new JTable();
-			jTableEstoque.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                {null, null, null, null, null},
-		                
-		            },
-		            new String [] {
-		                "Código", "Descrição", "Marca", "Quantidade",
-		                "Preço"
-		            }
-		        ));			
-
+			
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());			
+			jTableEstoque.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
+	                "Código",
+	                "Descrição",
+	                "Marca",
+	                "Quantidade",
+	                "Preço"));
+			
 			jTableEstoque.setFont(Fontes.fontJTablePlain2);
 			jTableEstoque.setOpaque(false);
 			jTableEstoque.getTableHeader().setFont(Fontes.fontJTableBold2);
@@ -322,6 +314,15 @@ public class JPanelEstoque  extends JPanel{
 	}
 	
 	//** Fim métodos adição de componentes **
+
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
 	
 
 }

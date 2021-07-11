@@ -9,9 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import model.Cores;
 import model.SetSizeIcon;
-import view.JDialogEditarProduto;
 import view.JDialogCadastrarProduto;
-import view.JDialogCadastrarServico;
 import view.JFramePrincipal;
 import view.JPanelEstoque;
 

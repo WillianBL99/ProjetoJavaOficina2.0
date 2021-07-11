@@ -9,7 +9,10 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String consultarProdutos;
+	
 	private static String consultarNomesUsuarios;
+	private static String consultarUsuarios;
 	
 	private static String consultarProdutosPreOrcamento;
 	private static String consultarServicosPreOrcamento;
@@ -38,6 +41,51 @@ public class ComandosSQL {
 	
 	
 
+	
+	
+	/**
+	 * Método getconsultarUsuarios() realiza a consulta os usuarios cadastrados
+	 * @return retorna a query de consulta dos nomes dos usuarios.
+	 */
+	public static String getconsultarUsuarios() {
+		/*
+		 * Lista dos nomes dos campos:
+		 *  "CPF", "Nome", "Email", "Telefone", "Cidade", "Usuário", "Senha", "Função"
+		 */
+		if(consultarUsuarios == null){
+			consultarUsuarios = (
+				"select\r\n"
+				+ "cpf,\r\n"
+				+ "nome,\r\n"
+				+ "email,\r\n"
+				+ "telefone,\r\n"
+				+ "cidade,\r\n"
+				+ "usuario,\r\n"
+				+ "senha,\r\n"
+				+ "funcao\r\n"
+				+ "from tb_usuarios;"
+			);
+		}
+		return consultarUsuarios;
+	}
+	
+	
+	/**
+	 * Método getconsultarProdutos() realiza a consulta dos produtos cadastrados
+	 * @return retorna a query de consulta dos produtos cadastrados.
+	 */
+	public static String getconsultarProdutos() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Código", "Descrição", "Marca", "Quantidade", "Preço"
+		 */
+		if(consultarProdutos == null){
+			consultarProdutos = (
+				"select id_produto, descricao, marca, quantidade, preco from tb_produtos"
+			);
+		}
+		return consultarProdutos;
+	}
 	
 	
 	/**

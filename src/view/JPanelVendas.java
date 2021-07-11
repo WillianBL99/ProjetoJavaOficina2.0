@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -238,10 +239,15 @@ public class JPanelVendas extends JPanel{
 	
 	//** Início getters JFields **
 	
+	public void setjTFieldDTInicial(JFormattedTextField jTFieldDTInicial) {
+		this.jTFieldDTInicial = jTFieldDTInicial;
+	}
+
+	
 	
 	public JTextField getjTFieldDTInicial() {
 		if(jTFieldDTInicial == null){
-			jTFieldDTInicial = Mascara.mascaraData();
+			jTFieldDTInicial = new JTextField();
 			jTFieldDTInicial.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
@@ -253,7 +259,7 @@ public class JPanelVendas extends JPanel{
 	}
 
 	
-	public JTextField getjTFieldDTFinal() {
+	public JTextField getjTFieldDTFinal( ) {
 		if(jTFieldDTFinal == null){
 			jTFieldDTFinal = Mascara.mascaraData();
 			jTFieldDTFinal.setBorder(BorderFactory.
@@ -302,6 +308,10 @@ public class JPanelVendas extends JPanel{
 		return jSPVendas;
 	}
 	
+
+	/**
+	 * @param jTFieldDTInicial the jTFieldDTInicial to set
+	 */
 
 	public JTable getjTableVendas() {
 		if(jTableVendas == null){

@@ -228,8 +228,8 @@ public class JPanelEstoque  extends JPanel{
 			choicePesquisarPor.setSize(150, 25);
 			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
 			choicePesquisarPor.setVisible(true);
-			choicePesquisarPor.add("Cliente             ");
-			choicePesquisarPor.add("Placa               ");
+			choicePesquisarPor.add("Código                  ");
+			choicePesquisarPor.add("Descrição               ");
 			choicePesquisarPor.setFocusable(false);	
 		}
 		return choicePesquisarPor;

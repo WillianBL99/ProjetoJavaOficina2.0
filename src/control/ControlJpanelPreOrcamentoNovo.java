@@ -149,7 +149,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 				JOptionPane.showConfirmDialog(
 						getjPanelPreOrcamentoNovo(), // componente
 						"Selecione um cliente primeiro.", // texto
-						"Alerta", // titulo
+						"Nenhum Cliente Selecionado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 				);
@@ -161,7 +161,19 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonListaProdutos()) {
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaProdutos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(true);
-			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(false);	
+			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(false);
+			/*
+			 * caso o método getListaProduotos() retorne false será exibida uma mensagem de aviso
+			 */
+			if(!getdaoJPanelPreOrcamentoNovo().getListaProduotos()) {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Clique no botão com o símbolo de '+'\npara adicionar um novo produto.", // texto
+						"Nenhum produto inserido", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}			
 		}
 		
 		
@@ -170,6 +182,18 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaServicos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(false);
 			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(true);
+			/*
+			 * caso o método getListaProduotos() retorne false será exibida uma mensagem de aviso
+			 */
+			if(!getdaoJPanelPreOrcamentoNovo().getListaServicos()) {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Clique no botão com o símbolo de '+'\npara adicionar um  novo serviço.", // texto
+						"Nenhum serviço inserido", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}	
 		}	
 	}
 	

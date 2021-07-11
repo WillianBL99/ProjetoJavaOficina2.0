@@ -2,8 +2,6 @@
  * 
  */
 package dao;
-
-import javax.swing.JOptionPane;
 import view.JDialogProcurarCliente;
 
 /**

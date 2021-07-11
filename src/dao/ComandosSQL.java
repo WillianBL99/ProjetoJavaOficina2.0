@@ -11,6 +11,9 @@ public class ComandosSQL {
 	
 	private static String consultarNomesUsuarios;
 	
+	private static String consultarProdutosPreOrcamento;
+	private static String consultarServicosPreOrcamento;
+	
 	private static String visualizarTodosPreOrcamentos;
 	private static String visualizarTodosPreOrcamentos_data;
 	private static String validarLogin;
@@ -34,6 +37,9 @@ public class ComandosSQL {
 	private static String cadastrarVeiculo;
 	
 	
+
+	
+	
 	/**
 	 * Método getconsultarNomesUsuarios() realiza a consulta dos nomes dos usuarios
 	 * @return retorna a query de consulta dos nomes dos usuarios.
@@ -45,10 +51,66 @@ public class ComandosSQL {
 		 */
 		if(consultarNomesUsuarios == null){
 			consultarNomesUsuarios = (
-				"select nome from tb_clientes"
+				"select nome from tb_usuarios"
 			);
 		}
 		return consultarNomesUsuarios;
+	}
+	
+	
+	/**
+	 * Método getconsultarServicosPreOrcamento() realiza a consulta dos produtos associados
+	 * a um pré orçamento.
+	 * @param passar como segundo parametro no método preencher() da classe PreencherTabela()
+	 * o id do pre_orcamento
+	 * @return retorna a query de consulta dos produtos requisitados em um pré orçamento.
+	 */
+	public static String getconsultarServicosPreOrcamento() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Cod.", "Descrição.", "Desconto", "Preço", "Total"
+		 */
+		if(consultarServicosPreOrcamento == null){
+			consultarServicosPreOrcamento = (
+					"select \r\n"
+					+ "	id_servico,\r\n"
+					+ "	(select descricao from tb_servicos where id_servico = tb_pre_orcamento_servico.id_servico),\r\n"
+					+ "	quantidade,\r\n"
+					+ "	preco_produto, (quantidade * preco_produto)\r\n"
+					+ "	from tb_pre_orcamento_servico \r\n"
+					+ "	where id_pre_orcamento = ?\r\n"
+					+ "	order by id_servico;"
+			);
+		}
+		return consultarServicosPreOrcamento;
+	}
+	
+	
+	/**
+	 * Método getconsultarProdutosPreOrcamento() realiza a consulta dos produtos associados
+	 * a um pré orçamento.
+	 * @param passar como segundo parametro no método preencher() da classe PreencherTabela()
+	 * o id do pre_orcamento
+	 * @return retorna a query de consulta dos produtos requisitados em um pré orçamento.
+	 */
+	public static String getconsultarProdutosPreOrcamento() {
+		/*
+		 * Lista dos nomes dos campos:
+		 * "Cod.", "Qtd.", "Descrição", "Preço", "Total"
+		 */
+		if(consultarProdutosPreOrcamento == null){
+			consultarProdutosPreOrcamento = (
+					"select \r\n"
+					+ "id_produto,\r\n"
+					+ "quantidade,\r\n"
+					+ "(select descricao from tb_produtos where id_produto = tb_pre_orcamento_produto.id_produto),\r\n"
+					+ "preco_produto, (quantidade * preco_produto)\r\n"
+					+ "from tb_pre_orcamento_produto \r\n"
+					+ "where id_pre_orcamento = ?\r\n"
+					+ "order by id_produto;"
+			);
+		}
+		return consultarProdutosPreOrcamento;
 	}
 	
 	

@@ -23,7 +23,7 @@ import model.SetSizeIcon;
 
 
 @SuppressWarnings("serial")
-public class JDialogInserirPeca extends JDialog{	
+public class JDialogInserirProduto extends JDialog{	
 	
 	
 	//** Início declaração de variáveis **
@@ -70,7 +70,7 @@ public class JDialogInserirPeca extends JDialog{
 	//** Fim declaração de variáveis **
 	
 	//** Início construtor **
-	public JDialogInserirPeca(Frame frame, boolean modal) {
+	public JDialogInserirProduto(Frame frame, boolean modal) {
 		super(frame, "Inserir Serviço");
 		this.modal = modal;
 		this.addCompJDialogInserirPeca();
@@ -80,7 +80,7 @@ public class JDialogInserirPeca extends JDialog{
 	//** Fim construtor **
 	
 	//** Início getters JPanels **
-	public JDialogInserirPeca  getJDialogInserirPeca() {
+	public JDialogInserirProduto  getJDialogInserirPeca() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);

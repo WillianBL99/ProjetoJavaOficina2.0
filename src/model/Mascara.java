@@ -6,6 +6,7 @@ package model;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -14,12 +15,12 @@ import javax.swing.text.MaskFormatter;
  */
 public class  Mascara {
 
-	public static JFormattedTextField mascaraCPF() {
+	public static MaskFormatter mascaraCPF() {
 	
-		JFormattedTextField cpf ;
+		
 		try {
-			cpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-			return cpf;
+			MaskFormatter mask = new MaskFormatter("###.###.###-##");
+			return mask;
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -29,15 +30,15 @@ public class  Mascara {
 	}
 	
 	
-	public static JFormattedTextField mascaraPlaca() {
+	public static MaskFormatter mascaraPlaca() {
 		
-		JFormattedTextField placa ;
+		
 		try {
 			MaskFormatter mask = new MaskFormatter("UUU-#A##/UU");
 			//mask.setValidCharacters("ABCDEFGHIJ0123456789"); // serve para permitir apenas esses caracteres
 			//mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"); // inserido para testes, apagar depois
-			placa = new JFormattedTextField(mask);
-			return placa;
+		
+			return mask;
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -47,13 +48,13 @@ public class  Mascara {
 	}
 		
 	
-	public static JFormattedTextField mascaraTelefone() {
+	public static MaskFormatter mascaraTelefone() {
 		
-		JFormattedTextField telefone;
+	
 		try {
 			MaskFormatter mask = new MaskFormatter("(##) #####-####");
-			telefone = new JFormattedTextField(mask);
-			return telefone;
+		
+			return mask;
 				
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -63,13 +64,13 @@ public class  Mascara {
 	}
 	
 	
-	public static JFormattedTextField mascaraData() {
+	public static MaskFormatter mascaraData() {
 		
-		JFormattedTextField data;
+		//JFormattedTextField data;
 		try {
-			MaskFormatter mask = new MaskFormatter("  ##/##/####");
-			data = new JFormattedTextField(mask);
-			return data;
+			MaskFormatter mask = new MaskFormatter("##/##/####");
+			//data = new JFormattedTextField(mask);
+			return mask;
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -79,14 +80,13 @@ public class  Mascara {
 	}
 	
 	
-	public static JFormattedTextField mascaraChassi() {
+	public static MaskFormatter mascaraChassi() {
 		
-		JFormattedTextField chassi;
 		try {
 			MaskFormatter mask = new MaskFormatter("A AA AAAAAA A AAAAAAA");
 			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-			chassi = new JFormattedTextField(mask);
-			return chassi;
+
+			return mask;
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -96,13 +96,13 @@ public class  Mascara {
 	}
 	
 	
-	public static JFormattedTextField mascaraQuilometragem() {
+	public static MaskFormatter mascaraQuilometragem() {
 		
-		JFormattedTextField km;
+
 		try {
 			MaskFormatter mask = new MaskFormatter("##########");
-			km = new JFormattedTextField(mask);
-			return km;
+		
+			return mask;
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -110,9 +110,9 @@ public class  Mascara {
 			return null;
 		}
 	}
-	public static void setMascara(JFormattedTextField mask, JTextField campo) {
+	public static void setMascara(JFormattedTextField campo, MaskFormatter mask) {
 		
-		campo = mask;
+		campo.setFormatterFactory( new DefaultFormatterFactory(mask));
 		
 	}
 	

@@ -245,9 +245,9 @@ public class JPanelVendas extends JPanel{
 
 	
 	
-	public JTextField getjTFieldDTInicial() {
+	public JFormattedTextField getjTFieldDTInicial() {
 		if(jTFieldDTInicial == null){
-			jTFieldDTInicial = new JTextField();
+			jTFieldDTInicial = new JFormattedTextField();
 			jTFieldDTInicial.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
@@ -255,13 +255,13 @@ public class JPanelVendas extends JPanel{
 			jTFieldDTInicial.setSize(85, 21);
 			jTFieldDTInicial.setOpaque(true);
 		}
-		return jTFieldDTInicial;
+		return  (JFormattedTextField) jTFieldDTInicial;
 	}
 
 	
-	public JTextField getjTFieldDTFinal( ) {
+	public JFormattedTextField getjTFieldDTFinal( ) {
 		if(jTFieldDTFinal == null){
-			jTFieldDTFinal = Mascara.mascaraData();
+			jTFieldDTFinal = new JFormattedTextField();
 			jTFieldDTFinal.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);
@@ -269,7 +269,7 @@ public class JPanelVendas extends JPanel{
 			jTFieldDTFinal.setSize(85, 21);
 			jTFieldDTFinal.setOpaque(true);
 		}
-		return jTFieldDTFinal;
+		return (JFormattedTextField) jTFieldDTFinal;
 	}
 
 	

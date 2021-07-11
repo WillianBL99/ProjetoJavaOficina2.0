@@ -59,6 +59,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		getjPanelVendas().getjButtonFiltrar().addMouseListener(this);
 		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
 		getjPanelVendas().getjTFieldDTInicial().addFocusListener(this);
+		getjPanelVendas().getjTFieldDTFinal().addFocusListener(this);
 		
 	}
 
@@ -99,6 +100,29 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 	}
 	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTInicial(), Mascara.mascaraData());
+		
+		}
+		
+		if(e.getSource() == jPanelVendas.getjTFieldDTFinal()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTFinal(), Mascara.mascaraData());
+		
+		}
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -124,23 +148,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 	}
 	
-	@Override
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
-			
-			System.out.println("tste bem sucedido");
-			
-		
-		}
-		
-	}
 
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 		
 	//** Fim métodos sobrescritos **

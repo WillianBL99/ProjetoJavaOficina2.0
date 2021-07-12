@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import model.Cores;
 import model.SetSizeIcon;
 import view.JDialogCadastrarProduto;
+import view.JDialogEditarProduto;
 import view.JFramePrincipal;
 import view.JPanelEstoque;
 
@@ -26,6 +27,7 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 	private JFramePrincipal jFramePrincipal;
 	private JPanelEstoque jPanelEstoque;
 	private JDialogCadastrarProduto jDialogCadastrarProduto;
+	private JDialogEditarProduto jDialogEditarProduto;
 	private JButton jButtonClicado; // guarda o jbutton clicado
 	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
 	
@@ -79,7 +81,8 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 		
 		// Quando o botão editar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonEditar()) {
-			
+			jDialogEditarProduto = null;
+			getjDialogEditarProduto();
 		}
 		
 		// Quando o botão apagar produto for clicado
@@ -163,6 +166,14 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 			this.jDialogCadastrarProduto = new JDialogCadastrarProduto(getjFramePrincipal(), true);
 		}
 		return this.jDialogCadastrarProduto;
+	}
+	
+	
+	private JDialogEditarProduto getjDialogEditarProduto() {
+		if(this.jDialogEditarProduto == null) {
+			this.jDialogEditarProduto = new JDialogEditarProduto(getjFramePrincipal(), true);
+		}
+		return this.jDialogEditarProduto;
 	}
 	
 	//** Fim métodos sobrescritos **

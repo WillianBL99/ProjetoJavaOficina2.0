@@ -118,6 +118,17 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	@Override
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTInicial(), Mascara.mascaraNula());
+		
+		}
+		
+		if(e.getSource() == jPanelVendas.getjTFieldDTFinal()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTFinal(), Mascara.mascaraNula());
+		
+		}
 
 	}
 	

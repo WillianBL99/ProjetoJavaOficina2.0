@@ -173,7 +173,7 @@ public class JDialogCadastrarProduto extends JDialog{
 			jButtonCadastrarCliente.setFont(Fontes.fontJButtonPlain2);
 			jButtonCadastrarCliente.setBackground(Cores.azul1);
 			jButtonCadastrarCliente.setForeground(Cores.branco);
-			jButtonCadastrarCliente.setText("Cadastrar serviço");
+			jButtonCadastrarCliente.setText("Cadastrar produto");
 			jButtonCadastrarCliente.setSize(150, 25);
 			jButtonCadastrarCliente.setFocusable(false);
 			jButtonCadastrarCliente.setBorder(BorderFactory.

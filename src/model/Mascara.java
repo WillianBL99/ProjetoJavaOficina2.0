@@ -110,6 +110,36 @@ public class  Mascara {
 			return null;
 		}
 	}
+	
+	public static MaskFormatter mascaraAno() {
+		
+
+		try {
+			MaskFormatter mask = new MaskFormatter("####");
+		
+			return mask;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static MaskFormatter mascaraNula() {
+		
+		try {
+			MaskFormatter mask = new MaskFormatter("");
+		
+			return mask;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static void setMascara(JFormattedTextField campo, MaskFormatter mask) {
 		
 		campo.setFormatterFactory( new DefaultFormatterFactory(mask));

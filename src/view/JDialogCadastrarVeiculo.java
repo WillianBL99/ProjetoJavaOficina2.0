@@ -9,11 +9,11 @@ import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Cores;
 import model.Fontes;
-import model.Mascara;
 
 /**
  * @author Paulo Uilian
@@ -43,12 +43,12 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
-	private JTextField jTFieldChassi;
+	private JFormattedTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
-	private JTextField jTFieldAno;
-	private JTextField jTFieldPlaca;
+	private JFormattedTextField jTFieldAno;
+	private JFormattedTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
-	private JTextField jTFieldKMAtual;
+	private JFormattedTextField jTFieldKMAtual;
 	
 	
 	private Choice choiceCombustivel;
@@ -277,9 +277,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JTextField getjTFieldChassi() {
+	public JFormattedTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){
-			jTFieldChassi = Mascara.mascaraChassi();
+			jTFieldChassi = new JFormattedTextField();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -305,9 +305,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JTextField getjTFieldAno() {
+	public JFormattedTextField getjTFieldAno() {
 		if(jTFieldAno == null){
-			jTFieldAno = new JTextField();
+			jTFieldAno = new JFormattedTextField();
 			jTFieldAno.setSize(107, 21);
 			jTFieldAno.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -319,9 +319,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JTextField getjTFieldPlaca() {
+	public JFormattedTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){
-			jTFieldPlaca = Mascara.mascaraPlaca();
+			jTFieldPlaca = new JFormattedTextField();
 			jTFieldPlaca.setSize(122, 21);
 			jTFieldPlaca.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -347,9 +347,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JTextField getjTFieldKMAtual() {
+	public JFormattedTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
-			jTFieldKMAtual = Mascara.mascaraQuilometragem();
+			jTFieldKMAtual = new JFormattedTextField();
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

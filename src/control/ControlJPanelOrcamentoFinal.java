@@ -4,6 +4,8 @@
 package control;
 
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +13,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
+import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelOrcamentoFinal;
 import view.JPanelPreOrcamentoNovo;
@@ -20,7 +23,7 @@ import view.JPanelPrincipal;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener {
+public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener, FocusListener {
 	
 
 	//** Início declaração de variáveis **
@@ -56,6 +59,8 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 		getjPanelOrcamentoFinal().getjButtonApagar().addMouseListener(this);
 		getjPanelOrcamentoFinal().getjButtonFiltrar().addMouseListener(this);
 		getjPanelOrcamentoFinal().getjButtonPesquisarTodos().addMouseListener(this);
+		getjPanelOrcamentoFinal().getjTFieldDTInicial().addFocusListener(this);
+		getjPanelOrcamentoFinal().getjTFieldDTFinal().addFocusListener(this);
 		
 	}
 
@@ -91,6 +96,31 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 			// quando o botão novo pré orçamento for clicado
 			this.gerarNovoOrcamentoFinal();
 		}
+		
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == getjPanelOrcamentoFinal().getjTFieldDTInicial()) {
+			
+			Mascara.setMascara(getjPanelOrcamentoFinal().getjTFieldDTInicial(), Mascara.mascaraData());
+			
+		}
+		
+		if(e.getSource() == getjPanelOrcamentoFinal().getjTFieldDTFinal()) {
+			
+			Mascara.setMascara(getjPanelOrcamentoFinal().getjTFieldDTFinal(), Mascara.mascaraData());
+			
+		}
+		
+		
+	}
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -244,6 +274,9 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener 
 		}
 		return jPanelOrcamentoFinalNovo;
 	}
+
+
+
 	
 	//** Fim métodos da classe **
 }

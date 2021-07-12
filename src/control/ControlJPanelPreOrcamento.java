@@ -4,11 +4,14 @@
 package control;
 
 import java.awt.Point;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamento;
 import view.JPanelPreOrcamentoNovo;
@@ -19,7 +22,7 @@ import view.JPanelPrincipal;
  *
  */
 
-public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
+public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener, FocusListener {
 	
 
 	//** Início declaração de variáveis **
@@ -60,12 +63,12 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 		getjPanelPreOrcamento().getjButtonApagar().addMouseListener(this);
 		getjPanelPreOrcamento().getjButtonFiltrar().addMouseListener(this);
 		getjPanelPreOrcamento().getjButtonPesquisarTodos().addMouseListener(this);
+		getjPanelPreOrcamento().getjTFieldDTInicial().addFocusListener(this);
+		getjPanelPreOrcamento().getjTFieldDTFinal().addFocusListener(this);
 		
 	}
 
-	
-		
-		
+
 	//** Início métodos sobrescritos **
 	
 	
@@ -84,6 +87,29 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getSource() == getjPanelPreOrcamento().getjTFieldDTInicial()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamento().getjTFieldDTInicial(), Mascara.mascaraData());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamento().getjTFieldDTFinal()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamento().getjTFieldDTFinal(), Mascara.mascaraData());
+			
+		}
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -167,4 +193,9 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener {
 		return controlJpanelPreOrcamentoNovo;
 	}
 	//** Fim métodos da classe **
+
+
+
+
+
 }

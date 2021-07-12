@@ -4,6 +4,8 @@
 package control;
 
 import java.awt.Point;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
+import model.Mascara;
 import view.JDialogProcurarCliente;
 import view.JDialogProcurarPeca;
 import view.JDialogProcurarVeiculo;
@@ -26,7 +29,7 @@ import view.JPanelPrincipal;
  * @author Paulo Uilian
  *
  */
-public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListener {
+public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListener, FocusListener {
 	
 
 	//** Início declaração de variáveis **
@@ -78,6 +81,15 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico().addMouseListener(this);
 		getjPanelPreOrcamentoNovo().getjButtonEditarProdutoServico().addMouseListener(this);
 		getjPanelPreOrcamentoNovo().getjButtonApagarProdutoServico().addMouseListener(this);
+		
+		getjPanelPreOrcamentoNovo().getjTFieldAno().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldChassi().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldCpf().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldKMAtual().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldPlaca().addFocusListener(this);
+		getjPanelPreOrcamentoNovo().getjTFieldTelefone().addFocusListener(this);
+		
 	}
 
 	
@@ -202,6 +214,62 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico()) {
 			new JDialogProcurarPeca(getjFramePrincipal(), true);
 		}
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldAno()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldAno(), Mascara.mascaraAno());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldChassi()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldChassi(), Mascara.mascaraChassi());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldCpf()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldCpf(), Mascara.mascaraCPF());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento(), Mascara.mascaraData());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldKMAtual()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldPlaca()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldPlaca(), Mascara.mascaraPlaca());
+			
+		}
+		
+		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldTelefone()) {
+			
+			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldTelefone(), Mascara.mascaraTelefone());
+			
+		}
+		
+
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
@@ -349,4 +417,9 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		}
 		return jDialogProcurarVeiculo;
 	}
+
+
+
+
+
 }

@@ -16,6 +16,11 @@ public class ComandosSQL {
 	
 	private static String deletarProduto;
 	
+	private static String alterarProdutoQtd;
+	private static String alterarProdutoPreco;
+	private static String alterarProdutoDescricao;
+	private static String alterarProdutoMarca;
+	
 	private static String consultarNomesUsuarios;
 	private static String consultarUsuarios;
 	
@@ -46,6 +51,70 @@ public class ComandosSQL {
 	
 	
 	/**
+	 * Método getalterarProdutoMarca() altera a marca de um produto no estoque
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "marca", "ID")
+	 * @return retorna a query de alteração da quantidade de um produto cadastrado.
+	 */
+	public static String getalterarProdutoMarca() {
+		if(alterarProdutoMarca == null){
+			alterarProdutoMarca = (
+				"update tb_produtos set marca = ? "
+				+ "where id_produto = ?;"
+			);
+		}
+		return alterarProdutoMarca;
+	}
+	
+	
+	/**
+	 * Método getalterarProdutoDescricao() altera a descrição um produto no estoque
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "descrição", "ID")
+	 * @return retorna a query de alteração da quantidade de um produto cadastrado.
+	 */
+	public static String getalterarProdutoDescricao() {
+		if(alterarProdutoDescricao == null){
+			alterarProdutoDescricao = (
+				"update tb_produtos set descricao = ? "
+				+ "where id_produto = ?;"
+			);
+		}
+		return alterarProdutoDescricao;
+	}
+	
+	
+	/**
+	 * Método getalterarProdutoPreco() altera o valor de um produto no estoque
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "Novo valor", "ID")
+	 * @return retorna a query de alteração da quantidade de um produto cadastrado.
+	 */
+	public static String getalterarProdutoPreco() {
+		if(alterarProdutoPreco == null){
+			alterarProdutoPreco = (
+				"update tb_produtos set preco = ? "
+				+ "where id_produto = ?;"
+			);
+		}
+		return alterarProdutoPreco;
+	}
+	
+	
+	/**
+	 * Método getalterarProdutoQtd() altera a quantidade de um produto no estoque
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "Nova quantidade", "ID")
+	 * @return retorna a query de alteração da quantidade de um produto cadastrado.
+	 */
+	public static String getalterarProdutoQtd() {
+		if(alterarProdutoQtd == null){
+			alterarProdutoQtd = (
+				"update tb_produtos set quantidade = ? "
+				+ "where id_produto = ?;"
+			);
+		}
+		return alterarProdutoQtd;
+	}
+	
+	
+	/**
 	 * Método getdeletarProduto() deleta um produto de acordo com id
 	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "ID")
 	 * @return retorna a query de exclusão de produto cadastrado.
@@ -68,7 +137,7 @@ public class ComandosSQL {
 	public static String getconsultarProdutoID() {
 		if(consultaProdutoID == null){
 			consultaProdutoID = (
-				"select id_produto from tb_produtos\r\n"
+				"select id_produto, descricao, marca, quantidade, preco from tb_produtos\r\n"
 				+ "where id_produto = ?"
 			);
 		}

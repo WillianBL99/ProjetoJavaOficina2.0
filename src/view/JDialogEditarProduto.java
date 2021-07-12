@@ -319,6 +319,7 @@ public class JDialogEditarProduto extends JDialog{
 			jTFieldQuantidadeEstoque.setBackground(Cores.cinza4);
 			jTFieldQuantidadeEstoque.setBorder(null);
 			jTFieldQuantidadeEstoque.setOpaque(true);	
+			jTFieldQuantidadeEstoque.setEnabled(false);
 			jTFieldQuantidadeEstoque.setVisible(true);		
 		}
 		return jTFieldQuantidadeEstoque;
@@ -334,6 +335,7 @@ public class JDialogEditarProduto extends JDialog{
 			jTFieldPreco.setBackground(Cores.cinza4);
 			jTFieldPreco.setBorder(null);
 			jTFieldPreco.setOpaque(true);	
+			jTFieldPreco.setEnabled(false);
 			jTFieldPreco.setVisible(true);		
 		}
 		return jTFieldPreco;

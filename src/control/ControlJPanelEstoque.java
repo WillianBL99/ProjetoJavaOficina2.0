@@ -26,6 +26,7 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 	private JDialogCadastrarProduto jDialogCadastrarProduto;
 	private ControlJDialogCadastrarProduto controlJDialogCadastrarProduto;
 	private JDialogEditarProduto jDialogEditarProduto;
+	private ControlJDialogEditarProduto controlJDialogEditarProduto;
 	
 	
 	//** Fim declaração de variáveis **	
@@ -84,28 +85,21 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 		
 		// Quando o botão editar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonEditar()) {
-			// Vetor de String com os nomes das opções que apareceram no joptionpane.
-			String[] options = {"Sim", "Cancelar"}; 
-			
 			/*
-			 * int option
-			 * recebe 0 ou 1 de acordo com a mensagem selecionada
-			 * - 0: Foi secionada a opção Sim
-			 * - 1: Foi selecionada a opção Cancelar
+			 * Primeiro verificar se tem tem algum produto selecionado.
+			 * Se sim - Setar os capos da tela de edição com os valores do produto
+			 * Se não - Abrir a tela de edição de valores sem setar os campos
 			 */
-			int option = JOptionPane.showOptionDialog(
-					getjFramePrincipal(), // tela pai
-					"Deseja adicionar um novo produto ao estoque?", // mensagem
-					"Alerta", // título
-					JOptionPane.DEFAULT_OPTION, 
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					options,
-					options[1]); // opção selecionada inicialmente
+			// Se tem alguma linha selecionada
+			int row = getjPanelEstoque().getjTableEstoque().getSelectedRow();
+			if(row >= 0) {
+				this.chamarEditarProduto();
+				preencherCampos(row);
+			}
 			
-			if(option == 0) {
-				jDialogEditarProduto = null;
-				getjDialogEditarProduto();
+			// se não
+			else {
+				this.chamarEditarProduto();
 			}
 		}
 		
@@ -310,6 +304,55 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 		}
 		return this.controlJDialogCadastrarProduto;
 	}
+	
+	
+	private ControlJDialogEditarProduto getcontrolJDialogEditarProduto() {
+		if(this.controlJDialogEditarProduto == null) {
+			this.controlJDialogEditarProduto = new ControlJDialogEditarProduto(getjFramePrincipal(), getjDialogEditarProduto(), this);
+		}
+		return this.controlJDialogEditarProduto;
+	}
+	
+	// Chama a tela editar produto
+	private void chamarEditarProduto() {
+		jDialogEditarProduto = null;
+		controlJDialogEditarProduto = null;
+		getjDialogEditarProduto();
+		getjDialogEditarProduto().getjTFieldCodigo().requestFocus();
+		getcontrolJDialogEditarProduto();
+	
+	}
+	
+	
+	
+	/**
+	 * Método preencherCampos() reenche campos dados do produto da tela editar produto
+	 * assim como as variaveis da classe controlJDialogEditarProduto contendo os valores
+	 * atuis de cada campo.
+	 * @param row Passar a linha selecionada na tabela
+	 */
+	private void preencherCampos(int row) {
+		
+		String codigo  = getjPanelEstoque().getjTableEstoque().getValueAt(row, 0).toString();
+		String descricao  = getjPanelEstoque().getjTableEstoque().getValueAt(row, 1).toString();
+		String marca  = getjPanelEstoque().getjTableEstoque().getValueAt(row, 2).toString();
+		String quantidade  = getjPanelEstoque().getjTableEstoque().getValueAt(row, 3).toString();
+		String preco  = getjPanelEstoque().getjTableEstoque().getValueAt(row, 4).toString();
+		
+		getcontrolJDialogEditarProduto().setCodigoProcurado(codigo);
+		getcontrolJDialogEditarProduto().setDescricaoProcurado(descricao);
+		getcontrolJDialogEditarProduto().setMarcaProcurardo(marca);
+		getcontrolJDialogEditarProduto().setQuantidadeProcurado(quantidade);
+		getcontrolJDialogEditarProduto().setPrecoProcurado(preco);
+		
+		getjDialogEditarProduto().getjTFieldCodigo().setText(codigo);
+		getjDialogEditarProduto().getjTFieldDescricao().setText(descricao);
+		getjDialogEditarProduto().getjTFieldMarca().setText(marca);
+		getjDialogEditarProduto().getjTFieldQuantidadeEstoque().setText(quantidade);
+		getjDialogEditarProduto().getjTFieldPreco().setText(preco);
+		getjDialogEditarProduto().getjTFieldNovaQuantidade().requestFocus();
+	}
+	
 	
 	//** Fim métodos sobrescritos **
 	

@@ -73,59 +73,79 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		if(e.getSource() == getjDialogCadastrarProduto().getjButtonCadastrarCliente()) {
 			/*
 			 *  Se todos os campos estiverem preenchidos && 
-			 *  não existir um codigo igual no estoque
+			 *  não existir um codigo igual no estoque &&
+			 *  o preço do produto for maior que 0
 			 */
 			if(isCamposPreenchidos()) {
-				if(getdaoJDialogCadastrarProduto().idUnico(getjDialogCadastrarProduto().getjTFieldCodigo().getText())) {// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
-					if(getdaoJDialogCadastrarProduto().cadastrarProduto()) {						
+				float preco = Float.parseFloat(getjDialogCadastrarProduto().getjTFieldPreco().getText().isEmpty() ? "0" : getjDialogCadastrarProduto().getjTFieldPreco().getText());
+				// Se o preço não for menor ou igual a zero
+				if(preco > 0) {
+					
+					// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
+					if(getdaoJDialogCadastrarProduto().idUnico(getjDialogCadastrarProduto().getjTFieldCodigo().getText())) {
+						if(getdaoJDialogCadastrarProduto().cadastrarProduto()) {						
 
-						// Vetor de String com os nomes das opções que apareceram no joptionpane.
-						String[] options = {"Sim", "Não"}; 
-						
-						/*
-						 * int option
-						 * recebe 0 ou 1 de acordo com a mensagem selecionada
-						 * - 0: Foi secionada a opção Sim
-						 * - 1: Foi selecionada a opção Não
-						 */
-						int option = JOptionPane.showOptionDialog(
-								getjDialogCadastrarProduto(), // tela pai
-								"Cadastro realizado com sucesso!.\r\n"
-								+ "Deseja cadastrar outro produto?", // mensagem
-								"Cadastro realizado.", // título
-								JOptionPane.DEFAULT_OPTION, 
-								JOptionPane.INFORMATION_MESSAGE,
-								null,
-								options,
-								options[1]); // opção selecionada inicialmente
-						
-						// Se for escolhido Sim
-						if(option == 0) {
-							limpaCampos();
+							// Vetor de String com os nomes das opções que apareceram no joptionpane.
+							String[] options = {"Sim", "Não"}; 
 							
-						// Se for escolhido Não
-						} else {
-							getcontrolJPanelEstoque().atualizarTabela();
-							getjFramePricipal().setEnabled(true);
-							getjDialogCadastrarProduto().dispose();
+							/*
+							 * int option
+							 * recebe 0 ou 1 de acordo com a mensagem selecionada
+							 * - 0: Foi secionada a opção Sim
+							 * - 1: Foi selecionada a opção Não
+							 */
+							int option = JOptionPane.showOptionDialog(
+									getjDialogCadastrarProduto(), // tela pai
+									"Cadastro realizado com sucesso.\r\n"
+									+ "Deseja cadastrar outro produto?", // mensagem
+									"Cadastro realizado.", // título
+									JOptionPane.DEFAULT_OPTION, 
+									JOptionPane.PLAIN_MESSAGE,
+									null,
+									options,
+									options[1]); // opção selecionada inicialmente
+							
+							// Se for escolhido Sim
+							if(option == 0) {
+								limpaCampos();
+								
+							// Se for escolhido Não
+							} else {
+								getcontrolJPanelEstoque().atualizarTabela();
+								getjFramePricipal().setEnabled(true);
+								getjDialogCadastrarProduto().dispose();
+							}
 						}
 					}
+					
+					// Caso o id já exista no banco de dados
+					else {
+						// Exibe uma mensagem de confirmação do cadastro.
+						JOptionPane.showConfirmDialog(
+								getjDialogCadastrarProduto(), // componente
+								"O cadastro não foi realizado pois o código inserido\r\n"
+								+ "já pertence a outro produto.", // texto
+								"Falha ao cadastrar produto", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+						getjDialogCadastrarProduto().getjTFieldCodigo().setText("");
+						getjDialogCadastrarProduto().getjTFieldCodigo().requestFocus();
+					}				
+				
 				}
 				
-				// Caso o id já exista no banco de dados
+				// Caso o valor do preço seja menor ou igual a zero
 				else {
-					// Exibe uma mensagem de confirmação do cadastro.
 					JOptionPane.showConfirmDialog(
-							getjDialogCadastrarProduto(), // componente
-							"O cadastro não foi realizado pois o código inserido\r\n"
-							+ "já pertence a outro produto.", // texto
-							"Falha ao cadastrar produto", // titulo
-							JOptionPane.DEFAULT_OPTION, // botões
-							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						getjDialogCadastrarProduto(), // componente
+						"O cadastro não foi realizado pois o preço inserido\r\n"
+						+ "é menor ou igual a zero.", // texto
+						"Falha ao cadastrar produto", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.ERROR_MESSAGE // tipo de mensagem
 					);
-					getjDialogCadastrarProduto().getjTFieldCodigo().setText("");
-					getjDialogCadastrarProduto().getjTFieldCodigo().requestFocus();
-				}				
+				}
 			}
 			
 			// Caso tenha algum campo sem preencher

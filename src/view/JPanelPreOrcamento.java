@@ -260,7 +260,8 @@ public class JPanelPreOrcamento  extends JPanel {
 	
 	public JTextField getjTFieldDTInicial() {
 		if(jTFieldDTInicial == null){
-			jTFieldDTInicial = Mascara.mascaraData();
+			//jTFieldDTInicial = Mascara.mascaraData();
+			jTFieldDTInicial = new JTextField();
 			jTFieldDTInicial.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
@@ -274,7 +275,8 @@ public class JPanelPreOrcamento  extends JPanel {
 	
 	public JTextField getjTFieldDTFinal() {
 		if(jTFieldDTFinal == null){
-			jTFieldDTFinal = Mascara.mascaraData();
+			//jTFieldDTFinal = Mascara.mascaraData();
+			jTFieldDTFinal = new JTextField();
 			jTFieldDTFinal.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);

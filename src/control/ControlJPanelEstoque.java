@@ -6,9 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JButton;
-import model.Cores;
-import model.SetSizeIcon;
+import javax.swing.JOptionPane;
+import dao.DaoJPanelEstoque;
 import view.JDialogCadastrarProduto;
 import view.JDialogEditarProduto;
 import view.JFramePrincipal;
@@ -18,18 +17,15 @@ import view.JPanelEstoque;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
+public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 	
 	//** Início declaração de variáveis **
-	
-	
-	private SetSizeIcon setSizeIcon;
 	private JFramePrincipal jFramePrincipal;
 	private JPanelEstoque jPanelEstoque;
+	private DaoJPanelEstoque daoJPanelEstoque;
 	private JDialogCadastrarProduto jDialogCadastrarProduto;
+	private ControlJDialogCadastrarProduto controlJDialogCadastrarProduto;
 	private JDialogEditarProduto jDialogEditarProduto;
-	private JButton jButtonClicado; // guarda o jbutton clicado
-	private String iconeJButtonClicado; // guarda o caminho do icone do jbutton clicado
 	
 	
 	//** Fim declaração de variáveis **	
@@ -51,38 +47,64 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 		
 		
 	//** Início métodos sobrescritos **
-	@Override
-	public void keyTyped(KeyEvent e) {
-	// TODO Auto-generated method stub
-			
-	}
-
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
 	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-			
-	}
 
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Quando o botão adicionar produto for clicado
 		if(e.getSource() == getjPanelEstoque().getjButtonAdicionar()) {
-			jDialogCadastrarProduto = null;
-			getjdialogCadastrarProduto();
+			// Vetor de String com os nomes das opções que apareceram no joptionpane.
+			String[] options = {"Sim", "Cancelar"}; 
+			
+			/*
+			 * int option
+			 * recebe 0 ou 1 de acordo com a mensagem selecionada
+			 * - 0: Foi secionada a opção Sim
+			 * - 1: Foi selecionada a opção Cancelar
+			 */
+			int option = JOptionPane.showOptionDialog(
+					getjFramePrincipal(), // tela pai
+					"Deseja adicionar um novo produto ao estoque?", // mensagem
+					"Alerta", // título
+					JOptionPane.DEFAULT_OPTION, 
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[1]); // opção selecionada inicialmente
+			
+			if(option == 0) {
+				jDialogCadastrarProduto = null;
+				getjdialogCadastrarProduto();
+				getcontrolJDialogCadastrarProduto();
+			}			
 		}
 		
 		// Quando o botão editar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonEditar()) {
-			jDialogEditarProduto = null;
-			getjDialogEditarProduto();
+			// Vetor de String com os nomes das opções que apareceram no joptionpane.
+			String[] options = {"Sim", "Cancelar"}; 
+			
+			/*
+			 * int option
+			 * recebe 0 ou 1 de acordo com a mensagem selecionada
+			 * - 0: Foi secionada a opção Sim
+			 * - 1: Foi selecionada a opção Cancelar
+			 */
+			int option = JOptionPane.showOptionDialog(
+					getjFramePrincipal(), // tela pai
+					"Deseja adicionar um novo produto ao estoque?", // mensagem
+					"Alerta", // título
+					JOptionPane.DEFAULT_OPTION, 
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[1]); // opção selecionada inicialmente
+			
+			if(option == 0) {
+				jDialogEditarProduto = null;
+				getjDialogEditarProduto();
+			}
 		}
 		
 		// Quando o botão apagar produto for clicado
@@ -140,6 +162,27 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 	public void mouseExited(MouseEvent e) { // Quando o ponteiro do mouse sair de algum componente		}
 			
 	}	
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+			
+	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+			
+	}
+	
 		
 	//** Fim métodos sobrescritos **
 	
@@ -153,11 +196,20 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 		return this.jFramePrincipal;
 	}
 	
+	
 	private JPanelEstoque getjPanelEstoque() {
 		if(this.jPanelEstoque == null) {
 			this.jPanelEstoque = new JPanelEstoque();
 		}
 		return this.jPanelEstoque;
+	}
+	
+	
+	private DaoJPanelEstoque getDaoJPanelEstoque() {
+		if(this.daoJPanelEstoque == null) {
+			this.daoJPanelEstoque = new DaoJPanelEstoque(getjPanelEstoque());
+		}
+		return this.daoJPanelEstoque;
 	}
 	
 	
@@ -176,38 +228,21 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener  {
 		return this.jDialogEditarProduto;
 	}
 	
+	
+	private ControlJDialogCadastrarProduto getcontrolJDialogCadastrarProduto() {
+		if(this.controlJDialogCadastrarProduto == null) {
+			this.controlJDialogCadastrarProduto = new ControlJDialogCadastrarProduto(getjFramePrincipal(), getjdialogCadastrarProduto(), this);
+		}
+		return this.controlJDialogCadastrarProduto;
+	}
+	
 	//** Fim métodos sobrescritos **
 	
 	
 	//** Início métodos da classe **
 	
-	/*
-	 * método mudarCorJButtonSelecionado(@jButton, @iconeSelected, @iconeNotSelected)
-	 * 
-	 * @jButton - Recebe como parâmetro o JButton para realização de mudança de ícone,
-	 * mudança de background e mudança de foreground.
-	 * 
-	 * @iconeSelected - Recebe caminho do ícone que deve ser setado quando o JButton
-	 * estiver selecionado.
-	 * 
-	 * @iconeNotSelected - Recebe caminho do ícone que deve ser setado quando o JButton não
-	 * estiver selecionado.
-	 * 
-	 */
-	public void mudarCorJButtonSelecionado(JButton jButton, String iconeSelected, String iconeNotSelected) {
-		if(jButtonClicado != null && jButtonClicado != jButton) { 
-			// setando a nova aparência do JButton clicado.
-			jButton.setBackground(Cores.azul1);
-			jButton.setForeground(Cores.branco);
-			setSizeIcon.setIconJButton(jButton, iconeSelected, 34 ,34);
-			// setando a aparência do JButton clicado ateriormente.
-			jButtonClicado.setBackground(Cores.branco);
-			jButtonClicado.setForeground(Cores.cinza2);
-			setSizeIcon.setIconJButton(jButtonClicado, iconeJButtonClicado, 34 ,34);
-			// guardando os caminhos dos ícones do JButton que está selecionado.
-			jButtonClicado = jButton;
-			iconeJButtonClicado = iconeNotSelected;
-		}
+	public void atualizarTabela() {
+		getDaoJPanelEstoque().atualizarTabelaProdutos();
 	}
 		
 		

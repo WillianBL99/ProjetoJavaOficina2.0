@@ -9,6 +9,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.JOptionPane;
+
+import dao.DaoJDialogCadastrarProduto;
 import view.JDialogCadastrarProduto;
 import view.JFramePrincipal;
 
@@ -21,14 +25,15 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
 	private JDialogCadastrarProduto jDialogCadastrarVeiculo;
+	private DaoJDialogCadastrarProduto daoJDialogCadastrarProduto;
+	private ControlJPanelEstoque controlJPanelEstoque;
 	private boolean modalTela;
 	
-	private String idCliente;
-	
 	//** Fim declaração de variáveis **	
-	public ControlJDialogCadastrarProduto(JFramePrincipal jFramePricipal, JDialogCadastrarProduto jDialogCadastrarVeiculo) {	
+	public ControlJDialogCadastrarProduto(JFramePrincipal jFramePricipal, JDialogCadastrarProduto jDialogCadastrarVeiculo, ControlJPanelEstoque controlJPanelEstoque) {	
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogCadastrarVeiculo = jDialogCadastrarVeiculo;
+		this.controlJPanelEstoque = controlJPanelEstoque;
 		AddEvent();
 		setmodal(getjDialogCadastrarProduto().ismodalTela());
 	}
@@ -66,12 +71,81 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	public void mouseClicked(MouseEvent e) {
 		// Quando o botão cadastrar produto for clicado
 		if(e.getSource() == getjDialogCadastrarProduto().getjButtonCadastrarCliente()) {
+			/*
+			 *  Se todos os campos estiverem preenchidos && 
+			 *  não existir um codigo igual no estoque
+			 */
+			if(isCamposPreenchidos()) {
+				if(getdaoJDialogCadastrarProduto().idUnico(getjDialogCadastrarProduto().getjTFieldCodigo().getText())) {// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
+					if(getdaoJDialogCadastrarProduto().cadastrarProduto()) {						
+
+						// Vetor de String com os nomes das opções que apareceram no joptionpane.
+						String[] options = {"Sim", "Não"}; 
+						
+						/*
+						 * int option
+						 * recebe 0 ou 1 de acordo com a mensagem selecionada
+						 * - 0: Foi secionada a opção Sim
+						 * - 1: Foi selecionada a opção Não
+						 */
+						int option = JOptionPane.showOptionDialog(
+								getjDialogCadastrarProduto(), // tela pai
+								"Cadastro realizado com sucesso!.\r\n"
+								+ "Deseja cadastrar outro produto?", // mensagem
+								"Cadastro realizado.", // título
+								JOptionPane.DEFAULT_OPTION, 
+								JOptionPane.INFORMATION_MESSAGE,
+								null,
+								options,
+								options[1]); // opção selecionada inicialmente
+						
+						// Se for escolhido Sim
+						if(option == 0) {
+							limpaCampos();
+							
+						// Se for escolhido Não
+						} else {
+							getcontrolJPanelEstoque().atualizarTabela();
+							getjFramePricipal().setEnabled(true);
+							getjDialogCadastrarProduto().dispose();
+						}
+					}
+				}
+				
+				// Caso o id já exista no banco de dados
+				else {
+					// Exibe uma mensagem de confirmação do cadastro.
+					JOptionPane.showConfirmDialog(
+							getjDialogCadastrarProduto(), // componente
+							"O cadastro não foi realizado pois o código inserido\r\n"
+							+ "já pertence a outro produto.", // texto
+							"Falha ao cadastrar produto", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+					);
+					getjDialogCadastrarProduto().getjTFieldCodigo().setText("");
+					getjDialogCadastrarProduto().getjTFieldCodigo().requestFocus();
+				}				
+			}
 			
+			// Caso tenha algum campo sem preencher
+			else {
+				// Exibe uma mensagem de confirmação do cadastro.
+				JOptionPane.showConfirmDialog(
+						getjDialogCadastrarProduto(), // componente
+						"Preencha todos os campos para efetuar o cadastro do produto.", // texto
+						"Preencha todos os campos", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 		}
 		
 		// Quando o botão cancelar for clicado
 		else if(e.getSource() == getjDialogCadastrarProduto().getjButtonCancelar()) {
-			
+			getcontrolJPanelEstoque().atualizarTabela();
+			getjFramePricipal().setEnabled(true);
+			getjDialogCadastrarProduto().dispose();
 		}
 		
 	}
@@ -108,6 +182,7 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
+		this.getjFramePricipal().setEnabled(!ismodal());
 	}
 
 
@@ -121,7 +196,8 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+		getcontrolJPanelEstoque().atualizarTabela();
+		getjFramePricipal().setEnabled(true);		
 	}
 
 
@@ -172,6 +248,22 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		return jDialogCadastrarVeiculo;
 	}
 	
+
+	public DaoJDialogCadastrarProduto getdaoJDialogCadastrarProduto() {
+		if(daoJDialogCadastrarProduto == null){
+			daoJDialogCadastrarProduto = new DaoJDialogCadastrarProduto(getjFramePricipal(), getjDialogCadastrarProduto());
+		}
+		return daoJDialogCadastrarProduto;
+	}
+	
+
+	public ControlJPanelEstoque getcontrolJPanelEstoque() {
+		if(controlJPanelEstoque == null){
+			controlJPanelEstoque = new ControlJPanelEstoque(getjFramePricipal(), null);
+		}
+		return controlJPanelEstoque;
+	}
+	
 	
 	public boolean ismodal() {
 		return modalTela;
@@ -183,14 +275,19 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	}	
 	
 	
-	public String getidCliente() {
-		return idCliente;
+	private boolean isCamposPreenchidos() {
+		if(!getjDialogCadastrarProduto().getjTFieldCodigo().getText().isEmpty() &&
+				!getjDialogCadastrarProduto().getjTFieldDescricao().getText().isEmpty() &&
+				!getjDialogCadastrarProduto().getjTFieldMarca().getText().isEmpty() &&
+				!getjDialogCadastrarProduto().getjTFieldQuantidade().getText().isEmpty() &&
+				!getjDialogCadastrarProduto().getjTFieldPreco().getText().replace(",", "").replace(".", "").replace(" ", "").isEmpty()) 
+		{
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	
-	public void setidCliente(String idCliente) {
-		this.idCliente = idCliente;
-	}	
 	
 	/**
 	 * Método camposIsEmpty() verifica se todos os 
@@ -215,20 +312,16 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		} else {
 			return false;
 		}
-	}
+	}*/
 	
 	private void limpaCampos() {
-		getjDialogCadastrarVeiculo().getjTFieldChassi().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldPlaca().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldKMAtual().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldMarca().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldModelo().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldMotor().setText("");
-		getjDialogCadastrarVeiculo().getChoiceCombustivel().select(0);
-		getjDialogCadastrarVeiculo().getjTFieldCor().setText("");
-		getjDialogCadastrarVeiculo().getjTFieldAno().setText("");
+		getjDialogCadastrarProduto().getjTFieldCodigo().setText("");
+		getjDialogCadastrarProduto().getjTFieldDescricao().setText("");
+		getjDialogCadastrarProduto().getjTFieldMarca().setText("");
+		getjDialogCadastrarProduto().getjTFieldQuantidade().setText("");
+		getjDialogCadastrarProduto().getjTFieldPreco().setText("");
+		getjDialogCadastrarProduto().getjTFieldCodigo().requestFocus();
 	}
 	//** Fim métodos da classe **
 	
-*/
 }

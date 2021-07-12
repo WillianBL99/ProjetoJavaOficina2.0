@@ -24,7 +24,7 @@ import model.Fontes;
 import model.SetSizeIcon;
 
 /**
- * @author pWili
+ * @author Paulo Uilian
  *
  */
 @SuppressWarnings("serial")
@@ -254,8 +254,7 @@ public class JPanelEstoque  extends JPanel{
 	public JTable getjTableEstoque() {
 		if(jTableEstoque == null){
 			jTableEstoque = new JTable();
-			
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());			
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
 			jTableEstoque.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
 	                "Código",
 	                "Descrição",

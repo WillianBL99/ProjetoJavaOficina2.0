@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
 import dao.ComandosSQL;
 import dao.ModuloConexao;
 import dao.PreencherChoice;
@@ -708,7 +707,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 
 	public JTextField getjTFieldDataPreOrcamento() {
 		if(jTFieldDataPreOrcamento == null){
-			jTFieldDataPreOrcamento = Mascara.mascaraData();
+			jTFieldDataPreOrcamento = new JTextField();// Mascara.mascaraData();
 			jTFieldDataPreOrcamento.setSize(94, 21);
 			jTFieldDataPreOrcamento.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -738,7 +737,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
-			jTFieldCpf = Mascara.mascaraCPF();
+			jTFieldCpf = new JTextField();// Mascara.mascaraCPF();
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBackground(Cores.cinza4);
 			jTFieldCpf.setBorder(null);
@@ -860,7 +859,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){	
-			jTFieldTelefone = Mascara.mascaraTelefone();
+			jTFieldTelefone = new JTextField(); //Mascara.mascaraTelefone();
 			jTFieldTelefone.setSize(125, 21);
 			jTFieldTelefone.setBackground(Cores.cinza4);
 			jTFieldTelefone.setBorder(null);
@@ -920,7 +919,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){	
-			jTFieldChassi = Mascara.mascaraChassi();
+			jTFieldChassi = new JTextField();//Mascara.mascaraChassi();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBackground(Cores.cinza4);
 			jTFieldChassi.setBorder(null);
@@ -965,7 +964,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){	
-			jTFieldPlaca = Mascara.mascaraPlaca();
+			jTFieldPlaca = new JTextField();//Mascara.mascaraPlaca();
 			jTFieldPlaca.setSize(125, 21);
 			jTFieldPlaca.setBackground(Cores.cinza4);
 			jTFieldPlaca.setBorder(null);
@@ -995,7 +994,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){	
-			jTFieldKMAtual = Mascara.mascaraQuilometragem();
+			jTFieldKMAtual = new JTextField();//Mascara.mascaraQuilometragem();
 			jTFieldKMAtual.setSize(125, 21);
 			jTFieldKMAtual.setBackground(Cores.cinza4);
 			jTFieldKMAtual.setBorder(null);

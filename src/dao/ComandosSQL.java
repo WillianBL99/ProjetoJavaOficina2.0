@@ -9,7 +9,10 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String consultaProdutoID;
 	private static String consultarProdutos;
+	
+	private static String cadastrarProduto;
 	
 	private static String consultarNomesUsuarios;
 	private static String consultarUsuarios;
@@ -40,7 +43,37 @@ public class ComandosSQL {
 	private static String cadastrarVeiculo;
 	
 	
-
+	/**
+	 * Método getconsultarProdutosID() realiza a consulta dos ids cadastrados
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "ID")
+	 * @return retorna a query de consulta dos ids dos produtos cadastrados.
+	 */
+	public static String getconsultarProdutoID() {
+		if(consultaProdutoID == null){
+			consultaProdutoID = (
+				"select id_produto from tb_produtos\r\n"
+				+ "where id_produto = ?"
+			);
+		}
+		return consultaProdutoID;
+	}
+	
+	
+	/**
+	 * Método String getcadastrarProduto()
+	 * Cadastrar um produto com os dados inseridos.
+	 * @param Passar comos parametros para o método Cadastrar.ExecutUpdate(sql, "Código", "Descrição", "Marca", "Quantidade", "Preço")
+	 * @return Retorna uma query que cadastra um produto com os valores passados nos campos do método Cadastrar.ExecutUpdate(sql,campos...);
+	 */
+	public static String getcadastrarProduto() {
+		if(cadastrarProduto == null){
+			cadastrarProduto = (
+				"insert into tb_produtos(id_produto, descricao, marca, quantidade, preco) values\n"
+				+ "(?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarProduto;
+	}
 	
 	
 	/**

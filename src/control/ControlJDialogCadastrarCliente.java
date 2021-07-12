@@ -3,6 +3,8 @@
  */
 package control;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -13,6 +15,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 import dao.DaoJDialogCadastrarCliente;
+import model.Mascara;
 import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -21,7 +24,7 @@ import view.JFramePrincipal;
  * @author Paulo Uilian
  *
  */
-public class ControlJDialogCadastrarCliente implements MouseListener, KeyListener, WindowListener{
+public class ControlJDialogCadastrarCliente implements MouseListener, KeyListener, WindowListener, FocusListener{
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
@@ -44,6 +47,13 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		getjDialogCadastrarCliente().addWindowListener(this);
 		getjDialogCadastrarCliente().getjButtonCadastrarCliente().addMouseListener(this);
 		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);
+		
+		getjDialogCadastrarCliente().getjTFieldCpf().addFocusListener(this);
+		getjDialogCadastrarCliente().getjTFieldTelefone().addFocusListener(this);
+		
+		
+		
+		
 	}
 		
 		
@@ -177,6 +187,30 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		this.getjDialogProcurarCliente().setEnabled(true);
 	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == jDialogCadastrarCliente.getjTFieldCpf() ) {
+			
+			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldCpf(), Mascara.mascaraCPF());
+		
+		}
+		
+		if(e.getSource() == jDialogCadastrarCliente.getjTFieldTelefone() ) {
+			
+			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldTelefone(), Mascara.mascaraTelefone());
+		
+		}
+		
+	}
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	@Override
@@ -294,6 +328,9 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		getjDialogCadastrarCliente().getjTFieldNumeroCasa().setText("");
 	}
 	//** Fim métodos da classe **
+
+
+
 	
 
 }

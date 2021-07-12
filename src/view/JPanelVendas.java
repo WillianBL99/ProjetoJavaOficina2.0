@@ -37,8 +37,8 @@ public class JPanelVendas extends JPanel{
 	private JLabel jLabelDTFinal;
 	private JLabel jLabelCliente;
 	
-	private JTextField jTFieldDTInicial;
-	private JTextField jTFieldDTFinal;
+	private JFormattedTextField jTFieldDTInicial;
+	private JFormattedTextField jTFieldDTFinal;
 	private JTextField jTFieldCliente;
 	
 	private JPanel jPanelBuscaVenda; // barra que contem componentes para realizar busca de vendas
@@ -255,7 +255,7 @@ public class JPanelVendas extends JPanel{
 			jTFieldDTInicial.setSize(85, 21);
 			jTFieldDTInicial.setOpaque(true);
 		}
-		return  (JFormattedTextField) jTFieldDTInicial;
+		return jTFieldDTInicial;
 	}
 
 	
@@ -269,7 +269,7 @@ public class JPanelVendas extends JPanel{
 			jTFieldDTFinal.setSize(85, 21);
 			jTFieldDTFinal.setOpaque(true);
 		}
-		return (JFormattedTextField) jTFieldDTFinal;
+		return jTFieldDTFinal;
 	}
 
 	

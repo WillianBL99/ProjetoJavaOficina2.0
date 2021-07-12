@@ -10,6 +10,7 @@ import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -49,9 +50,9 @@ public class JDialogCadastrarCliente extends JDialog{
 	private JLabel jLabelTipoPessoa;
 	
 	
-	private JTextField jTFieldCpf;
+	private JFormattedTextField jTFieldCpf;
 	private JTextField jTFieldNome;
-	private JTextField jTFieldTelefone;
+	private JFormattedTextField jTFieldTelefone;
 	private JTextField jTFieldEmail;
 	private JTextField jTFieldCidade;
 	private JTextField jTFieldBairro;
@@ -317,9 +318,9 @@ public class JDialogCadastrarCliente extends JDialog{
 
 
 	
-	public JTextField getjTFieldCpf() {
+	public JFormattedTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
-			jTFieldCpf = Mascara.mascaraCPF();
+			jTFieldCpf = new JFormattedTextField();
 			jTFieldCpf.setSize(166, 21);
 			jTFieldCpf.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -345,9 +346,9 @@ public class JDialogCadastrarCliente extends JDialog{
 	}
 
 
-	public JTextField getjTFieldTelefone() {
+	public JFormattedTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){
-			jTFieldTelefone = Mascara.mascaraTelefone();
+			jTFieldTelefone = new JFormattedTextField();
 			jTFieldTelefone.setSize(140, 21);
 			jTFieldTelefone.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

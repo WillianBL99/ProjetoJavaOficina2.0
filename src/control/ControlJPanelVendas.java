@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -116,6 +118,17 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	@Override
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTInicial(), Mascara.mascaraNula());
+		
+		}
+		
+		if(e.getSource() == jPanelVendas.getjTFieldDTFinal()) {
+			
+			Mascara.setMascara(jPanelVendas.getjTFieldDTFinal(), Mascara.mascaraNula());
+		
+		}
 
 	}
 	

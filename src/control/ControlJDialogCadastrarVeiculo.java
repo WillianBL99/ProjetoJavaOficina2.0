@@ -3,6 +3,8 @@
  */
 package control;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 import dao.DaoJDialogCadastrarVeiculo;
+import model.Mascara;
 import view.JDialogCadastrarVeiculo;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
@@ -19,7 +22,7 @@ import view.JFramePrincipal;
  * @author Paulo Uilian
  *
  */
-public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListener, WindowListener{
+public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListener, WindowListener, FocusListener{
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
@@ -49,6 +52,10 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		getjDialogCadastrarVeiculo().addWindowListener(this);
 		getjDialogCadastrarVeiculo().getjButtonCancelar().addMouseListener(this);
 		getjDialogCadastrarVeiculo().getjButtonCadastrarVeiculo().addMouseListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldAno().addFocusListener(null);
+		getjDialogCadastrarVeiculo().getjTFieldChassi().addFocusListener(null);
+		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addFocusListener(null);
+		getjDialogCadastrarVeiculo().getjTFieldPlaca().addFocusListener(null);
 	}
 		
 		
@@ -181,6 +188,42 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		this.getjDialogProcurarVeiculo().setEnabled(true);
 	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldChassi()) {
+			
+			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldChassi(), Mascara.mascaraChassi());
+		
+		}
+		
+		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldAno()) {
+					
+			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldAno(), Mascara.mascaraAno());
+				
+		}
+		
+		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldKMAtual()) {
+			
+			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
+		
+		}
+		
+		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldPlaca()) {
+			
+			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldPlaca(), Mascara.mascaraPlaca());
+		
+		}
+		
+	}
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	@Override
@@ -309,6 +352,9 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		getjDialogCadastrarVeiculo().getjTFieldAno().setText("");
 	}
 	//** Fim métodos da classe **
+
+
+	
 	
 
 }

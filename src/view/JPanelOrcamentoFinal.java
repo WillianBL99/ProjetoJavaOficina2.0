@@ -9,6 +9,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -49,8 +50,8 @@ public class JPanelOrcamentoFinal  extends JPanel {
 	private JLabel jLabelDTInicial;
 	private JLabel jLabelDTFinal;
 	
-	private JTextField jTFieldDTInicial;
-	private JTextField jTFieldDTFinal;
+	private JFormattedTextField jTFieldDTInicial;
+	private JFormattedTextField jTFieldDTFinal;
 	private JTextField jTFieldPesquisarPor;
 	
 	private Choice choicePesquisarPor;
@@ -254,9 +255,9 @@ public class JPanelOrcamentoFinal  extends JPanel {
 	
 	//** Início getters JFields **
 	
-	public JTextField getjTFieldDTInicial() {
+	public JFormattedTextField getjTFieldDTInicial() {
 		if(jTFieldDTInicial == null){
-			jTFieldDTInicial = Mascara.mascaraData();
+			jTFieldDTInicial = new JFormattedTextField();
 			jTFieldDTInicial.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
@@ -268,9 +269,9 @@ public class JPanelOrcamentoFinal  extends JPanel {
 	}
 
 	
-	public JTextField getjTFieldDTFinal() {
+	public JFormattedTextField getjTFieldDTFinal() {
 		if(jTFieldDTFinal == null){
-			jTFieldDTFinal = Mascara.mascaraData();
+			jTFieldDTFinal = new JFormattedTextField();
 			jTFieldDTFinal.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import icons.Icones;
@@ -222,6 +223,7 @@ public class JDialogProcurarPeca extends JDialog{
 	public JTable getjTablePecas() {
 		if(jTablePecas == null){
 			jTablePecas = new JTable();
+			
 			jTablePecas.setModel(new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
 		                {null, null, null, null},
@@ -242,7 +244,7 @@ public class JDialogProcurarPeca extends JDialog{
 		            	"Cod.Produto", "Qtd.Estoque", "Descrição", "Preço",
 		            }
 		        ));				
-
+			jTablePecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTablePecas.setFont(Fontes.fontJTablePlain1);
 			jTablePecas.setOpaque(false);
 			jTablePecas.getTableHeader().setFont(Fontes.fontJTableBold1);

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import icons.Icones;
@@ -242,7 +243,7 @@ public class JDialogProcurarServico  extends JDialog{
 		                "Cod.Seviço", "Descrição", "Preço"
 		            }
 		        ));				
-
+			jTableVeiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTableVeiculos.setFont(Fontes.fontJTablePlain1);
 			jTableVeiculos.setOpaque(false);
 			jTableVeiculos.getTableHeader().setFont(Fontes.fontJTableBold1);

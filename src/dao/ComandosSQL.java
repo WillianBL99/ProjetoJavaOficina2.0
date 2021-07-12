@@ -14,6 +14,8 @@ public class ComandosSQL {
 	
 	private static String cadastrarProduto;
 	
+	private static String deletarProduto;
+	
 	private static String consultarNomesUsuarios;
 	private static String consultarUsuarios;
 	
@@ -41,6 +43,21 @@ public class ComandosSQL {
 	private static String consultarVeiculoPlacaByCliente;
 	
 	private static String cadastrarVeiculo;
+	
+	
+	/**
+	 * Método getdeletarProduto() deleta um produto de acordo com id
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "ID")
+	 * @return retorna a query de exclusão de produto cadastrado.
+	 */
+	public static String getdeletarProduto() {
+		if(deletarProduto == null){
+			deletarProduto = (
+				"delete from tb_produtos where id_produto = ?;"
+			);
+		}
+		return deletarProduto;
+	}
 	
 	
 	/**

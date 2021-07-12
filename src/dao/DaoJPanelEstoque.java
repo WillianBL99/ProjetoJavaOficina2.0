@@ -59,7 +59,31 @@ public class DaoJPanelEstoque {
 		
 		return status;
 	}
+
 	
+	/**
+	 * Método void deletarProduto().
+	 * Tem a função de deletar um produto de acordo com o id
+	 * @return boolean status
+	 * false - Se a consulta não retornar nenhuma linha
+	 * true - Se a consulta retornar linhas
+	 */
+	public boolean deletarProduto(String id) {
+		boolean status;
+		// Tratamento de exceções no momento de consulta do banco de dados
+		try {
+			// usando o método executeUpdate da classe Cadastrar para excluir linha de tabela
+			if(new Cadastrar().executeUpdate(ComandosSQL.getdeletarProduto(), id)) {
+				status = true;
+			} else {
+				status = false;
+			}
+		} catch(Exception e) {
+			System.err.println("Erro ao deletar produto daoJpanelEstoque" + e);
+			status = false; 
+		}		
+		return status;
+	}
 
 	// Metodos getters e setters
 	private ModuloConexao getModuloConexao() {

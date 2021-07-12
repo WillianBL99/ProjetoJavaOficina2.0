@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import dao.ComandosSQL;
@@ -83,7 +84,7 @@ public class JPanelEstoque  extends JPanel{
 			jPanelBuscaEstoque = new JPanel();
 			jPanelBuscaEstoque.setLayout(null);
 			jPanelBuscaEstoque.setBackground(Cores.branco);
-			jPanelBuscaEstoque.setSize(990, 50);
+			jPanelBuscaEstoque.setSize(992, 50);
 			jPanelBuscaEstoque.setBorder(null);
 		}
 		return jPanelBuscaEstoque;
@@ -245,7 +246,7 @@ public class JPanelEstoque  extends JPanel{
 		if(jSPEstoque == null){
 			jSPEstoque = new JScrollPane();
 			jSPEstoque.setViewportView(getjTableEstoque());
-			jSPEstoque.setSize(1000, 225);	
+			jSPEstoque.setSize(992, 400);	
 		}
 		return jSPEstoque;
 	}
@@ -261,7 +262,8 @@ public class JPanelEstoque  extends JPanel{
 	                "Marca",
 	                "Quantidade",
 	                "Preço"));
-			
+
+			jTableEstoque.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTableEstoque.setFont(Fontes.fontJTablePlain2);
 			jTableEstoque.setOpaque(false);
 			jTableEstoque.getTableHeader().setFont(Fontes.fontJTableBold2);

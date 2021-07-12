@@ -75,10 +75,12 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 			
 			if(option == 0) {
 				jDialogCadastrarProduto = null;
+				controlJDialogCadastrarProduto = null;
 				getjdialogCadastrarProduto();
 				getcontrolJDialogCadastrarProduto();
 			}			
 		}
+		
 		
 		// Quando o botão editar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonEditar()) {
@@ -107,9 +109,82 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 			}
 		}
 		
+		
 		// Quando o botão apagar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonApagar()) {
+			/*
+			 *  Verifica se foi selecionado algum cliente
+			 *  se getSelectedRow() retornar um numero menor que 0 
+			 *  siguinifica que nenhuma linha foi selecionada
+			 */
+			// Se nenhuma linha for selecionada
+			if(getjPanelEstoque().getjTableEstoque().getSelectedRow() < 0) {
+				JOptionPane.showConfirmDialog(
+						getjPanelEstoque(), // componente
+						"Selecione um produto primeiro.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 			
+			// Uma linha está selecionada
+			else {
+				// recebe o numero da linha selecionada da tabela
+				int row = getjPanelEstoque().getjTableEstoque().getSelectedRow();
+				// recebe a descrição do produto selecionado na tabela
+				String descProduto = getjPanelEstoque().getjTableEstoque().getValueAt(row, 1).toString();
+				System.out.println("produto = " + descProduto);
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Deletar", "Cancelar"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensagem selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Cancelar
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjFramePrincipal(), // tela pai
+						"Tem certeza que deseja apagar o produto '" + descProduto + "'?\n"
+								+ "Atenção! O produto só poderá ser deletado se ainda não\n"
+								+ "foi ultilizado em nenhuma operação ex.: Venda...Orçamento...", // mensagem
+						"Alerta", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				if(option == 0) {
+					// Caso tenha deletado com sucesso
+					if(getDaoJPanelEstoque().deletarProduto(getjPanelEstoque().getjTableEstoque().getValueAt(row, 0).toString())) {
+						atualizarTabela();
+						JOptionPane.showConfirmDialog(
+								getjPanelEstoque(), // componente
+								"Produto '" + descProduto + "' deletado com sucesso.!\n",
+								"Produto deletado", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.PLAIN_MESSAGE // tipo de mensagem
+						);
+					}
+					
+					// Caso não tenha deletado
+					else {
+						atualizarTabela();
+						JOptionPane.showConfirmDialog(
+								getjPanelEstoque(), // componente
+								"Produto '" + descProduto + "' não foi deletado.\n"
+										+ "Verificar se o produto ja foi utilizado em alguma operação.", // texto
+								"Impossível deletar produto", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.ERROR_MESSAGE // tipo de mensagem
+						);
+					}
+					
+					
+				}
+			}			
 		}
 		
 		// Quando o botão filtrar produto for clicado

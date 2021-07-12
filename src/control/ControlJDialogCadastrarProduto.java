@@ -143,9 +143,41 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		
 		// Quando o botão cancelar for clicado
 		else if(e.getSource() == getjDialogCadastrarProduto().getjButtonCancelar()) {
-			getcontrolJPanelEstoque().atualizarTabela();
-			getjFramePricipal().setEnabled(true);
-			getjDialogCadastrarProduto().dispose();
+			// Caso todos os campos estejam vazios a tele é fechada imediatamente
+			if(camposIsEmpty()) {
+				getcontrolJPanelEstoque().atualizarTabela();
+				getjFramePricipal().setEnabled(true);
+				getjDialogCadastrarProduto().dispose();
+				
+			// Caso tenha algo digitado em algum campo
+			} else {
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Sim", "Não"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensagem selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Não
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjDialogCadastrarProduto(), // tela pai
+						"Existem capos preenchidos.\n"
+						+ "Tem certeza que deseja cancelar?", // mensagem
+						"Cancelar cadastro?", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.INFORMATION_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				// Se for escolhido Sim
+				if(option == 0) {
+					getcontrolJPanelEstoque().atualizarTabela();
+					getjFramePricipal().setEnabled(true);
+					getjDialogCadastrarProduto().dispose();
+				}
+			}
 		}
 		
 	}
@@ -295,24 +327,21 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	 * @return boolean // Se todos os capos de cadastrar clientes estiverem
 	 * vazios será retornado o valor true
 	 */
-	/*
 	private boolean camposIsEmpty() {
 				
 		if(
-				getjDialogCadastrarVeiculo().getjTFieldChassi().getText().replace(" ", "").isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldPlaca().getText().replace("-", "").replace("/", "").replace(" ", "").isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldKMAtual().getText().replace(" ", "").isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldMarca().getText().isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldModelo().getText().isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldMotor().getText().isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldCor().getText().isEmpty() &&
-				getjDialogCadastrarVeiculo().getjTFieldAno().getText().isEmpty()
+				getjDialogCadastrarProduto().getjTFieldCodigo().getText().isEmpty() &&
+				getjDialogCadastrarProduto().getjTFieldDescricao().getText().isEmpty() &&
+				getjDialogCadastrarProduto().getjTFieldMarca().getText().isEmpty() &&
+				getjDialogCadastrarProduto().getjTFieldQuantidade().getText().isEmpty() &&
+				getjDialogCadastrarProduto().getjTFieldPreco().getText().isEmpty() &&
+				getjDialogCadastrarProduto().getjTFieldCodigo().getText().isEmpty()
 		) {
 			return true;
 		} else {
 			return false;
 		}
-	}*/
+	}
 	
 	private void limpaCampos() {
 		getjDialogCadastrarProduto().getjTFieldCodigo().setText("");

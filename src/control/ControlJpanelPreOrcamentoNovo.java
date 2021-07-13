@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import dao.DaoJDialogIserirProduto;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import model.Mascara;
@@ -47,6 +49,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
 	private ControlJDialogProcurarVeiculo controlJDialogProcurarVeiculo;
+	private JDialogInserirProduto jDialogInserirProduto;
+	private ControlJDialogInserirProduto controlJDialogInserirProduto;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -213,8 +217,16 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		// Quando o botão adicionar for clicado
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico()) {
-			//new JDialogProcurarPeca(getjFramePrincipal(), true);
-			new JDialogInserirProduto(getjFramePrincipal(), false);
+			jDialogInserirProduto = null;
+			controlJDialogInserirProduto = null;
+			getjDialogInserirProduto();
+			getconControlJDialogInserirProduto();
+		}
+		
+		
+		// Quando o botão editar for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonEditarProdutoServico()) {
+			new JDialogProcurarPeca(getjFramePrincipal(), false);
 		}
 	}
 	
@@ -385,6 +397,22 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		);
 	}
 	//** Fim métodos da classe **
+	
+	
+	public JDialogInserirProduto getjDialogInserirProduto() {
+		if(jDialogInserirProduto == null) {
+			jDialogInserirProduto = new JDialogInserirProduto(getjFramePrincipal(), true);
+		}
+		return jDialogInserirProduto;
+	}
+	
+	
+	public ControlJDialogInserirProduto getconControlJDialogInserirProduto() {
+		if(controlJDialogInserirProduto == null) {
+			controlJDialogInserirProduto = new ControlJDialogInserirProduto(getjFramePrincipal(), getjDialogInserirProduto(), getjPanelPreOrcamentoNovo());
+		}
+		return controlJDialogInserirProduto;
+	}
 	
 	
 	public JDialogProcurarCliente getjDialogProCliente() {

@@ -1080,8 +1080,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		                
 		            },
 		            new String [] {
-		                "Cod.Produto", "Qtd.Produto",
-		                "Descrição", "Preço", "Total"
+		                "Cod.", "Qtd.",
+		                "Descrição", "Preço", "Val.desc.", "Total"
 		            }
 		        ));			
 

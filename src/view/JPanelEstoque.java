@@ -9,6 +9,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -39,11 +40,13 @@ public class JPanelEstoque  extends JPanel{
 	private ModuloConexao moduloConexao;
 	private String tituloDescricaoTela; // título que descreve a tela que foi chamanda no JPanelPrincipal
 	
+	private JLabel jLabelPesquisarPor;
+	
 	private JButton jButtonAdicionar;
 	private JButton jButtonEditar;
 	private JButton jButtonApagar;
-	private JButton jButtonFiltrar;
-	private JButton jButtonPesquisarTodos;
+	//private JButton jButtonFiltrar;
+	//private JButton jButtonPesquisarTodos;
 	
 	private JTextField jTFieldBuscarPor;
 	
@@ -93,6 +96,18 @@ public class JPanelEstoque  extends JPanel{
 	//** Fim getters JPanel **
 	
 	//** Início getters JLabel **
+	
+	public JLabel getjLabelPesquisarPor() {
+		if(jLabelPesquisarPor == null){
+			jLabelPesquisarPor = new JLabel("Pesquisar por:");
+			jLabelPesquisarPor.setFont(Fontes.fontJLabelPlain1);
+			jLabelPesquisarPor.setSize(100, 25);
+			jLabelPesquisarPor.setForeground(Cores.preto);
+			jLabelPesquisarPor.setOpaque(false);
+		}
+		return jLabelPesquisarPor;
+	}
+	
 		
 	public String getTituloDescricaoTela() {
 		if(tituloDescricaoTela == null){	
@@ -156,46 +171,6 @@ public class JPanelEstoque  extends JPanel{
 		return jButtonApagar;
 	}
 	
-
-	public JButton getjButtonFiltrar() {
-		if(jButtonFiltrar == null){
-			jButtonFiltrar = new JButton();			
-			jButtonFiltrar.setFont(Fontes.fontJButtonPlain1);
-			jButtonFiltrar.setBackground(Cores.azul1);
-			jButtonFiltrar.setForeground(Color.white);
-			jButtonFiltrar.setHorizontalTextPosition(SwingConstants.LEFT);
-			setSizeIcon.setIconJButton(jButtonFiltrar, Icones.
-					getFiltrar(), 14, 14);
-			jButtonFiltrar.setText("Filtrar");
-			jButtonFiltrar.setSize(61, 22);
-			jButtonFiltrar.setFocusable(false);
-			jButtonFiltrar.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1));
-
-		}
-		return jButtonFiltrar;
-	}
-	
-
-	public JButton getjButtonPesquisarTodos() {
-		if(jButtonPesquisarTodos == null){
-			jButtonPesquisarTodos = new JButton();			
-			jButtonPesquisarTodos.setFont(Fontes.fontJButtonPlain1);
-			jButtonPesquisarTodos.setBackground(Cores.azul1);
-			jButtonPesquisarTodos.setForeground(Color.white);
-			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
-			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
-					getEstoqueOn(), 18, 18);
-			jButtonPesquisarTodos.setText("pesquisar todos");
-			jButtonPesquisarTodos.setSize(118, 22);
-			jButtonPesquisarTodos.setFocusable(false);
-			jButtonPesquisarTodos.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1));
-		
-		}
-		return jButtonPesquisarTodos;
-	}
-	
 	//** Fim getters JButon **
 	
 	
@@ -210,7 +185,7 @@ public class JPanelEstoque  extends JPanel{
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldBuscarPor.setForeground(Cores.preto);
 			jTFieldBuscarPor.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldBuscarPor.setSize(195, 21);
+			jTFieldBuscarPor.setSize(195, 25);
 			jTFieldBuscarPor.setOpaque(true);
 		}
 		return jTFieldBuscarPor;
@@ -231,6 +206,7 @@ public class JPanelEstoque  extends JPanel{
 			choicePesquisarPor.setVisible(true);
 			choicePesquisarPor.add("Código                  ");
 			choicePesquisarPor.add("Descrição               ");
+			choicePesquisarPor.add("Marca                   ");
 			choicePesquisarPor.setFocusable(false);	
 		}
 		return choicePesquisarPor;
@@ -246,7 +222,7 @@ public class JPanelEstoque  extends JPanel{
 		if(jSPEstoque == null){
 			jSPEstoque = new JScrollPane();
 			jSPEstoque.setViewportView(getjTableEstoque());
-			jSPEstoque.setSize(992, 400);	
+			jSPEstoque.setSize(992, 550);	
 		}
 		return jSPEstoque;
 	}
@@ -300,20 +276,16 @@ public class JPanelEstoque  extends JPanel{
 
 	
 	public void addCompJPanelBuscaEstoque() {		
+		this.getjPanelBuscaEstoque().add(getjLabelPesquisarPor());
+		this.getjLabelPesquisarPor().setLocation(14, 16);
 
 		this.getjPanelBuscaEstoque().add(this.getchoicePesquisarPor());
-		this.getchoicePesquisarPor().setLocation(14, 16);
+		this.getchoicePesquisarPor().setLocation(119, 16);
 		
 		this.getjPanelBuscaEstoque().add(this.getjTFieldBuscarPor());
-		this.getjTFieldBuscarPor().setLocation(180, 16);
-
-		this.getjPanelBuscaEstoque().add(this.getjButtonFiltrar());
-		this.getjButtonFiltrar().setLocation(800, 16);
-
-		this.getjPanelBuscaEstoque().add(this.getjButtonPesquisarTodos());
-		this.getjButtonPesquisarTodos().setLocation(874, 16);
+		this.getjTFieldBuscarPor().setLocation(255, 16);
 	}
-	
+
 	//** Fim métodos adição de componentes **
 
 	

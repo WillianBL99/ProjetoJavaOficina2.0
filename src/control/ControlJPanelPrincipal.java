@@ -194,6 +194,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			
 			
 		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+			this.jPanelEstoque = null;
+			this.controlJPanelEstoque = null;
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
 			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(),
 					point, this.getjPanelEstoque().getTituloDescricaoTela());

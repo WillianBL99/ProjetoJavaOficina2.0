@@ -42,8 +42,9 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 		getjPanelEstoque().getjButtonAdicionar().addMouseListener(this);
 		getjPanelEstoque().getjButtonEditar().addMouseListener(this);
 		getjPanelEstoque().getjButtonApagar().addMouseListener(this);
-		getjPanelEstoque().getjButtonFiltrar().addMouseListener(this);
-		getjPanelEstoque().getjButtonPesquisarTodos().addMouseListener(this);
+		getjPanelEstoque().getjTFieldBuscarPor().addKeyListener(this);
+		//getjPanelEstoque().getjButtonFiltrar().addMouseListener(this);
+		//getjPanelEstoque().getjButtonPesquisarTodos().addMouseListener(this);
 	}
 		
 		
@@ -180,16 +181,25 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 				}
 			}			
 		}
-		
+		/*
 		// Quando o botão filtrar produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonFiltrar()) {
+			// Verificar se o txf não está vaizio
+			if(!getjPanelEstoque().getjTFieldBuscarPor().getText().isEmpty()) {
+				
+			}
 			
+			// O jtxf está vazio
+			else {
+				
+			}
 		}
 		
 		// Quando o botão pesquisar todos os produto for clicado
 		else if(e.getSource() == getjPanelEstoque().getjButtonPesquisarTodos()) {
 			
 		}
+		*/
 	}
 
 
@@ -235,14 +245,37 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-	// TODO Auto-generated method stub
-			
+		// TODO Auto-generated method stub
 	}
 
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == getjPanelEstoque().getjTFieldBuscarPor()) {
+			// Verificar se está persquisando por código ou descriçao
+			switch(getjPanelEstoque().getchoicePesquisarPor().getSelectedItem().toString().replace(" ", "")) {
+			case "Descrição":
+				// Verificar se houve algum erro na pesquisa
+				if(!getDaoJPanelEstoque().pesquisarPorDescricao()) {
+				}				
+				break;
+				
+			case "Código":
+				// Verificar se houve algum erro na pesquisa
+				if(!getDaoJPanelEstoque().pesquisarPorCodigo()) {
+				}
+				
+				break;
+				
+			case "Marca":
+				// Verificar se houve algum erro na pesquisa
+				if(!getDaoJPanelEstoque().pesquisarPorMarca()) {
+				}
+				
+				break;
+			}
+		}
 	}
 
 	

@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -80,25 +81,25 @@ public class JPanelConsultarOS extends JPanel {
 	private JLabel jLabelMotorista;
 	private JLabel jLabelResponsavel;
 	
-	private JTextField jTFieldCpf;
+	private JFormattedTextField jTFieldCpf;
 	private JTextField jTFieldEmail;
 	private JTextField jTFieldRua;
 	private JTextField jTFieldNome;
 	private JTextField jTFieldCidade;
 	private JTextField jTFieldNumeroCasa;
-	private Choice choiceTipo;
+	private JTextField jTFieldTipo;
 	private JTextField jTFieldBairro;
-	private JTextField jTFieldTelefone;
+	private JFormattedTextField jTFieldTelefone;
 	
 	private JTextField jTFieldNumeroVeiculo;
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
-	private JTextField jTFieldChassi;
+	private JFormattedTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
-	private JTextField jTFieldAno;
-	private JTextField jTFieldPlaca;
+	private JFormattedTextField jTFieldAno;
+	private JFormattedTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
-	private JTextField jTFieldKMAtual;
+	private JFormattedTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
 	private JTextField jTFieldNumeroOS;
@@ -547,10 +548,10 @@ public class JPanelConsultarOS extends JPanel {
 	
 	
 	//** Início getters JTextField **
-	public JTextField getjTFieldCpf() {
+	public JFormattedTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
 	
-			jTFieldCpf = Mascara.mascaraCPF();
+			jTFieldCpf = new JFormattedTextField(Mascara.mascaraCPF());
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -634,18 +635,18 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldNumeroCasa;
 	}
-	public Choice getchoiceTipo() {
-		if(choiceTipo == null){
+	public JTextField getjTFieldTipo() {
+		if(jTFieldTipo == null){
 	
-			choiceTipo = new Choice();
-			choiceTipo.setSize(92, 21);
-			choiceTipo.setForeground(Cores.preto);
-			choiceTipo.setFont(Fontes.fontJTFieldPlain1);
-			choiceTipo.setFocusable(true);
-			choiceTipo.add("Física");
-			choiceTipo.add("Jurídica");
+			jTFieldTipo = new JTextField();
+			jTFieldTipo.setSize(92, 21);
+			jTFieldTipo.setForeground(Cores.preto);
+			jTFieldTipo.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldTipo.setOpaque(true);
+			jTFieldTipo.setEditable(false);
+			
 		}
-		return choiceTipo;
+		return jTFieldTipo;
 	}
 	public JTextField getjTFieldBairro() {
 		if(jTFieldBairro == null){
@@ -661,10 +662,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldBairro;
 	}
-	public JTextField getjTFieldTelefone() {
+	public JFormattedTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){
 	
-			jTFieldTelefone = Mascara.mascaraTelefone();
+			jTFieldTelefone = new JFormattedTextField(Mascara.mascaraTelefone());
 			jTFieldTelefone.setSize(115, 21);
 			jTFieldTelefone.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -719,10 +720,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldCor;
 	}
-	public JTextField getjTFieldChassi() {
+	public JFormattedTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){
 	
-			jTFieldChassi = Mascara.mascaraChassi();
+			jTFieldChassi = new JFormattedTextField(Mascara.mascaraChassi());
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -747,10 +748,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldModelo;
 	}
-	public JTextField getjTFieldAno() {
+	public JFormattedTextField getjTFieldAno() {
 		if(jTFieldAno == null){
 	
-			jTFieldAno = new JTextField();
+			jTFieldAno = new JFormattedTextField(Mascara.mascaraAno());
 			jTFieldAno.setSize(105, 21);
 			jTFieldAno.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -761,10 +762,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldAno;
 	}
-	public JTextField getjTFieldPlaca() {
+	public JFormattedTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){
 	
-			jTFieldPlaca = Mascara.mascaraPlaca();
+			jTFieldPlaca = new JFormattedTextField(Mascara.mascaraPlaca());
 			jTFieldPlaca.setSize(125, 21);
 			jTFieldPlaca.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -789,10 +790,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldMotor;
 	}
-	public JTextField getjTFieldKMAtual() {
+	public JFormattedTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
 	
-			jTFieldKMAtual = Mascara.mascaraQuilometragem();
+			jTFieldKMAtual = new JFormattedTextField(Mascara.mascaraQuilometragem());
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -966,8 +967,8 @@ public class JPanelConsultarOS extends JPanel {
 		this.getjPanelCentro().add(getjLabelTipo());
 		this.getjLabelTipo().setLocation(613, 77);
 		
-		this.getjPanelCentro().add(getchoiceTipo());
-		this.getchoiceTipo().setLocation(656, 77);
+		this.getjPanelCentro().add(getjTFieldTipo());
+		this.getjTFieldTipo().setLocation(656, 77);
 		
 		this.getjPanelCentro().add(getjLabelTelefone());
 		this.getjLabelTelefone().setLocation(754, 77);

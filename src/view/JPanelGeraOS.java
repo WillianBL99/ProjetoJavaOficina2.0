@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -77,7 +78,7 @@ import javax.swing.JRadioButton;
 		private JLabel jLabelMotorista;
 		private JLabel jLabelResponsavel;
 		
-		private JTextField jTFieldCpf;
+		private JFormattedTextField jTFieldCpf;
 		private JTextField jTFieldEmail;
 		private JTextField jTFieldRua;
 		private JTextField jTFieldNome;
@@ -85,23 +86,23 @@ import javax.swing.JRadioButton;
 		private JTextField jTFieldNumeroCasa;
 		private Choice choiceTipo;
 		private JTextField jTFieldBairro;
-		private JTextField jTFieldTelefone;
+		private JFormattedTextField jTFieldTelefone;
 		
 		private JTextField jTFieldNumeroVeiculo;
 		private JTextField jTFieldMarca;
 		private JTextField jTFieldCor;
-		private JTextField jTFieldChassi;
+		private JFormattedTextField jTFieldChassi;
 		private JTextField jTFieldModelo;
-		private JTextField jTFieldAno;
-		private JTextField jTFieldPlaca;
+		private JFormattedTextField jTFieldAno;
+		private JFormattedTextField jTFieldPlaca;
 		private JTextField jTFieldMotor;
-		private JTextField jTFieldKMAtual;
+		private JFormattedTextField jTFieldKMAtual;
 		private JTextField jTFieldCombustivel;
 		
 		private JTextField jTFieldNumeroOS;
 		private JTextField jTFieldServico;
 		private JTextField jTFieldReclamacao;
-		private JTextField jTFieldData;
+		private JFormattedTextField jTFieldData;
 		private JTextField jTFieldMotorista;
 		private JComboBox<String> jComboBoxResponsavel;
 		
@@ -556,10 +557,10 @@ import javax.swing.JRadioButton;
 		
 		
 		//** Início getters JTextField **
-		public JTextField getjTFieldCpf() {
+		public JFormattedTextField getjTFieldCpf() {
 			if(jTFieldCpf == null){
 				
-				jTFieldCpf = Mascara.mascaraCPF();
+				jTFieldCpf = new JFormattedTextField();
 				jTFieldCpf.setSize(165, 21);
 				jTFieldCpf.setBorder(BorderFactory.
 						createLineBorder(Cores.cinza2, 1, false));
@@ -663,10 +664,10 @@ import javax.swing.JRadioButton;
 			}
 			return jTFieldBairro;
 		}
-		public JTextField getjTFieldTelefone() {
+		public JFormattedTextField getjTFieldTelefone() {
 			if(jTFieldTelefone == null){
 		
-				jTFieldTelefone = Mascara.mascaraTelefone();
+				jTFieldTelefone = new JFormattedTextField();
 				jTFieldTelefone.setSize(115, 21);
 				jTFieldTelefone.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -717,10 +718,10 @@ import javax.swing.JRadioButton;
 			}
 			return jTFieldCor;
 		}
-		public JTextField getjTFieldChassi() {
+		public JFormattedTextField getjTFieldChassi() {
 			if(jTFieldChassi == null){
 		
-				jTFieldChassi = Mascara.mascaraChassi();
+				jTFieldChassi = new JFormattedTextField();
 				jTFieldChassi.setSize(219, 21);
 				jTFieldChassi.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -743,10 +744,10 @@ import javax.swing.JRadioButton;
 			}
 			return jTFieldModelo;
 		}
-		public JTextField getjTFieldAno() {
+		public JFormattedTextField getjTFieldAno() {
 			if(jTFieldAno == null){
 		
-				jTFieldAno = new JTextField();
+				jTFieldAno = new JFormattedTextField();
 				jTFieldAno.setSize(105, 21);
 				jTFieldAno.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -756,10 +757,10 @@ import javax.swing.JRadioButton;
 			}
 			return jTFieldAno;
 		}
-		public JTextField getjTFieldPlaca() {
+		public JFormattedTextField getjTFieldPlaca() {
 			if(jTFieldPlaca == null){
 		
-				jTFieldPlaca = Mascara.mascaraPlaca();
+				jTFieldPlaca = new JFormattedTextField();
 				jTFieldPlaca.setSize(125, 21);
 				jTFieldPlaca.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -782,10 +783,10 @@ import javax.swing.JRadioButton;
 			}
 			return jTFieldMotor;
 		}
-		public JTextField getjTFieldKMAtual() {
+		public JFormattedTextField getjTFieldKMAtual() {
 			if(jTFieldKMAtual == null){
 		
-				jTFieldKMAtual = Mascara.mascaraQuilometragem();
+				jTFieldKMAtual = new JFormattedTextField();
 				jTFieldKMAtual.setSize(120, 21);
 				jTFieldKMAtual.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -853,7 +854,7 @@ import javax.swing.JRadioButton;
 		public JTextField getjTFieldData() {
 			if(jTFieldData == null){
 		
-				jTFieldData = Mascara.mascaraData();
+				jTFieldData = new JFormattedTextField();
 				jTFieldData.setSize(131, 21);
 				jTFieldData.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

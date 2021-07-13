@@ -15,8 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-
 import dao.ComandosSQL;
 import dao.ModuloConexao;
 import dao.PreencherTabela;
@@ -222,7 +220,7 @@ public class JPanelEstoque  extends JPanel{
 		if(jSPEstoque == null){
 			jSPEstoque = new JScrollPane();
 			jSPEstoque.setViewportView(getjTableEstoque());
-			jSPEstoque.setSize(992, 550);	
+			jSPEstoque.setSize(992, 500);	
 		}
 		return jSPEstoque;
 	}
@@ -242,6 +240,7 @@ public class JPanelEstoque  extends JPanel{
 			jTableEstoque.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTableEstoque.setFont(Fontes.fontJTablePlain2);
 			jTableEstoque.setOpaque(false);
+			jTableEstoque.setRowHeight(21);
 			jTableEstoque.getTableHeader().setFont(Fontes.fontJTableBold2);
 			jTableEstoque.getTableHeader().setForeground(Cores.branco);
 			jTableEstoque.getTableHeader().setBackground(Cores.azul1);

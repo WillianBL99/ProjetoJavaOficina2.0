@@ -37,7 +37,6 @@ public class JDialogProcurarPeca extends JDialog{
 	private boolean modal;
 	private JButton jButtonCancelar;
 	private JButton jButtonSelecionar;
-	private JButton jButtonProcurar;	
 
 	private JTextField jTFieldProcurar;
 	
@@ -171,23 +170,6 @@ public class JDialogProcurarPeca extends JDialog{
 		}
 		return jButtonSelecionar;
 	}
-
-
-	public JButton getjButtonProcurar() {
-		if(jButtonProcurar == null){
-			jButtonProcurar = new JButton();			
-			jButtonProcurar.setFont(Fontes.fontJButtonPlain2);
-			jButtonProcurar.setBackground(Cores.azul1);
-			jButtonProcurar.setForeground(Color.white);
-			setSizeIcon.setIconJButton(jButtonProcurar, Icones.
-					getBuscar(), 22, 22);
-			jButtonProcurar.setSize(48, 25);
-			jButtonProcurar.setFocusable(false);
-			jButtonProcurar.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 1));
-		}
-		return jButtonProcurar;
-	}
 	
 	//** Início getters JFields **
 	
@@ -261,9 +243,10 @@ public class JDialogProcurarPeca extends JDialog{
 			choicePesquisarPor.setSize(175, 50);
 			choicePesquisarPor.setFont(Fontes.fontJTFieldPlain1);
 			choicePesquisarPor.setVisible(true);
-			choicePesquisarPor.add("Descrição Peça");
-			choicePesquisarPor.add("Código Peça");
-			choicePesquisarPor.setFocusable(false);
+			choicePesquisarPor.add("Código                  ");
+			choicePesquisarPor.add("Descrição               ");
+			choicePesquisarPor.add("Marca                   ");
+			choicePesquisarPor.setFocusable(false);	
 	
 		}
 		return choicePesquisarPor;
@@ -288,9 +271,6 @@ public class JDialogProcurarPeca extends JDialog{
 
 		getJDialogProcurarPeca().getContentPane().add(getjTFieldProcurar());
 		getjTFieldProcurar().setLocation(319, 40);
-		
-		getJDialogProcurarPeca().getContentPane().add(getjButtonProcurar());
-		getjButtonProcurar().setLocation(511, 40);
 
 		getJDialogProcurarPeca().getContentPane().add(getjSPanePeca());
 		getjSPanePeca().setLocation(50, 100);

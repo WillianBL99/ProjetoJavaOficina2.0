@@ -18,7 +18,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import model.Cores;
 import model.Fontes;
-import model.SetSizeIcon;
 
 /**
  * @author Paulo Uilian
@@ -29,8 +28,6 @@ public class JDialogProcurarPeca extends JDialog{
 	
 	
 	//** Início declaração de variáveis **
-	
-	private SetSizeIcon setSizeIcon = new SetSizeIcon();
 	
 	private boolean modal;
 	private JButton jButtonCancelar;

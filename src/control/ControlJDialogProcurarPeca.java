@@ -9,9 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
-import com.sun.tools.jdi.resources.jdi;
-
 import dao.DaoJDialogProcurarProduto;
 import view.JDialogProcurarPeca;
 import view.JFramePrincipal;

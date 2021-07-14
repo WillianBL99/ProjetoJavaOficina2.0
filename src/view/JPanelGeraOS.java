@@ -9,7 +9,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;

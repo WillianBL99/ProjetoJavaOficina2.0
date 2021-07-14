@@ -81,6 +81,7 @@ public class JDialogInserirProduto extends JDialog{
 	//** Início construtor **
 	public JDialogInserirProduto(Frame frame, boolean modalTela) {
 		super(frame, "Inserir produto");
+		setmodalTela(modalTela);
 		this.addCompJDialogInserirPeca();
 	}	
 
@@ -395,7 +396,8 @@ public class JDialogInserirProduto extends JDialog{
 			jTFieldQuantidadeInserir.setBackground(Cores.cinza4);
 			jTFieldQuantidadeInserir.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldQuantidadeInserir.setSize(70, 25);
-			jTFieldQuantidadeInserir.setOpaque(true);		
+			jTFieldQuantidadeInserir.setOpaque(true);	
+			jTFieldQuantidadeInserir.setEnabled(false);	
 		}
 		return jTFieldQuantidadeInserir;
 	}
@@ -433,7 +435,7 @@ public class JDialogInserirProduto extends JDialog{
 
 	public JTextField getjTFieldDesconto() {
 		if(jTFieldDesconto == null){
-			jTFieldDesconto = new JTextField();
+			jTFieldDesconto = new JTextField("0");
 			jTFieldDesconto.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDesconto.setForeground(Cores.preto);
@@ -442,6 +444,7 @@ public class JDialogInserirProduto extends JDialog{
 			jTFieldDesconto.setSize(70, 25);
 			jTFieldDesconto.setOpaque(true);	
 			jTFieldDesconto.setVisible(true);		
+			jTFieldDesconto.setEnabled(false);
 		}
 		return jTFieldDesconto;
 	}
@@ -494,13 +497,12 @@ public class JDialogInserirProduto extends JDialog{
 			if(jTablePecas == null){
 				jTablePecas = new JTable();
 				getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
-				jTablePecas.setModel(new PreencherTabela().
-						preencher(getmoduloConexao().getResultSet(),
+				jTablePecas.setModel(new PreencherTabela().preencher(getmoduloConexao().getResultSet(), 
 								 "Código",
 								 "Descrição",
 								 "Marca",
 								 "Quantidade",
-								 "Preço"));			
+								 "Preço"));		
 				jTablePecas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				jTablePecas.setRowHeight(21);
 				jTablePecas.setFont(Fontes.fontJTablePlain1);

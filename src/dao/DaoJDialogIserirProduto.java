@@ -80,7 +80,7 @@ public class DaoJDialogIserirProduto {
 			// Recebe o codigo do produto
 			String cod_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosCodigo(), cod_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {

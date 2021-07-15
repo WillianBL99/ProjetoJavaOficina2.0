@@ -11,9 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.JOptionPane;
-
 import dao.DaoJDialogIserirProduto;
 import model.Cores;
 import view.JDialogInserirProduto;
@@ -32,18 +30,25 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 	private DaoJDialogIserirProduto daoJDialogIserirProduto;
 	private JPanelPreOrcamentoNovo jdiJPanelPreOrcamentoNovo;
 	private boolean modalTela;
+		
+	private int rowSelec;
+	private String codigoSelec;
+	private String descricaoSelec;
+	private String marcaSelec;
+	private Integer quantidadeSelec;
+	private Float precoSelec;
 	
-	private String codigoProcurado;
-	private String descricaoProcurado;
-	private String marcaProcurardo;
-	private String quantidadeProcurado;
-	private String precoProcurado;
+	private Integer qtdInserir;
+	private Integer descPercent;
+	private Float desconto;
+	private Float total;
 	
 	
 
 
 	//** Fim declaração de variáveis **	
 	public ControlJDialogInserirProduto(JFramePrincipal jFramePricipal, JDialogInserirProduto jDialogInserirProduto, JPanelPreOrcamentoNovo jdiJPanelPreOrcamentoNovo) {	
+		this.descPercent = 0;
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogInserirProduto = jDialogInserirProduto;
 		this.jdiJPanelPreOrcamentoNovo = jdiJPanelPreOrcamentoNovo;
@@ -127,43 +132,81 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		
 		// Quando o botão inserir produto for clicado
 		if(e.getSource() == getjDialogInserirProduto().getjButtonInserirPeca()) {
-			// verificar se foi setada a quantidade de produto
-			// Vetor de String com os nomes das opções que apareceram no joptionpane.
-			String[] options = {"Sim", "Não"}; 
-			
-			/*
-			 * int option
-			 * recebe 0 ou 1 de acordo com a mensagem selecionada
-			 * - 0: Foi secionada a opção Sim
-			 * - 1: Foi selecionada a opção Cancelar
-			 */
-			int option = JOptionPane.showOptionDialog(
-					getjDialogInserirProduto(), // tela pai
-					"Produto inserido. Deseja adicionar outro?", // mensagem
-					"Produto inserido", // título
-					JOptionPane.DEFAULT_OPTION, 
-					JOptionPane.PLAIN_MESSAGE,
-					null,
-					options,
-					options[1]); // opção selecionada inicialmente
-			
-			if(option == 0) {
-				limpaCampos();
-				getjDialogInserirProduto().getjTFieldQuantidadeInserir().setEnabled(false);
-				getjDialogInserirProduto().getjTFieldQuantidadeInserir().setBackground(Cores.cinza4);
-				getjDialogInserirProduto().getjTFieldDesconto().setEnabled(false);
-				getjDialogInserirProduto().getjTFieldDesconto().setBackground(Cores.cinza4);
-				getjDialogInserirProduto().getjTFieldProcurar().requestFocus();
+			//tira o foco do campo de quantidadeInserir
+			getjDialogInserirProduto().getjTFieldDesconto().requestFocus();
+			atualizaCamposInsercao();
+			// verificar se foi setada uma quantidade maior dq zero
+			if(getQtdInserir() > 0) {
+				// verificar se a quantidade é válida
+				if(getDescPercent() >= 0 && getDescPercent() <= 99) {
+					// Verifica se o produto no foi inserido anteriormente
+					if(inserirProduto(
+							getCodigoSelec(),
+							getQtdInserir().toString(),
+							getDescricaoSelec(),
+							getPrecoSelec().toString(),
+							String.format("%.2f", getDesconto()),
+							String.format("%.2f", getTotal())
+						)
+					)					
+					{					
+						// Vetor de String com os nomes das opções que apareceram no joptionpane.
+						String[] options = {"Sim", "Não"}; 
+						
+						/*
+						 * int option
+						 * recebe 0 ou 1 de acordo com a mensagem selecionada
+						 * - 0: Foi secionada a opção Sim
+						 * - 1: Foi selecionada a opção Cancelar
+						 */
+						int option = JOptionPane.showOptionDialog(
+								getjDialogInserirProduto(), // tela pai
+								"Produto inserido. Deseja adicionar outro?", // mensagem
+								"Produto inserido", // título
+								JOptionPane.DEFAULT_OPTION, 
+								JOptionPane.PLAIN_MESSAGE,
+								null,
+								options,
+								options[1]); // opção selecionada inicialmente
+						
+						if(option == 0) {
+							limpaCampos();				
+						}
+						
+						// Sair da tela
+						else {
+							getjFramePricipal().setEnabled(true);
+							getjDialogInserirProduto().dispose();
+						
+						}
+						
+					}
+					
+					// Se o produto já foi inserido
+					else {
+						JOptionPane.showConfirmDialog(
+								getjDialogInserirProduto(), // componente
+								"Esse produto já foi inserido anteriormente.", // texto
+								"Impossível inserir", // titulo
+								JOptionPane.DEFAULT_OPTION, // botões
+								JOptionPane.ERROR_MESSAGE // tipo de mensagem
+							);
+					}
+				}				
 			}
 			
-			// Sair da tela
+			// Insira a quantidade primeiro
 			else {
-				getjFramePricipal().setEnabled(true);
-				getjDialogInserirProduto().dispose();
-			
+				JOptionPane.showConfirmDialog(
+						getjDialogInserirProduto(), // componente
+						"Insira uma quantidade válida.", // texto
+						"Alerta", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
 			}
-			
 		}
+		
 		
 		// Quando o botão cancelar for clicado
 		else if(e.getSource() == getjDialogInserirProduto().getjButtonCancelar()) {
@@ -178,7 +221,7 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 			 */
 			int option = JOptionPane.showOptionDialog(
 					getjDialogInserirProduto(), // tela pai
-					"Produto não foi inserido, deseja sair?", // mensagem
+					"Produto atual não foi inserido ainda, deseja sair?", // mensagem
 					"Alerta", // título
 					JOptionPane.DEFAULT_OPTION, 
 					JOptionPane.INFORMATION_MESSAGE,
@@ -191,6 +234,7 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 				getjDialogInserirProduto().dispose();
 			}			
 		}
+		
 		
 		// Quando algum item da tabela for selecionado
 		else if(e.getSource() == getjDialogInserirProduto().getjTablePecas()) {
@@ -244,12 +288,9 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		if(e.getSource() == getjDialogInserirProduto().getjTFieldQuantidadeInserir()) {
 			// Verificar se foi digitado algum valor
 			if(!getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText().isEmpty()) {
-				// Recebe o valor da quantidade a ser inserida
-				
-				Integer val_inserir = Integer.parseInt(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText().isEmpty()?
-						"0" : getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
+				atualizaCamposInsercao();
 				// Verificar se não foi inserido um valor menor ou igual à 0 
-				if(val_inserir > 0) {
+				if(getQtdInserir() > 0) {
 					atualizaCamposInsercao();
 					getjDialogInserirProduto().getjTFieldDesconto().requestFocus();
 				}
@@ -257,21 +298,30 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 			
 			// Senão foi digitado nada
 			else {
-				
+				getjDialogInserirProduto().getjTFieldQuantidadeInserir().setText("0");
+				atualizaCamposInsercao();
 			}
 		}
 		
 		// Quando o jtxf Desconto perder o foco
 		else if(e.getSource() == getjDialogInserirProduto().getjTFieldDesconto()) {
 			if(getjDialogInserirProduto().getjTFieldDesconto().getText().isEmpty()) {
-				getjDialogInserirProduto().getjTFieldAtendidos().setText("0");
+				getjDialogInserirProduto().getjTFieldDesconto().setText("0");
 			} else {
-				Integer val_inserir = Integer.parseInt(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText().isEmpty()?
-						"0" : getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
-				// Verificar se não foi inserido um valor menor ou igual à 0 em quantidade inserir
-				if(val_inserir > 0) {
+				// Verificar se não foi inserido um valor entre 0 e 99
+				if(getDescPercent() >= 0 && getDescPercent() <= 99) {
 					atualizaCamposInsercao();
 					getjDialogInserirProduto().getjButtonInserirPeca().requestFocus();
+				} else {
+					getjDialogInserirProduto().getjTFieldDesconto().setText("0");
+					JOptionPane.showConfirmDialog(
+							getjDialogInserirProduto(), // componente
+							"Insira um valor de desconto válido.\n"
+							+ "Valores mermitidos entre 0 a 99.", // texto
+							"Valor de desconto inválido", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.ERROR_MESSAGE // tipo de mensagem
+					);
 				}
 			}
 		}
@@ -372,70 +422,136 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		this.modalTela = modalTela;
 	}
 	
+	/**
+	 * Metodo getRowSelec
+	 * @return Retorna um int contendo o valor da linha selecinada.
+	 */
+	public int getRowSelec() {
+		return this.rowSelec;
+	}
+
+	// set linhaselecionada selecionado	
+	public void setRowSelec(int rowSelec) {
+		this.rowSelec = rowSelec;				
+	}
 	
-	public String getCodigoProcurado() {
-		if(codigoProcurado == null){	
-			codigoProcurado = new String();	
-		}
-		return codigoProcurado;
+	/**
+	 * Metodo getCodigoSelec
+	 * @return Retorna a String contid em um JTextField.
+	 */
+	public String getCodigoSelec() {
+		return this.codigoSelec;
 	}
 
-
-	public void setCodigoProcurado(String codigoProcurado) {
-		this.codigoProcurado = codigoProcurado;
+	// set código selecionado	
+	public void setCodigoSelec(String codigoSelec) {
+		this.codigoSelec = codigoSelec;				
+	}
+	
+	/**
+	 * Metodo getCodigoSelec
+	 * @return Retorna a String contid em um JTextField.
+	 */
+	public String getDescricaoSelec() {
+		return this.descricaoSelec;
 	}
 
-
-	public String getDescricaoProcurado() {
-		if(descricaoProcurado == null){	
-			descricaoProcurado = new String();	
-		}
-		return descricaoProcurado;
+	// set descrição selecionado	
+	public void setDescricaoSelec(String descricaoSelec) {
+		this.descricaoSelec = descricaoSelec;				
+	}
+	
+	/**
+	 * Metodo getMarcaSelec
+	 * @return Retorna a String contida em um JTextField.
+	 */
+	public String getMarcaSelec() {
+		return this.marcaSelec;
 	}
 
-
-	public void setDescricaoProcurado(String descricaoProcurado) {
-		this.descricaoProcurado = descricaoProcurado;
+	// set márca selecionado	
+	public void setMarcaSelec(String marcaSelec) {
+		this.marcaSelec = marcaSelec;				
+	}
+	
+	/**
+	 * Metodo getQuantidadeSelec
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Integer getQuantidadeSelec() {
+		return this.quantidadeSelec;
 	}
 
-
-	public String getMarcaProcurardo() {
-		if(marcaProcurardo == null){	
-			marcaProcurardo = new String();	
-		}
-		return marcaProcurardo;
+	// set quantidadeSelec selecionado	
+	public void setQuantidadeSelec(String quantidadeSelec) {
+		this.quantidadeSelec = Integer.parseInt(quantidadeSelec.isEmpty()? "-135" : quantidadeSelec);				
+	}
+	
+	/**
+	 * Metodo getPrecoSelec
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Float getPrecoSelec() {
+		return this.precoSelec;
 	}
 
-
-	public void setMarcaProcurardo(String marcaProcurardo) {
-		this.marcaProcurardo = marcaProcurardo;
+	// set preco selecionado	
+	public void setPrecoSelec(String precoSelec) {
+		this.precoSelec = Float.parseFloat(precoSelec.isEmpty()? "-135" : precoSelec);
+	}
+	
+	/**
+	 * Metodo getQtdInserir
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Integer getQtdInserir() {
+		return this.qtdInserir;
 	}
 
-
-	public String getQuantidadeProcurado() {
-		if(quantidadeProcurado == null){	
-			quantidadeProcurado = new String();	
-		}
-		return quantidadeProcurado;
+	// set preco selecionado	
+	public void setQtdInserir(String qtdInserir) {
+		this.qtdInserir = Integer.parseInt(qtdInserir.isEmpty()? "-135" : qtdInserir);
+	}
+	
+	/**
+	 * Metodo getQuantidadeSelec
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Integer getDescPercent() {
+		return this.descPercent;
 	}
 
-
-	public void setQuantidadeProcurado(String quantidadeProcurado) {
-		this.quantidadeProcurado = quantidadeProcurado;
+	// set quantidadeSelec selecionado	
+	public void setDescPercent(String descPercent) {
+		this.descPercent = Integer.parseInt(descPercent.isEmpty()? "-135" : descPercent);;				
+	}
+	
+	/**
+	 * Metodo getDesconto
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Float getDesconto() {
+		return this.desconto;
 	}
 
-
-	public String getPrecoProcurado() {
-		if(precoProcurado == null){	
-			precoProcurado = new String();	
-		}
-		return precoProcurado;
+	// set desconto selecionado	
+	public void setDesconto(Float desconto) {
+		this.desconto = desconto;
+	}
+	
+	/**
+	 * Metodo getTotal
+	 * @return Retorna o inteiro do getText() de um jTextField. Caso não tenha nada no jtx retorna o valor -135
+	 */
+	public Float getTotal() {
+		return this.total;
 	}
 
-
-	public void setPrecoProcurado(String precoProcurado) {
-		this.precoProcurado = precoProcurado;
+	// set total selecionado	
+	public void setTotal(Float total) {
+		this.total = total;
 	}
+	
 	
 	
 	private void limpaCampos() {
@@ -445,32 +561,63 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		getjDialogInserirProduto().getjTFieldQuantidadeInserir().setText("");
 		getjDialogInserirProduto().getjTFieldAtendidos().setText("");
 		getjDialogInserirProduto().getjTFieldComprar().setText("");
-		getjDialogInserirProduto().getjTFieldDesconto().setText("");
-		getjDialogInserirProduto().getjTFieldValorDesconto().setText("0");
+		getjDialogInserirProduto().getjTFieldDesconto().setText(getDescPercent().toString());
+		getjDialogInserirProduto().getjTFieldValorDesconto().setText("");
 		getjDialogInserirProduto().getjTFieldValorTotal().setText("");
+		
+		getjDialogInserirProduto().getjTFieldQuantidadeInserir().setEnabled(false);
+		getjDialogInserirProduto().getjTFieldQuantidadeInserir().setBackground(Cores.cinza4);
+		getjDialogInserirProduto().getjTFieldDesconto().setEnabled(false);
+		getjDialogInserirProduto().getjTFieldDesconto().setBackground(Cores.cinza4);
+		getjDialogInserirProduto().getjTFieldProcurar().requestFocus();
 	}
 	
 	
 	/**
-	 * Método isNovaQuantidadeValida() verifica se a nova quantidade de produtos
-	 * é válida.
-	 * @return boolean Se a nova quantidade for válida retorna true, caso não, retorna false.
+	 * Método inserirProduto() insere o valores de entrada em uma tabela e organiza
+	 * os valores antes de inseir.
+	 * @param id
+	 * @param qtd
+	 * @param desc
+	 * @param preco
+	 * @param valDesc
+	 * @param total
+	 * @return boolean Retorna false caso o produto já tenha sido inserido.
 	 */
-	private boolean isNovaQuantidadeValida() {
-		return false;
+	private boolean inserirProduto(String id, String qtd, String desc, String preco, String valDesc, String total) {
+		return getjPanelPreOrcamentoNovo().gettabelaTemporaria().inserir(
+				getjPanelPreOrcamentoNovo().getjTableListaProdutos(),
+				id,
+				qtd,
+				desc,
+				preco,
+				valDesc,
+				total);
 	}
 	
-	
+	/**
+	 * Método atualizarCamposDados atualiza os campos e algumas variáveis
+	 * assim que um produto é selecionado na tabela.
+	 */
 	private void atualizarCamposDados() {
 		// Linha clicada na tabela
-		int row = getjDialogInserirProduto().getjTablePecas().getSelectedRow();
-		String preco = getjDialogInserirProduto().getjTablePecas().getValueAt(row, 4).toString();
-		String descricao = getjDialogInserirProduto().getjTablePecas().getValueAt(row, 1).toString();
-		String qtd_estoque = getjDialogInserirProduto().getjTablePecas().getValueAt(row, 3).toString();
+		setRowSelec(getjDialogInserirProduto().getjTablePecas().getSelectedRow());
+		// codigo do produto selecionado
+		setCodigoSelec(getjDialogInserirProduto().getjTablePecas().getValueAt(getRowSelec(), 0).toString());
+		// descrição do produto selecionado
+		setDescricaoSelec(getjDialogInserirProduto().getjTablePecas().getValueAt(getRowSelec(), 1).toString());
+		// marca do produto selecionado
+		setMarcaSelec(getjDialogInserirProduto().getjTablePecas().getValueAt(getRowSelec(), 2).toString());
+		// quantidade do produto selecionado
+		setQuantidadeSelec(getjDialogInserirProduto().getjTablePecas().getValueAt(getRowSelec(), 3).toString());
+		// preço do produto selecionado
+		setPrecoSelec(getjDialogInserirProduto().getjTablePecas().getValueAt(getRowSelec(), 4).toString());
+		
+		
 		// Setar os campos de dados do produto
-		getjDialogInserirProduto().getjTFieldPreco().setText(preco);
-		getjDialogInserirProduto().getjTFieldDescricao().setText(descricao);
-		getjDialogInserirProduto().getjTFieldQuantidadeEstoque().setText(qtd_estoque);
+		getjDialogInserirProduto().getjTFieldPreco().setText(String.format("%.2f", getPrecoSelec()));
+		getjDialogInserirProduto().getjTFieldDescricao().setText(getDescricaoSelec());
+		getjDialogInserirProduto().getjTFieldQuantidadeEstoque().setText(getQuantidadeSelec().toString());
 		getjDialogInserirProduto().getjTFieldQuantidadeInserir().setEnabled(true);
 		getjDialogInserirProduto().getjTFieldQuantidadeInserir().setBackground(Cores.branco);
 		getjDialogInserirProduto().getjTFieldDesconto().setEnabled(true);
@@ -478,19 +625,28 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		getjDialogInserirProduto().getjTFieldQuantidadeInserir().requestFocus();
 	}
 	
-	
 	private void atualizaCamposInsercao() {
 		// rebe o valor do desconto
-		Integer val_inserir = Integer.parseInt(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
-		int estoque = Integer.parseInt(getjDialogInserirProduto().getjTFieldQuantidadeEstoque().getText().isEmpty()? "0" : getjDialogInserirProduto().getjTFieldQuantidadeEstoque().getText());
-		float desconto = Float.parseFloat(getjDialogInserirProduto().getjTFieldDesconto().getText().isEmpty()? "0" : getjDialogInserirProduto().getjTFieldDesconto().getText());
-		float preco = Float.parseFloat(getjDialogInserirProduto().getjTFieldPreco().getText().isEmpty()? "0" : getjDialogInserirProduto().getjTFieldPreco().getText());
-		float total = val_inserir * preco;
-		float descRS = (desconto/100) * total;
-		getjDialogInserirProduto().getjTFieldAtendidos().setText(estoque >= val_inserir ? val_inserir.toString() : "0");
-		getjDialogInserirProduto().getjTFieldComprar().setText(estoque < val_inserir ? String.format("%d", (val_inserir - estoque)) : "");
-		getjDialogInserirProduto().getjTFieldValorDesconto().setText(String.format("%.2f", descRS));
-		getjDialogInserirProduto().getjTFieldValorTotal().setText(String.format("%.2f", total - descRS));
+		setQtdInserir(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
+		// Valor dos desconto em %
+		setDescPercent(getjDialogInserirProduto().getjTFieldDesconto().getText());
+		System.out.println(getjDialogInserirProduto().getjTFieldDesconto().getText() + "descPersent");
+		// Recebe valor total sem desconto
+		Float totalSD = getQtdInserir() * getPrecoSelec();
+		// Valor dos desconto em reais
+		setDesconto((float) ((getDescPercent()/100.0) * totalSD));
+		System.out.println("desconto = " + getDesconto() + " " + ((getDescPercent()/100) * totalSD));
+		// Valor total a ser pago
+		setTotal(totalSD - getDesconto());
+		
+		// Quantidade de produtos atendidos pelo estoque
+		getjDialogInserirProduto().getjTFieldAtendidos().setText(getQuantidadeSelec() >= getQtdInserir() ? getQtdInserir().toString() : getQuantidadeSelec().toString());
+		// Quantidade de produtos que precisam ser comprados para atender a demanda atual
+		getjDialogInserirProduto().getjTFieldComprar().setText(getQuantidadeSelec() < getQtdInserir() ? String.format("%d", (getQtdInserir() - getQuantidadeSelec())) : "");
+		// O valor do desconot em R$
+		getjDialogInserirProduto().getjTFieldValorDesconto().setText(String.format("%.2f", getDesconto()));
+		// O valor total da inserção
+		getjDialogInserirProduto().getjTFieldValorTotal().setText(String.format("%.2f",getTotal()));
 	
 	}
 	

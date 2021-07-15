@@ -136,11 +136,10 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 							
 							// alterar valores dos campos descrição e/ou marca
 							if(option == 0) {
-								// Alterando descricão
+								// Alterando descricão se foi pedido para alterar
 								if(!getjDialogEditarProduto().getjTFieldDescricao().getText().equals(getDescricaoProcurado())) {
 									// alterar valores do campo quantidade
 									if(getdaoJDialogEditarProduto().geteditarDescricao()) {
-										atualizarVariaveis();
 										JOptionPane.showConfirmDialog(
 												getjDialogEditarProduto(), // componente
 												"Descrição alterada com sucesso.", // texto
@@ -155,7 +154,6 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 								if(!getjDialogEditarProduto().getjTFieldMarca().getText().equals(getMarcaProcurardo())) {
 									// alterar valores do campo quantidade
 									if(getdaoJDialogEditarProduto().geteditarMarca()) {
-										atualizarVariaveis();
 										JOptionPane.showConfirmDialog(
 												getjDialogEditarProduto(), // componente
 												"Marca alterada com sucesso.", // texto
@@ -165,6 +163,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 										);
 									}
 								}
+								atualizarVariaveis();
 								getdaoJDialogEditarProduto().getprocurarProduto();
 							}
 							

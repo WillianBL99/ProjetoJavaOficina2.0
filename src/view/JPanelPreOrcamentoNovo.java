@@ -25,6 +25,7 @@ import icons.Icones;
 import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
+import model.TabelaTemporaria;
 
 /**
  * @author Paulo Uilian
@@ -36,6 +37,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
     //** Início declaração de variáveis **
+	private TabelaTemporaria tabelaTemporaria;
 	private ModuloConexao moduloConexao;
 	private PreencherChoice preencherChoice;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
@@ -1354,6 +1356,14 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public void setidCliente(String id) {
 		this.idCliente = id;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTemporaria() {
+		if(tabelaTemporaria == null) {
+			tabelaTemporaria = new TabelaTemporaria();
+		}
+		return tabelaTemporaria;
 	}
 	
 }

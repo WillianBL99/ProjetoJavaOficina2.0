@@ -435,7 +435,8 @@ public class JDialogInserirProduto extends JDialog{
 
 	public JTextField getjTFieldDesconto() {
 		if(jTFieldDesconto == null){
-			jTFieldDesconto = new JTextField("0");
+			jTFieldDesconto = new JTextField();
+			jTFieldDesconto.setText("0");
 			jTFieldDesconto.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDesconto.setForeground(Cores.preto);

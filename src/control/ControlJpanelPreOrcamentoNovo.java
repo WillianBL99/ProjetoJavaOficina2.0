@@ -14,8 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import dao.DaoJDialogIserirProduto;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import model.Mascara;

@@ -22,7 +22,7 @@ import view.JPanelPreOrcamentoNovo;
  * @author Paulo Uilian
  *
  */
-public class ControlJDialogInserirProduto   implements MouseListener, KeyListener, WindowListener, FocusListener{
+public class ControlJDialogInserirProduto implements MouseListener, KeyListener, WindowListener, FocusListener{
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
@@ -585,7 +585,7 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 	 * @return boolean Retorna false caso o produto já tenha sido inserido.
 	 */
 	private boolean inserirProduto(String id, String qtd, String desc, String preco, String valDesc, String total) {
-		return getjPanelPreOrcamentoNovo().gettabelaTemporaria().inserir(
+		return getjPanelPreOrcamentoNovo().gettabelaTemporariaProdutos().inserir(
 				getjPanelPreOrcamentoNovo().getjTableListaProdutos(),
 				id,
 				qtd,
@@ -630,12 +630,10 @@ public class ControlJDialogInserirProduto   implements MouseListener, KeyListene
 		setQtdInserir(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
 		// Valor dos desconto em %
 		setDescPercent(getjDialogInserirProduto().getjTFieldDesconto().getText());
-		System.out.println(getjDialogInserirProduto().getjTFieldDesconto().getText() + "descPersent");
 		// Recebe valor total sem desconto
 		Float totalSD = getQtdInserir() * getPrecoSelec();
 		// Valor dos desconto em reais
 		setDesconto((float) ((getDescPercent()/100.0) * totalSD));
-		System.out.println("desconto = " + getDesconto() + " " + ((getDescPercent()/100) * totalSD));
 		// Valor total a ser pago
 		setTotal(totalSD - getDesconto());
 		

@@ -4,10 +4,7 @@
 package model;
 
 import java.util.ArrayList;
-
 import javax.swing.JTable;
-
-import error.TBExceptionItem;
 
 /**
  * @author Paulo Uilian
@@ -21,7 +18,7 @@ public class TabelaTemporaria {
 
 	// Construtor para iniciar a classe
 	public TabelaTemporaria() {
-		tabela = new ArrayList<>();
+		getTabela();
 	}
 	
 	
@@ -78,7 +75,7 @@ public class TabelaTemporaria {
 	 * Ordena os ítens de um arraylist de acordo com uma tabela númerica
 	 * @param tabela
 	 */
-	private static  void organizar(ArrayList<String[]> tabela) {
+	private  void organizar(ArrayList<String[]> tabela) {
 		int iNum;
 		int jNum;
 		
@@ -95,10 +92,20 @@ public class TabelaTemporaria {
 				iNum = Integer.parseInt(linhaI[0]);
 				jNum = Integer.parseInt(linhaJ[0]);
 				if(iNum > jNum) {
-					tabela.add(i, tabela.remove(j));
+					getTabela().add(i, tabela.remove(j));
 				}
 			}
 		}
+	}
+	
+	
+	/**
+	 * Método isEmpty() retorna verdadeiro caso não tenha nenhum produto
+	 * no ArrayList.
+	 * @return boolean.
+	 */
+	public boolean isEmpty() {
+		return getTabela().isEmpty();
 	}
 	
 	
@@ -122,14 +129,10 @@ public class TabelaTemporaria {
 	}
 	
 	
-	public ArrayList<String[]> getTabela() {
+	private ArrayList<String[]> getTabela() {
 		if(tabela == null){	
 			tabela = new ArrayList<>();	
 		}
 		return tabela;
-	}
-
-	public void setTabela(ArrayList<String[]> tabela) {
-		this.tabela = tabela;
 	}
 }

@@ -37,7 +37,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
     //** Início declaração de variáveis **
-	private TabelaTemporaria tabelaTemporaria;
+	private TabelaTemporaria tabelaTemporariaProdutos;
+	private TabelaTemporaria tabelaTemporariaServicos;
 	private ModuloConexao moduloConexao;
 	private PreencherChoice preencherChoice;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
@@ -1359,11 +1360,19 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public TabelaTemporaria gettabelaTemporaria() {
-		if(tabelaTemporaria == null) {
-			tabelaTemporaria = new TabelaTemporaria();
+	public TabelaTemporaria gettabelaTemporariaProdutos() {
+		if(tabelaTemporariaProdutos == null) {
+			tabelaTemporariaProdutos = new TabelaTemporaria();
 		}
-		return tabelaTemporaria;
+		return tabelaTemporariaProdutos;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTemporariaServicos() {
+		if(tabelaTemporariaServicos == null) {
+			tabelaTemporariaServicos = new TabelaTemporaria();
+		}
+		return tabelaTemporariaServicos;
 	}
 	
 }

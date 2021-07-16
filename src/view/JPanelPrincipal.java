@@ -23,7 +23,7 @@ public class JPanelPrincipal extends JPanel{
 		
 	private SetSizeIcon setSizeIcon = new SetSizeIcon(); // iniciando objeto para rendimensionamento de imagens
 	
-	private int xIconJButton = 34, yIconJButton = 34; // tamanho dos icones dos botoes do menu lateral
+	private static int xIconJButton = 34, yIconJButton = 34; // tamanho dos icones dos botoes do menu lateral
 	
 	
 	private JPanel jPanelMenuLateral;

@@ -274,7 +274,10 @@ public class JPanelEstoque  extends JPanel{
 	}
 
 	
-	public void addCompJPanelBuscaEstoque() {		
+	public void addCompJPanelBuscaEstoque() {	
+		
+		this.getJPanelEstoque().add(this.getjPanelBuscaEstoque());
+		this.getjPanelBuscaEstoque().setLocation(14, 75);	
 		this.getjPanelBuscaEstoque().add(getjLabelPesquisarPor());
 		this.getjLabelPesquisarPor().setLocation(14, 16);
 

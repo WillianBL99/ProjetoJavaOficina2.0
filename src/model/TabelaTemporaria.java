@@ -108,6 +108,26 @@ public class TabelaTemporaria {
 		return getTabela().isEmpty();
 	}
 	
+	/**
+	 * Método remove(row) Remove um ítem de acordo com a linha passada.
+	 * @param row Recebe a linha a ser removida. Inicia com 0.
+	 * @return retorna false caso não tenha deletado o ítem.
+	 */
+	public boolean remove(int row) {
+		try {
+			getTabela().remove(row);
+			return true;
+		} catch (IndexOutOfBoundsException e) {
+			System.err.printf("TabelaTemporaria-Erro ao remover ítem: %s%n", e.getMessage());
+			return false;
+		}
+	}
+	
+	
+	public boolean alterar(int row, String campos) {
+		return false;
+	}
+	
 	
 	private void preencher(JTable jTable2) {
 		int countColumn = jTable2.getColumnCount();

@@ -25,7 +25,7 @@ public class ControlJPanelGeraOS implements FocusListener {
 	
 	
 	public ControlJPanelGeraOS() {
-		
+		AddEvent();
 	}
 	
 	public void AddEvent() {
@@ -58,7 +58,9 @@ public class ControlJPanelGeraOS implements FocusListener {
 		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldKMAtual() ) {
+			
 			Mascara.setMascara(getjPanelGeraOS().getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
+
 		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldPlaca() ) {
@@ -74,6 +76,9 @@ public class ControlJPanelGeraOS implements FocusListener {
 	@Override
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == getjPanelGeraOS().getjTFieldKMAtual() ) {
+			System.out.println(getjPanelGeraOS().getjTFieldKMAtual().getText());
+		}
 		
 	}
 	

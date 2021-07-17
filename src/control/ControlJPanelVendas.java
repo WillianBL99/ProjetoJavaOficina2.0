@@ -10,6 +10,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
 import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
@@ -101,15 +103,15 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
 			
-			Mascara.setMascara(jPanelVendas.getjTFieldDTInicial(), Mascara.mascaraData());
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraPlaca());
 		
 		}
 		
-		if(e.getSource() == jPanelVendas.getjTFieldDTFinal()) {
+		if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
 			
-			Mascara.setMascara(jPanelVendas.getjTFieldDTFinal(), Mascara.mascaraData());
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraData());
 		
 		}
 		
@@ -118,15 +120,19 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	@Override
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == jPanelVendas.getjTFieldDTInicial()) {
+		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
 			
-			Mascara.setMascara(jPanelVendas.getjTFieldDTInicial(), Mascara.mascaraNula());
+			
+			//System.out.println(getjPanelVendas().getjTFieldDTInicial().getText());
+			
+			
+			
 		
 		}
 		
-		if(e.getSource() == jPanelVendas.getjTFieldDTFinal()) {
+		if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
 			
-			Mascara.setMascara(jPanelVendas.getjTFieldDTFinal(), Mascara.mascaraNula());
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraNula());
 		
 		}
 

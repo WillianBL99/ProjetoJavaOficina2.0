@@ -793,7 +793,7 @@ public class JPanelConsultarOS extends JPanel {
 	public JFormattedTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
 	
-			jTFieldKMAtual = new JFormattedTextField(Mascara.mascaraQuilometragem());
+			jTFieldKMAtual = new JFormattedTextField();
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));

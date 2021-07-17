@@ -206,7 +206,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		
 		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldKMAtual()) {
 			
-			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
+			
 		
 		}
 		

@@ -246,7 +246,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldKMAtual()) {
 			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
+
 			
 		}
 		

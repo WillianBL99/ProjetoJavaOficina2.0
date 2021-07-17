@@ -119,6 +119,8 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener, F
 		
 		if(e.getSource() == getjPanelPreOrcamento().getjButtonNovoPreOrcamento()) {
 			// quando o botão novo pré orçamento for clicado
+			this.controlJpanelPreOrcamentoNovo = null;
+			this.jPanelPreOrcamentoNovo = null;
 			this.getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamentoNovo(),this.point,
 					getjPanelPreOrcamentoNovo().getTituloDescricaoTela());
 			this.getcontrolJpanelPreOrcamentoNovo();

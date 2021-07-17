@@ -232,6 +232,7 @@ public class JDialogProcurarCliente extends JDialog{
 				jTableCliente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				jTableCliente.setFont(Fontes.fontJTablePlain2);
 				jTableCliente.setOpaque(false);
+				jTableCliente.setRowHeight(21);
 				jTableCliente.getTableHeader().setFont(Fontes.fontJTableBold2);
 				jTableCliente.getTableHeader().setForeground(Cores.branco);
 				jTableCliente.getTableHeader().setBackground(Cores.azul1);

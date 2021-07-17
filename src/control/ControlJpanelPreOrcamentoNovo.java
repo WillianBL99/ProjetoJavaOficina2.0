@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
 import model.Mascara;
+import view.JDialogInserirProduto;
+import view.JDialogInserirServico;
 import view.JDialogProcurarCliente;
 import view.JDialogProcurarPeca;
 import view.JDialogProcurarVeiculo;
@@ -46,7 +48,11 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
 	private JDialogProcurarVeiculo jDialogProcurarVeiculo;
 	private ControlJDialogProcurarVeiculo controlJDialogProcurarVeiculo;
-	
+	private JDialogInserirProduto jDialogInserirProduto;
+	private ControlJDialogInserirProduto controlJDialogInserirProduto;
+	private JDialogInserirServico jDialogInserirServico;
+	private ControlJDialogInserirServico controlJDialogInserirServico;
+
 	//** Fim declaração de variáveis **	
 	
 	
@@ -66,10 +72,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		this.preencherCabecalho();
 		this.AddEvent();
 	}
+
 	
-
-
-
 	private void AddEvent() {
 		getjPanelPreOrcamentoNovo().getjButtonCancelar().addMouseListener(this);
 		getjPanelPreOrcamentoNovo().getjButtonSalvar().addMouseListener(this);
@@ -175,10 +179,9 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaProdutos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(true);
 			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(false);
-			/*
-			 * caso o método getListaProduotos() retorne false será exibida uma mensagem de aviso
-			 */
-			if(!getdaoJPanelPreOrcamentoNovo().getListaProduotos()) {
+			
+			// Verifica se já tem algum produto cadastrado
+			if(getjPanelPreOrcamentoNovo().gettabelaTemporariaProdutos().isEmpty()) {
 				JOptionPane.showConfirmDialog(
 						getjPanelPreOrcamentoNovo(), // componente
 						"Clique no botão com o símbolo de '+'\npara adicionar um novo produto.", // texto
@@ -195,10 +198,9 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			this.mudarCorJButtonSelecionado(getjPanelPreOrcamentoNovo().getjButtonListaServicos());
 			this.getjPanelPreOrcamentoNovo().getjSPListaProdutos().setVisible(false);
 			this.getjPanelPreOrcamentoNovo().getjSPListaServicos().setVisible(true);
-			/*
-			 * caso o método getListaProduotos() retorne false será exibida uma mensagem de aviso
-			 */
-			if(!getdaoJPanelPreOrcamentoNovo().getListaServicos()) {
+			
+			// Verificar se tem algum serviço cadastrardo
+			if(getjPanelPreOrcamentoNovo().gettabelaTemporariaServicos().isEmpty()) {
 				JOptionPane.showConfirmDialog(
 						getjPanelPreOrcamentoNovo(), // componente
 						"Clique no botão com o símbolo de '+'\npara adicionar um  novo serviço.", // texto
@@ -212,7 +214,27 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		// Quando o botão adicionar for clicado
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico()) {
-			new JDialogProcurarPeca(getjFramePrincipal(), true);
+			// Verifica se é para inserir um serviço ou produto
+			if(jButtonClicado == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
+				jDialogInserirServico = null;
+				controlJDialogInserirServico = null;
+				getjDialogInserirServico();
+				getconControlJDialogInserirServico();
+			}
+			
+			// Se o botão clicado for lista de produtos
+			else {
+				jDialogInserirProduto = null;
+				controlJDialogInserirProduto = null;
+				getjDialogInserirProduto();
+				getconControlJDialogInserirProduto();
+			}
+		}
+		
+		
+		// Quando o botão editar for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonEditarProdutoServico()) {
+			new JDialogProcurarPeca(getjFramePrincipal(), false);
 		}
 	}
 	
@@ -385,6 +407,38 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	//** Fim métodos da classe **
 	
 	
+	public JDialogInserirServico getjDialogInserirServico() {
+		if(jDialogInserirServico == null) {
+			jDialogInserirServico = new JDialogInserirServico(getjFramePrincipal(), true);
+		}
+		return jDialogInserirServico;
+	}
+	
+	
+	public ControlJDialogInserirServico getconControlJDialogInserirServico() {
+		if(controlJDialogInserirServico == null) {
+			controlJDialogInserirServico = new ControlJDialogInserirServico(getjFramePrincipal(), getjDialogInserirServico(), getjPanelPreOrcamentoNovo());
+		}
+		return controlJDialogInserirServico;
+	}
+	
+	
+	public JDialogInserirProduto getjDialogInserirProduto() {
+		if(jDialogInserirProduto == null) {
+			jDialogInserirProduto = new JDialogInserirProduto(getjFramePrincipal(), true);
+		}
+		return jDialogInserirProduto;
+	}
+	
+	
+	public ControlJDialogInserirProduto getconControlJDialogInserirProduto() {
+		if(controlJDialogInserirProduto == null) {
+			controlJDialogInserirProduto = new ControlJDialogInserirProduto(getjFramePrincipal(), getjDialogInserirProduto(), getjPanelPreOrcamentoNovo());
+		}
+		return controlJDialogInserirProduto;
+	}
+	
+	
 	public JDialogProcurarCliente getjDialogProCliente() {
 		if(jDialogProcurarCliente == null) {
 			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePrincipal(), true);
@@ -417,9 +471,5 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		}
 		return jDialogProcurarVeiculo;
 	}
-
-
-
-
 
 }

@@ -3,21 +3,25 @@
  */
 package dao;
 
-import view.JPanelEstoque;
+import view.JDialogInserirProduto;
+import view.JFramePrincipal;
 
 /**
  * @author Paulo Uilian
  *
  */
-public class DaoJPanelEstoque {
+public class DaoJDialogIserirProduto {
 	
 	// Classe de consulta de dados no banco de dados
+	private JDialogInserirProduto jDialogInserirProduto;
 	private ModuloConexao moduloConexao;
-	private JPanelEstoque jPanelEstoque;
+	private JFramePrincipal jFramePrincipal;
 	
-	public DaoJPanelEstoque(JPanelEstoque jPanelEstoque) {
-		this.jPanelEstoque = jPanelEstoque;
+	public DaoJDialogIserirProduto(JFramePrincipal jFramePrincipal, JDialogInserirProduto jDialogInserirProduto) {
+		this.jFramePrincipal = jFramePrincipal;
+		this.jDialogInserirProduto = jDialogInserirProduto;
 	}
+	
 	
 	/**
 	 * Método void pesquisarPorMarca().
@@ -31,16 +35,16 @@ public class DaoJPanelEstoque {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// Recebe o codigo do produto
-			String marca_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
+			String marca_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(!getModuloConexao().resultSetIsEmpty()) {
+			if(!getmoduloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
-				getjPanelEstoque().getjTableEstoque().
+				getjDialogInserirProduto().getjTablePecas().
 						setModel(new PreencherTabela().
-								preencher(getModuloConexao().getResultSet(),
+								preencher(getmoduloConexao().getResultSet(),
 										 "Código",
 										 "Descrição",
 										 "Marca",
@@ -74,16 +78,16 @@ public class DaoJPanelEstoque {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// Recebe o codigo do produto
-			String cod_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
+			String cod_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosCodigo(), cod_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(!getModuloConexao().resultSetIsEmpty()) {
+			if(!getmoduloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
-				getjPanelEstoque().getjTableEstoque().
+				getjDialogInserirProduto().getjTablePecas().
 						setModel(new PreencherTabela().
-								preencher(getModuloConexao().getResultSet(),
+								preencher(getmoduloConexao().getResultSet(),
 										 "Código",
 										 "Descrição",
 										 "Marca",
@@ -117,17 +121,17 @@ public class DaoJPanelEstoque {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// Recebe a descrição do produto
-			String desc_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
+			String desc_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(!getModuloConexao().resultSetIsEmpty()) {
+			if(!getmoduloConexao().resultSetIsEmpty()) {
 				// Realiza o preenchimento da tabela de jdialogprocurarcliente
 				System.out.println("ta preenchendo");
-				getjPanelEstoque().getjTableEstoque().
+				getjDialogInserirProduto().getjTablePecas().
 						setModel(new PreencherTabela().
-								preencher(getModuloConexao().getResultSet(),
+								preencher(getmoduloConexao().getResultSet(),
 										 "Código",
 										 "Descrição",
 										 "Marca",
@@ -148,88 +152,48 @@ public class DaoJPanelEstoque {
 		
 		return status;
 	}
-			
-		/**
-		 * Método void getListaProduotos().
-		 * Tem a função de preencher a table depois de executar uma query
-		 * @return boolean status
-		 * false - Se a consulta não retornar nenhuma linha
-		 * true - Se a consulta retornar linhas
-		 */
-		public boolean atualizarTabelaProdutos() {
-			boolean status;
-			// Tratamento de exceções no momento de consulta do banco de dados
-			try {
-				// As linhas abaixo realizam a consulta de dados do banco de dados
-				getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
-				
-				// Verifica se foi retornado algum valor do banco de dados
-				if(!getModuloConexao().resultSetIsEmpty()) {
-					// Realiza o preenchimento da tabela de jdialogprocurarcliente
-					getjPanelEstoque().getjTableEstoque().
-							setModel(new PreencherTabela().
-									preencher(getModuloConexao().getResultSet(),
-											 "Código",
-											 "Descrição",
-											 "Marca",
-											 "Quantidade",
-											 "Preço"));
-					status = true;
-				
-				// Se não retornou nenhum valor exibe um caixa de alerta	
-				} else {
-					status = false;
-				}
-				
-				
-			} catch(Exception e) {
-				System.err.println("Erro ao setar o jtable de jPanelEstoque\n" + e);
-				status = true; // tenta preencher a tabela mesmo gerando o erro
-			}
-			
-			return status;
-		}
-
+	
+	
+	
+	
 	
 	/**
-	 * Método void deletarProduto().
-	 * Tem a função de deletar um produto de acordo com o id
-	 * @return boolean status
-	 * false - Se a consulta não retornar nenhuma linha
-	 * true - Se a consulta retornar linhas
+	 * Método isFirst() Verifica se o produto a ser inserido na lista de produtos da tela preOrcamentoNovo,
+	 * não foi inserida anteriormente.
+	 * @return Retorna verdadeiro se não encontrar outro id no banco de dados, e falso caso contrário.
 	 */
-	public boolean deletarProduto(String id) {
-		boolean status;
-		// Tratamento de exceções no momento de consulta do banco de dados
-		try {
-			// usando o método executeUpdate da classe Cadastrar para excluir linha de tabela
-			if(new Cadastrar().executeUpdate(ComandosSQL.getdeletarProduto(), id)) {
-				status = true;
-			} else {
-				status = false;
-			}
-		} catch(Exception e) {
-			System.err.println("Erro ao deletar produto daoJpanelEstoque" + e);
-			status = false; 
-		}		
+	public boolean isFirst() {
+		boolean status = false;
+		getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID());
+		if(getmoduloConexao().resultSetIsEmpty()) {
+			status = true;
+		}
 		return status;
 	}
-
+	
+	
 	// Metodos getters e setters
-	private ModuloConexao getModuloConexao() {
+	
+	private JFramePrincipal getjFramePrincipal() {
+		if(jFramePrincipal == null) {
+			jFramePrincipal = new JFramePrincipal();
+		}
+		return jFramePrincipal;
+	}
+	
+	
+	private JDialogInserirProduto getjDialogInserirProduto() {
+		if(jDialogInserirProduto == null) {
+			jDialogInserirProduto = new JDialogInserirProduto(getjFramePrincipal(), true);
+		}
+		return jDialogInserirProduto;
+	}
+	
+	
+	private ModuloConexao getmoduloConexao() {
 		if(moduloConexao == null) {
 			moduloConexao = new ModuloConexao();
 		}
-		
 		return moduloConexao;
-	}
-	
-
-	private JPanelEstoque getjPanelEstoque() {
-		if(jPanelEstoque == null) {
-			jPanelEstoque = new JPanelEstoque();
-		}
-		
-		return jPanelEstoque;
 	}
 }

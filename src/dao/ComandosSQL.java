@@ -11,6 +11,9 @@ public class ComandosSQL {
 	
 	private static String consultaProdutoID;
 	private static String consultarProdutos;
+	private static String consultarProdutosDescricao;
+	private static String consultarProdutosCod;
+	private static String consultarProdutosMarca;
 	
 	private static String cadastrarProduto;
 	
@@ -48,6 +51,60 @@ public class ComandosSQL {
 	private static String consultarVeiculoPlacaByCliente;
 	
 	private static String cadastrarVeiculo;
+	
+	
+	/**
+	 * Método getconsultarProdutosMarca() realiza a consulta dos produtos cadastrados com a
+	 * marca procurada.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "Marca")
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 */
+	public static String getconsultarProdutosMarca() {
+		if(consultarProdutosMarca == null){
+			consultarProdutosMarca = (
+				"select id_produto, descricao, marca, quantidade, preco from tb_produtos\r\n"
+				+ "where marca like concat('%', ?, '%')\r\n"
+				+ "group by id_produto;"
+			);
+		}
+		return consultarProdutosMarca;
+	}
+	
+	
+	/**
+	 * Método getconsultarProdutosCodigo() realiza a consulta dos produtos cadastrados com o
+	 * código procurado.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "Codigo")
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 */
+	public static String getconsultarProdutosCodigo() {
+		if(consultarProdutosCod == null){
+			consultarProdutosCod = (
+				"select id_produto, descricao, marca, quantidade, preco from tb_produtos\r\n"
+				+ "where id_produto like concat('%', ?, '%')\r\n"
+				+ "group by id_produto;"
+			);
+		}
+		return consultarProdutosCod;
+	}
+	
+	
+	/**
+	 * Método getconsultarProdutosDescricao() realiza a consulta dos produtos cadastrados com a
+	 * descrição procurada.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "Descrição")
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 */
+	public static String getconsultarProdutosDescricao() {
+		if(consultarProdutosDescricao == null){
+			consultarProdutosDescricao = (
+				"select id_produto, descricao, marca, quantidade, preco from tb_produtos\r\n"
+				+ "where descricao like concat('%', ?, '%')\r\n"
+				+ "group by id_produto;"
+			);
+		}
+		return consultarProdutosDescricao;
+	}
 	
 	
 	/**

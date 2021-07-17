@@ -26,9 +26,7 @@ public class JDialogInserirServico extends JDialog{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
-	
-	private boolean visibleProcurarDescrever; // define os componentes que ficam visivel quando clicado
-		//"procurar serviço" ou "descrever serviço"
+	private boolean modalTela;
 	
 	private JButton jButtonProcurarServico;
 	private JButton jButtonDescreverServico;
@@ -55,9 +53,7 @@ public class JDialogInserirServico extends JDialog{
 	
 	//** Início construtor **
 	public JDialogInserirServico(Frame frame, boolean modal) {
-		super(frame, "Inserir Serviço", true);
-		this.setVisibleProcurarDescrever(true); // deixa visivel apenas os componentes referente 
-			//a procurar serviço e oculta os componentes referente a descrever serviço.
+		super(frame, "Inserir Serviço");
 		this.addCompJDialogInserirServico();
 	}	
 
@@ -68,12 +64,12 @@ public class JDialogInserirServico extends JDialog{
 	public JDialogInserirServico  getJDialogInserirServico() {
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		getContentPane().setLayout(null);
+		this.getContentPane().setLayout(null);
+		this.setLocationRelativeTo(null);
 		this.setBackground(Cores.branco);
 		this.setSize(975, 236);
 		this.setVisible(true);
-		//this.setModal(modal);
-		this.setVisible(true);
+		setmodalTela(modalTela);
 		return this;
 	}
 	
@@ -101,7 +97,7 @@ public class JDialogInserirServico extends JDialog{
 			jLabeCodigo.setSize(55, 25);
 			jLabeCodigo.setForeground(Cores.preto);
 			jLabeCodigo.setOpaque(false);
-			jLabeCodigo.setVisible(isVisibleProcurarDescrever());
+			jLabeCodigo.setVisible(false);
 		}
 		return jLabeCodigo;
 	}
@@ -114,7 +110,7 @@ public class JDialogInserirServico extends JDialog{
 			jLabelProcurarDescricao.setSize(72, 25);
 			jLabelProcurarDescricao.setForeground(Cores.preto);
 			jLabelProcurarDescricao.setOpaque(false);
-			jLabelProcurarDescricao.setVisible(isVisibleProcurarDescrever());
+			jLabelProcurarDescricao.setVisible(false);
 		}
 		return jLabelProcurarDescricao;
 	}
@@ -127,7 +123,7 @@ public class JDialogInserirServico extends JDialog{
 			jLabelProcurarPreco.setSize(43, 25);
 			jLabelProcurarPreco.setForeground(Cores.preto);
 			jLabelProcurarPreco.setOpaque(false);
-			jLabelProcurarPreco.setVisible(isVisibleProcurarDescrever());
+			jLabelProcurarPreco.setVisible(false);
 		}
 		return jLabelProcurarPreco;
 	}
@@ -140,7 +136,7 @@ public class JDialogInserirServico extends JDialog{
 			jLabelDescreverPreco.setSize(43, 25);
 			jLabelDescreverPreco.setForeground(Cores.preto);
 			jLabelDescreverPreco.setOpaque(false);
-			jLabelDescreverPreco.setVisible(!isVisibleProcurarDescrever());
+			jLabelDescreverPreco.setVisible(false);
 		}
 		return jLabelDescreverPreco;
 	}
@@ -194,7 +190,7 @@ public class JDialogInserirServico extends JDialog{
 			jButtonProcurarCodigo.setFocusable(false);
 			jButtonProcurarCodigo.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
-			jButtonProcurarCodigo.setVisible(isVisibleProcurarDescrever());	
+			jButtonProcurarCodigo.setVisible(false);	
 		}
 		return jButtonProcurarCodigo;
 	}
@@ -246,7 +242,7 @@ public class JDialogInserirServico extends JDialog{
 			jTFieldCodigo.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldCodigo.setSize(123, 25);
 			jTFieldCodigo.setOpaque(true);	
-			jTFieldCodigo.setVisible(isVisibleProcurarDescrever());		
+			jTFieldCodigo.setVisible(false);		
 		}
 		return jTFieldCodigo;
 	}
@@ -260,7 +256,7 @@ public class JDialogInserirServico extends JDialog{
 			jTFieldProcurarDescricao.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldProcurarDescricao.setSize(403, 25);
 			jTFieldProcurarDescricao.setOpaque(true);	
-			jTFieldProcurarDescricao.setVisible(isVisibleProcurarDescrever());		
+			jTFieldProcurarDescricao.setVisible(false);		
 		}
 		return jTFieldProcurarDescricao;
 	}
@@ -275,7 +271,7 @@ public class JDialogInserirServico extends JDialog{
 			jTFieldProcurarPreco.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldProcurarPreco.setSize(142, 25);
 			jTFieldProcurarPreco.setOpaque(true);	
-			jTFieldProcurarPreco.setVisible(isVisibleProcurarDescrever());		
+			jTFieldProcurarPreco.setVisible(false);		
 		}
 		return jTFieldProcurarPreco;
 	}	
@@ -289,7 +285,7 @@ public class JDialogInserirServico extends JDialog{
 			jTFieldDescreverDescricao.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldDescreverDescricao.setSize(623, 25);
 			jTFieldDescreverDescricao.setOpaque(true);	
-			jTFieldDescreverDescricao.setVisible(!isVisibleProcurarDescrever());		
+			jTFieldDescreverDescricao.setVisible(false);		
 		}
 		return jTFieldDescreverDescricao;
 	}
@@ -303,7 +299,7 @@ public class JDialogInserirServico extends JDialog{
 			jTFieldDescreverPreco.setFont(Fontes.fontJTFieldPlain2);
 			jTFieldDescreverPreco.setSize(142, 25);
 			jTFieldDescreverPreco.setOpaque(true);	
-			jTFieldDescreverPreco.setVisible(!isVisibleProcurarDescrever());		
+			jTFieldDescreverPreco.setVisible(false);		
 		}
 		return jTFieldDescreverPreco;
 	}
@@ -370,32 +366,17 @@ public class JDialogInserirServico extends JDialog{
 		getJDialogInserirServico().getContentPane().add(getjButtonInserirServico());
 		getjButtonInserirServico().setLocation(831, 160);
 	}
-
-
-	public boolean isVisibleProcurarDescrever() {
-		return visibleProcurarDescrever;
-	}
-
-
-	public void setVisibleProcurarDescrever(boolean visibleProcurarDescrever) {
-		if(this.isVisibleProcurarDescrever() != visibleProcurarDescrever) {
-			this.visibleProcurarDescrever = visibleProcurarDescrever;
-			
-			this.getjLabelCodigo().setVisible(this.isVisibleProcurarDescrever());
-			this.getjTFieldCodigo().setVisible(this.isVisibleProcurarDescrever());
-			this.getjButtonProcurarCodigo().setVisible(this.isVisibleProcurarDescrever());
-			this.getjLabelProcurarDescricao().setVisible(this.isVisibleProcurarDescrever());
-			this.getjTFieldProcurarDescricao().setVisible(this.isVisibleProcurarDescrever());
-			this.getjLabelProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
-			this.getjTFieldProcurarPreco().setVisible(this.isVisibleProcurarDescrever());
-
-		
-			this.getjTFieldDescreverDescricao().setVisible(!this.isVisibleProcurarDescrever());
-			this.getjLabelDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());
-			this.getjTFieldDescreverPreco().setVisible(!this.isVisibleProcurarDescrever());
-		}
+	
+	
+	public boolean ismodalTela() {
+		return modalTela;
 	}
 	
+	
+	public void setmodalTela(boolean modalTela) {
+		this.modalTela = modalTela;
+	}
+		
 	//** Fim métodos adição de componentes **
 	
 

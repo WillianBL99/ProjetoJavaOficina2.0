@@ -25,6 +25,7 @@ import icons.Icones;
 import model.Cores;
 import model.Fontes;
 import model.SetSizeIcon;
+import model.TabelaTemporaria;
 
 /**
  * @author Paulo Uilian
@@ -36,6 +37,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
     //** Início declaração de variáveis **
+	private TabelaTemporaria tabelaTemporariaProdutos;
+	private TabelaTemporaria tabelaTemporariaServicos;
 	private ModuloConexao moduloConexao;
 	private PreencherChoice preencherChoice;
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
@@ -1080,8 +1083,8 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		                
 		            },
 		            new String [] {
-		                "Cod.Produto", "Qtd.Produto",
-		                "Descrição", "Preço", "Total"
+		                "Cod.", "Qtd.",
+		                "Descrição", "Preço", "Val.desc.", "Total"
 		            }
 		        ));			
 
@@ -1354,6 +1357,22 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 	public void setidCliente(String id) {
 		this.idCliente = id;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTemporariaProdutos() {
+		if(tabelaTemporariaProdutos == null) {
+			tabelaTemporariaProdutos = new TabelaTemporaria();
+		}
+		return tabelaTemporariaProdutos;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTemporariaServicos() {
+		if(tabelaTemporariaServicos == null) {
+			tabelaTemporariaServicos = new TabelaTemporaria();
+		}
+		return tabelaTemporariaServicos;
 	}
 	
 }

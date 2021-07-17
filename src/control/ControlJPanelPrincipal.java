@@ -117,91 +117,109 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado		
-		
+
+		// Qando o botão Início for clicado		
 		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {		
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getJButtonInicio(), Icones.getHomeOn(), Icones.getHomeOff());
 			getjPanelPrincipal().alterarJPanel(this.getjPanelHome(), point,
 					this.getjPanelHome().getTituloDescricaoTela());		
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOS()) {
+		}
+		
+		// Qando o botão OS for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOS()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonOS(), Icones.getOSOn(), Icones.getOSOff());
 			this.setSizeOSOpen(true);
 			this.setSizeOrcamentoOpen(false);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSCriar()) {
+		}
+		
+		// Qando o botão criar os for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSCriar()) {
 			getjPanelPrincipal().alterarJPanel(this.getjPanelGerarOS(), point,  this.getjPanelGerarOS().getTituloDescricaoTela());	
-			// !!! colocar título
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSConsulta()) {
-			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point,  this.getjPanelConsultarOS().getTituloDescricaoTela());	
-			// !!! colocar título			
-			
-		}  else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
+		}
+		
+		// Qando o botão consultar OS for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOSConsulta()) {
+			getjPanelPrincipal().alterarJPanel(this.getjPanelConsultarOS(), point,  this.getjPanelConsultarOS().getTituloDescricaoTela());		
+		}
+		
+		// Qando o botão vendas for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVendas(), Icones.getVendasOn(), Icones.getVendasOff());
 			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point, this.getjPanelVendas().getTituloDescricaoTela());
 			getControlJPanelVendas();
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
+		} 
+		
+		// Qando o botão orçamento for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamento()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonOrcamento(), Icones.getOrcamentoOn(), Icones.getOrcamentoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(true);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
-			//jPanelPreOrcamento = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
-				// quando for chamar o mesmo jPanel novamente.
-			
-			//ATENÇÃO!!!!!!!!!!!!! CODIGO ACIMA PARECE ESTÁ DANDO PROBEMA COM O CONTROLADOR
-			
+		} 
+		
+		// Qando o botão pré orçamento for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonPreOrcamento()) {
+			jPanelPreOrcamento = null;
+			controlJPanelPreOrcamento = null;
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), point, this.getjPanelPreOrcamento().getTituloDescricaoTela());			
 			getControlJPanelPreOrcamento();
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
-			//jPanelOrcamentoFinal = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
-				// quando for chamar o mesmo jPanel novamente.
+		} 
+		
+		// Qando o botão orçamento final for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
+			jPanelOrcamentoFinal = null;
+			controlJPanelOrcamentoFinal = null;
 			getjControlOrcamentoFinal();
-			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());			
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
+			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());	
+		} 
+		
+		// Qando o botão veículos for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonVeiculos()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVeiculos(), Icones.getVeiculosOn(), Icones.getVeiculosOff());
 			getjPanelPrincipal().alterarJPanel(getjPanelVeiculos(), point,
 					this.getjPanelVeiculos().getTituloDescricaoTela());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
+		} 
+		
+		// Qando o botão clientes for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonClientes()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonClientes(), Icones.getClientesOn(), Icones.getClientesOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
-			jPanelUsuarios = null; // jPanel definido como nulo para evitar problema como diminuição o componente choice
-				// quando for chamar o mesmo jPanel novamente.
+		} 
+		
+		// Qando o botão usuários for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonUsuarios()) {
+			jPanelUsuarios = null;
+			// Mudar cor dos botões
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonUsuarios(), Icones.getUsuariosOn(), Icones.getUsuarioOff());
+			// Inserir tela no JPanelPrincipal
 			getjPanelPrincipal().alterarJPanel(getjPanelUsuarios(), point,
 					this.getjPanelUsuarios().getTituloDescricaoTela());
+			// Abre as opções do botão OS
 			this.setSizeOSOpen(false);
+			// Abre as opções do botão orçamento
 			this.setSizeOrcamentoOpen(false);
-			
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+		} 
+		
+		// Qando o botão estoque for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonEstoque()) {
+			this.jPanelEstoque = null;
+			this.controlJPanelEstoque = null;
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonEstoque(), Icones.getEstoqueOn(), Icones.getEstoqueOff());
 			this.getjPanelPrincipal().alterarJPanel(this.getjPanelEstoque(),
 					point, this.getjPanelEstoque().getTituloDescricaoTela());
 			this.getcontrolJPanelEstoque();
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);
-			
-		} else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
+		} 
+		
+		// Qando o botão configuração for clicado
+		else if(e.getSource() == this.getjPanelPrincipal().getjButtonConfiguracao()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonConfiguracao(), Icones.getConfiguracaoOn(), Icones.getConfiguracaoOff());
 			this.setSizeOSOpen(false);
 			this.setSizeOrcamentoOpen(false);

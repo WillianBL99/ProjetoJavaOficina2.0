@@ -1,5 +1,4 @@
-/control/
-/dao/
-/icons/
-/model/
 /view/
+/control/
+/model/
+/dao/

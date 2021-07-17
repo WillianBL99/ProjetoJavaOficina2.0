@@ -550,7 +550,6 @@ public class JPanelConsultarOS extends JPanel {
 	//** Início getters JTextField **
 	public JFormattedTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
-	
 			jTFieldCpf = new JFormattedTextField(Mascara.mascaraCPF());
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBorder(BorderFactory.

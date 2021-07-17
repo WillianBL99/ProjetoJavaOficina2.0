@@ -5,11 +5,6 @@ package model;
 
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
-<<<<<<< HEAD
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-=======
->>>>>>> 75be35f6c22a111c60c78cbb5f7a0546e78a1d79
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 

@@ -144,7 +144,7 @@ public class JDialogProcurarCliente extends JDialog{
 			jButtonSelecionar.setFont(Fontes.fontJButtonPlain3);			
 			jButtonSelecionar.setBackground(Cores.azul1);
 			jButtonSelecionar.setForeground(Color.white);
-			jButtonSelecionar.setText("Seleciona");
+			jButtonSelecionar.setText("Selecionar");
 			jButtonSelecionar.setSize(86,23);
 			jButtonSelecionar.setFocusable(false);
 			jButtonSelecionar.setBorder(BorderFactory.

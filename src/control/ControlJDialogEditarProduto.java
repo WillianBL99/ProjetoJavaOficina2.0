@@ -140,6 +140,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 								if(!getjDialogEditarProduto().getjTFieldDescricao().getText().equals(getDescricaoProcurado())) {
 									// alterar valores do campo quantidade
 									if(getdaoJDialogEditarProduto().geteditarDescricao()) {
+										getcontrolJPanelEstoque().atualizarTabela();
 										JOptionPane.showConfirmDialog(
 												getjDialogEditarProduto(), // componente
 												"Descrição alterada com sucesso.", // texto
@@ -195,7 +196,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 											"Você deseja alterar a quantidade desse produto, no estoque?\n"
 											+ "Quantidade atual = " + quantidadeProcurado +
 											"\nNova quantidade = " + getjDialogEditarProduto().getjTFieldNovaQuantidade().getText() + "\n", // mensagem
-											"Atenção!!!", // título
+											"Atenção!", // título
 											JOptionPane.DEFAULT_OPTION, 
 											JOptionPane.QUESTION_MESSAGE,
 											null,
@@ -252,7 +253,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 											"Você deseja alterar o valor desse produto, no estoque?\n"
 											+ "Valor atual = R$ " + String.format("%.2f", Float.parseFloat(getPrecoProcurado()))  +
 											"\nNovo valor = R$ " + String.format("%.2f", Float.parseFloat(getjDialogEditarProduto().getjTFieldNovoValor().getText())) + "\n", // mensagem
-											"Atenção!!!", // título
+											"Atenção!", // título
 											JOptionPane.DEFAULT_OPTION, 
 											JOptionPane.QUESTION_MESSAGE,
 											null,

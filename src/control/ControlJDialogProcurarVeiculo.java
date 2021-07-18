@@ -32,6 +32,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	private DaoJDialogProcurarVeiculo daoJDialogProcurarVeiculo;
 	private JDialogCadastrarVeiculo jDialogCadastrarVeiculo;
 	private ControlJDialogCadastrarVeiculo controlJDialogCadastrarVeiculo;
+	private ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo;
 	private boolean modal;
 	private int coutWindowAtivated; // Verifica se a tela ja foi ativada antes
 	
@@ -39,10 +40,11 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	//** Fim declaração de variáveis **	
 	public ControlJDialogProcurarVeiculo(JFramePrincipal jFramePricipal, JDialogProcurarVeiculo jDialogProcurarVeiculo,
-			JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo) {	
+			JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo, ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo) {	
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogProcurarVeiculo = jDialogProcurarVeiculo;
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
+		this.controlJpanelPreOrcamentoNovo = controlJpanelPreOrcamentoNovo;
 		coutWindowAtivated = 1; // seta para não entra de primeira
 		
 		setidCliente(getjPanelPreOrcamentoNovo().getidCliente());
@@ -207,6 +209,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			} else {
 				int row =getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
 				preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString());
+				getcontrolControlJpanelPreOrcamentoNovo().setVeiculoInserido(true);
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarVeiculo().dispose();
 			}
@@ -368,6 +371,14 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 			jPanelPreOrcamentoNovo = new JPanelPreOrcamentoNovo();
 		}
 		return jPanelPreOrcamentoNovo;
+	}
+	
+	
+	public ControlJpanelPreOrcamentoNovo getcontrolControlJpanelPreOrcamentoNovo() {
+		if(controlJpanelPreOrcamentoNovo == null){
+			controlJpanelPreOrcamentoNovo = new ControlJpanelPreOrcamentoNovo(getjFramePricipal(), null, null, getjPanelPreOrcamentoNovo());
+		}
+		return controlJpanelPreOrcamentoNovo;
 	}
 	
 	

@@ -249,7 +249,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonProcuraCliente.setFont(Fontes.fontJButtonPlain3);			
 			jButtonProcuraCliente.setBackground(Cores.azul1);
 			jButtonProcuraCliente.setForeground(Color.white);
-			jButtonProcuraCliente.setText("Procura Cliente");
+			jButtonProcuraCliente.setText("Procurar Cliente");
 			jButtonProcuraCliente.setSize(150,25);
 			jButtonProcuraCliente.setFocusable(false);
 			jButtonProcuraCliente.setBorder(BorderFactory.
@@ -267,7 +267,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			jButtonSelecionarVeiculo.setFont(Fontes.fontJButtonPlain3);			
 			jButtonSelecionarVeiculo.setBackground(Cores.azul1);
 			jButtonSelecionarVeiculo.setForeground(Color.white);
-			jButtonSelecionarVeiculo.setText("Seleciona Veículo");
+			jButtonSelecionarVeiculo.setText("Selecionar Veículo");
 			jButtonSelecionarVeiculo.setSize(169,25);
 			jButtonSelecionarVeiculo.setFocusable(false);
 			jButtonSelecionarVeiculo.setBorder(BorderFactory.
@@ -1046,7 +1046,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jSPListaProdutos == null){
 			jSPListaProdutos = new JScrollPane();
 			jSPListaProdutos.setViewportView(getjTableListaProdutos());
-			jSPListaProdutos.setSize(750, 130);	
+			jSPListaProdutos.setSize(858, 130);	
 		}
 		return jSPListaProdutos;
 	}
@@ -1056,7 +1056,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jSPListaServicos == null){
 			jSPListaServicos = new JScrollPane();
 			jSPListaServicos.setViewportView(getjTableListaServicos());
-			jSPListaServicos.setSize(750, 130);	
+			jSPListaServicos.setSize(858, 130);	
 			jSPListaServicos.setVisible(false);
 		}
 		return jSPListaServicos;

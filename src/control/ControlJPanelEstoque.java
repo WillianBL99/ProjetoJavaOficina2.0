@@ -157,7 +157,7 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 						atualizarTabela();
 						JOptionPane.showConfirmDialog(
 								getjPanelEstoque(), // componente
-								"Produto '" + descProduto + "' deletado com sucesso.!\n",
+								"Produto '" + descProduto + "' deletado com sucesso!\n",
 								"Produto deletado", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
 								JOptionPane.PLAIN_MESSAGE // tipo de mensagem

@@ -161,7 +161,6 @@ public class PreencherTabela extends AbstractTableModel{
 	 *  
 	 */
 	public int getColumnCount() {	
-		System.out.println("quantidade de colunas :" + getColunas().length);
 		return getColunas().length;
 	}
 

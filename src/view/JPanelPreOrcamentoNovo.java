@@ -1067,21 +1067,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTableListaProdutos == null){
 			jTableListaProdutos = new JTable();
 			jTableListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                
-		            },
+		            new Object [][] {},
 		            new String [] {
 		                "Cod.", "Qtd.",
 		                "Descrição", "Preço", "Val.desc.", "Total"
@@ -1102,21 +1088,7 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 		if(jTableListaServicos == null){
 			jTableListaServicos = new JTable();
 			jTableListaServicos.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                {null, null, null, null, null, null},
-		                
-		            },
+		            new Object [][] {},
 		            new String [] {
 			                "Cod.Serviço", "Descrição",
 			                "Desconto", "Preço", "Total"

@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
@@ -53,6 +52,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private ControlJDialogInserirProduto controlJDialogInserirProduto;
 	private JDialogInserirServico jDialogInserirServico;
 	private ControlJDialogInserirServico controlJDialogInserirServico;
+	private ControlEditarProdutoInserido controlEditarProdutoInserido;
 
 	//** Fim declaração de variáveis **	
 	
@@ -235,7 +235,33 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		// Quando o botão editar for clicado
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonEditarProdutoServico()) {
-			new JDialogProcurarPeca(getjFramePrincipal(), false);
+			// Verificar se foi selecionada alguma linha da tabela lista de produtos
+			if(getjPanelPreOrcamentoNovo().getjTableListaProdutos().getSelectedRow() > -1) {
+				// Verifica se é para editar um serviço
+				if(jButtonClicado == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
+					
+				}
+				
+				// Verifica se é para editar um produto
+				else {
+					jDialogInserirProduto = null;
+					controlEditarProdutoInserido = null;
+					getjDialogInserirProduto();
+					getcontrolEditarProdutoInserido(getjPanelPreOrcamentoNovo().getjTableListaProdutos().getSelectedRow());
+				}
+			}
+			
+			// Caso nenhuma linha tenha sido selecionada
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Selecione um produto antes de clicar em editar produto.", // texto
+						"Nenhum produto selecionado", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
+			
 		}
 	}
 	
@@ -437,6 +463,18 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			controlJDialogInserirProduto = new ControlJDialogInserirProduto(getjFramePrincipal(), getjDialogInserirProduto(), getjPanelPreOrcamentoNovo());
 		}
 		return controlJDialogInserirProduto;
+	}
+	
+	/**
+	 * Chama o construtor da tela editar produto selecionado
+	 * @param rowSelcted recebe a linha do produto a ser modificado
+	 * @return ControlEditarProdutoInserido
+	 */
+	public ControlEditarProdutoInserido getcontrolEditarProdutoInserido(int rowSelcted) {
+		if(controlEditarProdutoInserido == null) {
+			controlEditarProdutoInserido = new ControlEditarProdutoInserido(getjFramePrincipal(), getjDialogInserirProduto(), getjPanelPreOrcamentoNovo(), rowSelcted);
+		}
+		return controlEditarProdutoInserido;
 	}
 	
 	

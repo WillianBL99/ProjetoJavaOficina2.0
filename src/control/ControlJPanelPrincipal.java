@@ -147,6 +147,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		// Qando o botão vendas for clicado
 		else if(e.getSource() == this.getjPanelPrincipal().getjButtonVendas()) {
 			this.mudarCorJButtonSelecionado(this.getjPanelPrincipal().getjButtonVendas(), Icones.getVendasOn(), Icones.getVendasOff());
+			jPanelVendas = null;
+			controlJPanelVendas = null;
 			getjPanelPrincipal().alterarJPanel(getjPanelVendas(), point, this.getjPanelVendas().getTituloDescricaoTela());
 			getControlJPanelVendas();
 			this.setSizeOSOpen(false);

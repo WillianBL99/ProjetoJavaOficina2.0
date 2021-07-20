@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
-import model.Mascara;
 import model.SetSizeIcon;
 import javax.swing.JRadioButton;
 

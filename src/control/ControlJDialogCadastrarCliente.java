@@ -88,8 +88,8 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 				// Exibe uma mensagem de confirmação do cadastro.
 				JOptionPane.showConfirmDialog(
 						getjDialogProcurarCliente(), // componente
-						"Cadastro realizado com sucesso!.", // texto
-						"Cadastro realizado.", // titulo
+						"Cadastro realizado com sucesso.", // texto
+						"Cadastro realizado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 				);
@@ -126,8 +126,9 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 				 */
 				int option = JOptionPane.showOptionDialog(
 						getjDialogProcurarCliente(), // tela pai
-						"Todas as informaçoes digitadas serão perdidas.Tem certesa que deseja sair sem cadastrar o cliente?", // mensagem
-						"Alerta", // título
+						"Todas as informaçoes digitadas serão perdidas.\n"
+						+ "Tem certesa que deseja sair sem cadastrar o cliente?", // mensagem
+						"Alerta!", // título
 						JOptionPane.DEFAULT_OPTION, 
 						JOptionPane.INFORMATION_MESSAGE,
 						null,

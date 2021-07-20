@@ -89,8 +89,8 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 				// Exibe uma mensagem de confirmação do cadastro.
 				JOptionPane.showConfirmDialog(
 						getjDialogCadastrarVeiculo(), // componente
-						"Cadastro realizado com sucesso!.", // texto
-						"Cadastro realizo.", // titulo
+						"Cadastro realizado com sucesso.", // texto
+						"Cadastro realizado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 				);
@@ -127,8 +127,9 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 				 */
 				int option = JOptionPane.showOptionDialog(
 						getjDialogProcurarVeiculo(), // tela pai
-						"Todas as informaçoes digitadas serão perdidas.Tem certesa que deseja sair sem cadastrar o veículo?", // mensagem
-						"Alerta", // título
+						"Todas informações digitadas serão perdidas.\n"
+						+ "Tem certeza que deseja sair sem cadastrar o veículo?", // mensagem
+						"Alerta!", // título
 						JOptionPane.DEFAULT_OPTION, 
 						JOptionPane.INFORMATION_MESSAGE,
 						null,

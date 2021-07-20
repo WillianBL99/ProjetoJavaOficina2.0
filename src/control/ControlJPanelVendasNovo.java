@@ -158,8 +158,8 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 				 */
 				int option = JOptionPane.showOptionDialog(
 						getjPanelVendasNovo(), // tela pai
-						"Deseja realmente sair?\n"
-						+ "Se sair todos produtos inseridos serão\n"
+						"Realmente deseja sair?\n"
+						+ "Ao sair todos produtos inseridos serão\n"
 						+ "perdidos.", // mensagem
 						"Alerta", // título
 						JOptionPane.DEFAULT_OPTION, 
@@ -199,7 +199,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 						else {
 							JOptionPane.showConfirmDialog(
 									getjPanelVendasNovo(), // componente
-									"Produto não pode ser inserido pois já foi inserido.", // texto
+									"Produto não pode ser inserido, pois já está na lista.", // texto
 									"Produto já inserido", // titulo
 									JOptionPane.DEFAULT_OPTION, // botões
 									JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
@@ -213,9 +213,9 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 					else {
 						JOptionPane.showConfirmDialog(
 								getjPanelVendasNovo(), // componente
-								"A quantidade requisatada é maior doque a quantidade existente\n"
+								"A quantidade requisatada é maior que a quantidade existente\n"
 								+ "em estoque.", // texto
-								"Alerta estoque insuficiente.", // titulo
+								"Alerta! Estoque insuficiente.", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
 								JOptionPane.ERROR_MESSAGE // tipo de mensagem
 						);
@@ -237,7 +237,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 				else {
 					JOptionPane.showConfirmDialog(
 							getjPanelVendasNovo(), // componente
-							"O campo quantidade não pode está vaizio.", // texto
+							"O campo \"Quantidade\" não pode está vazio.", // texto
 							"Digite uma quantidade", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
@@ -250,7 +250,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 			else {
 				JOptionPane.showConfirmDialog(
 						getjPanelVendasNovo(), // componente
-						"Selecione um produtos antes de clicar em inserir.", // texto
+						"Selecione um produtos antes de clicar em \"Inserir\".", // texto
 						"Nenhum produto selecionado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
@@ -263,30 +263,44 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		// Quando o botão prosseguir for clicado
 		else if (e.getSource() == getjPanelVendasNovo().getjButtonProsseguir()) {
 			// Prosseguir com a compra. Ir para formas de pagamento
-			// Vetor de String com os nomes das opções que apareceram no joptionpane.
-			String[] options = {"Prosseguir", "Cancelar"}; 
-			
-			/*
-			 * int option
-			 * recebe 0 ou 1 de acordo com a mensagem selecionada
-			 * - 0: Foi secionada a opção Sim
-			 * - 1: Foi selecionada a opção Cancelar
-			 */
-			int option = JOptionPane.showOptionDialog(
-					getjPanelVendasNovo(), // tela pai
-					"Prosseguir para forma de pagamento?", // mensagem
-					"Prosseguir", // título
-					JOptionPane.DEFAULT_OPTION, 
-					JOptionPane.PLAIN_MESSAGE,
-					null,
-					options,
-					options[1]); // opção selecionada inicialmente
-			
-			if(option == 0) {
-				jPanelVendasProsseguir = null;
-				controlJPanelVendasProsseguir = null;
-				getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
-				getcontrolJPanelVendasProsseguir();
+			// Verificar se foi inserido algum produto
+			if(getjPanelVendasNovo().getjTableProdutosCompra().getRowCount() > 0) {
+				// Vetor de String com os nomes das opções que apareceram no joptionpane.
+				String[] options = {"Prosseguir", "Cancelar"}; 
+				
+				/*
+				 * int option
+				 * recebe 0 ou 1 de acordo com a mensagem selecionada
+				 * - 0: Foi secionada a opção Sim
+				 * - 1: Foi selecionada a opção Cancelar
+				 */
+				int option = JOptionPane.showOptionDialog(
+						getjPanelVendasNovo(), // tela pai
+						"Prosseguir para forma de pagamento?", // mensagem
+						"Prosseguir pagamento", // título
+						JOptionPane.DEFAULT_OPTION, 
+						JOptionPane.PLAIN_MESSAGE,
+						null,
+						options,
+						options[1]); // opção selecionada inicialmente
+				
+				if(option == 0) {
+					jPanelVendasProsseguir = null;
+					controlJPanelVendasProsseguir = null;
+					getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
+					getcontrolJPanelVendasProsseguir();
+				}
+			}
+			// Nenhum produto inserido
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelVendasNovo(), // componente
+						"Nenhum produto inserido na lista. Selecione um produto em\n"
+						+ "\"Inserir Produto\" e clique em \"Inserir\".", // titulo
+						"Nenhum produto inserido",
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
 			}
 		}
 
@@ -308,7 +322,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 					 */
 					int option = JOptionPane.showOptionDialog(
 							getjPanelVendasNovo(), // tela pai
-							"Deseja retirar o produto selecionado, da lista?", // mensagem
+							"Deseja retirar da lista o produto selecionado?", // mensagem
 							"Alerta", // título
 							JOptionPane.DEFAULT_OPTION, 
 							JOptionPane.INFORMATION_MESSAGE,
@@ -328,7 +342,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 				else {
 					JOptionPane.showConfirmDialog(
 							getjPanelVendasNovo(), // componente
-							"Selecione um produtos antes de clicar em retirar.", // texto
+							"Selecione um produtos antes de clicar em \"Retirar\".", // texto
 							"Nenhum produto selecionado", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
@@ -339,7 +353,8 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 			else {
 				JOptionPane.showConfirmDialog(
 						getjPanelVendasNovo(), // componente
-						"Nenhum produto inserido na lista para retirar.", // texto
+						"Nenhum produto inserido na lista. Selecione um produto em\n"
+						+ "\"Inserir Produto\" e clique em \"Inserir\".", // texto
 						"Lista vazia", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem

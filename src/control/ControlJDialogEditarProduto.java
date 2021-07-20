@@ -87,7 +87,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 						getjDialogEditarProduto(), // componente
 						"O código digitado não foi encontrado no estoque.\n"
 						+ "Verifique e tente novamente.", // texto
-						"Produto não foi encontrado", // titulo
+						"Produto não encontrado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.ERROR_MESSAGE // tipo de mensagem
 				);
@@ -124,10 +124,10 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 							int option = JOptionPane.showOptionDialog(
 									getjDialogEditarProduto(), // tela pai
 									"A alteração do nome e/ou marca de um produto só é aconselhada\n"
-									+ "se for para corrigir erros na digitação. Não é aconselhado mudar\n"
+									+ "para corrigir erros na digitação. Não é aconselhado mudar\n"
 									+ " o tipo de produto e/ou marca.\n"
 									+ "Deseja alterar assim mesmo?", // mensagem
-									"Atenção!!!", // título
+									"Atenção!", // título
 									JOptionPane.DEFAULT_OPTION, 
 									JOptionPane.INFORMATION_MESSAGE,
 									null,
@@ -193,7 +193,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 									 */
 									int option = JOptionPane.showOptionDialog(
 											getjDialogEditarProduto(), // tela pai
-											"Você deseja alterar a quantidade desse produto, no estoque?\n"
+											"Deseja alterar a quantidade desse produto no estoque?\n"
 											+ "Quantidade atual = " + quantidadeProcurado +
 											"\nNova quantidade = " + getjDialogEditarProduto().getjTFieldNovaQuantidade().getText() + "\n", // mensagem
 											"Atenção!", // título
@@ -225,7 +225,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 									JOptionPane.showConfirmDialog(
 											getjDialogEditarProduto(), // componente
 											"A nova quantidade inserida não é válida.\n"
-											+ "Verifique se o valor não é negativo ou igual à quantidade\n"
+											+ "Verifique se o valor está negativo ou igual a quantidade\n"
 											+ "existente no estoque.", // texto
 											"Impossível alterar quantidade", // titulo
 											JOptionPane.DEFAULT_OPTION, // botões
@@ -250,7 +250,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 									 */
 									int option = JOptionPane.showOptionDialog(
 											getjDialogEditarProduto(), // tela pai
-											"Você deseja alterar o valor desse produto, no estoque?\n"
+											"Deseja alterar o valor desse produto no estoque?\n"
 											+ "Valor atual = R$ " + String.format("%.2f", Float.parseFloat(getPrecoProcurado()))  +
 											"\nNovo valor = R$ " + String.format("%.2f", Float.parseFloat(getjDialogEditarProduto().getjTFieldNovoValor().getText())) + "\n", // mensagem
 											"Atenção!", // título
@@ -282,7 +282,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 									JOptionPane.showConfirmDialog(
 											getjDialogEditarProduto(), // componente
 											"O novo valor inserido não é válido.\n"
-											+ "Verifique se o valor não é negativo ou igual à quantidade\n"
+											+ "Verifique se o valor está negativo ou igual a quantidade\n"
 											+ "existente no estoque.", // texto
 											"Impossível alterar valor", // titulo
 											JOptionPane.DEFAULT_OPTION, // botões
@@ -298,7 +298,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 						JOptionPane.showConfirmDialog(
 								getjDialogEditarProduto(), // componente
 								"Nenhum campo foi alterado. Altere a informação\n"
-								+ " de algum campo antes de editar o produto.", // texto
+								+ "do campo desejado antes de editar o produto.", // texto
 								"Alerta", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
 								JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
@@ -309,9 +309,10 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 				} else {
 					JOptionPane.showConfirmDialog(
 							getjDialogEditarProduto(), // componente
-							"O campo codigo não pode ser alterado. Se o produto não fez parte de nenhuma\n"
-							+ " ação, ex.: Venda... Orçamento... etc.. Você pode apagar o produto e reenserir \n"
-							+ "com o novo código.", // texto
+							"O campo \"Código\" não pode ser alterado.\n"
+							+ "Caso o produto não tenha sido utilizado em ações como:\n"
+							+ "Venda; Orçamento e etc. É recomendado excluir e reinserir\n"
+							+ "o produto com o novo código.", // texto
 							"Código não pode ser alterado", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.ERROR_MESSAGE // tipo de mensagem

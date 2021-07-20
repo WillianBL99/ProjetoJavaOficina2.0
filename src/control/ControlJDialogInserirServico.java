@@ -93,18 +93,14 @@ public class ControlJDialogInserirServico implements MouseListener, KeyListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		System.out.println("botão clicou");
 		// Quando for clicado no jbutton inserir serviço
 		if(e.getSource() == getjDialogInserirServico().getjButtonProcurarServico()) {
 			telaVisivel(BotaoClicado.INSERIR_SERVICO);
-			System.out.println("botão inserir serviço");
 		}
 		
 		// Quando for clicado no jbutton descrever serviço
 		else if(e.getSource() == getjDialogInserirServico().getjButtonDescreverServico()) {
 			telaVisivel(BotaoClicado.DESCREVER_SERVICO);
-			System.out.println("botão descrever serviço");
 		}
 	}
 
@@ -401,19 +397,6 @@ public class ControlJDialogInserirServico implements MouseListener, KeyListener,
 				preco,
 				valDesc,
 				total);
-	}
-	
-	/**
-	 * Método atualizarCamposDados atualiza os campos e algumas variáveis
-	 * assim que um produto é selecionado na tabela.
-	 */
-	private void atualizarCamposDados() {
-		
-		
-	}
-	
-	private void atualizaCamposInsercao() {
-		
 	}
 	
 	/**

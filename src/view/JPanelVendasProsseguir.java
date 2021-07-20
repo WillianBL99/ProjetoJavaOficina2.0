@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -274,8 +273,10 @@ public class JPanelVendasProsseguir extends JPanel{
 							Cores.preto)
 					);
 			jTFildValorTotCompra.setForeground(Cores.azul1);
-			jTFildValorTotCompra.setFont(Fontes.fontJTFieldBold3);
+			jTFildValorTotCompra.setBackground(Cores.cinza4);
+			jTFildValorTotCompra.setFont(Fontes.fontJTFieldBold2);
 			jTFildValorTotCompra.setSize(320, 77);
+			jTFildValorTotCompra.setEditable(false);
 			jTFildValorTotCompra.setOpaque(false);
 			
 		}
@@ -318,8 +319,10 @@ public class JPanelVendasProsseguir extends JPanel{
 							Cores.preto)
 					);
 			jTFildValorPagar.setForeground(Cores.azul1);
+			jTFildValorPagar.setBackground(Cores.cinza4);
 			jTFildValorPagar.setFont(Fontes.fontJTFieldBold2);
 			jTFildValorPagar.setSize(345, 77);
+			jTFildValorPagar.setEditable(false);
 			jTFildValorPagar.setOpaque(false);
 			
 		}
@@ -362,8 +365,10 @@ public class JPanelVendasProsseguir extends JPanel{
 							Cores.preto)
 					);
 			jTFieldTroco.setForeground(Cores.azul1);
+			jTFieldTroco.setBackground(Cores.cinza4);
 			jTFieldTroco.setFont(Fontes.fontJTFieldBold2);
 			jTFieldTroco.setSize(226, 68);
+			jTFieldTroco.setEditable(false);
 			jTFieldTroco.setOpaque(false);
 			
 		}

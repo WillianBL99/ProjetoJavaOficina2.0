@@ -105,7 +105,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		// TODO Auto-generated method stub
 		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
 			
-			Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraPlaca());
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraData());
 		
 		}
 		
@@ -123,8 +123,14 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
 			
 			
-			//System.out.println(getjPanelVendas().getjTFieldDTInicial().getText());
-			
+
+			if(Mascara.validandoData(getjPanelVendas().getjTFieldDTInicial().getText())== true) {
+				
+			}else {
+				JOptionPane.showMessageDialog(getjFramePricipal(), "Data Invalida, digite novamente");
+				getjPanelVendas().getjTFieldDTInicial().setText(null);
+				getjPanelVendas().getjTFieldDTInicial().requestFocus();
+			}
 			
 			
 		
@@ -132,7 +138,14 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 		if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
 			
-			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraNula());
+			if(Mascara.validandoData(getjPanelVendas().getjTFieldDTFinal().getText())== true) {
+				
+			}else {
+				JOptionPane.showMessageDialog(getjFramePricipal(), "Data Invalida, digite novamente");
+				getjPanelVendas().getjTFieldDTFinal().setText(null);
+				getjPanelVendas().getjTFieldDTFinal().requestFocus();
+			}
+			
 		
 		}
 

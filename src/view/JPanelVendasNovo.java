@@ -2,8 +2,6 @@ package view;
 
 import java.awt.Choice;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,18 +9,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableColumn;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import model.Cores;
 import model.Fontes;
+import model.TabelaTemporaria;
 
 @SuppressWarnings("serial")
 public class JPanelVendasNovo extends JPanel {
 
 	
 	//** Início declaração de variáveis **
+	private ModuloConexao moduloConexao;
+	private TabelaTemporaria tabelaTemporaria;
 	
 	private JPanel jPanelBarraSup;
 	private JPanel jPanelCentroVendas;
@@ -305,6 +308,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldProdutoQuantidade.setForeground(Cores.azul1);
 			jTFieldProdutoQuantidade.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoQuantidade.setSize(202, 83);
+			jTFieldProdutoQuantidade.setEditable(false);
 			jTFieldProdutoQuantidade.setOpaque(false);
 			
 		}
@@ -326,6 +330,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldProdutoVal.setForeground(Cores.azul1);
 			jTFieldProdutoVal.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoVal.setSize(202, 83);
+			jTFieldProdutoVal.setEditable(false);
 			jTFieldProdutoVal.setOpaque(false);
 			
 		}
@@ -347,6 +352,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldProdutoValTot.setForeground(Cores.azul1);
 			jTFieldProdutoValTot.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoValTot.setSize(202, 83);
+			jTFieldProdutoValTot.setEditable(false);
 			jTFieldProdutoValTot.setOpaque(false);
 			
 		}
@@ -409,8 +415,10 @@ public class JPanelVendasNovo extends JPanel {
 							Cores.preto)
 					);
 			JTFieldTotal.setForeground(Cores.azul1);
+			JTFieldTotal.setBackground(Cores.branco);
 			JTFieldTotal.setFont(Fontes.fontJTFieldBold2);
 			JTFieldTotal.setSize(479, 77);
+			JTFieldTotal.setEditable(false);
 			jTFieldProdutoValTot.setOpaque(false);
 			
 		}
@@ -432,8 +440,9 @@ public class JPanelVendasNovo extends JPanel {
 			choiceBoxDesc.setSize(190, 23);
 			choiceBoxDesc.setFont(Fontes.fontJTFieldPlain1);
 			choiceBoxDesc.setVisible(true);
-			choiceBoxDesc.add("Descrição produto");
-			choiceBoxDesc.add("Codigo produto");
+			choiceBoxDesc.add(String.format("%-35s","Descrição"));
+			choiceBoxDesc.add(String.format("%-35s","Marca"));
+			choiceBoxDesc.add(String.format("%-35s","Código"));
 			choiceBoxDesc.setFocusable(false);	
 		}
 		return choiceBoxDesc;
@@ -469,22 +478,20 @@ public class JPanelVendasNovo extends JPanel {
 		if(jTableInserirProduto == null) {
 			jTableInserirProduto = new JTable();
 			jTableInserirProduto.setBorder(null);
-			jTableInserirProduto.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		            	{"01" , "124", "Lâmpada", "ForLux", "12,50"},
-		            	{"01" , "124", "Lâmpada", "ForLux", "12,50"},
-		            	{"01" , "124", "Lâmpada", "ForLux", "12,50"}
-		            },
-		            new String [] {
-		                "Cod.", "qtd.", "Descrição", "Marca", "Preço"
-		            }
-		        ));			
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+			jTableInserirProduto.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
+	                "cod.",
+	                "Descrição",
+	                "Marca",
+	                "qtd",
+	                "Preço"));		
 
 			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
+			jTableInserirProduto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTableInserirProduto.setShowVerticalLines(false);
 			jTableInserirProduto.getColumnModel().getColumn(0).setMaxWidth(50);
-			jTableInserirProduto.getColumnModel().getColumn(1).setMaxWidth(50);
-			jTableInserirProduto.getColumnModel().getColumn(3).setMaxWidth(80);
+			jTableInserirProduto.getColumnModel().getColumn(2).setMaxWidth(90);
+			jTableInserirProduto.getColumnModel().getColumn(3).setMaxWidth(50);
 			jTableInserirProduto.getColumnModel().getColumn(4).setMaxWidth(70);
 			jTableInserirProduto.setOpaque(false);
 			jTableInserirProduto.getTableHeader().setReorderingAllowed(false);
@@ -499,17 +506,28 @@ public class JPanelVendasNovo extends JPanel {
 	public JTable getjTableProdutosCompra() { // OK
 		if(jTableProdutosCompra == null) {
 			jTableProdutosCompra = new JTable();
+			jTableProdutosCompra.setBorder(null);
+			/*
+			 * Format(%4d,%4d,%9s,%8s,%15.2f)
+			 */
 			jTableProdutosCompra.setModel(new javax.swing.table.DefaultTableModel(
 					
 		            new Object [][] {},
 		            
 		            new String [] {
-		                "Item", "Qtd.", "Descrição", "Preço"
+		                "Item", "Qtd.", "Descrição", "Marca", "Total"
 		            }
 		        ));
 			
 			jTableProdutosCompra.setFont(Fontes.fontJTablePlain1);
+			jTableProdutosCompra.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jTableProdutosCompra.setShowVerticalLines(false);
+			jTableProdutosCompra.getColumnModel().getColumn(0).setMaxWidth(35);
+			jTableProdutosCompra.getColumnModel().getColumn(1).setMaxWidth(35);
+			jTableProdutosCompra.getColumnModel().getColumn(3).setMaxWidth(90);
+			jTableProdutosCompra.getColumnModel().getColumn(4).setMaxWidth(70);
 			jTableProdutosCompra.setOpaque(false);
+			jTableProdutosCompra.getTableHeader().setReorderingAllowed(false);
 			jTableProdutosCompra.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableProdutosCompra.getTableHeader().setForeground(Cores.branco);
 			jTableProdutosCompra.getTableHeader().setBackground(Cores.azul1);
@@ -615,5 +633,22 @@ public class JPanelVendasNovo extends JPanel {
 	//** Fim métodos adição de componentes **
 	
 
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTabelaTemporaria() {
+		if(tabelaTemporaria == null) {
+			tabelaTemporaria = new TabelaTemporaria();
+		}
+		
+		return tabelaTemporaria;
+	}
 
 }

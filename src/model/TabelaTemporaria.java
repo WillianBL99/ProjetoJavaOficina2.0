@@ -8,8 +8,8 @@ import javax.swing.JTable;
 
 /**
  * @author Paulo Uilian
- * @version 1.0
- * Date 07/15/2021
+ * @version 1.3
+ * Date 07/19/2021
  *
  */
 public class TabelaTemporaria {
@@ -41,7 +41,7 @@ public class TabelaTemporaria {
 		
 		boolean insert = insereLinhaTabela(campos);
 		organizar();
-		preencher(jTable);
+		preencherTabela(jTable);
 		return insert;
 	}
 	
@@ -74,7 +74,7 @@ public class TabelaTemporaria {
 		// Recebe falso caso o id do produto seja igual ao de algum produto inserido anteriormente
 		boolean insert = insereLinhaTabela(campos);
 		organizar();
-		preencher(jTable, initArgument);
+		preencherTabela(jTable, initArgument);
 		return insert;
 	}
 	
@@ -87,6 +87,20 @@ public class TabelaTemporaria {
 	 * @return boolean
 	 */	
 	private boolean insereLinhaTabela(String... campos) {
+		return insereLinhaTabela(0, campos);
+	}
+	
+	
+	/**
+	 * Método insereLinhaTabela(int idex, String... campos) Recebe o vetor de campos que iniciente será feita uma verificação
+	 * se o seu primeiro campo não é igual ao campo[idex] de cada linha do ArrayList<String[]> tabela.
+	 * @param idex Caso receba 0, irá inserir o vetor de campos comparando o campo[0] como o campo[0] de cada linha 
+	 * do ArrayList<String[]> tabela. Caso receba um número maior que 0, irá inserir o vetor de campos comparando o campo[0] como o campo[0] de cada linha 
+	 * do ArrayList<String[]> tabela, e inserir um campo novo no início do vetor.
+	 * @param campos Recebe um número variável de argumentos do tipo String.
+	 * @return boolean
+	 */	
+	private boolean insereLinhaTabela(int idex, String... campos) {
 		// recebe false caso tenha alguma linha com o mesmo id inserido
 		boolean insert = true;
 		// Itera toda o ArrayList getTabela()
@@ -94,18 +108,58 @@ public class TabelaTemporaria {
 			// Recebe a linha atual
 			String[] linha = getTabela().get(i);
 			// Copara o primeiro campo da linha com o primerio parametro
-			if(linha[0].replace(" ", "") == campos[0].replace(" ", ""))
-				// gera uma exeption !! Verificar forma de gerar uma exception
-				// new TBExceptionItem(String.format("First argument (\"%s\") iquals to the first field of line %d of ArrayList<String[]>", campos[0], i));
+			System.out.println(linha[idex + 1].replace(" ", "") + " = " + campos[idex].replace(" ", ""));
+			if(linha[idex + 1].replace(" ", "").equals(campos[idex].replace(" ", "")))
 				insert = false;
 		}
 		
 		// Insere os campos no ArrayList
 		if(insert) {
-			String[] linha= campos;
-			getTabela().add(linha);
+			// Se idex for maior que 0 insere um novo campo no início do array e, em seguida, para o ArrayList<String[]>
+			if(idex > 0) {
+				String[] linha = new String[campos.length + 1];
+				for(int i = 1; i <= campos.length; i++) {
+					linha[i] = campos[i - 1];
+				}
+				getTabela().add(linha);
+					
+			// Passa os campos para o array linha e, em seguida, para o ArrayList<String[]>
+			} else {
+				String[] linha = campos;
+				getTabela().add(linha);
+			}
+			
 		}
 		return insert;
+	}
+	
+	
+	/**
+	 * Método inserirLinhaIndexAI(JTable jTable, String... campos) Recebe a tabela onde os {@code campo} passados como parametros 
+	 * serão exibidos em forma de linha e, à essas linhas, será inserido o id auto icremento no primeiro campo.
+	 * As linhas serão organizadas de acordo com a ordem de inserção.
+	 * Se Tentar inserir um conjunto de informações que tenha o primeiro {@code campo} igual ao primeiro campo de inserções
+	 * anteriores vai ser retornado false.
+	 * @param {@code jTable}  Recebe a tabela onde serão inseridos os valores
+	 * @param {@code campos} Recebe os campos que serão inseridos na tabela, e a quantidade de parametros passados não pode ser menor
+	 * que a quantidade de colunas da tabela onde serão exibidos os valores. Caso insira uma quantidade de campos menor que a quantidade
+	 * de colunas da jTable será gerada um IllegalArgumentException().
+	 * @return boolean retorna false caso já tenha o mesmo produto cadastrado.
+	 */
+	public boolean inserirLinhaIndexAI(JTable jTable, int idex, String... campos) {
+		
+		boolean retorno;
+		retorno = insereLinhaTabela(idex, campos);
+		
+		if(retorno) {
+			for(int i = 0; i < getTabela().size(); i++) {
+				String[] linha = getTabela().get(i);
+				linha[0] = String.format(" %02d", i + 1);
+				getTabela().set(i, linha);
+			}
+		}
+		
+		return retorno;
 	}
 	
 	/**
@@ -213,8 +267,8 @@ public class TabelaTemporaria {
 	 * Método preencher(JTable jTable) Preenche uma jTable como os valores inseridos em TabelaTemporaria.
 	 * @param jTable
 	 */
-	public void preencher(JTable jTable2) {
-		this.preencher(jTable2, 0);	
+	public void preencherTabela(JTable jTable2) {
+		this.preencherTabela(jTable2, 0);	
 	}
 	
 	/**
@@ -224,7 +278,7 @@ public class TabelaTemporaria {
 	 * @param jTable
 	 * @param initArgument
 	 */
-	private void preencher(JTable jTable, int initArgument) {
+	private void preencherTabela(JTable jTable, int initArgument) {
 		// Conta a quantidade de colunas da jTable
 		int countColumn = jTable.getColumnCount();
 		// Cria um vetor de Strings que conterá o nome de cada coluna da jTable

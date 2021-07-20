@@ -9,9 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JOptionPane;
-
 import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
@@ -90,9 +87,10 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		// Quando o botão nova venda for clicado
 		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
-			// quando o botão nova venda for clicado
+			jPanelVendasNovo = null;
+			controlJPanelVendasNovo = null;
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			getControlJPanelVendasNovo();
 		}

@@ -159,7 +159,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 			
 			// Se foi cadastrado com sucesso
 			if(cadastrado) {
-				super.getjPanelPreOrcamentoNovo().gettabelaTemporariaProdutos().preencher(
+				super.getjPanelPreOrcamentoNovo().gettabelaTemporariaProdutos().preencherTabela(
 						super.getjPanelPreOrcamentoNovo().getjTableListaProdutos());
 				JOptionPane.showConfirmDialog(
 						super.getjDialogInserirProduto(), // componente

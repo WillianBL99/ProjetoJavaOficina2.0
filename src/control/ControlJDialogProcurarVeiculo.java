@@ -283,7 +283,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		System.out.println("chamando ativated");
 		getdaoJDialogProcurarVeiculo().getveiculoTodos();
 	}
 

@@ -486,7 +486,6 @@ public class JPanelVendasNovo extends JPanel {
 	                "qtd",
 	                "Preço"));		
 
-			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
 			jTableInserirProduto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			jTableInserirProduto.setShowVerticalLines(false);
 			jTableInserirProduto.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -495,6 +494,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTableInserirProduto.getColumnModel().getColumn(4).setMaxWidth(70);
 			jTableInserirProduto.setOpaque(false);
 			jTableInserirProduto.getTableHeader().setReorderingAllowed(false);
+			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
 			jTableInserirProduto.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableInserirProduto.getTableHeader().setForeground(Cores.branco);
 			jTableInserirProduto.getTableHeader().setBackground(Cores.azul1);

@@ -384,6 +384,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		} else {
 			setcouWindowAtivated(1);
 		}
+		getdaoJDialogProcurarCliente().getClienteTodos();
 	}
 
 

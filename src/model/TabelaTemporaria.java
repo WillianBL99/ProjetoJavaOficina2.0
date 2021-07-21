@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 
 /**
+ * Essa classe é responsável por criar uma tabela para manipular dados temporariamente.
+ * Sendo possível: inserir varios campos em uma linha; selecionar quais dos campos inseridos serão exibidos;
+ * retirar produtos expecíficos; organizar os produtos; enumerar um campo expecífico e preencher uma tabela.
  * @author Paulo Uilian
- * @version 1.3
- * Date 07/19/2021
+ * @version 1.4
+ * Date 07/20/2021
  *
  */
 public class TabelaTemporaria {
@@ -23,9 +26,8 @@ public class TabelaTemporaria {
 	
 	
 	/**
-	 * Método inserir(JTable jTable, String... campos) Recebe a tabela onde os @campos passados como parametros 
-	 * serão exibidos em forma de linha.
-	 * As linhas serão organizadas de acordo com o número da primeira coluna.
+	 * Método inserir(JTable jTable, String... campos) Recebe a tabela onde os {@code campos} passados como um array de String no ArrayList<String[]>.
+	 * As linhas serão organizadas como o valor contido em {@code campos[0]}.
 	 * Se Tentar inserir um conjunto de informações que tenha o primeiro campo igual ao primeiro campos de inserções
 	 * anteriores vai ser retornado false.
 	 * @param jTable Recebe a tabela onde serão inseridos os valores
@@ -34,11 +36,12 @@ public class TabelaTemporaria {
 	 * de colunas da jTable será gerada um IllegalArgumentException().
 	 * @return boolean
 	 */
-	public boolean inserir(JTable jTable, String... campos) {// Se inserida uma quantidade de campos menor que a quantidade de colunas de jTable
+	public boolean inserir(JTable jTable, String... campos) {
+		// Se inserida uma quantidade de campos menor que a quantidade de colunas de jTable
 		if(campos.length < jTable.getColumnCount())
 			throw new IllegalArgumentException(String.format("Erro ao setar os parâmetros de campos. Quantidade de campos menor que a de colunas. campos.length: %d colunas: ",
 					campos.length, jTable.getColumnCount()));
-		
+		// Retorna falso caso o produto já exista no ArrayList
 		boolean insert = insereLinhaTabela(campos);
 		organizar();
 		preencherTabela(jTable);
@@ -47,21 +50,18 @@ public class TabelaTemporaria {
 	
 	
 	/**
-	 * Método inserir(JTable jTable, int initArgument, int finalArgument, String... campos) Recebe a tabela onde os @campos passados como parametros 
-	 * serão exibidos em forma de linha.
-	 * As linhas serão organizadas de acordo com o número da primeira coluna e em seguida enseridas na tabela de acordo com o intervalo
-	 * selecionado entre initArgument e a quantidade de colunas da jTable.
-	 * Se Tentar inserir um conjunto de informações que tenha o primeiro campo igual ao primeiro campos de inserções
-	 * anteriores vai ser retornado false.
-	 * @param jTable Recebe a tabela onde serão inseridos os valores
-	 * @param initArgument Recebe o valor mínimo de 0 e máximo de (campos.lenght() - jTable.getColumnCount()). Caso insira um valor fora desse intevarlo
-	 * será gerada um IllegalArgumentException().
-	 * @param campos Recebe os campos que serão inseridos na tabela, e a quantidade de parametros passados não pode ser menor
+	 * Método inserir(JTable jTable, int initArgument, int finalArgument, String... campos) Recebe a tabela onde os valores contidos em {@code campos[]} serão para um ArrayList<String[]>.
+	 * As linhas serão organizadas na ordem decrescente de acordo com o {@code campos[finalArgument]}.
+	 * Ao tentar inserir {@code campos[]} que tenha o {@code campos[initArgument]} igual ao valor de inserções anteriores será retornado falso.
+	 * @param {@code jTable} Recebe a tabela onde serão inseridos os valores.
+	 * @param {@code initArgument} Recebe o index da coluna de ArrayList<String[]> que será a primeira coluna da {@code jTable}
+	 * @param {@code campos[]} Recebe as informações que serão inseridos na tabela, e a quantidade de parametros passados não pode ser menor
 	 * que a quantidade de colunas da tabela onde seraão exibido os valores. Caso insira uma quantidade de campos menor que a quantidade
 	 * de colunas da jTable será gerada um IllegalArgumentException().
 	 * @return boolean
 	 */
-	public boolean inserir(JTable jTable, int initArgument, String... campos) {
+	/*
+	private boolean inserir(JTable jTable, int initArgument, String... campos) {
 		// Se initArment for setado incorretamente
 		if(initArgument < 0 || initArgument > (campos.length - jTable.getColumnCount()))
 			throw new IllegalArgumentException(String.format("Erro ao setar o parâmetro initArgument. Valores aceitos de 0 a %d", campos.length - jTable.getColumnCount()));
@@ -77,6 +77,7 @@ public class TabelaTemporaria {
 		preencherTabela(jTable, initArgument);
 		return insert;
 	}
+	*/
 	
 	
 	/**
@@ -154,6 +155,7 @@ public class TabelaTemporaria {
 		if(retorno) {
 			for(int i = 0; i < getTabela().size(); i++) {
 				String[] linha = getTabela().get(i);
+				// insere o campo que enumera cada linha do ArrayList.
 				linha[0] = String.format(" %02d", i + 1);
 				getTabela().set(i, linha);
 			}
@@ -161,6 +163,7 @@ public class TabelaTemporaria {
 		
 		return retorno;
 	}
+	
 	
 	/**
 	 * O método organizar() Ordena os ítens do ArrayList<String[]> da TabelaTemporaria
@@ -191,6 +194,7 @@ public class TabelaTemporaria {
 	
 	}	
 	
+	
 	/**
 	 * Método isEmpty() retorna verdadeiro caso não tenha nenhum produto
 	 * no ArrayList.
@@ -199,6 +203,7 @@ public class TabelaTemporaria {
 	public boolean isEmpty() {
 		return getTabela().isEmpty();
 	}
+	
 	
 	/**
 	 * Método remove(row) Remove um ítem de acordo com a linha passada.
@@ -215,6 +220,7 @@ public class TabelaTemporaria {
 		}
 	}
 	
+	
 	/**
 	 * Método alterarLinha(int row) Retorna um vetor de string contendo os campos da linha
 	 * row da TabelaTemporaria.
@@ -228,6 +234,7 @@ public class TabelaTemporaria {
 		
 		return getTabela().get(row);
 	}
+	
 	
 	/**
 	 * 
@@ -271,6 +278,7 @@ public class TabelaTemporaria {
 		this.preencherTabela(jTable2, 0);	
 	}
 	
+	
 	/**
 	 * Método preencher(JTable jTable, int initArguemn) Preenche uma jTable como os valores inseridos em TabelaTemporaria.
 	 * começa preencher o campo da primeira coluna como o valor da coluna[initArgument] de TabelaTemporaria e vai até 
@@ -293,7 +301,8 @@ public class TabelaTemporaria {
 			for(int j = 0; j < getTabela().size(); j++) {
 				// pega uma linha do arrayList
 				String[] row = getTabela().get(j);
-				linhaColunas[j][i - initArgument] = row[i - initArgument];
+				// a primeira coluna de linhaColunas será preenchida com a coluna {@code initArgument} de row[] 
+				linhaColunas[j][i - initArgument] = row[i];
 			}
 		}
 		jTable.setModel(new javax.swing.table.DefaultTableModel(

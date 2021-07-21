@@ -46,6 +46,7 @@ public class DaoJPanelEstoque {
 										 "Marca",
 										 "Quantidade",
 										 "Preço"));
+				configurarJTable();
 				status = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -89,6 +90,7 @@ public class DaoJPanelEstoque {
 										 "Marca",
 										 "Quantidade",
 										 "Preço"));
+				configurarJTable();
 				status = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -133,6 +135,7 @@ public class DaoJPanelEstoque {
 										 "Marca",
 										 "Quantidade",
 										 "Preço"));
+				configurarJTable();
 				status = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -174,6 +177,7 @@ public class DaoJPanelEstoque {
 											 "Marca",
 											 "Quantidade",
 											 "Preço"));
+					configurarJTable();
 					status = true;
 				
 				// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -204,6 +208,7 @@ public class DaoJPanelEstoque {
 		try {
 			// usando o método executeUpdate da classe Cadastrar para excluir linha de tabela
 			if(new Cadastrar().executeUpdate(ComandosSQL.getdeletarProduto(), id)) {
+				configurarJTable();
 				status = true;
 			} else {
 				status = false;
@@ -231,5 +236,14 @@ public class DaoJPanelEstoque {
 		}
 		
 		return jPanelEstoque;
+	}
+	
+	
+	private void configurarJTable() {
+		getjPanelEstoque().getjTableEstoque().getColumnModel().getColumn(0).setMaxWidth(80);
+		getjPanelEstoque().getjTableEstoque().getColumnModel().getColumn(2).setMaxWidth(300);
+		getjPanelEstoque().getjTableEstoque().getColumnModel().getColumn(2).setMinWidth(250);
+		getjPanelEstoque().getjTableEstoque().getColumnModel().getColumn(3).setMaxWidth(80);
+		getjPanelEstoque().getjTableEstoque().getColumnModel().getColumn(4).setMaxWidth(100);
 	}
 }

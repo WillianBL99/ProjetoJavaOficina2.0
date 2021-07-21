@@ -251,7 +251,7 @@ public class JPanelPrincipal extends JPanel{
 					getVeiculosOff(), xIconJButton, yIconJButton);
 			jButtonVeiculos.setHorizontalAlignment(SwingConstants.LEFT);
 			jButtonVeiculos.setBorder(null);
-			jButtonVeiculos.setFocusPainted(true);
+			jButtonVeiculos.setFocusPainted(false);
 			jButtonVeiculos.setSize(250,36);
 			
 		}

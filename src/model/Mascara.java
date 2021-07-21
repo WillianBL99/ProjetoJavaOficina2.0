@@ -4,7 +4,14 @@
 package model;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -186,5 +193,58 @@ public class  Mascara {
 		
 	}
 	
+
+	
+	public static boolean dataFormatoValido(String data) {
+		
+		try {
+			
+			SimpleDateFormat formateData = new SimpleDateFormat("dd/MM/yyyy");
+			
+			formateData.setLenient(false);
+			
+			formateData.parse(data);
+			
+			return true;
+			
+		}catch (Exception e) {
+			
+			
+			
+			return false;
+		}
+		
+		
+	}
+	
+	public static boolean dataValida(String data) {
+		
+		DateTimeFormatter dataAtual = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		LocalDate dataVerificada = LocalDate.parse(data, dataAtual);
+		
+		LocalDate hoje = LocalDate.now();
+		
+		return dataVerificada.compareTo(hoje) <= 0;
+	}
+	
+	public static boolean validandoData(String data) {
+		
+		if( dataFormatoValido(data) == true) {
+			
+			
+			if(dataValida(data) == true) {
+				
+				return true;
+			}
+			
+			
+		}
+		
+		return false;
+		
+
+		
+	}
 	
 }

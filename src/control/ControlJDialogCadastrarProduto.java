@@ -77,7 +77,7 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 			 *  o preço do produto for maior que 0
 			 */
 			if(isCamposPreenchidos()) {
-				float preco = Float.parseFloat(getjDialogCadastrarProduto().getjTFieldPreco().getText().isEmpty() ? "0" : getjDialogCadastrarProduto().getjTFieldPreco().getText().replace(",", "."));
+				float preco = Float.parseFloat(getjDialogCadastrarProduto().getjTFieldPreco().getText().isEmpty() ? "0" : getjDialogCadastrarProduto().getjTFieldPreco().getText());
 				// Se o preço não for menor ou igual a zero
 				if(preco > 0) {
 					
@@ -124,7 +124,7 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 						// Exibe uma mensagem de confirmação do cadastro.
 						JOptionPane.showConfirmDialog(
 								getjDialogCadastrarProduto(), // componente
-								"O cadastro não foi realizado, pois o código inserido\r\n"
+								"O cadastro não foi realizado pois o código inserido\r\n"
 								+ "já pertence a outro produto.", // texto
 								"Falha ao cadastrar produto", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
@@ -140,8 +140,8 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 				else {
 					JOptionPane.showConfirmDialog(
 						getjDialogCadastrarProduto(), // componente
-						"O cadastro não foi realizado, pois o preço inserido\r\n"
-						+ "é menor ou igual a 0.", // texto
+						"O cadastro não foi realizado pois o preço inserido\r\n"
+						+ "é menor ou igual a zero.", // texto
 						"Falha ao cadastrar produto", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -183,9 +183,9 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 				 */
 				int option = JOptionPane.showOptionDialog(
 						getjDialogCadastrarProduto(), // tela pai
-						"Todos os campos preenchidos serão perdidos.\n"
+						"Existem capos preenchidos.\n"
 						+ "Tem certeza que deseja cancelar?", // mensagem
-						"Alerta!", // título
+						"Cancelar cadastro?", // título
 						JOptionPane.DEFAULT_OPTION, 
 						JOptionPane.INFORMATION_MESSAGE,
 						null,

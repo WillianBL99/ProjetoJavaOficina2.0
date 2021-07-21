@@ -213,7 +213,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 			else {
 				JOptionPane.showConfirmDialog(
 						getjDialogInserirProduto(), // componente
-						"Os campos não podem estar vazios.", // texto
+						"Os campos não podem estarem vazios.", // texto
 						"Campos vazios", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -235,7 +235,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 			 */
 			int option = JOptionPane.showOptionDialog(
 					getjDialogInserirProduto(), // tela pai
-					"Produto atual não foi inserido ainda. Deseja sair?", // mensagem
+					"Produto atual não foi inserido ainda, deseja sair?", // mensagem
 					"Alerta", // título
 					JOptionPane.DEFAULT_OPTION, 
 					JOptionPane.INFORMATION_MESSAGE,
@@ -330,7 +330,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 					JOptionPane.showConfirmDialog(
 							getjDialogInserirProduto(), // componente
 							"Insira um valor de desconto válido.\n"
-							+ "Valores permitidos de 0 a 99.", // texto
+							+ "Valores permitidos entre 0 a 99.", // texto
 							"Valor de desconto inválido", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.ERROR_MESSAGE // tipo de mensagem

@@ -79,8 +79,8 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 						cadastrado = false;
 						JOptionPane.showConfirmDialog(
 								super.getjDialogInserirProduto(), // componente
-								"Insira uma quantide válida no campo \"Quantidade\".\n"
-								+ "Valores iquais a 0 ou negativos não são permitidos.", // texto
+								"Insira um valor válido no campo quantidade.\n"
+								+ "Valores negativos e 0 não são permitidos.", // texto
 								"Valor inválido", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
 								JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -93,7 +93,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 					cadastrado = false;
 					JOptionPane.showConfirmDialog(
 							super.getjDialogInserirProduto(), // componente
-							"O campo \"Quantidade\" não pode estar vazio.", // texto
+							"O campo quantidade não pode está vazio.", // texto
 							"Campo vazio", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -121,7 +121,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 						cadastrado = false;
 						JOptionPane.showConfirmDialog(
 								super.getjDialogInserirProduto(), // componente
-								"Insira um valor válido no campo \"Desconto\".\n"
+								"Insira um valor válido no campo desconto.\n"
 								+ "Valores permitidos de 0 a 99.", // texto
 								"Valor inválido", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
@@ -135,7 +135,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 					cadastrado = false;
 					JOptionPane.showConfirmDialog(
 							super.getjDialogInserirProduto(), // componente
-							"O campo \"Desconto\" não pode está vazio.", // texto
+							"O campo desconto não pode está vazio.", // texto
 							"Campo vazio", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -150,7 +150,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 				cadastrado = false;
 				JOptionPane.showConfirmDialog(
 						super.getjDialogInserirProduto(), // componente
-						"Altere o valor do campo desejado e clique em \"Alterar produto\".", // texto
+						"Altere algum campo e clique em alterar produto.", // texto
 						"Nenhum campo alterado", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem

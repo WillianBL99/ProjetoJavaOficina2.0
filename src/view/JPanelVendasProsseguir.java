@@ -3,15 +3,22 @@
  */
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherChoice;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
@@ -21,7 +28,6 @@ import model.SetSizeIcon;
  * @author Paulo Uilian
  *
  */
-
 @SuppressWarnings("serial")
 public class JPanelVendasProsseguir extends JPanel{
 
@@ -29,25 +35,35 @@ public class JPanelVendasProsseguir extends JPanel{
 	//** Início declaração de variáveis **
 	
 	private SetSizeIcon setSizeIcon = new SetSizeIcon();
+	private ModuloConexao moduloConexao;
 	
 	private JPanel jPanelBarraSup;
 	private JPanel jPanelCentroVendasProsseguir;
 	private JPanel jPanelDadosCompra;
 	private JPanel jPanelFormaPagamento;
 	private JPanel jPanelDadosPagamento;
+	private JPanel jPanelDadosVendedorCliente;
+	
+	private JScrollPane jSPCentroVendasProsseguir;
 	
 	private JButton jButtonFinalizarCompra;
 	private JButton jButtonVoltar;
 	private JButton jButtonDinheiro;
 	private JButton jButtonCartão;
+	private JButton jButtonProcurar;
 	
 	private JTextField jTFildValorTotCompra;
 	private JTextField jTFildDesconto;
 	private JTextField jTFildValorPagar;
 	private JTextField jTFieldValorPago;
 	private JTextField jTFieldTroco;
+	private JTextField jTFieldCliente;
+	
+	private Choice choiceVendedor;
 	
 	private JLabel jLabelDescricaoTela;
+	private JLabel jLabelResponsavel;
+	private JLabel jLabelCliente;
 	
 		
 	//** Fim declaração de variáveis **
@@ -94,7 +110,8 @@ public class JPanelVendasProsseguir extends JPanel{
 			jPanelCentroVendasProsseguir = new JPanel();
 			jPanelCentroVendasProsseguir.setLayout(null);
 			jPanelCentroVendasProsseguir.setBackground(Cores.branco);
-			jPanelCentroVendasProsseguir.setSize(1240,567);
+			jPanelCentroVendasProsseguir.setSize(1249,682);
+			jPanelCentroVendasProsseguir.setPreferredSize(new Dimension(1249,682));
 			jPanelCentroVendasProsseguir.setBorder(null);
 		}
 		return jPanelCentroVendasProsseguir;
@@ -159,6 +176,63 @@ public class JPanelVendasProsseguir extends JPanel{
 			jPanelDadosPagamento.setVisible(true);
 		}
 		return jPanelDadosPagamento;
+	}	
+	
+	
+	public JPanel getjPanelDadosVendedorCliente() {
+		if(jPanelDadosVendedorCliente == null){
+			jPanelDadosVendedorCliente = new JPanel();
+			jPanelDadosVendedorCliente.setLayout(null);
+			jPanelDadosVendedorCliente.setBackground(Cores.branco);
+			jPanelDadosVendedorCliente.setSize(1195,120);
+			jPanelDadosVendedorCliente.setBorder(BorderFactory.
+					createTitledBorder(new javax.swing.border.
+							LineBorder(Cores.cinza2, 3, true),
+							"Dados vendedor e cliente",
+							javax.swing.border.TitledBorder.LEFT,
+							javax.swing.border.TitledBorder.DEFAULT_POSITION,
+							Fontes.fontBorda2,
+							Cores.azul1)
+					);
+			jPanelDadosVendedorCliente.setVisible(true);
+		}
+		return jPanelDadosVendedorCliente;
+	}
+	
+	
+	public JLabel getjLabelResponsavel() {
+		if(jLabelResponsavel == null){
+			jLabelResponsavel = new JLabel("Responsável:");
+			jLabelResponsavel.setFont(Fontes.fontJLabelPlain1);
+			jLabelResponsavel.setSize(100, 30);
+			jLabelResponsavel.setForeground(Cores.preto);
+			jLabelResponsavel.setOpaque(false);
+		}
+		return jLabelResponsavel;
+	}
+	
+	
+	public JLabel getjLabelCliente() {
+		if(jLabelCliente == null){
+			jLabelCliente = new JLabel("Cliente:");
+			jLabelCliente.setFont(Fontes.fontJLabelPlain1);
+			jLabelCliente.setSize(100, 30);
+			jLabelCliente.setForeground(Cores.preto);
+			jLabelCliente.setOpaque(false);
+		}
+		return jLabelCliente;
+	}
+	
+	
+	public JScrollPane getjSPCentroVendasProsseguir() {
+		if(jSPCentroVendasProsseguir == null){
+			jSPCentroVendasProsseguir = new JScrollPane();
+			jSPCentroVendasProsseguir.setViewportView(getjPanelCentroVendasProsseguir());
+			jSPCentroVendasProsseguir.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			jSPCentroVendasProsseguir.setBorder(null);
+			jSPCentroVendasProsseguir.setSize(1249, 610);	
+		}
+		return jSPCentroVendasProsseguir;
 	}
 	
 	//** Fim getters JPanel **	
@@ -179,6 +253,24 @@ public class JPanelVendasProsseguir extends JPanel{
 		}
 		return jLabelDescricaoTela;
 	}	
+	
+	
+	public Choice getchoiceVendedor() {
+		if(choiceVendedor == null) {
+			choiceVendedor = new Choice();
+			choiceVendedor.setSize(364, 35);
+			choiceVendedor.setFont(Fontes.fontJTFieldPlain1);
+			choiceVendedor.setForeground(Cores.azul1);
+			choiceVendedor.setVisible(true);
+			choiceVendedor.setFocusable(false);	
+			choiceVendedor.add(String.format("%150s", ""));
+			// Executa a query que retorna os nomes dos usuarios
+			getModuloConexao().executeQuery(ComandosSQL.consultarNomesUsuarios());
+			// Seta os itens do Choice com os valores da consulta sql
+			new PreencherChoice(getModuloConexao().getResultSet(), choiceVendedor);
+		}
+		return choiceVendedor;
+	}
 	
 	
 	//** Fim getters JLabel **	
@@ -253,6 +345,23 @@ public class JPanelVendasProsseguir extends JPanel{
 			
 		}
 		return jButtonCartão;
+	}
+
+	
+	public JButton getjButtonProcurar() {
+		if(jButtonProcurar == null){
+			jButtonProcurar = new JButton();			
+			jButtonProcurar.setFont(Fontes.fontJButtonPlain3);
+			jButtonProcurar.setBackground(Cores.azul1);
+			jButtonProcurar.setForeground(Color.white);
+			setSizeIcon.setIconJButton(jButtonProcurar, Icones.
+					getBuscar(), 30, 30);
+			jButtonProcurar.setSize(43, 35);
+			jButtonProcurar.setFocusable(false);
+			jButtonProcurar.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+		}
+		return jButtonProcurar;
 	}
 	
 	
@@ -371,6 +480,20 @@ public class JPanelVendasProsseguir extends JPanel{
 	}
 	
 	
+	public JTextField getjTFieldCliente() {
+		if(jTFieldCliente == null){
+			jTFieldCliente = new JTextField();
+			jTFieldCliente.setBorder(BorderFactory.
+					createLineBorder(Cores.azul1, 1, false));
+			jTFieldCliente.setForeground(Cores.preto);
+			jTFieldCliente.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldCliente.setSize(359, 35);
+			jTFieldCliente.setOpaque(true);
+		}
+		return jTFieldCliente;
+	}
+	
+	
 	//** Fim getters JFields **	
 	
 	//** Início getters JComboBox **
@@ -391,8 +514,8 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getJPanelVendasProsseguir().add(this.getjButtonVoltar());
 		this.getjButtonVoltar().setLocation(14, 67);	
 		
-		this.getJPanelVendasProsseguir().add(this.getjPanelCentroVendasProsseguir());
-		this.getjPanelCentroVendasProsseguir().setLocation(14, 116);		
+		this.getJPanelVendasProsseguir().add(this.getjSPCentroVendasProsseguir());
+		this.getjSPCentroVendasProsseguir().setLocation(14, 116);		
 		
 	}
 
@@ -406,10 +529,13 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjPanelFormaPagamento().setLocation(14, 192);	
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjPanelDadosPagamento());
-		this.getjPanelDadosPagamento().setLocation(14, 323);	
+		this.getjPanelDadosPagamento().setLocation(14, 323);		
+		
+		this.getjPanelCentroVendasProsseguir().add(this.getjPanelDadosVendedorCliente());
+		this.getjPanelDadosVendedorCliente().setLocation(14, 469);
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjButtonFinalizarCompra());
-		this.getjButtonFinalizarCompra().setLocation(777, 476);	
+		this.getjButtonFinalizarCompra().setLocation(777, 615);	
 		
 	}
 	
@@ -448,11 +574,39 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjTFieldTroco().setLocation(276, 35);
 		
 	}
+	
+	
+	public void adddCompJpanelDadosVendedorCliente() {
+		
+		this.getjPanelDadosVendedorCliente().add(this.getjLabelResponsavel());
+		this.getjLabelResponsavel().setLocation(14, 35);
+		
+		this.getjPanelDadosVendedorCliente().add(this.getchoiceVendedor());
+		this.getchoiceVendedor().setLocation(144, 35);
+		
+		
+		this.getjPanelDadosVendedorCliente().add(this.getjLabelCliente());
+		this.getjLabelCliente().setLocation(650, 35);
+		
+		this.getjPanelDadosVendedorCliente().add(this.getchoiceVendedor());
+		this.getchoiceVendedor().setLocation(725, 35);
+		
+		this.getjPanelDadosVendedorCliente().add(this.getjButtonProcurar());
+		this.getjButtonProcurar().setLocation(1084, 35);
+	}
 
 	
 	
 	//** Fim métodos adição de componentes **
+
 	
+	
+	private ModuloConexao getModuloConexao() {
+		if(this.moduloConexao == null) {
+			this.moduloConexao = new ModuloConexao();
+		}
+		return this.moduloConexao;
+	}
 
 
 }

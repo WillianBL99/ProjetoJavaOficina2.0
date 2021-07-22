@@ -219,7 +219,7 @@ public class JDialogProcurarCliente extends JDialog{
 	public JTable getjTableCliente() {
 			if(jTableCliente == null){		
 				jTableCliente = new JTable();
-				getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), "");
+				getModuloConexao().executeQuery(ComandosSQL.consultarClientesNome(), "");
 				jTableCliente.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
 						"Nº",
 						"CNPj",

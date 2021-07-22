@@ -21,7 +21,7 @@ public class JFramePrincipal extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.setUndecorated(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(new Dimension(1280,740));
+		this.setSize(new Dimension(1293,740));
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		

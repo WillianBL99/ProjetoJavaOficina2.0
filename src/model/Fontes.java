@@ -23,8 +23,9 @@ public class Fontes {
 
 	public static Font fontJButtonPlain0 = new Font("Segoe UI", Font.PLAIN, 10);
 	public static Font fontJButtonPlain1 = new Font("Segoe UI", Font.PLAIN, 12);
-	public static Font fontJButtonPlain2= new Font("Segoe UI", Font.PLAIN, 16);
-	public static Font fontJButtonPlain3 = new Font("Segoe UI", Font.PLAIN, 18);
+	public static Font fontJButtonPlain2 = new Font("Segoe UI", Font.PLAIN, 14);
+	public static Font fontJButtonPlain3= new Font("Segoe UI", Font.PLAIN, 16);
+	public static Font fontJButtonPlain4 = new Font("Segoe UI", Font.PLAIN, 18);
 	
 	
 	// fontes para JLabels

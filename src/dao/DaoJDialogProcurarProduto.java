@@ -35,7 +35,7 @@ public class DaoJDialogProcurarProduto {
 			// Recebe o codigo do produto
 			String marca_produto = getjDialogProcurarPeca().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosMarca(), marca_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -78,7 +78,7 @@ public class DaoJDialogProcurarProduto {
 			// Recebe o codigo do produto
 			String cod_produto = getjDialogProcurarPeca().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosCodigo(), cod_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosCodigo(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -121,7 +121,7 @@ public class DaoJDialogProcurarProduto {
 			// Recebe a descrição do produto
 			String desc_produto = getjDialogProcurarPeca().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosDescricao(), desc_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -164,7 +164,7 @@ public class DaoJDialogProcurarProduto {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutos());
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {

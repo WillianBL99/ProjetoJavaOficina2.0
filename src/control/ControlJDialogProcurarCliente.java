@@ -401,7 +401,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	
 	private void preencherPreOrcamentoNovoCliente(String id_cli) {
 		getdaoJDialogProcurarCliente().getModuloConexao().
-			executeQuery(ComandosSQL.getconsultarClientesTodosCampos(), id_cli);
+			executeQuery(ComandosSQL.consultarClientesTodosCampos(), id_cli);
 		try {
 			getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().next();
 			System.out.println("nome = " + getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4));

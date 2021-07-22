@@ -228,6 +228,7 @@ public class  Mascara {
 		return dataVerificada.compareTo(hoje) <= 0;
 	}
 	
+	
 	public static boolean validandoData(String data) {
 		
 		if( dataFormatoValido(data) == true) {

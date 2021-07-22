@@ -114,7 +114,7 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelProduto.setSize(688, 172);
 			jPanelProduto.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza1, 3, true),
 							"Produto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -134,7 +134,7 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelInserirProduto.setSize(688, 332);
 			jPanelInserirProduto.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza1, 3, true),
 							"Inserir Produto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -154,7 +154,7 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelProdutoCompra.setSize(479, 368);
 			jPanelProdutoCompra.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 3, true),
+							LineBorder(Cores.cinza1, 3, true),
 							"Produtos da compra",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
@@ -303,7 +303,7 @@ public class JPanelVendasNovo extends JPanel {
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
 							Fontes.fontBorda1,
-							Cores.azul1)
+							Cores.cinza2)
 					);
 			jTFieldProdutoQuantidade.setForeground(Cores.azul1);
 			jTFieldProdutoQuantidade.setFont(Fontes.fontJTFieldBold2);
@@ -325,7 +325,7 @@ public class JPanelVendasNovo extends JPanel {
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
 							Fontes.fontBorda1,
-							Cores.azul1)
+							Cores.cinza2)
 					);
 			jTFieldProdutoVal.setForeground(Cores.azul1);
 			jTFieldProdutoVal.setFont(Fontes.fontJTFieldBold2);
@@ -347,7 +347,7 @@ public class JPanelVendasNovo extends JPanel {
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.TOP,
 							Fontes.fontBorda1,
-							Cores.azul1)
+							Cores.cinza2)
 					);
 			jTFieldProdutoValTot.setForeground(Cores.azul1);
 			jTFieldProdutoValTot.setFont(Fontes.fontJTFieldBold2);
@@ -364,7 +364,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldInserirProdutoDesc = new JTextField();
 			jTFieldInserirProdutoDesc.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 2, true),
+							LineBorder(Cores.azul1, 2, true),
 							"describe",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.TOP,
@@ -385,7 +385,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldInserirProdutoQuant = new JTextField();
 			jTFieldInserirProdutoQuant.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 2, true),
+							LineBorder(Cores.azul1, 2, true),
 							"Quantidade",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.TOP,
@@ -407,12 +407,12 @@ public class JPanelVendasNovo extends JPanel {
 			JTFieldTotal = new JTextField();
 			JTFieldTotal.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.cinza2, 2, true),
+							LineBorder(Cores.cinza1, 2, true),
 							"Total",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
 							Fontes.fontBorda3,
-							Cores.preto)
+							Cores.cinza1)
 					);
 			JTFieldTotal.setForeground(Cores.azul1);
 			JTFieldTotal.setBackground(Cores.branco);
@@ -439,6 +439,7 @@ public class JPanelVendasNovo extends JPanel {
 			choiceBoxDesc = new Choice();
 			choiceBoxDesc.setSize(190, 23);
 			choiceBoxDesc.setFont(Fontes.fontJTFieldPlain1);
+			choiceBoxDesc.setForeground(Cores.azul1);
 			choiceBoxDesc.setVisible(true);
 			choiceBoxDesc.add(String.format("%-35s","Descrição"));
 			choiceBoxDesc.add(String.format("%-35s","Marca"));
@@ -478,7 +479,7 @@ public class JPanelVendasNovo extends JPanel {
 		if(jTableInserirProduto == null) {
 			jTableInserirProduto = new JTable();
 			jTableInserirProduto.setBorder(null);
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutos());
 			jTableInserirProduto.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
 	                "cod.",
 	                "Descrição",

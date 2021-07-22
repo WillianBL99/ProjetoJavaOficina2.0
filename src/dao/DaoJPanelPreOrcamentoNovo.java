@@ -32,7 +32,7 @@ public class DaoJPanelPreOrcamentoNovo {
 			// Recebe o id do pré orçamento
 			String id_orcamento = getjpanelPreOrcamentoNovo().getjTFieldNumeroPreOrcamento().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarServicosPreOrcamento(), id_orcamento);
+			getModuloConexao().executeQuery(ComandosSQL.consultarServicosPreOrcamento(), id_orcamento);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -77,7 +77,7 @@ public class DaoJPanelPreOrcamentoNovo {
 			// Recebe o id do pré orçamento
 			String id_orcamento = getjpanelPreOrcamentoNovo().getjTFieldNumeroPreOrcamento().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosPreOrcamento(), id_orcamento);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosPreOrcamento(), id_orcamento);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -118,7 +118,7 @@ public class DaoJPanelPreOrcamentoNovo {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarNumeroPreOrcamento());
+			getModuloConexao().executeQuery(ComandosSQL.consultarNumeroPreOrcamento());
 			
 			// Next() seleciona coloca o cursor na primeira linha
 			getModuloConexao().getResultSet().next();

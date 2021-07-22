@@ -338,7 +338,7 @@ public class JPanelPreOrcamento  extends JPanel {
 	public JTable getjTableOrcamentos() {					
 		if(jTableOrcamentos == null){
 			jTableOrcamentos = new JTable();
-			getModuloConexao().executeQuery(ComandosSQL.getvisualizarTodosPreOrcamentos());
+			getModuloConexao().executeQuery(ComandosSQL.visualizarTodosPreOrcamentos());
 									
 			jTableOrcamentos.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
 					"Data",

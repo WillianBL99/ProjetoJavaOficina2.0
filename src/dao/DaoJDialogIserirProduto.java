@@ -37,7 +37,7 @@ public class DaoJDialogIserirProduto {
 			// Recebe o codigo do produto
 			String marca_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutosMarca(), marca_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {
@@ -80,7 +80,7 @@ public class DaoJDialogIserirProduto {
 			// Recebe o codigo do produto
 			String cod_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), cod_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutoID(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {
@@ -123,7 +123,7 @@ public class DaoJDialogIserirProduto {
 			// Recebe a descrição do produto
 			String desc_produto = getjDialogInserirProduto().getjTFieldProcurar().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutosDescricao(), desc_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {
@@ -164,7 +164,7 @@ public class DaoJDialogIserirProduto {
 	 */
 	public boolean isFirst() {
 		boolean status = false;
-		getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID());
+		getmoduloConexao().executeQuery(ComandosSQL.consultarProdutoID());
 		if(getmoduloConexao().resultSetIsEmpty()) {
 			status = true;
 		}

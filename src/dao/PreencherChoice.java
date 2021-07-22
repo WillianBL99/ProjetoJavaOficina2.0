@@ -53,7 +53,7 @@ public class PreencherChoice {
 				 * e retorna o valor da coluna na linha atual.
 				 */
 				String itens = getResultSet().getString(getResultSetMetaData().getColumnName(1));
-				getChoice().add(itens + "                       ");
+				getChoice().add(String.format("%s%100s", itens,""));
 				
 			}while(getResultSet().next());
 			status = 1;

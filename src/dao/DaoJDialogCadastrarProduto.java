@@ -33,7 +33,7 @@ public class DaoJDialogCadastrarProduto {
 		try {
 			// Método executeUpdate(query, campos...) retorna verdadeiro caso a inserção seja bem sucedida
 			if(new Cadastrar().executeUpdate(
-					ComandosSQL.getcadastrarProduto(),
+					ComandosSQL.cadastrarProduto(),
 					getjDialogCadastrarProduto().getjTFieldCodigo().getText(),
 					getjDialogCadastrarProduto().getjTFieldDescricao().getText(),
 					getjDialogCadastrarProduto().getjTFieldMarca().getText(),
@@ -60,7 +60,7 @@ public class DaoJDialogCadastrarProduto {
 	 */
 	public boolean idUnico(String id) {
 		boolean status = false;
-		getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), id);
+		getmoduloConexao().executeQuery(ComandosSQL.consultarProdutoID(), id);
 		if(getmoduloConexao().resultSetIsEmpty()) {
 			status = true;
 		}

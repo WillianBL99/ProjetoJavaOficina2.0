@@ -87,11 +87,7 @@ public class PreencherTabela extends AbstractTableModel{
 	}
 	
 	
-	/*
-	 *  
-	 *  - 
-	 *  
-	 */
+	
 	/**
 	 * Método int receberTabelaDB()
 	 * Realiza obtenão dos dados para insersão na tabela.
@@ -119,8 +115,9 @@ public class PreencherTabela extends AbstractTableModel{
 					// Baseado nos estudo da pagina "https://www.guj.com.br/t/resultset-obter-o-nome-da-coluna/216872/2"
 					object[i] = getModuloConexao().getResultSet().getString(getResultSetMetaData().getColumnName(i + 1));
 					
-					// A variável nomeColunas recebe o nome de cada uma das colunas da tabela
+					// A variável nomeColunas recebe o nome de cada uma das colunas da tabela do banco de dados
 					nomeColunas[i] = getResultSetMetaData().getColumnName(i + 1);
+					
 				}
 				
 				// Passa o nome das colunas para uma variável local atraves do metodo set

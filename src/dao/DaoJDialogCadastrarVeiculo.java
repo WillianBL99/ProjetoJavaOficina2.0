@@ -38,7 +38,7 @@ public class DaoJDialogCadastrarVeiculo {
 			// Método executeUpdate(query, campos...) retorna verdadeiro caso a inserção seja bem sucedida
 			if(
 				getModuloConexao().executeUpdate(
-					ComandosSQL.getcadastrarVeiculo(),
+					ComandosSQL.cadastrarVeiculo(),
 					getjDialogProcurarVeiculo().getjTFieldChassi().getText().replace(" ", ""), // retira os "." e "-" da string
 					getjDialogProcurarVeiculo().getjTFieldPlaca().getText().replace("-", "").replace("/", "").replace(" ", ""),
 					getjDialogProcurarVeiculo().getjTFieldKMAtual().getText().replace(" ", ""),

@@ -256,7 +256,7 @@ public class JDialogProcurarVeiculo extends JDialog{
 	public JTable getjTableVeiculos() {
 		if(jTableVeiculos == null){
 			jTableVeiculos = new JTable();
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodos());
+			getModuloConexao().executeQuery(ComandosSQL.consultarVeiculoTodos());
 			jTableVeiculos.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(),
 					"Nº Veiculo",
 					"Placa",

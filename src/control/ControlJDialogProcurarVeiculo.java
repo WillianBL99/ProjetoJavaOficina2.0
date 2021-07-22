@@ -304,7 +304,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	 */
 	private void carrosCliente() {
 		// Reaiza a chamada da query que realiza a busca de um veículo através do cliente
-		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), this.getidCliente());
+		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(ComandosSQL.consultarVeiculoTodosByCliente(), this.getidCliente());
 		// Verifica se a consulta retornou alguma linha do banco de dados
 		if(!getdaoJDialogProcurarVeiculo().getModuloConexao().resultSetIsEmpty()) {
 			// seta com visible(true) caso esteja (false)
@@ -450,8 +450,7 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	// Início métodos da classe
 	
 	private void preencherPreOrcamentoNovoVeiculo(String id_veiculo) {
-		getdaoJDialogProcurarVeiculo().getModuloConexao().executeQuery(
-				ComandosSQL.getconsultarVeiculoID(), id_veiculo);
+		getdaoJDialogProcurarVeiculo().bucarVeiculo(id_veiculo);;
 
 		String id = null;
 		String chassi = null;

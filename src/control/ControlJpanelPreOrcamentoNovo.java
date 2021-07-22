@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
@@ -21,7 +20,6 @@ import model.Mascara;
 import view.JDialogInserirProduto;
 import view.JDialogInserirServico;
 import view.JDialogProcurarCliente;
-import view.JDialogProcurarPeca;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
 import view.JPanelPreOrcamento;
@@ -39,6 +37,8 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	private Point point = new Point(250, 47); // posição que a tela e setada na jpanelprincipal
 	private JButton jButtonClicado; // guarda o jbutton clicado
+	private boolean clienteInserido; // recebe se foi inserido um cliente
+	private boolean veiculoInserido; // recebe se foi inserido um veículo
 	
 	private JFramePrincipal jFramePrincipal;
 	private JPanelPrincipal jPanelPrincipal;
@@ -53,6 +53,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	private ControlJDialogInserirProduto controlJDialogInserirProduto;
 	private JDialogInserirServico jDialogInserirServico;
 	private ControlJDialogInserirServico controlJDialogInserirServico;
+	private ControlEditarProdutoInserido controlEditarProdutoInserido;
 
 	//** Fim declaração de variáveis **	
 	
@@ -215,28 +216,103 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		
 		// Quando o botão adicionar for clicado
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonAdicionarProdutoServico()) {
-			// Verifica se é para inserir um serviço ou produto
-			if(jButtonClicado == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
-				jDialogInserirServico = null;
-				controlJDialogInserirServico = null;
-				getjDialogInserirServico();
-				getconControlJDialogInserirServico();
+			// Verificar se foi inserido cliente e veículo
+			if(isClienteInserido() && isVeiculoInserido()) {
+				// Verifica se é para inserir um serviço ou produto
+				if(jButtonClicado == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
+					jDialogInserirServico = null;
+					controlJDialogInserirServico = null;
+					getjDialogInserirServico();
+					getconControlJDialogInserirServico();
+				}
+				
+				// Se o botão clicado for lista de produtos
+				else {
+					jDialogInserirProduto = null;
+					controlJDialogInserirProduto = null;
+					getjDialogInserirProduto();
+					getconControlJDialogInserirProduto();
+				}
 			}
 			
-			// Se o botão clicado for lista de produtos
+			// caso não tenha inserido o cliente e o veículo
 			else {
-				jDialogInserirProduto = null;
-				controlJDialogInserirProduto = null;
-				getjDialogInserirProduto();
-				getconControlJDialogInserirProduto();
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Insira um cliente e um veículo primeiro.", // texto
+						"Selecionar cliente e veículo", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
 			}
 		}
 		
 		
 		// Quando o botão editar for clicado
 		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonEditarProdutoServico()) {
-			new JDialogProcurarPeca(getjFramePrincipal(), false);
+			// Verificar se foi inserido cliente e veículo
+			if(isClienteInserido() && isVeiculoInserido()) {
+				// Verificar se foi selecionada alguma linha da tabela lista de produtos
+				if(getjPanelPreOrcamentoNovo().getjTableListaProdutos().getSelectedRow() > -1) {
+					// Verifica se é para editar um serviço
+					if(jButtonClicado == getjPanelPreOrcamentoNovo().getjButtonListaServicos()) {
+						
+					}
+					
+					// Verifica se é para editar um produto
+					else {
+						jDialogInserirProduto = null;
+						controlEditarProdutoInserido = null;
+						getjDialogInserirProduto();
+						getcontrolEditarProdutoInserido(getjPanelPreOrcamentoNovo().getjTableListaProdutos().getSelectedRow());
+					}
+				}
+				
+				// Caso nenhuma linha tenha sido selecionada
+				else {
+					JOptionPane.showConfirmDialog(
+							getjPanelPreOrcamentoNovo(), // componente
+							"Selecione um produto antes de clicar em editar produto.", // texto
+							"Nenhum produto selecionado", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+					);
+				}
+				
+			}
+			
+			// caso não tenha inserido o cliente e o veículo
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Insira um cliente e um veículo primeiro.", // texto
+						"Selecionar cliente e veículo", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 		}
+		
+		
+		// Quando o botão apagar for clicado
+		else if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonApagarProdutoServico()) {
+			// Verificar se tem algum produto ou serviço selecionado
+			if(getjPanelPreOrcamentoNovo().getjTableListaProdutos().getSelectedRow() >= 0 || getjPanelPreOrcamentoNovo().getjTableListaServicos().getSelectedRow() >= 0) {
+				
+			}
+			
+			// Caso nenhum produto tenha sido selecionado
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelPreOrcamentoNovo(), // componente
+						"Selecione um produto antes de clicar em editar produto.", // texto
+						"Nenhum produto selecionado", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
+		}
+			
 	}
 	
 	@Override
@@ -439,6 +515,18 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		return controlJDialogInserirProduto;
 	}
 	
+	/**
+	 * Chama o construtor da tela editar produto selecionado
+	 * @param rowSelcted recebe a linha do produto a ser modificado
+	 * @return ControlEditarProdutoInserido
+	 */
+	public ControlEditarProdutoInserido getcontrolEditarProdutoInserido(int rowSelcted) {
+		if(controlEditarProdutoInserido == null) {
+			controlEditarProdutoInserido = new ControlEditarProdutoInserido(getjFramePrincipal(), getjDialogInserirProduto(), getjPanelPreOrcamentoNovo(), rowSelcted);
+		}
+		return controlEditarProdutoInserido;
+	}
+	
 	
 	public JDialogProcurarCliente getjDialogProCliente() {
 		if(jDialogProcurarCliente == null) {
@@ -451,7 +539,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	public ControlJDialogProcurarCliente getconControlJDialogProcurarCliente() {
 		if(controlJDialogProcurarCliente == null) {
-			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente(), getjPanelPreOrcamentoNovo());
+			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(getjFramePrincipal(), getjDialogProCliente(), getjPanelPreOrcamentoNovo(), this);
 		}
 		return controlJDialogProcurarCliente;
 	}
@@ -459,7 +547,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	public ControlJDialogProcurarVeiculo getcontrolJDialogProcurarVeiculo() {
 		if(controlJDialogProcurarVeiculo == null) {
-			controlJDialogProcurarVeiculo = new ControlJDialogProcurarVeiculo(getjFramePrincipal(), getjDialogProcurarVeiculo(), getjPanelPreOrcamentoNovo());
+			controlJDialogProcurarVeiculo = new ControlJDialogProcurarVeiculo(getjFramePrincipal(), getjDialogProcurarVeiculo(), getjPanelPreOrcamentoNovo(), this);
 		}
 		return controlJDialogProcurarVeiculo;
 	}
@@ -472,5 +560,27 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 		}
 		return jDialogProcurarVeiculo;
 	}
+
+
+	public boolean isClienteInserido() {		
+		return clienteInserido;
+	}
+
+
+	public void setClienteInserido(boolean clienteInserido) {
+		this.clienteInserido = clienteInserido;
+	}
+
+
+	public boolean isVeiculoInserido() {
+		return veiculoInserido;
+	}
+
+
+	public void setVeiculoInserido(boolean veiculoInserido) {
+		this.veiculoInserido = veiculoInserido;
+	}
+	
+	
 
 }

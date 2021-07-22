@@ -33,15 +33,18 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	private DaoJDialogProcurarCliente daoJDialogProcurarCliente;
 	private JDialogCadastrarCliente jDialogCadastrarCliente;
 	private ControlJDialogCadastrarCliente controlJDialogCadastrarCliente;
+	private ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo;
 	private boolean modal;
 	private int coutWindowAtivated; // Verifica se a tela ja foi ativada antes
 	
 	//** Fim declaração de variáveis **	
 	
-	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente, JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo) {	
+	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente,
+			JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo, ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo) {	
 		this.jFramePrincipal = jFramePricipal;	
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
 		this.jDialogProcurarCliente = jDialogProcurarCliente;
+		this.controlJpanelPreOrcamentoNovo = controlJpanelPreOrcamentoNovo;
 		AddEvent();
 		setmodal(getjDialogProcurarCliente().ismodalTela());
 	}
@@ -221,6 +224,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 						getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
 						0).toString());
 				limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
+				getcontrolControlJpanelPreOrcamentoNovo().setClienteInserido(true);
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarCliente().dispose();
 			}
@@ -380,6 +384,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		} else {
 			setcouWindowAtivated(1);
 		}
+		getdaoJDialogProcurarCliente().getClienteTodos();
 	}
 
 
@@ -500,6 +505,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			controlJDialogCadastrarCliente = new ControlJDialogCadastrarCliente(getjFramePricipal(), getjDialogProcurarCliente(), getjDialogCadastrarCliente());
 		}
 		return controlJDialogCadastrarCliente;
+	}
+	
+	
+	public ControlJpanelPreOrcamentoNovo getcontrolControlJpanelPreOrcamentoNovo() {
+		if(controlJpanelPreOrcamentoNovo == null){
+			controlJpanelPreOrcamentoNovo = new ControlJpanelPreOrcamentoNovo(getjFramePricipal(), null, null, getjPanelPreOrcamentoNovo());
+		}
+		return controlJpanelPreOrcamentoNovo;
 	}
 
 

@@ -81,8 +81,9 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 				// Se o preço não for menor ou igual a zero
 				if(preco > 0) {
 					
-					// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
+					// Verifica se é o único id no banco de dados
 					if(getdaoJDialogCadastrarProduto().idUnico(getjDialogCadastrarProduto().getjTFieldCodigo().getText())) {
+						// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
 						if(getdaoJDialogCadastrarProduto().cadastrarProduto()) {						
 
 							// Vetor de String com os nomes das opções que apareceram no joptionpane.

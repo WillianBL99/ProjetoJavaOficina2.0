@@ -238,9 +238,16 @@ public class JPanelEstoque  extends JPanel{
 	                "Preço"));
 
 			jTableEstoque.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			jTableEstoque.setFont(Fontes.fontJTablePlain2);
-			jTableEstoque.setOpaque(false);
+			jTableEstoque.setShowVerticalLines(false);
+			jTableEstoque.getColumnModel().getColumn(0).setMaxWidth(80);
+			jTableEstoque.getColumnModel().getColumn(2).setMaxWidth(300);
+			jTableEstoque.getColumnModel().getColumn(2).setMinWidth(250);
+			jTableEstoque.getColumnModel().getColumn(3).setMaxWidth(80);
+			jTableEstoque.getColumnModel().getColumn(4).setMaxWidth(100);
 			jTableEstoque.setRowHeight(21);
+			jTableEstoque.setOpaque(false);
+			jTableEstoque.getTableHeader().setReorderingAllowed(false);
+			jTableEstoque.setFont(Fontes.fontJTablePlain2);
 			jTableEstoque.getTableHeader().setFont(Fontes.fontJTableBold2);
 			jTableEstoque.getTableHeader().setForeground(Cores.branco);
 			jTableEstoque.getTableHeader().setBackground(Cores.azul1);

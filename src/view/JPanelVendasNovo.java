@@ -9,15 +9,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+
+import dao.ComandosSQL;
+import dao.ModuloConexao;
+import dao.PreencherTabela;
 import model.Cores;
 import model.Fontes;
+import model.TabelaTemporaria;
 
 @SuppressWarnings("serial")
 public class JPanelVendasNovo extends JPanel {
 
 	
 	//** Início declaração de variáveis **
+	private ModuloConexao moduloConexao;
+	private TabelaTemporaria tabelaTemporaria;
 	
 	private JPanel jPanelBarraSup;
 	private JPanel jPanelCentroVendas;
@@ -47,6 +55,7 @@ public class JPanelVendasNovo extends JPanel {
 	private JLabel jLabelX;
 	
 	private JButton jButtonProsseguir;
+	private JButton jButtonRetirarProduto;
 	private JButton jButtonCancelar;
 	private JButton jButtonInserir;
 	
@@ -102,7 +111,7 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelProduto = new JPanel();
 			jPanelProduto.setLayout(null);
 			jPanelProduto.setOpaque(false);
-			jPanelProduto.setSize(727, 172);
+			jPanelProduto.setSize(688, 172);
 			jPanelProduto.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
@@ -122,11 +131,11 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelInserirProduto = new JPanel();
 			jPanelInserirProduto.setLayout(null);
 			jPanelInserirProduto.setOpaque(false);
-			jPanelInserirProduto.setSize(617, 332);
+			jPanelInserirProduto.setSize(688, 332);
 			jPanelInserirProduto.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
-							"Iserir Produto",
+							"Inserir Produto",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
 							Fontes.fontBorda2,
@@ -142,7 +151,7 @@ public class JPanelVendasNovo extends JPanel {
 			jPanelProdutoCompra = new JPanel();
 			jPanelProdutoCompra.setLayout(null);
 			jPanelProdutoCompra.setOpaque(false);
-			jPanelProdutoCompra.setSize(429, 312);
+			jPanelProdutoCompra.setSize(479, 368);
 			jPanelProdutoCompra.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.cinza2, 3, true),
@@ -219,13 +228,29 @@ public class JPanelVendasNovo extends JPanel {
 			jButtonProsseguir.setBackground(Cores.azul1);
 			jButtonProsseguir.setForeground(Color.white);
 			jButtonProsseguir.setText("Prosseguir compra");
-			jButtonProsseguir.setSize(429, 45);
+			jButtonProsseguir.setSize(479, 45);
 			jButtonProsseguir.setFocusable(false);
 			jButtonProsseguir.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
 	        
 		}
 		return jButtonProsseguir;
+	}
+	
+	public JButton getjButtonRetirarProduto() { // OK
+		if(jButtonRetirarProduto == null) {
+			jButtonRetirarProduto = new JButton();			
+			jButtonRetirarProduto.setFont(Fontes.fontJButtonPlain3);
+			jButtonRetirarProduto.setBackground(Cores.azul1);
+			jButtonRetirarProduto.setForeground(Color.white);
+			jButtonRetirarProduto.setText("retirar");
+			jButtonRetirarProduto.setSize(100, 35);
+			jButtonRetirarProduto.setFocusable(false);
+			jButtonRetirarProduto.setBorder(BorderFactory.
+					createLineBorder(Cores.cinza2, 1));
+	        
+		}
+		return jButtonRetirarProduto;
 	}
 	
 	
@@ -283,6 +308,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldProdutoQuantidade.setForeground(Cores.azul1);
 			jTFieldProdutoQuantidade.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoQuantidade.setSize(202, 83);
+			jTFieldProdutoQuantidade.setEditable(false);
 			jTFieldProdutoQuantidade.setOpaque(false);
 			
 		}
@@ -304,6 +330,7 @@ public class JPanelVendasNovo extends JPanel {
 			jTFieldProdutoVal.setForeground(Cores.azul1);
 			jTFieldProdutoVal.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoVal.setSize(202, 83);
+			jTFieldProdutoVal.setEditable(false);
 			jTFieldProdutoVal.setOpaque(false);
 			
 		}
@@ -318,13 +345,14 @@ public class JPanelVendasNovo extends JPanel {
 							LineBorder(Cores.cinza2, 3, true),
 							"Valor total",
 							javax.swing.border.TitledBorder.LEFT,
-							javax.swing.border.TitledBorder.DEFAULT_POSITION,
+							javax.swing.border.TitledBorder.TOP,
 							Fontes.fontBorda1,
 							Cores.azul1)
 					);
 			jTFieldProdutoValTot.setForeground(Cores.azul1);
 			jTFieldProdutoValTot.setFont(Fontes.fontJTFieldBold2);
 			jTFieldProdutoValTot.setSize(202, 83);
+			jTFieldProdutoValTot.setEditable(false);
 			jTFieldProdutoValTot.setOpaque(false);
 			
 		}
@@ -335,10 +363,17 @@ public class JPanelVendasNovo extends JPanel {
 		if(jTFieldInserirProdutoDesc == null) {
 			jTFieldInserirProdutoDesc = new JTextField();
 			jTFieldInserirProdutoDesc.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 3, false));
-			jTFieldInserirProdutoDesc.setForeground(Cores.azul1);
+					createTitledBorder(new javax.swing.border.
+							LineBorder(Cores.cinza2, 2, true),
+							"describe",
+							javax.swing.border.TitledBorder.LEFT,
+							javax.swing.border.TitledBorder.TOP,
+							Fontes.fontBorda1,
+							Cores.azul1)
+					);
+			jTFieldInserirProdutoDesc.setForeground(Cores.preto);
 			jTFieldInserirProdutoDesc.setFont(Fontes.fontJTFieldPlain3);
-			jTFieldInserirProdutoDesc.setSize(377, 30);
+			jTFieldInserirProdutoDesc.setSize(423, 57);
 			jTFieldInserirProdutoDesc.setOpaque(true);
 			
 		}
@@ -349,10 +384,17 @@ public class JPanelVendasNovo extends JPanel {
 		if(jTFieldInserirProdutoQuant == null) {
 			jTFieldInserirProdutoQuant = new JTextField();
 			jTFieldInserirProdutoQuant.setBorder(BorderFactory.
-					createLineBorder(Cores.cinza2, 3, false));
-			jTFieldInserirProdutoQuant.setForeground(Cores.azul1);
+					createTitledBorder(new javax.swing.border.
+							LineBorder(Cores.cinza2, 2, true),
+							"Quantidade",
+							javax.swing.border.TitledBorder.LEFT,
+							javax.swing.border.TitledBorder.TOP,
+							Fontes.fontBorda1,
+							Cores.azul1)
+					);
+			jTFieldInserirProdutoQuant.setForeground(Cores.preto);
 			jTFieldInserirProdutoQuant.setFont(Fontes.fontJTFieldPlain3);
-			jTFieldInserirProdutoQuant.setSize(140, 30);
+			jTFieldInserirProdutoQuant.setSize(190, 57);
 			jTFieldInserirProdutoQuant.setOpaque(false);
 			
 		}
@@ -373,8 +415,10 @@ public class JPanelVendasNovo extends JPanel {
 							Cores.preto)
 					);
 			JTFieldTotal.setForeground(Cores.azul1);
-			JTFieldTotal.setFont(Fontes.fontJTFieldBold3);
-			JTFieldTotal.setSize(428, 77);
+			JTFieldTotal.setBackground(Cores.branco);
+			JTFieldTotal.setFont(Fontes.fontJTFieldBold2);
+			JTFieldTotal.setSize(479, 77);
+			JTFieldTotal.setEditable(false);
 			jTFieldProdutoValTot.setOpaque(false);
 			
 		}
@@ -393,11 +437,12 @@ public class JPanelVendasNovo extends JPanel {
 	public Choice getchoiceBoxDesc() {
 		if(choiceBoxDesc == null){
 			choiceBoxDesc = new Choice();
-			choiceBoxDesc.setSize(170, 23);
+			choiceBoxDesc.setSize(190, 23);
 			choiceBoxDesc.setFont(Fontes.fontJTFieldPlain1);
 			choiceBoxDesc.setVisible(true);
-			choiceBoxDesc.add("Descrição produto");
-			choiceBoxDesc.add("Codigo produto");
+			choiceBoxDesc.add(String.format("%-35s","Descrição"));
+			choiceBoxDesc.add(String.format("%-35s","Marca"));
+			choiceBoxDesc.add(String.format("%-35s","Código"));
 			choiceBoxDesc.setFocusable(false);	
 		}
 		return choiceBoxDesc;
@@ -412,7 +457,8 @@ public class JPanelVendasNovo extends JPanel {
 		if(jSPInserirProduto == null) {
 			jSPInserirProduto = new JScrollPane();
 			jSPInserirProduto.setViewportView(getjTableInserirProduto());
-			jSPInserirProduto.setSize(562, 150);
+			jSPInserirProduto.setBorder(null);
+			jSPInserirProduto.setSize(658, 159);
 		}
 		return jSPInserirProduto;
 	}
@@ -422,7 +468,7 @@ public class JPanelVendasNovo extends JPanel {
 		if(jSPProdutosCompra == null) {
 			jSPProdutosCompra = new JScrollPane();
 			jSPProdutosCompra.setViewportView(getjTableProdutosCompra());
-			jSPProdutosCompra.setSize(399, 150);
+			jSPProdutosCompra.setSize(449, 273);
 		}
 		return jSPProdutosCompra;
 	}
@@ -431,20 +477,24 @@ public class JPanelVendasNovo extends JPanel {
 	public JTable getjTableInserirProduto() { // OK
 		if(jTableInserirProduto == null) {
 			jTableInserirProduto = new JTable();
-			jTableInserirProduto.setModel(new javax.swing.table.DefaultTableModel(
-		            new Object [][] {
-		                {null, null, null, null},
-		                {null, null, null, null},
-		                {null, null, null, null},
-		                {null, null, null, null}
-		            },
-		            new String [] {
-		                "Cod. Produto", "Cod. Estoque", "Descrição", "Preço"
-		            }
-		        ));			
+			jTableInserirProduto.setBorder(null);
+			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+			jTableInserirProduto.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
+	                "cod.",
+	                "Descrição",
+	                "Marca",
+	                "qtd",
+	                "Preço"));		
 
-			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
+			jTableInserirProduto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jTableInserirProduto.setShowVerticalLines(false);
+			jTableInserirProduto.getColumnModel().getColumn(0).setMaxWidth(50);
+			jTableInserirProduto.getColumnModel().getColumn(2).setMaxWidth(90);
+			jTableInserirProduto.getColumnModel().getColumn(3).setMaxWidth(50);
+			jTableInserirProduto.getColumnModel().getColumn(4).setMaxWidth(70);
 			jTableInserirProduto.setOpaque(false);
+			jTableInserirProduto.getTableHeader().setReorderingAllowed(false);
+			jTableInserirProduto.setFont(Fontes.fontJTablePlain1);
 			jTableInserirProduto.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableInserirProduto.getTableHeader().setForeground(Cores.branco);
 			jTableInserirProduto.getTableHeader().setBackground(Cores.azul1);
@@ -456,22 +506,28 @@ public class JPanelVendasNovo extends JPanel {
 	public JTable getjTableProdutosCompra() { // OK
 		if(jTableProdutosCompra == null) {
 			jTableProdutosCompra = new JTable();
+			jTableProdutosCompra.setBorder(null);
+			/*
+			 * Format(%4d,%4d,%9s,%8s,%15.2f)
+			 */
 			jTableProdutosCompra.setModel(new javax.swing.table.DefaultTableModel(
 					
-		            new Object [][] {
-		                {null, null, null, null},
-		                {null, null, null, null},
-		                {null, null, null, null},
-		                {null, null, null, null}
-		            },
+		            new Object [][] {},
 		            
 		            new String [] {
-		                "Item", "Qtd.", "Descrição", "Preço"
+		                "Item", "Qtd.", "Descrição", "Marca", "Total"
 		            }
 		        ));
 			
 			jTableProdutosCompra.setFont(Fontes.fontJTablePlain1);
+			jTableProdutosCompra.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jTableProdutosCompra.setShowVerticalLines(false);
+			jTableProdutosCompra.getColumnModel().getColumn(0).setMaxWidth(35);
+			jTableProdutosCompra.getColumnModel().getColumn(1).setMaxWidth(35);
+			jTableProdutosCompra.getColumnModel().getColumn(3).setMaxWidth(90);
+			jTableProdutosCompra.getColumnModel().getColumn(4).setMaxWidth(70);
 			jTableProdutosCompra.setOpaque(false);
+			jTableProdutosCompra.getTableHeader().setReorderingAllowed(false);
 			jTableProdutosCompra.getTableHeader().setFont(Fontes.fontJTableBold1);
 			jTableProdutosCompra.getTableHeader().setForeground(Cores.branco);
 			jTableProdutosCompra.getTableHeader().setBackground(Cores.azul1);
@@ -508,13 +564,13 @@ public class JPanelVendasNovo extends JPanel {
 		this.getjPanelInserirProduto().setLocation(22, 203);
 		
 		this.getjPanelCentroVendas().add(this.getjPanelProdutoCompra());
-		this.getjPanelProdutoCompra().setLocation(787, 11);
+		this.getjPanelProdutoCompra().setLocation(737, 11);
 		
 		this.getjPanelCentroVendas().add(this.getJTFieldTotal());
-		this.getJTFieldTotal().setLocation(787, 338);
+		this.getJTFieldTotal().setLocation(737, 393);
 		
 		this.getjPanelCentroVendas().add(this.getjButtonProsseguir());
-		this.getjButtonProsseguir().setLocation(787, 460);
+		this.getjButtonProsseguir().setLocation(737, 490);
 		
 		
 	}
@@ -540,31 +596,27 @@ public class JPanelVendasNovo extends JPanel {
 	public void addCompJPanelInserirProduto() { // OK
 		
 		this.getjPanelInserirProduto().add(this.getchoiceBoxDesc());
-		this.getchoiceBoxDesc().setLocation(15, 42);
-
-		
-		this.getjPanelInserirProduto().add(this.getjLabelQuantidade());
-		this.getjLabelQuantidade().setLocation(438, 42);
+		this.getchoiceBoxDesc().setLocation(24, 34);
 
 		
 		this.getjPanelInserirProduto().add(this.getjTFieldInserirProdutoDesc());
-		this.getjTFieldInserirProdutoDesc().setLocation(12, 68);
+		this.getjTFieldInserirProdutoDesc().setLocation(15, 39);
 
 		
 		this.getjPanelInserirProduto().add(this.getjTFieldInserirProdutoQuant());
-		this.getjTFieldInserirProdutoQuant().setLocation(435, 68);
+		this.getjTFieldInserirProdutoQuant().setLocation(483, 39);
 
 		
 		this.getjPanelInserirProduto().add(this.getjLabelX());
-		this.getjLabelX().setLocation(403, 68);
+		this.getjLabelX().setLocation(451, 55);
 
 		
 		this.getjPanelInserirProduto().add(this.getjSPInserirProduto());
-		this.getjSPInserirProduto().setLocation(12, 118);
+		this.getjSPInserirProduto().setLocation(15, 113);
 
 		
 		this.getjPanelInserirProduto().add(this.getjButtonInserir());
-		this.getjButtonInserir().setLocation(471, 270);
+		this.getjButtonInserir().setLocation(573, 287	);
 				
 	}
 	
@@ -573,10 +625,30 @@ public class JPanelVendasNovo extends JPanel {
 		
 		this.getjPanelProdutoCompra().add(this.getjSPProdutosCompra());
 		this.getjSPProdutosCompra().setLocation(15, 30);
+		
+		this.getjPanelProdutoCompra().add(this.getjButtonRetirarProduto());
+		this.getjButtonRetirarProduto().setLocation(364, 318);
 				
 	}
 	//** Fim métodos adição de componentes **
 	
 
+	
+	private ModuloConexao getModuloConexao() {
+		if(moduloConexao == null) {
+			moduloConexao = new ModuloConexao();
+		}
+		
+		return moduloConexao;
+	}
+	
+	
+	public TabelaTemporaria gettabelaTabelaTemporaria() {
+		if(tabelaTemporaria == null) {
+			tabelaTemporaria = new TabelaTemporaria();
+		}
+		
+		return tabelaTemporaria;
+	}
 
 }

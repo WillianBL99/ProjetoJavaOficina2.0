@@ -157,7 +157,7 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 						atualizarTabela();
 						JOptionPane.showConfirmDialog(
 								getjPanelEstoque(), // componente
-								"Produto '" + descProduto + "' deletado com sucesso.!\n",
+								"Produto '" + descProduto + "' deletado com sucesso!\n",
 								"Produto deletado", // titulo
 								JOptionPane.DEFAULT_OPTION, // botões
 								JOptionPane.PLAIN_MESSAGE // tipo de mensagem
@@ -251,6 +251,12 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
 		// Quando for digitado algo em jtxf buscarPor
 		if(e.getSource() == getjPanelEstoque().getjTFieldBuscarPor()) {
 			// Verificar se está persquisando por código ou descriçao
@@ -276,13 +282,6 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 				break;
 			}
 		}
-	}
-
-	
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 	
 		

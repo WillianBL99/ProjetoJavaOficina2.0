@@ -135,75 +135,89 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 			//tira o foco do campo de quantidadeInserir
 			getjDialogInserirProduto().getjTFieldDesconto().requestFocus();
 			atualizaCamposInsercao();
-			// verificar se foi setada uma quantidade maior dq zero
-			if(getQtdInserir() > 0) {
-				// verificar se a quantidade é válida
-				if(getDescPercent() >= 0 && getDescPercent() <= 99) {
-					// Verifica se o produto no foi inserido anteriormente
-					if(inserirProduto(
-							getCodigoSelec(),
-							getQtdInserir().toString(),
-							getDescricaoSelec(),
-							getPrecoSelec().toString(),
-							String.format("%.2f", getDesconto()),
-							String.format("%.2f", getTotal())
-						)
-					)					
-					{					
-						// Vetor de String com os nomes das opções que apareceram no joptionpane.
-						String[] options = {"Sim", "Não"}; 
-						
-						/*
-						 * int option
-						 * recebe 0 ou 1 de acordo com a mensagem selecionada
-						 * - 0: Foi secionada a opção Sim
-						 * - 1: Foi selecionada a opção Cancelar
-						 */
-						int option = JOptionPane.showOptionDialog(
-								getjDialogInserirProduto(), // tela pai
-								"Produto inserido. Deseja adicionar outro?", // mensagem
-								"Produto inserido", // título
-								JOptionPane.DEFAULT_OPTION, 
-								JOptionPane.PLAIN_MESSAGE,
-								null,
-								options,
-								options[1]); // opção selecionada inicialmente
-						
-						if(option == 0) {
-							limpaCampos();				
+			// Verificar se foi setado algum valor
+			if(getQtdInserir() != -135 && getDescPercent() != -135) {
+				// verificar se foi setada uma quantidade maior dq zero
+				if(getQtdInserir() > 0 ) {
+					// verificar se o desconto é válido
+					if(getDescPercent() >= 0 && getDescPercent() <= 99) {
+						// Verifica se o produto foi inserido anteriormente
+						if(inserirProduto(
+								getCodigoSelec(),
+								getQtdInserir().toString(),
+								getDescricaoSelec(),
+								getPrecoSelec().toString(),
+								String.format("%.2f", getDesconto()),
+								String.format("%.2f", getTotal()),
+								getQuantidadeSelec().toString(),
+								getDescPercent().toString()
+							)
+						)					
+						{					
+							// Vetor de String com os nomes das opções que apareceram no joptionpane.
+							String[] options = {"Sim", "Não"}; 
+							
+							/*
+							 * int option
+							 * recebe 0 ou 1 de acordo com a mensagem selecionada
+							 * - 0: Foi secionada a opção Sim
+							 * - 1: Foi selecionada a opção Cancelar
+							 */
+							int option = JOptionPane.showOptionDialog(
+									getjDialogInserirProduto(), // tela pai
+									"Produto inserido. Deseja adicionar outro?", // mensagem
+									"Produto inserido", // título
+									JOptionPane.DEFAULT_OPTION, 
+									JOptionPane.PLAIN_MESSAGE,
+									null,
+									options,
+									options[1]); // opção selecionada inicialmente
+							
+							if(option == 0) {
+								limpaCampos();				
+							}
+							
+							// Sair da tela
+							else {
+								fecharTela();						
+							}
+							
 						}
 						
-						// Sair da tela
+						// Se o produto já foi inserido
 						else {
-							getjFramePricipal().setEnabled(true);
-							getjDialogInserirProduto().dispose();
-						
+							JOptionPane.showConfirmDialog(
+									getjDialogInserirProduto(), // componente
+									"Esse produto já foi inserido anteriormente.", // texto
+									"Impossível inserir", // titulo
+									JOptionPane.DEFAULT_OPTION, // botões
+									JOptionPane.ERROR_MESSAGE // tipo de mensagem
+								);
 						}
-						
-					}
-					
-					// Se o produto já foi inserido
-					else {
-						JOptionPane.showConfirmDialog(
-								getjDialogInserirProduto(), // componente
-								"Esse produto já foi inserido anteriormente.", // texto
-								"Impossível inserir", // titulo
-								JOptionPane.DEFAULT_OPTION, // botões
-								JOptionPane.ERROR_MESSAGE // tipo de mensagem
-							);
-					}
-				}				
+					}				
+				}
+				
+				// Insira a quantidade primeiro
+				else {
+					JOptionPane.showConfirmDialog(
+							getjDialogInserirProduto(), // componente
+							"Insira uma quantidade válida.", // texto
+							"Alerta", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+					);
+				}
 			}
 			
-			// Insira a quantidade primeiro
+			// Caso tenha algum camo nulo
 			else {
 				JOptionPane.showConfirmDialog(
 						getjDialogInserirProduto(), // componente
-						"Insira uma quantidade válida.", // texto
-						"Alerta", // titulo
+						"Os campos não podem estarem vazios.", // texto
+						"Campos vazios", // titulo
 						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-				);
+						JOptionPane.ERROR_MESSAGE // tipo de mensagem
+					);
 			}
 		}
 		
@@ -230,8 +244,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 					options[1]); // opção selecionada inicialmente
 			
 			if(option == 0) {
-				getjFramePricipal().setEnabled(true);
-				getjDialogInserirProduto().dispose();
+				fecharTela();
 			}			
 		}
 		
@@ -317,7 +330,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 					JOptionPane.showConfirmDialog(
 							getjDialogInserirProduto(), // componente
 							"Insira um valor de desconto válido.\n"
-							+ "Valores mermitidos entre 0 a 99.", // texto
+							+ "Valores permitidos entre 0 a 99.", // texto
 							"Valor de desconto inválido", // titulo
 							JOptionPane.DEFAULT_OPTION, // botões
 							JOptionPane.ERROR_MESSAGE // tipo de mensagem
@@ -582,9 +595,11 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 	 * @param preco
 	 * @param valDesc
 	 * @param total
+	 * @param qtd_estoque
+	 * @param descPercent
 	 * @return boolean Retorna false caso o produto já tenha sido inserido.
 	 */
-	private boolean inserirProduto(String id, String qtd, String desc, String preco, String valDesc, String total) {
+	private boolean inserirProduto(String id, String qtd, String desc, String preco, String valDesc, String total, String qtd_estoque, String descPercent) {
 		return getjPanelPreOrcamentoNovo().gettabelaTemporariaProdutos().inserir(
 				getjPanelPreOrcamentoNovo().getjTableListaProdutos(),
 				id,
@@ -592,7 +607,9 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 				desc,
 				preco,
 				valDesc,
-				total);
+				total,
+				qtd_estoque,
+				descPercent);
 	}
 	
 	/**
@@ -625,7 +642,7 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 		getjDialogInserirProduto().getjTFieldQuantidadeInserir().requestFocus();
 	}
 	
-	private void atualizaCamposInsercao() {
+	public void atualizaCamposInsercao() {
 		// rebe o valor do desconto
 		setQtdInserir(getjDialogInserirProduto().getjTFieldQuantidadeInserir().getText());
 		// Valor dos desconto em %
@@ -646,6 +663,12 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 		// O valor total da inserção
 		getjDialogInserirProduto().getjTFieldValorTotal().setText(String.format("%.2f",getTotal()));
 	
+	}
+	
+	
+	public void fecharTela() {
+		getjFramePricipal().setEnabled(true);
+		getjDialogInserirProduto().dispose();
 	}
 	
 	

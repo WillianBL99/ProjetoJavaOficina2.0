@@ -54,7 +54,7 @@ public class  Mascara {
 	}
 		
 	
-	public static MaskFormatter mascaraTelefone() {
+	public static MaskFormatter mascaraTelefone() {//cria outra mascra para adicionar telefone e para celular
 		
 	
 		try {
@@ -217,15 +217,30 @@ public class  Mascara {
 		
 	}
 	
+	
+	
 	public static boolean dataValida(String data) {
 		
-		DateTimeFormatter dataAtual = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		try {
+			
+			DateTimeFormatter dataAtual = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			
+			LocalDate dataVerificada = LocalDate.parse(data, dataAtual);
+			
+			LocalDate hoje = LocalDate.now();
+			
+			return dataVerificada.compareTo(hoje) <= 0;
+			
+			
+		}catch (Exception e) {
+			
+			
+			return false;
+			
+		}
 		
-		LocalDate dataVerificada = LocalDate.parse(data, dataAtual);
 		
-		LocalDate hoje = LocalDate.now();
 		
-		return dataVerificada.compareTo(hoje) <= 0;
 	}
 	
 	public static boolean validandoData(String data) {

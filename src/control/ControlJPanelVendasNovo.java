@@ -32,6 +32,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	private String marcaProduto;
 	private Float precoProduto;
 	private Integer codProduto;
+	private Float valorTotal;
 
 	// ** Fim declaração de variáveis **
 
@@ -263,31 +264,12 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		// Quando o botão prosseguir for clicado
 		else if (e.getSource() == getjPanelVendasNovo().getjButtonProsseguir()) {
 			// Prosseguir com a compra. Ir para formas de pagamento
-			// Vetor de String com os nomes das opções que apareceram no joptionpane.
-			String[] options = {"Prosseguir", "Cancelar"}; 
-			
-			/*
-			 * int option
-			 * recebe 0 ou 1 de acordo com a mensagem selecionada
-			 * - 0: Foi secionada a opção Sim
-			 * - 1: Foi selecionada a opção Cancelar
-			 */
-			int option = JOptionPane.showOptionDialog(
-					getjPanelVendasNovo(), // tela pai
-					"Prosseguir para forma de pagamento?", // mensagem
-					"Prosseguir", // título
-					JOptionPane.DEFAULT_OPTION, 
-					JOptionPane.PLAIN_MESSAGE,
-					null,
-					options,
-					options[1]); // opção selecionada inicialmente
-			
-			if(option == 0) {
-				jPanelVendasProsseguir = null;
-				controlJPanelVendasProsseguir = null;
-				getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
-				getcontrolJPanelVendasProsseguir();
-			}
+
+			jPanelVendasProsseguir = null;
+			controlJPanelVendasProsseguir = null;
+			getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
+			getcontrolJPanelVendasProsseguir();
+		
 		}
 
 		// Quando o botão retirar for clicado
@@ -508,6 +490,14 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		this.codProduto = (codProduto.replace(" ", "").isEmpty() ? -135 : Integer.parseInt(codProduto));
 	}
 	
+	public Float getValortotal() {
+		return valorTotal;
+	}
+	
+	private void setValorTotal(Float valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	
 	
 	/**
 	 * O método atualizaVarialveis() Atualiza as variáveis.
@@ -623,25 +613,25 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	
 	
 	private void exibirValorTotal() {
+		setValorTotal(getTotalTabela());
 		getjPanelVendasNovo().getjTableProdutosCompra().getColumnModel().getColumn(0).setMaxWidth(35);
 		getjPanelVendasNovo().getjTableProdutosCompra().getColumnModel().getColumn(1).setMaxWidth(35);
 		getjPanelVendasNovo().getjTableProdutosCompra().getColumnModel().getColumn(3).setMaxWidth(90);
 		getjPanelVendasNovo().getjTableProdutosCompra().getColumnModel().getColumn(4).setMaxWidth(70);
 		getjPanelVendasNovo().getjTableProdutosCompra().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getjPanelVendasNovo().getJTFieldTotal().setText(
-				String.format("  R$%18.2f", getTotal()).replace(".", ","));
+				String.format("  R$%18.2f", getValortotal()).replace(".", ","));
 	}
 	
 	
-	private Float getTotal() {
+	private Float getTotalTabela() {
 		Float total = 0f;
 		// recebe o campo em que se encontra o valor total
 		int index = getjPanelVendasNovo().getjTableProdutosCompra().getColumnCount() - 1;
 		
 		for(int i = 0; i < getjPanelVendasNovo().getjTableProdutosCompra().getRowCount(); i++) {
 			total += Float.parseFloat(getjPanelVendasNovo().getjTableProdutosCompra().getValueAt(i, index).toString().replace(" ", "").replace(",", "."));
-		}
-			
+		}			
 		return total;
 	}
 

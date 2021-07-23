@@ -3,13 +3,15 @@
  */
 package control;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import icons.Icones;
-import model.SetSizeIcon;
+import model.Cores;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -20,14 +22,11 @@ import view.JPanelVendasProsseguir;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener {
+public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener, FocusListener {
 	
 
 	//** Início declaração de variáveis **
-	
-	private boolean cartaoClicado = false; // caso seja verdadeiro haverá alterações dos componentes de "vendasProsseguir"
-	private SetSizeIcon setSizeIcon = new SetSizeIcon(); // iniciando objeto para rendimensionamento de imagens
-	
+	private enum FormaPagamento{DINHEIRO, CARTAO};
 	
 	private JFramePrincipal jFramePricipal;
 	private JPanelVendasProsseguir jPanelVendasProsseguir;
@@ -35,6 +34,17 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private JPanelVendasNovo jPanelVendasNovo;
 	private JPanelVendas jPanelVendas;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
+	
+	private FormaPagamento formaPagamento;
+	private Float valorTotal;
+	private Float desconto;
+	private Float valorPagar;
+	private Float valorPago;
+	private Float valorTroco;
+	private Integer idEmpresa;
+	private Integer idUsuario;
+	private Integer idCliente;
+	
 	
 	//** Fim declaração de variáveis **	
 	
@@ -46,12 +56,14 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	 */
 	public ControlJPanelVendasProsseguir(JFramePrincipal jFramePricipal, JPanelVendasProsseguir jPanelVendasProsseguir,
 			JPanelPrincipal jPanelPrincipal, JPanelVendasNovo jPanelVendasNovo, JPanelVendas jPanelVendas) {
-		super();
 		this.jFramePricipal = jFramePricipal;
 		this.jPanelVendasProsseguir = jPanelVendasProsseguir;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jPanelVendasNovo = jPanelVendasNovo;
 		this.jPanelVendas = jPanelVendas;
+		setValorTotal(getjPanelVendasNovo().getjTFieldProdutoValTot().getText());		
+		iniciarTela();
+		
 		this.AddEvent();
 	}
 	
@@ -60,9 +72,11 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	private void AddEvent() {
 		getjPanelVendasProsseguir().getjButtonVoltar().addMouseListener(this);
-		getjPanelVendasProsseguir().getjButtonCartão().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonCartao().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonDinheiro().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonFinalizarCompra().addMouseListener(this);
+		getjPanelVendasProsseguir().getjTFieldDesconto().addFocusListener(this);
+		getjPanelVendasProsseguir().getjTFieldValorPago().addFocusListener(this);
 		
 	}
 
@@ -98,13 +112,12 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			// quando o botão voltar for clicado
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			
-		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartão()) {
+		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartao()) {
 			// quando a opção pagar com cartão for clicada
-			this.isCartaoClicado(true);
+			
 			
 		}  else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
 			// quando a opção pagar com dinheiro for clicada
-			this.isCartaoClicado(false);
 			
 		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
 			// quando o botão finalizar compra for clicado
@@ -133,7 +146,34 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// 
+		
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		// 
+		
+	}
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// Quando o JTxF desconto perder o focu
+		if(e.getSource() == getjPanelVendasProsseguir().getjTFieldDesconto()) {
+			// Verifica se digitou algo
+			if(!getjPanelVendasProsseguir().getjTFieldDesconto().getText().replace(" ", "").isEmpty()) {
+				// atualizar valores da tela e variável
+				setDesconto(getjPanelVendasProsseguir().getjTFieldDesconto().getText());
+				setValorPagar(getValorTotal() - getDesconto());
+				getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
+			}
+			// se não digitou nada
+			else {
+				setDesconto(0f);
+				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format(" R$ %.2f", getDesconto()));
+			}
+		}
 		
 	}
 		
@@ -189,40 +229,193 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	public ControlJPanelVendasNovo getControlJPanelVendasNovo() {
 		if(controlJPanelVendasNovo == null){
 			controlJPanelVendasNovo = new ControlJPanelVendasNovo(getjFramePricipal(), getjPanelVendasNovo(),
-					getjPanelVendas(), getjPanelPrincipal());
-	
+					getjPanelVendas(), getjPanelPrincipal());	
 		}
 		return controlJPanelVendasNovo;
 	}
 	
 	
-	private void isCartaoClicado(boolean cartaoClicado) {
-		if(this.cartaoClicado != cartaoClicado) {
-			this.cartaoClicado = cartaoClicado;
-			
-			
-			if(cartaoClicado) { // quando o jButtonCartao for clicado
-				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
-						.getjButtonDinheiro(), Icones.getDinheiroCinza(), 50, 50);
-				
-				this.getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(false);				
+	public Float getValorTotal() {
+		return valorTotal;
+	}
+	
 
-				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
-						.getjButtonCartão(), Icones.getCartãoAzul(), 50, 50);				
-				
-				
-			} else { // quando o jButtonDinheiro for clicado
-				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
-						.getjButtonDinheiro(), Icones.getDinheiroAzul(), 50, 50);
-				
-				this.getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(true);				
+	public void setValorTotal(Float valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	
+	
+	public void setValorTotal(String valorTotal) {
+		String valor = valorTotal.replace(" ", "").replace(",", ".").replace("R$", "");
+		this.valorTotal = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
+	}
+	
 
-				setSizeIcon.setIconJButton(this.getjPanelVendasProsseguir()
-						.getjButtonCartão(), Icones.getCartãoCinza(), 50, 50);	
-				
-			}
+	public Float getDesconto() {
+		return desconto;
+	}
+
+
+	public void setDesconto(Float desconto) {
+		this.desconto = desconto;
+	}
+	
+	
+	public void setDesconto(String desconto) {
+		String valor = desconto.replace(" ", "").replace(",", ".").replace("R$", "");
+		this.desconto = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
+	}
+	
+
+	public Float getValorPagar() {
+		return valorPagar;
+	}
+	
+
+	public void setValorPagar(Float valorPagar) {
+		this.valorPagar = valorPagar;
+	}
+	
+	
+	public void setValorPagar(String valorPagar) {
+		String valor = valorPagar.replace(" ", "").replace(",", ".").replace("R$", "");
+		this.valorPagar = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
+	}
+	
+
+	public Float getValorPago() {
+		return valorPago;
+	}
+	
+
+	public void setValorPago(Float valorPago) {
+		this.valorPago = valorPago;
+	}
+	
+	
+	public void setValorPago(String valorPago) {
+		String valor = valorPago.replace(" ", "").replace(",", ".").replace("R$", "");
+		this.valorPago = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
+	}
+
+
+	public Float getValorTroco() {
+		return valorTroco;
+	}
+
+
+	public void setValorTroco(Float valorTroco) {
+		this.valorTroco = valorTroco;
+	}
+
+
+	public Integer getIdEmpresa() {
+		return idEmpresa;
+	}
+
+
+	public void setIdEmpresa(Integer idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+	
+	
+	public void setIdEmpresa(String idEmpresa) {
+		String valor = idEmpresa.replace(" ", "");
+		this.idEmpresa = Integer.parseInt(valor.isEmpty() ? "-1354" : valor);
+	}
+
+
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
+	
+	public void setIdUsuario(String idUsuario) {
+		String valor = idUsuario.replace(" ", "");
+		this.idUsuario = Integer.parseInt(valor.isEmpty() ? "-1354" : valor);
+	}
+
+
+	public Integer getIdCliente() {
+		if(idCliente == null) idCliente = 0;
+		return idCliente;
+	}
+	
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
+	
+	
+	public void setIdCliente(String idCliente) {
+		String valor = idCliente.replace(" ", "");
+		this.idCliente = Integer.parseInt(valor.isEmpty() ? "-1354" : valor);
+	}
+	
+	
+	public FormaPagamento getForamPagamento() {
+		if(formaPagamento == null) {
+			formaPagamento = FormaPagamento.DINHEIRO;
 		}
+		return formaPagamento;
+	}
+	
+	/**
+	 * Seta a forma de pagamento de acordo com o botão clicado, assim como, configura a interface
+	 * da tela.
+	 * @param formaPagamento
+	 */
+	private void setFormaPagamento(FormaPagamento formaPagamento) {
 		
+		if(getForamPagamento() != formaPagamento) {
+			// Seta a forma de pagamento
+			this.formaPagamento = formaPagamento;
+			// Seta a interface para cartão clicado
+			if(formaPagamento == FormaPagamento.CARTAO) {
+				getjPanelVendasProsseguir().getjButtonCartao().setForeground(Cores.preto);
+				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
+						getjPanelVendasProsseguir().getjButtonCartao(), Icones.getCartaoAzul(), 50, 50);
+				
+				getjPanelVendasProsseguir().getjButtonDinheiro().setForeground(Cores.cinza1);
+				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
+						getjPanelVendasProsseguir().getjButtonDinheiro(), Icones.getDinheiroCinza(), 50, 50);
+				
+				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setVisible(false);
+				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(777 ,469);
+			}
+			// seta a interface para dinheiro clicado
+			else {
+				getjPanelVendasProsseguir().getjButtonCartao().setForeground(Cores.cinza1);
+				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
+						getjPanelVendasProsseguir().getjButtonCartao(), Icones.getCartaoCinza(), 50, 50);
+				
+				getjPanelVendasProsseguir().getjButtonDinheiro().setForeground(Cores.preto);
+				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
+						getjPanelVendasProsseguir().getjButtonDinheiro(), Icones.getDinheiroAzul(), 50, 50);
+				
+				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setVisible(true);
+				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(777 ,615);
+			}
+		}		
+	}
+	
+	
+	/**
+	 * Seta os campos ao iniciar a tela.
+	 */
+	private void iniciarTela() {
+		setValorPagar(getValorTotal());
+		getjPanelVendasProsseguir().getjTFieldValorTotCompra().setText(String.format(" R$ %.2f", getValorTotal()));
+		getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
+		getjPanelVendasProsseguir().getjTFieldDesconto().requestFocus();
 	}
 	//** Fim métodos da classe **
+
+
+
 }

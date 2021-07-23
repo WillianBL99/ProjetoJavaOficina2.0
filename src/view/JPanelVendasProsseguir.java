@@ -335,7 +335,7 @@ public class JPanelVendasProsseguir extends JPanel{
 	}
 
 
-	public JButton getjButtonCartão() {
+	public JButton getjButtonCartao() {
 		if(jButtonCartão == null){
 			jButtonCartão = new JButton();
 			jButtonCartão.setBackground(Cores.branco);
@@ -347,7 +347,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jButtonCartão.setBorder(null);
 			jButtonCartão.setSize(140,50);
 			jButtonCartão.setText(" Cartão");
-			setSizeIcon.setIconJButton(jButtonCartão, Icones.getCartãoCinza(), 50, 50);			
+			setSizeIcon.setIconJButton(jButtonCartão, Icones.getCartaoCinza(), 50, 50);			
 		}
 		return jButtonCartão;
 	}
@@ -569,8 +569,8 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjPanelFormaPagamento().add(this.getjButtonDinheiro());
 		this.getjButtonDinheiro().setLocation(14, 35);
 		
-		this.getjPanelFormaPagamento().add(this.getjButtonCartão());
-		this.getjButtonCartão().setLocation(202, 35);
+		this.getjPanelFormaPagamento().add(this.getjButtonCartao());
+		this.getjButtonCartao().setLocation(202, 35);
 		
 	}
 
@@ -609,7 +609,9 @@ public class JPanelVendasProsseguir extends JPanel{
 	
 	//** Fim métodos adição de componentes **
 
-	
+	public SetSizeIcon getSetSizeIcon() {
+		return setSizeIcon;
+	}
 	
 	private ModuloConexao getModuloConexao() {
 		if(this.moduloConexao == null) {

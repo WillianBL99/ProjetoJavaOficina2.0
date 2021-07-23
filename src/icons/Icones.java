@@ -52,8 +52,8 @@ public class Icones {
 	private static String editar;
 	private static String adicionar;
 	
-	private static String cartãoAzul;
-	private static String cartãoCinza;
+	private static String cartaoAzul;
+	private static String cartaoCinza;
 	private static String dinheiroAzul;
 	private static String dinheiroCinza;
 	
@@ -112,22 +112,22 @@ public class Icones {
 	}
 	
 	
-	public static String getCartãoAzul() {
-		if(cartãoAzul == null){
+	public static String getCartaoAzul() {
+		if(cartaoAzul == null){
 	
-			cartãoAzul = ("/icons/card-blu-90.png");
+			cartaoAzul = ("/icons/card-blu-90.png");
 	
 		}
-		return cartãoAzul;
+		return cartaoAzul;
 	}
 
-	public static String getCartãoCinza() {
-		if(cartãoCinza == null){
+	public static String getCartaoCinza() {
+		if(cartaoCinza == null){
 	
-			cartãoCinza = ("/icons/card-90.png");
+			cartaoCinza = ("/icons/card-90.png");
 	
 		}
-		return cartãoCinza;
+		return cartaoCinza;
 	}
 
 	public static String getDinheiroAzul() {

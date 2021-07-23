@@ -89,7 +89,7 @@ public class JPanelHome extends JPanel{
 		this.getjLabelLogo().setLocation(112, 163);
 
 		this.getJPanelHome().add(getjLabelHoras());
-		this.getjLabelHoras().setLocation(815, 1);
+		this.getjLabelHoras().setLocation(805, 1);
 	}
 	
 	

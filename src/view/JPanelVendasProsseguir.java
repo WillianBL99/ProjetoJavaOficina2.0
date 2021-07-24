@@ -204,9 +204,9 @@ public class JPanelVendasProsseguir extends JPanel{
 	
 	public JLabel getjLabelResponsavel() {
 		if(jLabelResponsavel == null){
-			jLabelResponsavel = new JLabel("Responsável:");
+			jLabelResponsavel = new JLabel("Responsável*:");
 			jLabelResponsavel.setFont(Fontes.fontJLabelPlain3);
-			jLabelResponsavel.setSize(150, 35);
+			jLabelResponsavel.setSize(152, 35);
 			jLabelResponsavel.setForeground(Cores.preto);
 			jLabelResponsavel.setOpaque(false);
 		}
@@ -288,7 +288,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jButtonFinalizarCompra.setBackground(Cores.azul1);
 			jButtonFinalizarCompra.setForeground(Color.white);
 			jButtonFinalizarCompra.setText("Finalizar compra");
-			jButtonFinalizarCompra.setSize(430, 45);
+			jButtonFinalizarCompra.setSize(439, 45);
 			jButtonFinalizarCompra.setFocusable(false);
 			jButtonFinalizarCompra.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			jButtonFinalizarCompra.setBorder(BorderFactory.
@@ -450,7 +450,7 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFieldValorPago.setBorder(BorderFactory.
 					createTitledBorder(new javax.swing.border.
 							LineBorder(Cores.azul1, 4, true),
-							"Valor pago",
+							"Valor pago*",
 							javax.swing.border.TitledBorder.LEFT,
 							javax.swing.border.TitledBorder.DEFAULT_POSITION,
 							Fontes.fontBorda2,
@@ -495,7 +495,8 @@ public class JPanelVendasProsseguir extends JPanel{
 			jTFieldCliente.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 3, false));
 			jTFieldCliente.setForeground(Cores.preto);
-			jTFieldCliente.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldCliente.setFont(Fontes.fontJTFieldPlain3);
+			jTFieldCliente.setForeground(Cores.azul1);
 			jTFieldCliente.setSize(359, 35);
 			jTFieldCliente.setEditable(false);
 			jTFieldCliente.setOpaque(true);
@@ -545,7 +546,7 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjPanelDadosVendedorCliente().setLocation(14, 469);
 		
 		this.getjPanelCentroVendasProsseguir().add(this.getjButtonFinalizarCompra());
-		this.getjButtonFinalizarCompra().setLocation(777, 615);	
+		this.getjButtonFinalizarCompra().setLocation(807, 615);	
 		
 	}
 	
@@ -592,7 +593,7 @@ public class JPanelVendasProsseguir extends JPanel{
 		this.getjLabelResponsavel().setLocation(14, 45);
 		
 		this.getjPanelDadosVendedorCliente().add(this.getchoiceVendedor());
-		this.getchoiceVendedor().setLocation(164, 45);
+		this.getchoiceVendedor().setLocation(172, 45);
 		
 		
 		this.getjPanelDadosVendedorCliente().add(this.getjLabelCliente());

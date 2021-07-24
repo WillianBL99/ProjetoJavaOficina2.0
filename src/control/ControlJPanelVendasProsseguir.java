@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 package control;
 
 import java.awt.event.FocusEvent;
@@ -40,7 +41,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private JPanelVendas jPanelVendas;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
 	private JDialogProcurarCliente jDialogProcurarCliente;
-	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
+	private ControlJDialogProcurarCliente_Venda controlJDialogProcurarCliente_Venda;
 	
 	private FormaPagamento formaPagamento;
 	private Float valorTotal;
@@ -139,15 +140,15 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		// Quando clicar no botão procurar cliente
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonProcurar()) {
 			jDialogProcurarCliente = null;
-			controlJDialogProcurarCliente = null;
+			controlJDialogProcurarCliente_Venda = null;
 			getjDialogProcurarCliente();
-			getControlJDialogProcurarCliente();
+			getControlJDialogProcurarCliente_Venda();
 		 }
 		 
 
 		// Quando clicar no botão finalizar compra 
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
-			this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
+			validarVenda();			
 		}
 		
 	}
@@ -221,7 +222,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 					getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
 					getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
 					// verifica se está clicado em dinheiro e se o valor não está vazio
-					if(getForamPagamento() == FormaPagamento.DINHEIRO
+					if(getFormaPagamento() == FormaPagamento.DINHEIRO
 							&& !getjPanelVendasProsseguir().getjTFieldValorPago().getText().replace(" ", "").isEmpty()) {
 						atualizaTroco();
 						getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
@@ -339,11 +340,11 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	}
 	
 	
-	public ControlJDialogProcurarCliente getControlJDialogProcurarCliente() {
-		if(controlJDialogProcurarCliente == null){
-			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(jFramePricipal, jDialogProcurarCliente, null, null);
+	public ControlJDialogProcurarCliente_Venda getControlJDialogProcurarCliente_Venda() {
+		if(controlJDialogProcurarCliente_Venda == null){
+			controlJDialogProcurarCliente_Venda = new ControlJDialogProcurarCliente_Venda(getjFramePricipal(), getjDialogProcurarCliente(), getjPanelVendasProsseguir(), this);
 		}
-		return controlJDialogProcurarCliente;
+		return controlJDialogProcurarCliente_Venda;
 	}
 	
 	
@@ -474,7 +475,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	}
 	
 	
-	public FormaPagamento getForamPagamento() {
+	public FormaPagamento getFormaPagamento() {
 		if(formaPagamento == null) {
 			formaPagamento = FormaPagamento.DINHEIRO;
 		}
@@ -488,7 +489,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	 */
 	private void setFormaPagamento(FormaPagamento formaPagamento) {
 		
-		if(getForamPagamento() != formaPagamento) {
+		if(getFormaPagamento() != formaPagamento) {
 			// Seta a forma de pagamento
 			this.formaPagamento = formaPagamento;
 			// Seta a interface para cartão clicado
@@ -501,8 +502,9 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
 						getjPanelVendasProsseguir().getjButtonDinheiro(), Icones.getDinheiroCinza(), 50, 50);
 				
-				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setVisible(false);
-				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(777 ,469);
+				getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(false);
+				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setLocation(14 ,323);
+				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(807 ,469);
 			}
 			// seta a interface para dinheiro clicado
 			else {
@@ -514,8 +516,9 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 				getjPanelVendasProsseguir().getSetSizeIcon().setIconJButton(
 						getjPanelVendasProsseguir().getjButtonDinheiro(), Icones.getDinheiroAzul(), 50, 50);
 				
-				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setVisible(true);
-				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(777 ,615);
+				getjPanelVendasProsseguir().getjPanelDadosPagamento().setVisible(true);
+				getjPanelVendasProsseguir().getjPanelDadosVendedorCliente().setLocation(14 ,469);
+				getjPanelVendasProsseguir().getjButtonFinalizarCompra().setLocation(807 ,615);
 			}
 		}		
 	}
@@ -563,14 +566,13 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			getjPanelVendasProsseguir().getjTFieldTroco().setText(String.format(" R$ %.2f", getValorTroco()));
 			// seta o campo valor pago com o designer normal
 			getjPanelVendasProsseguir().getjTFieldValorPago().setBorder(BorderFactory.
-					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.azul1, 4, true),
-							"Valor pago",
-							javax.swing.border.TitledBorder.LEFT,
-							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontBorda2,
-							Cores.azul1)
-					);
+				createTitledBorder(new javax.swing.border.
+					LineBorder(Cores.azul1, 4, true),
+					"Valor pago",
+					javax.swing.border.TitledBorder.LEFT,
+					javax.swing.border.TitledBorder.DEFAULT_POSITION,
+					Fontes.fontBorda2,
+					Cores.azul1));
 		}
 		// se o valor pago não for válido
 		else {
@@ -578,15 +580,110 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			// Setar campo troco como ""
 			getjPanelVendasProsseguir().getjTFieldTroco().setText("");
 			getjPanelVendasProsseguir().getjTFieldValorPago().setBorder(BorderFactory.
-					createTitledBorder(new javax.swing.border.
-							LineBorder(Cores.vermelho, 4, true),
-							"Valor pago",
-							javax.swing.border.TitledBorder.LEFT,
-							javax.swing.border.TitledBorder.DEFAULT_POSITION,
-							Fontes.fontBorda2,
-							Cores.vermelho)
-					);
+				createTitledBorder(new javax.swing.border.
+					LineBorder(Cores.vermelho, 4, true),
+					"Valor pago*",
+					javax.swing.border.TitledBorder.LEFT,
+					javax.swing.border.TitledBorder.DEFAULT_POSITION,
+					Fontes.fontBorda2,
+					Cores.vermelho));
 		}		
+	}
+	
+	
+	// Finaliza a venda
+	private boolean finalizarVenda() {
+		this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
+		// realizar iteração com o banco de dados para realizar a venda.
+		
+		return false;
+	}
+	
+	
+	/**
+	 * Exibe as principais informações da venda.
+	 * @return Retorna uma String com as principais iformações da venda.
+	 */
+	private String exibirVenda() {
+		String texto = String.format(
+				"Dados da venda:\n"
+				+ "%12s R$ %.2f\n"
+				+ "%12s R$ %.2f\n"
+				+ "%12s R$ %.2f\n\n"
+				+ "Finalizar venda?",
+				"Total:", getValorPagar(),
+				"Recebido:", getValorPago(),
+				"Troco:", getValorTroco());
+		return texto;
+	}
+	
+	
+	private boolean exibirOptionPaneFinalizar(String texto) {
+		// Vetor de String com os nomes das opções que apareceram no joptionpane.
+		String[] options = {"Finalizar", "Cancelar"}; 
+		
+		/*
+		 * int option
+		 * recebe 0 ou 1 de acordo com a mensage selecionada
+		 * - 0: Foi secionada a opção Sim
+		 * - 1: Foi selecionada a opção Cancelar
+		 */
+		int option = JOptionPane.showOptionDialog(
+				getjPanelVendasProsseguir(), // tela pai
+				texto, // mensagem
+				"Finalizar venda", // título
+				JOptionPane.DEFAULT_OPTION, 
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				options,
+				options[1]); // opção selecionada inicialmente
+		
+		// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
+		if(option == 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	private boolean validarVenda() {
+		boolean retorno = false;
+		// Verificar se a copra foi paga via cartão ou dinheiro físico
+		switch(getFormaPagamento()) {
+		// Caso a forma de pagamento seja no cartão
+		case CARTAO:
+			// Verifica a escolha do usuário
+			if(exibirOptionPaneFinalizar(
+					"Certifique-se que a compra foi paga corretamente\n"
+					+ "antes de clicar em \"Finalizar compra\"."))
+			{
+				retorno = finalizarVenda();
+			}				
+			break;
+		
+		// Caso a forma de pagamento seja no dinheiro
+		case DINHEIRO:
+			// Verifica se o valor pago é válido e se foi escolido um responsável
+			if(valorPagoValido() 
+					&& !getjPanelVendasProsseguir().getchoiceVendedor().getSelectedItem().replace(" ", "").isEmpty()) {
+				// Verificar a escolha do usuário
+				if(exibirOptionPaneFinalizar(exibirVenda())) {
+					retorno = finalizarVenda();
+				}
+			}
+			// Valor pago não é válido
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelVendasProsseguir(), // componente
+						"Verifique se todos os campos marcados com \"*\" estão preenchidos corretamente.", // texto
+						"Impossível finalizar", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.ERROR_MESSAGE // tipo de mensagem
+						);					
+			}
+			break;
+		}
+		return retorno;
 	}
 	
 	

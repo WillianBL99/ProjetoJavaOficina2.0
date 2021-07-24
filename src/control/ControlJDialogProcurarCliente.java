@@ -60,14 +60,13 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	}
 
 
-	private void AddEvent() {
+	public void AddEvent() {
 		getjDialogProcurarCliente().addWindowListener(this);
 		getjDialogProcurarCliente().getjButtonPesquisar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonNovoCliente().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonCancelar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonSelecionar().addMouseListener(this);
-		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);
-		
+		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);		
 	}
 		
 		
@@ -230,13 +229,8 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				);
 
 			} else {
-				preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
-						getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
-						0).toString());
-				limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
-				getcontrolControlJpanelPreOrcamentoNovo().setClienteInserido(true);
-				getjFramePricipal().setEnabled(true);
-				getjDialogProcurarCliente().dispose();
+				// Seleciona o cliente fecha a tela e realizar os procedimentos necessários
+				selecionarCliente();
 			}
 		}
 			
@@ -467,6 +461,20 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		getjPanelPreOrcamentoNovo().getjTFieldCombustivel().setText("");
 		getjPanelPreOrcamentoNovo().getjTFieldCor().setText("");
 		getjPanelPreOrcamentoNovo().getjTFieldAno().setText("");
+	}
+	
+	/**
+	 * Metodo insere um produto na tela PreOrcamentoNovo e realiza modificações necessárias.
+	 */
+	public void selecionarCliente() {
+		System.out.println("selecionar cliente em classe pai");
+		preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
+				getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
+				0).toString());
+		limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
+		getcontrolControlJpanelPreOrcamentoNovo().setClienteInserido(true);
+		getjFramePricipal().setEnabled(true);
+		getjDialogProcurarCliente().dispose();
 	}
 	
 

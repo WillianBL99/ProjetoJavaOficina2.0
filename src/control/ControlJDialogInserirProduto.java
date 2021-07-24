@@ -47,7 +47,8 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 
 
 	//** Fim declaração de variáveis **	
-	public ControlJDialogInserirProduto(JFramePrincipal jFramePricipal, JDialogInserirProduto jDialogInserirProduto, JPanelPreOrcamentoNovo jdiJPanelPreOrcamentoNovo) {	
+	public ControlJDialogInserirProduto(JFramePrincipal jFramePricipal, JDialogInserirProduto jDialogInserirProduto,
+			JPanelPreOrcamentoNovo jdiJPanelPreOrcamentoNovo) {	
 		this.descPercent = 0;
 		this.jFramePrincipal = jFramePricipal;
 		this.jDialogInserirProduto = jDialogInserirProduto;

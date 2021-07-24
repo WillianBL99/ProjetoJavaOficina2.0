@@ -389,7 +389,7 @@ public class JPanelVendasProsseguir extends JPanel{
 							Cores.cinza2)
 					);
 			jTFildValorTotCompra.setForeground(Cores.azul1);
-			jTFildValorTotCompra.setFont(Fontes.fontJTFieldBold3);
+			jTFildValorTotCompra.setFont(Fontes.fontJTFieldBold2);
 			jTFildValorTotCompra.setSize(320, 77);
 			jTFildValorTotCompra.setEditable(false);
 			jTFildValorTotCompra.setOpaque(false);

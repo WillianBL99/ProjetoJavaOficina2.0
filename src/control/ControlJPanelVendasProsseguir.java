@@ -10,8 +10,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+
 import icons.Icones;
 import model.Cores;
+import model.Fontes;
+import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -34,6 +39,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private JPanelVendasNovo jPanelVendasNovo;
 	private JPanelVendas jPanelVendas;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
+	private JDialogProcurarCliente jDialogProcurarCliente;
+	private ControlJDialogProcurarCliente controlJDialogProcurarCliente;
 	
 	private FormaPagamento formaPagamento;
 	private Float valorTotal;
@@ -74,6 +81,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		getjPanelVendasProsseguir().getjButtonVoltar().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonCartao().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonDinheiro().addMouseListener(this);
+		getjPanelVendasProsseguir().getjButtonProcurar().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonFinalizarCompra().addMouseListener(this);
 		getjPanelVendasProsseguir().getjTFieldDesconto().addFocusListener(this);
 		getjPanelVendasProsseguir().getjTFieldValorPago().addFocusListener(this);
@@ -107,20 +115,38 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		// Quando clicar no botão voltar
 		if(e.getSource() == getjPanelVendasProsseguir().getjButtonVoltar()) {
-			// quando o botão voltar for clicado
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			
-		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartao()) {
-			// quando a opção pagar com cartão for clicada
-			
-			
-		}  else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
-			// quando a opção pagar com dinheiro for clicada
-			
-		} else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
-			// quando o botão finalizar compra for clicado
+		} 
+		
+		
+		// Quando clicar no botão cartão
+		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartao()) {
+			limparDados();
+			setFormaPagamento(FormaPagamento.CARTAO);
+			getjPanelVendasProsseguir().getchoiceVendedor().requestFocus();
+		} 
+		
+		
+		// Quando clicar no botão dinheiro
+		 else if(e.getSource() == getjPanelVendasProsseguir().getjButtonDinheiro()) {
+			setFormaPagamento(FormaPagamento.DINHEIRO);
+		} 
+		
+		
+		// Quando clicar no botão procurar cliente
+		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonProcurar()) {
+			jDialogProcurarCliente = null;
+			controlJDialogProcurarCliente = null;
+			getjDialogProcurarCliente();
+			getControlJDialogProcurarCliente();
+		 }
+		 
+
+		// Quando clicar no botão finalizar compra 
+		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
 			this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
 		}
 		
@@ -152,7 +178,30 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		// 
+		// Quando o campo Valor pago receber foco
+		if(e.getSource() == getjPanelVendasProsseguir().getjTFieldValorPago()) {
+			// Verifica se o valor atual é nullo
+			if(valorPagoValido()) {
+				getjPanelVendasProsseguir().getjTFieldValorPago().setText(String.format("%.2f", getValorPago()));
+			}
+			// caso o valor apgo não seja valido
+			else {
+				getjPanelVendasProsseguir().getjTFieldValorPago().setText("");				
+			}
+		}
+		
+		
+		// Quando o campo desconto receber foco
+		else if(e.getSource() == getjPanelVendasProsseguir().getjTFieldDesconto()) {
+			// Verifica se o desconto atual é nullo
+			if(valorDescontoValido()) {
+				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format("%.2f", getDesconto()));
+			}
+			// caso o desconto não seja valido
+			else {
+				getjPanelVendasProsseguir().getjTFieldDesconto().setText("");				
+			}
+		}
 		
 	}
 
@@ -161,18 +210,66 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	public void focusLost(FocusEvent e) {
 		// Quando o JTxF desconto perder o focu
 		if(e.getSource() == getjPanelVendasProsseguir().getjTFieldDesconto()) {
+			setDesconto(getjPanelVendasProsseguir().getjTFieldDesconto().getText());
 			// Verifica se digitou algo
-			if(!getjPanelVendasProsseguir().getjTFieldDesconto().getText().replace(" ", "").isEmpty()) {
-				// atualizar valores da tela e variável
-				setDesconto(getjPanelVendasProsseguir().getjTFieldDesconto().getText());
-				setValorPagar(getValorTotal() - getDesconto());
-				getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
+			if(getDesconto() != -1352) {
+				// verifica se o desconto é válido
+				if(valorDescontoValido()) {
+					// atualizar valores da tela e variável
+					setValorPagar(getValorTotal() - getDesconto());
+					getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format(" R$ %.2f", getDesconto()));
+					getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
+					getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
+					// verifica se está clicado em dinheiro e se o valor não está vazio
+					if(getForamPagamento() == FormaPagamento.DINHEIRO
+							&& !getjPanelVendasProsseguir().getjTFieldValorPago().getText().replace(" ", "").isEmpty()) {
+						atualizaTroco();
+						getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
+					}
+				}
+				// Caso o desconto não seja válido
+				else {
+					
+				}
 			}
 			// se não digitou nada
 			else {
 				setDesconto(0f);
 				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format(" R$ %.2f", getDesconto()));
+				getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
 			}
+		}
+		
+		
+		// Quando o JTxF valor pago perder o foco
+		else if(e.getSource() == getjPanelVendasProsseguir().getjTFieldValorPago()) {
+			setValorPago(getjPanelVendasProsseguir().getjTFieldValorPago().getText());
+			// Verificar se foi digitado algo
+			if(getValorPago() != -1352) {
+				// Verificar se o valor é válido
+				if(valorPagoValido()){
+					// formata o campo valor pago
+					getjPanelVendasProsseguir().getjTFieldValorPago().setText(String.format(" R$ %.2f", getValorPago()));
+					atualizaTroco();
+				}
+				// Caso não seja válido
+				else {
+					atualizaTroco();
+					JOptionPane.showConfirmDialog(
+							getjPanelVendasProsseguir(), // componente
+							"Valor inválido inserido."
+							+ "O valor tem que ser maior ou igual ao valor do campo \"Valor pagar\".", // texto
+							"Valor inválido", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.ERROR_MESSAGE // tipo de mensagem
+					);
+				}
+			}
+			// Não foi digitado nada
+			else {
+				atualizaTroco();
+			}
+			
 		}
 		
 	}
@@ -223,8 +320,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		}
 		return jPanelVendasNovo;
 	}
-
-
+	
 
 	public ControlJPanelVendasNovo getControlJPanelVendasNovo() {
 		if(controlJPanelVendasNovo == null){
@@ -232,6 +328,22 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 					getjPanelVendas(), getjPanelPrincipal());	
 		}
 		return controlJPanelVendasNovo;
+	}
+	
+	
+	public JDialogProcurarCliente getjDialogProcurarCliente() {
+		if(jDialogProcurarCliente == null){
+			jDialogProcurarCliente = new JDialogProcurarCliente(getjFramePricipal(), true);			
+		}
+		return jDialogProcurarCliente;
+	}
+	
+	
+	public ControlJDialogProcurarCliente getControlJDialogProcurarCliente() {
+		if(controlJDialogProcurarCliente == null){
+			controlJDialogProcurarCliente = new ControlJDialogProcurarCliente(jFramePricipal, jDialogProcurarCliente, null, null);
+		}
+		return controlJDialogProcurarCliente;
 	}
 	
 	
@@ -252,6 +364,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 
 	public Float getDesconto() {
+		if(desconto == null)
+			desconto = -1352f;
 		return desconto;
 	}
 
@@ -284,6 +398,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 
 	public Float getValorPago() {
+		if(valorPago == null)
+			valorPago = -1352f;
 		return valorPago;
 	}
 	
@@ -413,6 +529,75 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		getjPanelVendasProsseguir().getjTFieldValorTotCompra().setText(String.format(" R$ %.2f", getValorTotal()));
 		getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
 		getjPanelVendasProsseguir().getjTFieldDesconto().requestFocus();
+	}
+	
+	
+	/**
+	 * Verifica se o desconto é válido
+	 * @return retorna verdadeiro se for válido
+	 */
+	private boolean valorDescontoValido() {
+		if(getDesconto() >= 0 && getDesconto() <= 100) 
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Verifica se o valor pago é válido.
+	 * @return retorna verdadeiro caso seja válido.
+	 */
+	private boolean valorPagoValido() {
+		if(getValorPago() >= getValorPagar())
+			return true;
+		return false;
+	}
+	
+	
+	/**
+	 * Atualiza o campo troco e modifica o campo valor pago caso seja inválido.
+	 */
+	private void atualizaTroco() {
+		// se o valor pago for válido
+		if(valorPagoValido()) {
+			setValorTroco(getValorPago() - getValorPagar());
+			getjPanelVendasProsseguir().getjTFieldTroco().setText(String.format(" R$ %.2f", getValorTroco()));
+			// seta o campo valor pago com o designer normal
+			getjPanelVendasProsseguir().getjTFieldValorPago().setBorder(BorderFactory.
+					createTitledBorder(new javax.swing.border.
+							LineBorder(Cores.azul1, 4, true),
+							"Valor pago",
+							javax.swing.border.TitledBorder.LEFT,
+							javax.swing.border.TitledBorder.DEFAULT_POSITION,
+							Fontes.fontBorda2,
+							Cores.azul1)
+					);
+		}
+		// se o valor pago não for válido
+		else {
+			// seta o campo valor pago com designer de erro.
+			// Setar campo troco como ""
+			getjPanelVendasProsseguir().getjTFieldTroco().setText("");
+			getjPanelVendasProsseguir().getjTFieldValorPago().setBorder(BorderFactory.
+					createTitledBorder(new javax.swing.border.
+							LineBorder(Cores.vermelho, 4, true),
+							"Valor pago",
+							javax.swing.border.TitledBorder.LEFT,
+							javax.swing.border.TitledBorder.DEFAULT_POSITION,
+							Fontes.fontBorda2,
+							Cores.vermelho)
+					);
+		}		
+	}
+	
+	
+	/**
+	 * Limpa os camos e as variáveis da área dados pagamento.
+	 */
+	private void limparDados() {
+		getjPanelVendasProsseguir().getjTFieldValorPago().setText("");
+		getjPanelVendasProsseguir().getjTFieldTroco().setText("");
+		setValorPago("");
+		setValorTroco(0f);
 	}
 	//** Fim métodos da classe **
 

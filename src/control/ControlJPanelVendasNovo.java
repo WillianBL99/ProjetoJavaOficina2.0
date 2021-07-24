@@ -264,11 +264,25 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		// Quando o botão prosseguir for clicado
 		else if (e.getSource() == getjPanelVendasNovo().getjButtonProsseguir()) {
 			// Prosseguir com a compra. Ir para formas de pagamento
-
-			jPanelVendasProsseguir = null;
-			controlJPanelVendasProsseguir = null;
-			getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
-			getcontrolJPanelVendasProsseguir();
+			// Verificar se existe algum produto incluso
+			if(getValortotal() != -1352) {
+				jPanelVendasProsseguir = null;
+				controlJPanelVendasProsseguir = null;
+				getjFramePricipal().alterarJPanel(getjPanelVendasProsseguir());
+				getcontrolJPanelVendasProsseguir();
+			}
+			// Caso não tenha selecionado nenhum cliente ainda
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelVendasNovo(), // componente
+						"Nenhum produto inserido.\n"
+						+ "Selecione algum produto e clique em inserir\n"
+						+ "antes de clicar em \"Prosseguir venda\".", // texto
+						"Nenhum produto inserido", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+				);
+			}
 		
 		}
 
@@ -491,6 +505,8 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	}
 	
 	public Float getValortotal() {
+		if(valorTotal == null)
+			valorTotal = -1352f;
 		return valorTotal;
 	}
 	

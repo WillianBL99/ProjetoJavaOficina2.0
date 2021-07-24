@@ -67,6 +67,7 @@ public class JDialogProcurarCliente extends JDialog{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(null);
 		this.getContentPane().setBackground(Cores.cinza5);
+		this.setLocationRelativeTo(null);
 		this.setSize(975, 310);
 		this.setVisible(true);
 		

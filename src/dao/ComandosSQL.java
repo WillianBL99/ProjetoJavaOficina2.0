@@ -9,6 +9,10 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String cadastrarVenda;
+	private static String inseirProdutoVenda;
+	private static String updateEstoque;
+	
 	private static String consultarVendasTodas;
 	
 	private static String consultaProdutoID;
@@ -28,6 +32,7 @@ public class ComandosSQL {
 	
 	private static String consultarNomesUsuarios;
 	private static String consultarUsuarios;
+	private static String consultarUsuariosAll;
 	
 	private static String consultarProdutosPreOrcamento;
 	private static String consultarServicosPreOrcamento;
@@ -53,6 +58,55 @@ public class ComandosSQL {
 	private static String consultarVeiculoPlacaByCliente;
 	
 	private static String cadastrarVeiculo;
+	
+	
+	/**
+	 * Método updateEstoque() alterar a quantidade de um determinado produto no estoque.
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "Qtd_Produto", "ID_Produto")
+	 * @return retorna a query de alteração da quantidade de produtos em estoque.
+	 */
+	public static String updateEstoque() {
+		if(updateEstoque == null){
+			updateEstoque = (
+					"update tb_produtos\r\n"
+					+ "set quantidade = quantidade - ?\r\n"
+					+ "where id_produto = ?;"
+					);
+		}
+		return updateEstoque;
+	}
+	
+	
+	/**
+	 * Método inserirProdutoVenda() insere produtos em uma venda.
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql, "ID_Venda", "ID_Produto", "Qtd_Produto", "ID_Produto")
+	 * @return retorna a query de inserção de produtos em uma nova venda.
+	 */
+	public static String inserirProdutoVenda() {
+		if(inseirProdutoVenda == null){
+			inseirProdutoVenda = (
+					"insert into tb_vendas_produtos(id_venda, id_produto, qtd_produto, desconto, preco_produto) values\r\n"
+					+ "(?, ?, ?, 0, (select preco from controle_estoque_02.tb_produtos where id_produto = ?));"
+					);
+		}
+		return inseirProdutoVenda;
+	}
+	
+	
+	/**
+	 * Método cadastrarVenda() insere uma nova venda.
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql,"ID_Venda "ID_Empresa", "ID_Usuario", "ID_Cliente", "Forma_Pagamento", "Desconto)
+	 * @return retorna a query de inserção de nova venda.
+	 */
+	public static String cadastrarVenda() {
+		if(cadastrarVenda == null){
+			cadastrarVenda = (
+				"insert into tb_vendas(id_venda, id_empresa, id_usuario, id_cliente, forma_pagamento, desconto) values\r\n"
+				+ "(?, ?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarVenda;
+	}
 	
 	
 	/**
@@ -269,6 +323,25 @@ public class ComandosSQL {
 	 * Método getconsultarUsuarios() realiza a consulta os usuarios cadastrados
 	 * @return retorna a query de consulta dos nomes dos usuarios.
 	 */
+	public static String consultarUsuariosAll() {
+		/*
+		 * Lista dos nomes dos campos:
+		 *  "ID_Usuario", "CPF", "Nome", "Email", "Telefone", "Cidade", "Usuário", "Senha", "Função"
+		 */
+		if(consultarUsuariosAll == null){
+			consultarUsuariosAll = (
+					"select *"
+					+ "from tb_usuarios;"
+					);
+		}
+		return consultarUsuariosAll;
+	}
+	
+	
+	/**
+	 * Método getconsultarUsuarios() realiza a consulta os usuarios cadastrados
+	 * @return retorna a query de consulta dos nomes dos usuarios.
+	 */
 	public static String consultarUsuarios() {
 		/*
 		 * Lista dos nomes dos campos:
@@ -321,7 +394,7 @@ public class ComandosSQL {
 		 */
 		if(consultarNomesUsuarios == null){
 			consultarNomesUsuarios = (
-				"select nome from tb_usuarios"
+				"select nome from tb_usuarios order by id_usuario"
 			);
 		}
 		return consultarNomesUsuarios;

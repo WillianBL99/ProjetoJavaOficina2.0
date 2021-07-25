@@ -10,13 +10,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
+import dao.ComandosSQL;
+import dao.DaoJPanelVendasProsseguir;
+import dao.ModuloConexao;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.TabelaTemporaria;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
@@ -32,7 +37,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 
 	//** Início declaração de variáveis **
-	private enum FormaPagamento{DINHEIRO, CARTAO};
+	private TabelaTemporaria tabelaTemporaria;
+	public enum FormaPagamento{DINHEIRO, CARTAO};
 	
 	private JFramePrincipal jFramePricipal;
 	private JPanelVendasProsseguir jPanelVendasProsseguir;
@@ -42,7 +48,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private ControlJDialogProcurarCliente_Venda controlJDialogProcurarCliente_Venda;
-	
+	private DaoJPanelVendasProsseguir daoJPanelVendasProsseguir;
 	private FormaPagamento formaPagamento;
 	private Float valorTotal;
 	private Float desconto;
@@ -63,13 +69,14 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	 * @param jPanelPrincipal
 	 */
 	public ControlJPanelVendasProsseguir(JFramePrincipal jFramePricipal, JPanelVendasProsseguir jPanelVendasProsseguir,
-			JPanelPrincipal jPanelPrincipal, JPanelVendasNovo jPanelVendasNovo, JPanelVendas jPanelVendas) {
+			JPanelPrincipal jPanelPrincipal, JPanelVendasNovo jPanelVendasNovo, JPanelVendas jPanelVendas, ControlJPanelVendasNovo controlJPanelVendasNovo) {
 		this.jFramePricipal = jFramePricipal;
 		this.jPanelVendasProsseguir = jPanelVendasProsseguir;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.jPanelVendasNovo = jPanelVendasNovo;
+		this.controlJPanelVendasNovo = controlJPanelVendasNovo;
 		this.jPanelVendas = jPanelVendas;
-		setValorTotal(getjPanelVendasNovo().getjTFieldProdutoValTot().getText());		
+		setValorTotal(getControlJPanelVendasNovo().getValortotal());		
 		iniciarTela();
 		
 		this.AddEvent();
@@ -84,6 +91,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		getjPanelVendasProsseguir().getjButtonDinheiro().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonProcurar().addMouseListener(this);
 		getjPanelVendasProsseguir().getjButtonFinalizarCompra().addMouseListener(this);
+		getjPanelVendasProsseguir().getchoiceVendedor().addMouseListener(this);
 		getjPanelVendasProsseguir().getjTFieldDesconto().addFocusListener(this);
 		getjPanelVendasProsseguir().getjTFieldValorPago().addFocusListener(this);
 		
@@ -123,6 +131,12 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		} 
 		
 		
+		// Quando clicar no choice
+		else if(e.getSource() == getjPanelVendasProsseguir().getchoiceVendedor()) {
+			
+		}
+		
+		
 		// Quando clicar no botão cartão
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonCartao()) {
 			limparDados();
@@ -148,7 +162,38 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 		// Quando clicar no botão finalizar compra 
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
-			validarVenda();			
+			// verificar se foi selecionado algum ítem do choice
+			if(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() > 1) {
+				ModuloConexao md = new ModuloConexao();
+				md.executeQuery(ComandosSQL.consultarUsuariosAll());
+				try {
+					setIdUsuario(md.valueAt(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() - 1, 0));
+				} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+						
+			if(!validarVenda())
+				JOptionPane.showConfirmDialog(
+						getjPanelVendasProsseguir(), // componente
+						"A compra não foi finalizada.\n"
+						+ "Ocorreu um erro inesperado com o banco de dados.\n"
+						+ "Tente novamente. Caso não consiga contate a assistência.", // texto
+						"Erro inesperado", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.ERROR_MESSAGE // tipo de mensagem
+						);
+			else {
+				JOptionPane.showConfirmDialog(
+						getjPanelVendasProsseguir(), // componente
+						"Venda finalizada com sucesso.", // texto
+						"Venda finalizada", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.PLAIN_MESSAGE // tipo de mensagem
+						);
+			}
 		}
 		
 	}
@@ -348,6 +393,22 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	}
 	
 	
+	public DaoJPanelVendasProsseguir getDaoJPanelVendasProsseguir() {
+		if(daoJPanelVendasProsseguir == null){
+			daoJPanelVendasProsseguir = new DaoJPanelVendasProsseguir(this);
+		}
+		return daoJPanelVendasProsseguir;
+	}
+	
+	
+	public TabelaTemporaria getTabelaTemporaria() {
+		if(tabelaTemporaria == null){
+			tabelaTemporaria = getjPanelVendasNovo().gettabelaTabelaTemporaria();
+		}
+		return tabelaTemporaria;
+	}
+	
+	
 	public Float getValorTotal() {
 		return valorTotal;
 	}
@@ -540,7 +601,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	 * @return retorna verdadeiro se for válido
 	 */
 	private boolean valorDescontoValido() {
-		if(getDesconto() >= 0 && getDesconto() <= 100) 
+		if(getDesconto() >= 0 && getDesconto() <= getValorPagar()) 
 			return true;
 		return false;
 	}
@@ -593,10 +654,14 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	// Finaliza a venda
 	private boolean finalizarVenda() {
-		this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
-		// realizar iteração com o banco de dados para realizar a venda.
+		if(getDaoJPanelVendasProsseguir().cadastrarVenda()) {
+			this.getjFramePricipal().alterarJPanel(this.getjPanelPrincipal());
+			return true;			
+		}
+		// caso ocorra erro no momento da venda
+		else
+			return false;
 		
-		return false;
 	}
 	
 	
@@ -607,9 +672,9 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private String exibirVenda() {
 		String texto = String.format(
 				"Dados da venda:\n"
-				+ "%12s R$ %.2f\n"
-				+ "%12s R$ %.2f\n"
-				+ "%12s R$ %.2f\n\n"
+				+ "%-12s R$ %.2f\n"
+				+ "%-12s R$ %.2f\n"
+				+ "%-12s R$ %.2f\n\n"
 				+ "Finalizar venda?",
 				"Total:", getValorPagar(),
 				"Recebido:", getValorPago(),

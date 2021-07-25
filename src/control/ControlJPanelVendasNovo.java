@@ -317,6 +317,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 						getjPanelVendasNovo().gettabelaTabelaTemporaria().preencherTabela(
 								getjPanelVendasNovo().getjTableProdutosCompra());
 						getjPanelVendasNovo().getjTableProdutosCompra().clearSelection();
+						exibirValorTotal();
 						limparCampos(true);
 					}
 				}
@@ -443,7 +444,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 	public ControlJPanelVendasProsseguir getcontrolJPanelVendasProsseguir() {
 		if (controlJPanelVendasProsseguir == null) {
 			controlJPanelVendasProsseguir = new ControlJPanelVendasProsseguir(getjFramePricipal(),
-					getjPanelVendasProsseguir(), getjPanelPrincipal(), getjPanelVendasNovo(), getjPanelVendas());
+					getjPanelVendasProsseguir(), getjPanelPrincipal(), getjPanelVendasNovo(), getjPanelVendas(), this);
 		}
 		return controlJPanelVendasProsseguir;
 	}
@@ -648,6 +649,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 		for(int i = 0; i < getjPanelVendasNovo().getjTableProdutosCompra().getRowCount(); i++) {
 			total += Float.parseFloat(getjPanelVendasNovo().getjTableProdutosCompra().getValueAt(i, index).toString().replace(" ", "").replace(",", "."));
 		}			
+		System.out.println("getTotalTabela = " + total);
 		return total;
 	}
 

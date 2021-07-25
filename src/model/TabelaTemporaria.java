@@ -316,7 +316,7 @@ public class TabelaTemporaria {
 	}
 	
 	
-	private ArrayList<String[]> getTabela() {
+	public final ArrayList<String[]> getTabela() {
 		if(tabela == null){	
 			tabela = new ArrayList<>();	
 		}

@@ -42,7 +42,7 @@ public class ControlJDialogProcurarCliente_Venda extends ControlJDialogProcurarC
 	public ControlJPanelVendasProsseguir getControlJPanelVendasProsseguir() {
 		if(controlJPanelVendasProsseguir == null){	
 			controlJPanelVendasProsseguir = new ControlJPanelVendasProsseguir(getjFramePricipal(),
-					getjPanelVendasProsseguir(), null, null, null);
+					getjPanelVendasProsseguir(), null, null, null, null);
 		}
 		return controlJPanelVendasProsseguir;
 	}

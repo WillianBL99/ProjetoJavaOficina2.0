@@ -162,18 +162,6 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 		// Quando clicar no botão finalizar compra 
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
-			// verificar se foi selecionado algum ítem do choice
-			if(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() > 1) {
-				ModuloConexao md = new ModuloConexao();
-				md.executeQuery(ComandosSQL.consultarUsuariosAll());
-				try {
-					setIdUsuario(md.valueAt(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() - 1, 0));
-				} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
 						
 			if(!validarVenda())
 				JOptionPane.showConfirmDialog(
@@ -713,40 +701,55 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	private boolean validarVenda() {
 		boolean retorno = false;
-		// Verificar se a copra foi paga via cartão ou dinheiro físico
-		switch(getFormaPagamento()) {
-		// Caso a forma de pagamento seja no cartão
-		case CARTAO:
-			// Verifica a escolha do usuário
-			if(exibirOptionPaneFinalizar(
-					"Certifique-se que a compra foi paga corretamente\n"
-					+ "antes de clicar em \"Finalizar compra\"."))
-			{
-				retorno = finalizarVenda();
-			}				
-			break;
-		
-		// Caso a forma de pagamento seja no dinheiro
-		case DINHEIRO:
-			// Verifica se o valor pago é válido e se foi escolido um responsável
-			if(valorPagoValido() 
-					&& !getjPanelVendasProsseguir().getchoiceVendedor().getSelectedItem().replace(" ", "").isEmpty()) {
-				// Verificar a escolha do usuário
-				if(exibirOptionPaneFinalizar(exibirVenda())) {
+		// Verifica se foi escolhido um usuário;
+		if(!getjPanelVendasProsseguir().getchoiceVendedor().getSelectedItem().replace(" ", "").isEmpty()) {
+			// verificar se foi selecionado algum ítem do choice
+			if(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() > 0) {
+				System.out.println("id selecionado = " + getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex());
+				ModuloConexao md = new ModuloConexao();
+				md.executeQuery(ComandosSQL.consultarUsuariosAll());
+				try {
+					setIdUsuario(md.valueAt(getjPanelVendasProsseguir().getchoiceVendedor().getSelectedIndex() - 1, 0));
+				} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
+			}
+			
+			// Verificar se a copra foi paga via cartão ou dinheiro físico
+			switch(getFormaPagamento()) {
+			// Caso a forma de pagamento seja no cartão
+			case CARTAO:
+				// Verifica a escolha do usuário
+				if(exibirOptionPaneFinalizar(
+						"Certifique-se que a compra foi paga corretamente\n"
+								+ "antes de clicar em \"Finalizar compra\"."))
+				{
 					retorno = finalizarVenda();
+				}				
+				break;
+				
+				// Caso a forma de pagamento seja no dinheiro
+			case DINHEIRO:
+				// Verifica se o valor pago é válido
+				if(valorPagoValido()) {
+					// Verificar a escolha do usuário
+					if(exibirOptionPaneFinalizar(exibirVenda())) {
+						retorno = finalizarVenda();
+					}
 				}
+				// Valor pago não é válido
+				else {
+					JOptionPane.showConfirmDialog(
+							getjPanelVendasProsseguir(), // componente
+							"Verifique se todos os campos marcados com \"*\" estão preenchidos corretamente.", // texto
+							"Impossível finalizar", // titulo
+							JOptionPane.DEFAULT_OPTION, // botões
+							JOptionPane.ERROR_MESSAGE // tipo de mensagem
+							);					
+				}
+				break;
 			}
-			// Valor pago não é válido
-			else {
-				JOptionPane.showConfirmDialog(
-						getjPanelVendasProsseguir(), // componente
-						"Verifique se todos os campos marcados com \"*\" estão preenchidos corretamente.", // texto
-						"Impossível finalizar", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.ERROR_MESSAGE // tipo de mensagem
-						);					
-			}
-			break;
 		}
 		return retorno;
 	}

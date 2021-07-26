@@ -5,7 +5,6 @@ package dao;
 
 import control.ControlJPanelVendasProsseguir;
 import model.TabelaTemporaria;
-import view.JPanelVendasProsseguir;
 
 /**
  * @author Paulo Uilian
@@ -36,16 +35,30 @@ public class DaoJPanelVendasProsseguir {
 			System.out.println("pegou id");
 			setId_venda(Integer.parseInt(getModuloConexao().valueAtLine(0)) + 1);
 			
-			// Caso tenha algum erro com o camando sql
-			if(!new Cadastrar().executeUpdate(ComandosSQL.cadastrarVenda(),
-					getId_venda().toString(),
-					"1",
-					getControlJPanelVendasProsseguir().getIdUsuario().toString(),
-					getControlJPanelVendasProsseguir().getIdCliente().toString(),
-					getControlJPanelVendasProsseguir().getFormaPagamento().toString().replace("CARTAO", "CARTÃO"),
-					String.format("%.2f", getControlJPanelVendasProsseguir().getDesconto())
-					))
-				return false;
+			// Venda sem cliente
+			if(getControlJPanelVendasProsseguir().getIdCliente() == 0) {
+				// Caso tenha algum erro com o camando sql
+				if(!new Cadastrar().executeUpdate(ComandosSQL.cadastrarVenda_cliente(),
+						getId_venda().toString(),
+						"1",
+						getControlJPanelVendasProsseguir().getIdUsuario().toString(),
+						getControlJPanelVendasProsseguir().getFormaPagamento().toString().replace("CARTAO", "CARTÃO"),
+						String.format("%.2f", getControlJPanelVendasProsseguir().getDesconto())
+						)) return false;
+				
+			}
+			// Venda com cliente
+			else {
+				// Caso tenha algum erro com o camando sql
+				if(!new Cadastrar().executeUpdate(ComandosSQL.cadastrarVenda(),
+						getId_venda().toString(),
+						"1",
+						getControlJPanelVendasProsseguir().getIdUsuario().toString(),
+						getControlJPanelVendasProsseguir().getIdCliente().toString(),
+						getControlJPanelVendasProsseguir().getFormaPagamento().toString().replace("CARTAO", "CARTÃO"),
+						String.format("%.2f", getControlJPanelVendasProsseguir().getDesconto())
+						)) return false;
+			}			
 
 			System.out.println("Cadastrou venda");
 			// insere todos os produtos da compra e atualiza os produtos no estoque

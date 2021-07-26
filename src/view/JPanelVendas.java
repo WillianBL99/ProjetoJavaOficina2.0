@@ -326,6 +326,7 @@ public class JPanelVendas extends JPanel{
 					"Data",
 					"Vendedor",
 					"Cliente",
+					"Forma Pag.",
 					"Qtd. Peças",
 					"Desconto",
 					"Total"));					

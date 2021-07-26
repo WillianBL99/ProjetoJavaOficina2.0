@@ -55,7 +55,6 @@ public class ControlJDialogProcurarCliente_Venda extends ControlJDialogProcurarC
 		String nome = super.getjDialogProcurarCliente().getjTableCliente().getValueAt(index, 3).toString();
 		getControlJPanelVendasProsseguir().setIdCliente(Integer.parseInt(id));
 		getjPanelVendasProsseguir().getjTFieldCliente().setText(nome);
-		getjPanelVendasProsseguir().getjButtonFinalizarCompra().setBackground(Cores.azul3);
 	}
 	
 	

@@ -9,6 +9,7 @@ package dao;
  */
 public class ComandosSQL {
 	
+	private static String cadastrarVenda_cliente;
 	private static String cadastrarVenda;
 	private static String inseirProdutoVenda;
 	private static String updateEstoque;
@@ -101,11 +102,27 @@ public class ComandosSQL {
 	public static String cadastrarVenda() {
 		if(cadastrarVenda == null){
 			cadastrarVenda = (
-				"insert into tb_vendas(id_venda, id_empresa, id_usuario, id_cliente, forma_pagamento, desconto) values\r\n"
-				+ "(?, ?, ?, ?, ?, ?);"
-			);
+					"insert into tb_vendas(id_venda, id_empresa, id_usuario, id_cliente, forma_pagamento, desconto) values\r\n"
+							+ "(?, ?, ?, ?, ?, ?);"
+					);
 		}
 		return cadastrarVenda;
+	}
+	
+	
+	/**
+	 * Método cadastrarVenda() insere uma nova venda.
+	 * @param Passar como parametro para o método Cadastrar.ExecuteUpdate(sql,"ID_Venda "ID_Empresa", "ID_Usuario", "ID_Cliente", "Forma_Pagamento", "Desconto)
+	 * @return retorna a query de inserção de nova venda.
+	 */
+	public static String cadastrarVenda_cliente() {
+		if(cadastrarVenda_cliente == null){
+			cadastrarVenda_cliente = (
+				"insert into tb_vendas(id_venda, id_empresa, id_usuario, forma_pagamento, desconto) values\r\n"
+				+ "(?, ?, ?, ?, ?);"
+			);
+		}
+		return cadastrarVenda_cliente;
 	}
 	
 	
@@ -124,6 +141,7 @@ public class ComandosSQL {
 				+ "vendas.data,\r\n"
 				+ "usuarios.nome,\r\n"
 				+ "clientes.nome_cliente,\r\n"
+				+ "vendas.forma_pagamento,\r\n"
 				+ "sum(venda_prod.qtd_produto),\r\n"
 				+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
 				+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
@@ -146,7 +164,8 @@ public class ComandosSQL {
 				+ "tb_clientes as clientes\r\n"
 				+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
 				+ "\r\n"
-				+ "group by venda_prod.id_venda;"
+				+ "group by venda_prod.id_venda\r\n"
+				+ "order by id_venda;"
 			);
 		}
 		return consultarVendasTodas;
@@ -764,7 +783,8 @@ public class ComandosSQL {
 					+ "date_format(pre_orc.data, '%d/%m/%y - %T') as data,\r\n"
 					+ "    vec.placa,\r\n"
 					+ "    cli.nome_cliente,\r\n"
-					+ "ifnull(sum(pre_orc_serv.quantidade * pre_orc_serv.preco_produto), 0),\r\n"
+					+ "	   vendas.forma_pagamento,"
+					+ "	   ifnull(sum(pre_orc_serv.quantidade * pre_orc_serv.preco_produto), 0),\r\n"
 					+ "    ifnull(sum(pre_orc_prod.quantidade * pre_orc_prod.preco_produto), 0),\r\n"
 					+ "    (ifnull(sum(pre_orc_serv.desconto), 0) + ifnull(sum(pre_orc_prod.desconto), 0) + ifnull(pre_orc.desconto, 0)),\r\n"
 					+ "    ((ifnull(sum(pre_orc_serv.quantidade * pre_orc_serv.preco_produto), 0)) +\r\n"
@@ -790,6 +810,7 @@ public class ComandosSQL {
 					+ "\r\n"
 					// "where date_format(pre_orc.data, '%d/%m/%y') between '06/06/2021' and ?"
 					+ "group by pre_orc.id_pre_orcamento"
+					+ "order by pre_orc.id_pre_orcamento"
 			);
 	
 		}

@@ -229,29 +229,26 @@ public class ModuloConexao {
 		// Recebe a quantidade de colunas da tabela
 		int qtdColunas = getResultSetMetaData().getColumnCount();
 		
-		String[] linha = new String[qtdColunas];
 		ArrayList<String[]> tabela = new ArrayList<>();	
 		
 		
 		try {
-			for(int j = 0; getResultSet().next(); j++) {			
+			getResultSet().first();
+			do {			
+				String[] linha = new String[qtdColunas];
 				// Itera pelos campos da linha consultada
 				for(int i = 0; i < qtdColunas; i++) {
 					// Preenche o object[i] com a linha atual de uma coluna
 					linha[i] = getResultSet().getString(getResultSetMetaData().getColumnName(i + 1));
-					System.out.print(linha[i] + ", ");
 				}	
-				System.out.println();
 				tabela.add(linha);
-			}			
+			} while(getResultSet().next());			
 			
 		} catch (SQLException e) {
 			System.err.println("Class-ModuloConexao: valueAt() - erro: " + e.getMessage());
-		}	
-		
-		// retorna o index desejado da String linha
-		linha = tabela.get(row);
-		return linha[column];
+		}
+				
+		return tabela.get(row)[column];
 	}
 	
 	

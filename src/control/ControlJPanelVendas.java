@@ -131,35 +131,53 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
+		// Quando o campo dataInicial perder o foco
 		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
-			
-			
-
-			if(Mascara.validandoData(getjPanelVendas().getjTFieldDTInicial().getText())== true) {
-				
-			}else {
-				JOptionPane.showMessageDialog(getjFramePricipal(), "Data Invalida, digite novamente");
-				getjPanelVendas().getjTFieldDTInicial().setText(null);
-				getjPanelVendas().getjTFieldDTInicial().requestFocus();
-			}
-			
-			
-		
+			// Verificar se não está vazio
+			String dataInicial = getjPanelVendas().getjTFieldDTInicial().getText().replace(" ", "").replace("/", "");
+			if(!dataInicial.isEmpty()) {
+				// Verifica se está faltando números
+				if(dataInicial.length() < 8) {					
+					getjPanelVendas().getjTFieldDTInicial().setText("");				
+				}
+				// Verifica se é válido
+				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTInicial().getText())){
+					JOptionPane.showConfirmDialog(
+						getjPanelVendas(), // componente
+						"Data inválida, digite novamente", // texto
+						"Data inválida", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					getjPanelVendas().getjTFieldDTInicial().setText("");
+					getjPanelVendas().getjTFieldDTInicial().requestFocus();					
+				}
+			}		
 		}
 		
-		if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
-			
-			
-			if(Mascara.validandoData(getjPanelVendas().getjTFieldDTFinal().getText())== true) {
-				
-			}else {
-				JOptionPane.showMessageDialog(getjFramePricipal(), "Data Invalida, digite novamente");
-				getjPanelVendas().getjTFieldDTFinal().setText(null);
-				getjPanelVendas().getjTFieldDTFinal().requestFocus();
-			}
-			
 		
+		// Quando o campo dataFinal perder o foco
+		else if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
+			// Verificar se não está vazio
+			String dataFinal = getjPanelVendas().getjTFieldDTFinal().getText().replace(" ", "").replace("/", "");
+			if(!dataFinal.isEmpty()) {
+				// Verifica se está faltando números
+				if(dataFinal.length() < 8) {					
+					getjPanelVendas().getjTFieldDTFinal().setText("");				
+				}
+				// Verifica se é válido
+				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTFinal().getText())){
+					JOptionPane.showConfirmDialog(
+						getjPanelVendas(), // componente
+						"Data inválida, digite novamente", // texto
+						"Data inválida", // titulo
+						JOptionPane.DEFAULT_OPTION, // botões
+						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+						);
+					getjPanelVendas().getjTFieldDTFinal().setText("");
+					getjPanelVendas().getjTFieldDTFinal().requestFocus();					
+				}
+			}		
 		}
 
 	}
@@ -221,7 +239,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// 
+		// Quando o JFrame for ativado
 		if(e.getSource() == getjFramePricipal()) {
 			// Atualizar a tabela de vendas
 			System.out.println("Atualizou tabela vendas");

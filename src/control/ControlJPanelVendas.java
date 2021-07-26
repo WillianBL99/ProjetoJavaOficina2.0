@@ -9,7 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JOptionPane;
+
+import dao.DaoJPanelVendas;
 import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
@@ -20,7 +25,7 @@ import view.JPanelVendasNovo;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelVendas implements MouseListener, KeyListener, FocusListener {
+public class ControlJPanelVendas implements MouseListener, KeyListener, FocusListener, WindowListener {
 	
 
 	//** Início declaração de variáveis **
@@ -29,6 +34,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	private JPanelPrincipal jPanelPrincipal;
 	private JPanelVendasNovo jPanelVendasNovo;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
+	private DaoJPanelVendas daoJPanelVendas;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -51,6 +57,8 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 
 	private void AddEvent() {
+		getjFramePricipal().addWindowListener(this);
+		getjPanelVendasNovo().addFocusListener(this);
 		getjPanelVendas().getjButtonNovaVenda().addMouseListener(this);
 		getjPanelVendas().getjButtonApagar().addMouseListener(this);
 		getjPanelVendas().getjButtonImprimir().addMouseListener(this);
@@ -114,6 +122,11 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 		}
 		
+		
+		
+		
+		
+		
 	}
 
 	@Override
@@ -175,6 +188,53 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// 
+		if(e.getSource() == getjFramePricipal()) {
+			// Atualizar a tabela de vendas
+			System.out.println("Atualizou tabela vendas");
+			getdDaoJPanelVendas().consultarVendas();
+		}
+		
+	}
+	
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 
@@ -211,12 +271,18 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 	public JPanelVendasNovo getjPanelVendasNovo() {
 		if(jPanelVendasNovo == null){
-			jPanelVendasNovo = new JPanelVendasNovo();
-	
+			jPanelVendasNovo = new JPanelVendasNovo();	
 		}
 		return jPanelVendasNovo;
+	}	
+	
+		
+	public DaoJPanelVendas getdDaoJPanelVendas() {
+		if(daoJPanelVendas == null){
+			daoJPanelVendas = new DaoJPanelVendas(getjPanelVendas());	
+		}
+		return daoJPanelVendas;
 	}
-
 
 
 	public ControlJPanelVendasNovo getControlJPanelVendasNovo() {
@@ -227,16 +293,5 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		}
 		return controlJPanelVendasNovo;
 	}
-	//** Fim métodos da classe **
-
-
-
-
-
-
-
-
-
-	
-	
+	//** Fim métodos da classe **	
 }

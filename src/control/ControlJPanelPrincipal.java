@@ -174,8 +174,8 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 		else if(e.getSource() == this.getjPanelPrincipal().getjButtonOrcamentoFinal()) {
 			jPanelOrcamentoFinal = null;
 			controlJPanelOrcamentoFinal = null;
-			getjControlOrcamentoFinal();
 			getjPanelPrincipal().alterarJPanel(getjPanelOrcamentoFinal(), point, this.getjPanelOrcamentoFinal().getTituloDescricaoTela());	
+			getjControlOrcamentoFinal();
 		} 
 		
 		// Qando o botão veículos for clicado

@@ -33,7 +33,9 @@ public class DaoJPanelVendasProsseguir {
 			if(!getModuloConexao().executeQuery("select max(id_venda) from tb_vendas"))
 				return false;
 			System.out.println("pegou id");
-			setId_venda(Integer.parseInt(getModuloConexao().valueAtLine(0)) + 1);
+			String id = getModuloConexao().valueAtLine(0);
+			// Caso não tenha nenhuma venda o id será null. Então o id_usuario será 0.
+			setId_venda(Integer.parseInt((id == null ? "0" : id)) + 1);
 			
 			// Venda sem cliente
 			if(getControlJPanelVendasProsseguir().getIdCliente() == 0) {
@@ -66,7 +68,7 @@ public class DaoJPanelVendasProsseguir {
 
 			
 		} catch (Exception e) {
-			System.err.println(e);
+			System.err.println("Erro: DaoJPanelVendasProsseguir - " + e);
 			return false;
 		}
 		

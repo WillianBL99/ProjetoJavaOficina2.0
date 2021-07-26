@@ -161,8 +161,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		 
 
 		// Quando clicar no botão finalizar compra 
-		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {
-						
+		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {						
 			validarVenda();
 		}
 		

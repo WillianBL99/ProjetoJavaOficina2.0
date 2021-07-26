@@ -5,12 +5,16 @@ package control;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JOptionPane;
 
@@ -25,7 +29,7 @@ import view.JPanelVendasNovo;
  * @author Paulo Uilian
  *
  */
-public class ControlJPanelVendas implements MouseListener, KeyListener, FocusListener, WindowListener {
+public class ControlJPanelVendas implements MouseListener, KeyListener, FocusListener, WindowListener, ItemListener {
 	
 
 	//** Início declaração de variáveis **
@@ -66,6 +70,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
 		getjPanelVendas().getjTFieldDTInicial().addFocusListener(this);
 		getjPanelVendas().getjTFieldDTFinal().addFocusListener(this);
+		getjPanelVendas().getChoiceFormPesquisa().addItemListener(this);
+		getjPanelVendas().getChoiceFormPesquisa().addMouseListener(this);
+		getjPanelVendas().getChoiceFormPesquisa().addFocusListener(this);
 		
 	}
 
@@ -75,7 +82,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	//** Início métodos sobrescritos **
 	
 	
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -93,6 +99,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -103,32 +110,24 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			getControlJPanelVendasNovo();
 		}
-		
-		
 	}
+	
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
-			
-			Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraData());
-		
-		}
-		
-		if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
-			
-			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraData());
-		
+		// Quando o campo DataInicial ganhar foco
+		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {			
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraData());		
 		}
 		
 		
-		
-		
-		
-		
+		// Quando o campo DataFinal ganhar foco		
+		else if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {			
+			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraData());		
+		}
 	}
 
+	
 	@Override
 	public void focusLost(FocusEvent e) {
 		// Quando o campo dataInicial perder o foco
@@ -152,7 +151,8 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 					getjPanelVendas().getjTFieldDTInicial().setText("");
 					getjPanelVendas().getjTFieldDTInicial().requestFocus();					
 				}
-			}		
+			}	
+				
 		}
 		
 		
@@ -179,7 +179,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 				}
 			}		
 		}
-
 	}
 	
 
@@ -206,6 +205,39 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// Quando for selecionado algum ítem do choice FormPesquisa
+		if(e.getSource() == getjPanelVendas().getChoiceFormPesquisa()) {
+			// Verificar qual ítem foi selecionado
+			switch(getjPanelVendas().getChoiceFormPesquisa().getSelectedItem().replace(" ", "")) {
+			case "Cliente":
+				// Realizar a buscas no banco de dados
+				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(true);
+				getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
+				break;
+				
+			case "Vendedor":
+				// Realizar a buscas no banco de dados
+				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(true);
+				getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
+				break;
+				
+			case "Cartão":
+				// Realizar a buscas no banco de dados
+				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(false);
+				break;
+				
+			case "Dinheiro":
+				// Realizar a buscas no banco de dados
+				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(false);
+				break;
+			}
+		}
+	}
+	
 
 	@Override
 	public void windowOpened(WindowEvent e) {
@@ -312,4 +344,12 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		return controlJPanelVendasNovo;
 	}
 	//** Fim métodos da classe **	
+
+
+
+
+
+
+
+
 }

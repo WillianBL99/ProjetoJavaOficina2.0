@@ -38,15 +38,24 @@ public class DaoJPanelVendas {
 				getjpJPanelVendas().getjTableVendas().
 					setModel(new PreencherTabela().
 						preencher(getModuloConexao().getResultSet(),
-							"Nº Veiculo",
-							"Placa",
-							"Chassi",
-							"Marca",
-							"Modelo",
-							"Motor",
-							"Combustível",
-							"Cor",
-							"Ano"));
+							"Nº",
+							"Data",
+							"Vendedor",
+							"Cliente",
+							"Forma Pag.",
+							"Qtd. Peças",
+							"Desconto",
+							"Total"));
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(0).setMaxWidth(50);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(4).setMaxWidth(110);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(4).setMinWidth(110);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(5).setMaxWidth(110);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(5).setMinWidth(110);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(6).setMaxWidth(90);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(6).setMinWidth(90);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(7).setMaxWidth(90);
+				getjpJPanelVendas().getjTableVendas().getColumnModel().getColumn(7).setMinWidth(90);
+				
 				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	

@@ -61,11 +61,11 @@ public class JPanelHome extends JPanel{
 		if(jLabelHoras == null) {
 			jLabelHoras = new JLabel();
 			jLabelHoras.setFont(Fontes.fontJLabelBold4);
-			jLabelHoras.setText("20:40");
+			jLabelHoras.setText("");
 			jLabelHoras.setForeground(Cores.azul1);
 			jLabelHoras.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelHoras.setBorder(null);
-			jLabelHoras.setSize(200,98);
+			jLabelHoras.setSize(210,98);
 		}
 		return jLabelHoras;
 	}

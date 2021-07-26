@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -10,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import dao.ComandosSQL;
@@ -39,11 +42,12 @@ public class JPanelVendas extends JPanel{
 	
 	private JLabel jLabelDTInicial;
 	private JLabel jLabelDTFinal;
-	private JLabel jLabelCliente;
 	
 	private JFormattedTextField jTFieldDTInicial;
 	private JFormattedTextField jTFieldDTFinal;
-	private JTextField jTFieldCliente;
+	private JTextField jTFieldFormPesquisa;
+	
+	private Choice choiceFormPesquisa;
 	
 	private JPanel jPanelBuscaVenda; // barra que contem componentes para realizar busca de vendas
 	
@@ -106,7 +110,7 @@ public class JPanelVendas extends JPanel{
 			jLabelDTInicial.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelDTInicial.setText("Data inicial");
 			jLabelDTInicial.setOpaque(false);
-			jLabelDTInicial.setSize(80,21);
+			jLabelDTInicial.setSize(80,24);
 		}
 		return jLabelDTInicial;
 	}
@@ -121,25 +125,10 @@ public class JPanelVendas extends JPanel{
 			jLabelDTFinal.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelDTFinal.setText("Data final");
 			jLabelDTFinal.setOpaque(false);
-			jLabelDTFinal.setSize(70,21);	
+			jLabelDTFinal.setSize(70,24);	
 		}
 		return jLabelDTFinal;
 	}
-	
-
-	public JLabel getjLabelCliente() {
-		if(jLabelCliente == null){
-			jLabelCliente = new JLabel();
-			jLabelCliente.setFont(Fontes.fontJLabelPlain1);
-			jLabelCliente.setForeground(Cores.preto);
-			jLabelCliente.setHorizontalAlignment(SwingConstants.LEFT);
-			jLabelCliente.setText("Cliente");
-			jLabelCliente.setOpaque(false);
-			jLabelCliente.setSize(50,21);	
-		}
-		return jLabelCliente;
-	}
-	
 	
 	//** Fim getters JLabel **
 	
@@ -151,14 +140,14 @@ public class JPanelVendas extends JPanel{
 			jButtonNovaVenda.setFont(Fontes.fontJButtonPlain2);
 			jButtonNovaVenda.setBackground(Cores.azul1);
 			jButtonNovaVenda.setForeground(Color.white);
-			jButtonNovaVenda.setHorizontalTextPosition(SwingConstants.LEFT);
+			jButtonNovaVenda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			setSizeIcon.setIconJButton(jButtonNovaVenda, Icones.
 					getAddCompra(), 25, 25);
-			jButtonNovaVenda.setText("Nova");
-			jButtonNovaVenda.setSize(125, 35);
+			jButtonNovaVenda.setSize(56, 35);
 			jButtonNovaVenda.setFocusable(false);
 			jButtonNovaVenda.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonNovaVenda.setToolTipText("Nova venda");
 		}
 		return jButtonNovaVenda;
 	}
@@ -170,12 +159,14 @@ public class JPanelVendas extends JPanel{
 			jButtonImprimir.setFont(Fontes.fontJButtonPlain3);
 			jButtonImprimir.setBackground(Cores.azul1);
 			jButtonImprimir.setForeground(Color.white);
+			jButtonImprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			setSizeIcon.setIconJButton(jButtonImprimir, Icones.
 					getImprimir(), 30, 30);
 			jButtonImprimir.setSize(56, 35);
 			jButtonImprimir.setFocusable(false);
 			jButtonImprimir.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonImprimir.setToolTipText("Imprimir");
 		}
 		return jButtonImprimir;
 	}
@@ -187,12 +178,14 @@ public class JPanelVendas extends JPanel{
 			jButtonApagar.setFont(Fontes.fontJButtonPlain3);
 			jButtonApagar.setBackground(Cores.azul1);
 			jButtonApagar.setForeground(Color.white);
+			jButtonApagar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			setSizeIcon.setIconJButton(jButtonApagar, Icones.
 					getApagar(), 30, 30);
 			jButtonApagar.setSize(56, 35);
 			jButtonApagar.setFocusable(false);
 			jButtonApagar.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonApagar.setToolTipText("Apagar");
 		}
 		return jButtonApagar;
 	}
@@ -204,14 +197,14 @@ public class JPanelVendas extends JPanel{
 			jButtonFiltrar.setFont(Fontes.fontJButtonPlain2);
 			jButtonFiltrar.setBackground(Cores.azul1);
 			jButtonFiltrar.setForeground(Color.white);
-			jButtonFiltrar.setHorizontalTextPosition(SwingConstants.LEFT);
+			jButtonFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			setSizeIcon.setIconJButton(jButtonFiltrar, Icones.
 					getFiltrar(), 25, 25);
-			jButtonFiltrar.setText("Filtrar");
-			jButtonFiltrar.setSize(125, 32);
+			jButtonFiltrar.setSize(40, 32);
 			jButtonFiltrar.setFocusable(false);
 			jButtonFiltrar.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonFiltrar.setToolTipText("Filtrar pesquisa");
 
 		}
 		return jButtonFiltrar;
@@ -224,14 +217,14 @@ public class JPanelVendas extends JPanel{
 			jButtonPesquisarTodos.setFont(Fontes.fontJButtonPlain2);
 			jButtonPesquisarTodos.setBackground(Cores.azul1);
 			jButtonPesquisarTodos.setForeground(Color.white);
-			jButtonPesquisarTodos.setHorizontalTextPosition(SwingConstants.LEFT);
+			jButtonPesquisarTodos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			setSizeIcon.setIconJButton(jButtonPesquisarTodos, Icones.
 					getBuscarCompra(), 25, 25);
-			jButtonPesquisarTodos.setText("buscar todos");
-			jButtonPesquisarTodos.setSize(125, 32);
+			jButtonPesquisarTodos.setSize(40, 32);
 			jButtonPesquisarTodos.setFocusable(false);
 			jButtonPesquisarTodos.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1));
+			jButtonPesquisarTodos.setToolTipText("Pesquisar todos");
 		
 		}
 		return jButtonPesquisarTodos;
@@ -256,7 +249,7 @@ public class JPanelVendas extends JPanel{
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTInicial.setForeground(Cores.preto);
 			jTFieldDTInicial.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldDTInicial.setSize(85, 21);
+			jTFieldDTInicial.setSize(85, 24);
 			jTFieldDTInicial.setOpaque(true);
 		}
 		return jTFieldDTInicial;
@@ -270,24 +263,24 @@ public class JPanelVendas extends JPanel{
 					createLineBorder(Cores.cinza2, 1, false));
 			jTFieldDTFinal.setForeground(Cores.preto);
 			jTFieldDTFinal.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldDTFinal.setSize(85, 21);
+			jTFieldDTFinal.setSize(85, 24);
 			jTFieldDTFinal.setOpaque(true);
 		}
 		return jTFieldDTFinal;
 	}
 
 	
-	public JTextField getjTFieldCliente() {
-		if(jTFieldCliente == null){
-			jTFieldCliente = new JTextField();
-			jTFieldCliente.setBorder(BorderFactory.
+	public JTextField getjTFieldFormPesquisa() {
+		if(jTFieldFormPesquisa == null){
+			jTFieldFormPesquisa = new JTextField();
+			jTFieldFormPesquisa.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
-			jTFieldCliente.setForeground(Cores.preto);
-			jTFieldCliente.setFont(Fontes.fontJTFieldPlain1);
-			jTFieldCliente.setSize(195, 21);
-			jTFieldCliente.setOpaque(true);
+			jTFieldFormPesquisa.setForeground(Cores.preto);
+			jTFieldFormPesquisa.setFont(Fontes.fontJTFieldPlain1);
+			jTFieldFormPesquisa.setSize(240, 24);
+			jTFieldFormPesquisa.setOpaque(true);
 		}
-		return jTFieldCliente;
+		return jTFieldFormPesquisa;
 	}
 	
 	
@@ -295,11 +288,27 @@ public class JPanelVendas extends JPanel{
 	
 	
 	
-	//** Início getters JComboBox **
+	//** Início getters Choice **
+	
+	public Choice getChoiceFormPesquisa() {
+		if(choiceFormPesquisa == null) {
+			choiceFormPesquisa = new Choice();			
+			choiceFormPesquisa.setSize(150, 24);
+			choiceFormPesquisa.setFont(Fontes.fontJTFieldPlain1);
+			choiceFormPesquisa.setForeground(Cores.preto);
+			choiceFormPesquisa.setVisible(true);
+			choiceFormPesquisa.setFocusable(false);	
+			choiceFormPesquisa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			choiceFormPesquisa.add(String.format("%-150s", "Vendedor"));			
+			choiceFormPesquisa.add(String.format("%-150s", "Cliente"));			
+			choiceFormPesquisa.add(String.format("%-150s", "Cartão"));			
+			choiceFormPesquisa.add(String.format("%-150s", "Dinheiro"));
+		}
+		return choiceFormPesquisa;
+	}
 	
 	
-	
-	//** Fim getters JComboBox **
+	//** Fim getters Choice **
 	
 	//** Início getters conjuto JScrollPane/JTable **
 	
@@ -331,8 +340,22 @@ public class JPanelVendas extends JPanel{
 					"Desconto",
 					"Total"));					
 
+			jTableVendas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			jTableVendas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			jTableVendas.setShowVerticalLines(false);
+			jTableVendas.setRowHeight(23);
+			jTableVendas.getColumnModel().getColumn(0).setMaxWidth(50);
+			jTableVendas.getColumnModel().getColumn(4).setMaxWidth(110);
+			jTableVendas.getColumnModel().getColumn(4).setMinWidth(110);
+			jTableVendas.getColumnModel().getColumn(5).setMaxWidth(110);
+			jTableVendas.getColumnModel().getColumn(5).setMinWidth(110);
+			jTableVendas.getColumnModel().getColumn(6).setMaxWidth(90);
+			jTableVendas.getColumnModel().getColumn(6).setMinWidth(90);
+			jTableVendas.getColumnModel().getColumn(7).setMaxWidth(90);
+			jTableVendas.getColumnModel().getColumn(7).setMinWidth(90);
 			jTableVendas.setFont(Fontes.fontJTablePlain2);
 			jTableVendas.setOpaque(false);
+			jTableVendas.getTableHeader().setReorderingAllowed(false);
 			jTableVendas.getTableHeader().setFont(Fontes.fontJTableBold2);
 			jTableVendas.getTableHeader().setForeground(Cores.branco);
 			jTableVendas.getTableHeader().setBackground(Cores.azul1);
@@ -369,28 +392,32 @@ public class JPanelVendas extends JPanel{
 	public void addCompJPanelBuscaVenda() { 
 		
 		this.getjPanelBuscaVenda().add(this.getjLabelDTInicial());
-		this.getjLabelDTInicial().setLocation(10, 14);
+		this.getjLabelDTInicial().setLocation(10, 13);
 
 		this.getjPanelBuscaVenda().add(this.getjTFieldDTInicial());
-		this.getjTFieldDTInicial().setLocation(92, 14);
+		this.getjTFieldDTInicial().setLocation(92, 13);
+		
 
 		this.getjPanelBuscaVenda().add(this.getjLabelDTFinal());
-		this.getjLabelDTFinal().setLocation(184, 14);
+		this.getjLabelDTFinal().setLocation(184, 13);
 
 		this.getjPanelBuscaVenda().add(this.getjTFieldDTFinal());
-		this.getjTFieldDTFinal().setLocation(257, 14);
+		this.getjTFieldDTFinal().setLocation(257, 13);		
+		
+		
+		this.getjPanelBuscaVenda().add(this.getChoiceFormPesquisa());
+		this.getChoiceFormPesquisa().setLocation(362,13);
+		
+		this.getjPanelBuscaVenda().add(this.getjTFieldFormPesquisa());
+		this.getjTFieldFormPesquisa().setLocation(484, 13);
 
-		this.getjPanelBuscaVenda().add(this.getjLabelCliente());
-		this.getjLabelCliente().setLocation(349, 14);
-
-		this.getjPanelBuscaVenda().add(this.getjTFieldCliente());
-		this.getjTFieldCliente().setLocation(400, 14);
-
+		
 		this.getjPanelBuscaVenda().add(this.getjButtonFiltrar());
-		this.getjButtonFiltrar().setLocation(730, 9);
+		this.getjButtonFiltrar().setLocation(886, 9);
 
+		
 		this.getjPanelBuscaVenda().add(this.getjButtonPesquisarTodos());
-		this.getjButtonPesquisarTodos().setLocation(865, 9);
+		this.getjButtonPesquisarTodos().setLocation(941, 9);
 	}
 	
 	//** Fim métodos adição de componentes **

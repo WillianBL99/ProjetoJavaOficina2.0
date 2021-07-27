@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import dao.DaoJPanelVendas;
 import model.Cores;
 import model.Mascara;
+import model.Validar;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
 import view.JPanelVendas;
@@ -189,7 +190,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 					Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraNula());
 				}
 				// Verifica se é válido
-				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTInicial().getText())){
+				else if(!Validar.validarData(getjPanelVendas().getjTFieldDTInicial().getText())){
 					JOptionPane.showConfirmDialog(
 						getjPanelVendas(), // componente
 						"Data inválida, digite novamente", // texto
@@ -221,7 +222,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 					Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraNula());				
 				}
 				// Verifica se é válido
-				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTFinal().getText())){
+				else if(!Validar.validarData(getjPanelVendas().getjTFieldDTFinal().getText())){
 					JOptionPane.showConfirmDialog(
 						getjPanelVendas(), // componente
 						"Data inválida, digite novamente", // texto

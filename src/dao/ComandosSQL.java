@@ -15,6 +15,11 @@ public class ComandosSQL {
 	private static String updateEstoque;
 	
 	private static String consultarVendasTodas;
+	private static String consultarVendasCliente;
+	private static String consultarVendasVendedor;
+	private static String consultarVendasCartão;
+	private static String consultarVendasDinheiro;
+	private static String consultarVendasEntreData;
 	
 	private static String consultaProdutoID;
 	private static String consultarProdutos;
@@ -123,6 +128,242 @@ public class ComandosSQL {
 			);
 		}
 		return cadastrarVenda_cliente;
+	}
+	
+	
+	/**
+	 * Método consultarVendasEntreData() realiza a consulta das vendas entre duas datas.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "Data1", "Data2")
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 * <p> Campos exibidos:
+	 * <p> "Nº", "Data", "Vendedor", "Cliente", "Qtd. Peças", "Desconto", "Total"
+	 */
+	public static String consultarVendasEntreData() {
+		if(consultarVendasEntreData == null){
+			consultarVendasEntreData = (
+					"select \r\n"
+							+ "vendas.id_venda,\r\n"
+							+ "vendas.data,\r\n"
+							+ "usuarios.nome,\r\n"
+							+ "clientes.nome_cliente,\r\n"
+							+ "vendas.forma_pagamento,\r\n"
+							+ "sum(venda_prod.qtd_produto),\r\n"
+							+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
+							+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
+							+ "from \r\n"
+							+ "tb_vendas_produtos as venda_prod  \r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_vendas as vendas\r\n"
+							+ "on (venda_prod.id_venda = vendas.id_venda)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_empresas as empresas\r\n"
+							+ "on (vendas.id_empresa = empresas.id_empresa)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_usuarios as usuarios\r\n"
+							+ "on (vendas.id_usuario = usuarios.id_usuario)\r\n"
+							+ "\r\n"
+							+ "left outer join \r\n"
+							+ "tb_clientes as clientes\r\n"
+							+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
+							+ "\r\n"
+							+ "where vendas.data between concat(str_to_date(replace(?, '/', '-'), '%d-%m-%Y'), ' 00:00:00')\r\n"
+							+ "and concat(str_to_date(replace(?, '/', '-'), '%d-%m-%Y'), ' 23:59:59')\r\n"
+							+ "group by venda_prod.id_venda\r\n"
+							+ "order by id_venda;"
+					);
+		}
+		return consultarVendasEntreData;
+	}
+	
+	
+	/**
+	 * Método consultarVendasCliente() realiza a consulta das vendas relacionadas a um cliente.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql, "NomeCliente")
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 * <p> Campos exibidos:
+	 * <p> "Nº", "Data", "Vendedor", "Cliente", "Qtd. Peças", "Desconto", "Total"
+	 */
+	public static String consultarVendasCliente() {
+		if(consultarVendasCliente == null){
+			consultarVendasCliente = (
+					"select \r\n"
+							+ "vendas.id_venda,\r\n"
+							+ "vendas.data,\r\n"
+							+ "usuarios.nome,\r\n"
+							+ "clientes.nome_cliente,\r\n"
+							+ "vendas.forma_pagamento,\r\n"
+							+ "sum(venda_prod.qtd_produto),\r\n"
+							+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
+							+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
+							+ "from \r\n"
+							+ "tb_vendas_produtos as venda_prod  \r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_vendas as vendas\r\n"
+							+ "on (venda_prod.id_venda = vendas.id_venda)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_empresas as empresas\r\n"
+							+ "on (vendas.id_empresa = empresas.id_empresa)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_usuarios as usuarios\r\n"
+							+ "on (vendas.id_usuario = usuarios.id_usuario)\r\n"
+							+ "\r\n"
+							+ "left outer join \r\n"
+							+ "tb_clientes as clientes\r\n"
+							+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
+							+ "\r\n"
+							+ "where clientes.nome_cliente like concat('%', ?, '%')\r\n"
+							+ "group by venda_prod.id_venda\r\n"
+							+ "order by id_venda;"
+					);
+		}
+		return consultarVendasCliente;
+	}
+	
+	
+	/**
+	 * Método consultarVendasVendedor() realiza a consulta das vendas realizadas por um determinado vendedor.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql)
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 * <p> Campos exibidos:
+	 * <p> "Nº", "Data", "Vendedor", "Cliente", "Qtd. Peças", "Desconto", "Total"
+	 */
+	public static String consultarVendasVendedor() {
+		if(consultarVendasVendedor == null){
+			consultarVendasVendedor = (
+					"select \r\n"
+							+ "vendas.id_venda,\r\n"
+							+ "vendas.data,\r\n"
+							+ "usuarios.nome,\r\n"
+							+ "clientes.nome_cliente,\r\n"
+							+ "vendas.forma_pagamento,\r\n"
+							+ "sum(venda_prod.qtd_produto),\r\n"
+							+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
+							+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
+							+ "from \r\n"
+							+ "tb_vendas_produtos as venda_prod  \r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_vendas as vendas\r\n"
+							+ "on (venda_prod.id_venda = vendas.id_venda)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_empresas as empresas\r\n"
+							+ "on (vendas.id_empresa = empresas.id_empresa)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_usuarios as usuarios\r\n"
+							+ "on (vendas.id_usuario = usuarios.id_usuario)\r\n"
+							+ "\r\n"
+							+ "left outer join \r\n"
+							+ "tb_clientes as clientes\r\n"
+							+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
+							+ "\r\n"
+							+ "where usuarios.nome like concat('%', ?, '%')\r\n"
+							+ "group by venda_prod.id_venda\r\n"
+							+ "order by id_venda;"
+					);
+		}
+		return consultarVendasVendedor;
+	}
+	
+	
+	/**
+	 * Método consultarVendasCartao() realiza a consulta das vendas pagas via cartão.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql)
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 * <p> Campos exibidos:
+	 * <p> "Nº", "Data", "Vendedor", "Cliente", "Qtd. Peças", "Desconto", "Total"
+	 */
+	public static String consultarVendasCartao() {
+		if(consultarVendasCartão == null){
+			consultarVendasCartão = (
+					"select \r\n"
+							+ "vendas.id_venda,\r\n"
+							+ "vendas.data,\r\n"
+							+ "usuarios.nome,\r\n"
+							+ "clientes.nome_cliente,\r\n"
+							+ "vendas.forma_pagamento,\r\n"
+							+ "sum(venda_prod.qtd_produto),\r\n"
+							+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
+							+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
+							+ "from \r\n"
+							+ "tb_vendas_produtos as venda_prod  \r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_vendas as vendas\r\n"
+							+ "on (venda_prod.id_venda = vendas.id_venda)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_empresas as empresas\r\n"
+							+ "on (vendas.id_empresa = empresas.id_empresa)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_usuarios as usuarios\r\n"
+							+ "on (vendas.id_usuario = usuarios.id_usuario)\r\n"
+							+ "\r\n"
+							+ "left outer join \r\n"
+							+ "tb_clientes as clientes\r\n"
+							+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
+							+ "\r\n"
+							+ "where vendas.forma_pagamento = \"cartão\"\r\n"
+							+ "group by venda_prod.id_venda\r\n"
+							+ "order by id_venda;"
+					);
+		}
+		return consultarVendasCartão;
+	}
+	
+	
+	/**
+	 * Método consultarVendasTodasTodas() realiza a consulta das vendas pagas via dinheiro.
+	 * @param Passar como parametro para o método ModuloConexao.ExecuteQuery(sql)
+	 * @return retorna a query de consulta dos produtos cadastrados com a descriação procurada.
+	 * <p> Campos exibidos:
+	 * <p> "Nº", "Data", "Vendedor", "Cliente", "Qtd. Peças", "Desconto", "Total"
+	 */
+	public static String consultarVendasDinheiro() {
+		if(consultarVendasDinheiro == null){
+			consultarVendasDinheiro = (
+					"select \r\n"
+							+ "vendas.id_venda,\r\n"
+							+ "vendas.data,\r\n"
+							+ "usuarios.nome,\r\n"
+							+ "clientes.nome_cliente,\r\n"
+							+ "vendas.forma_pagamento,\r\n"
+							+ "sum(venda_prod.qtd_produto),\r\n"
+							+ "(sum(venda_prod.desconto) + vendas.desconto),\r\n"
+							+ "(sum(venda_prod.qtd_produto * venda_prod.preco_produto - venda_prod.desconto)- vendas.desconto)\r\n"
+							+ "from \r\n"
+							+ "tb_vendas_produtos as venda_prod  \r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_vendas as vendas\r\n"
+							+ "on (venda_prod.id_venda = vendas.id_venda)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_empresas as empresas\r\n"
+							+ "on (vendas.id_empresa = empresas.id_empresa)\r\n"
+							+ "\r\n"
+							+ "inner join\r\n"
+							+ "tb_usuarios as usuarios\r\n"
+							+ "on (vendas.id_usuario = usuarios.id_usuario)\r\n"
+							+ "\r\n"
+							+ "left outer join \r\n"
+							+ "tb_clientes as clientes\r\n"
+							+ "on (vendas.id_cliente = clientes.id_cliente)\r\n"
+							+ "\r\n"
+							+ "where vendas.forma_pagamento = \"Dinheiro\"\r\n"
+							+ "group by venda_prod.id_venda\r\n"
+							+ "order by id_venda;"
+					);
+		}
+		return consultarVendasDinheiro;
 	}
 	
 	

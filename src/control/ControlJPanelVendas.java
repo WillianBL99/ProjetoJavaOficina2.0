@@ -13,12 +13,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import dao.DaoJPanelVendas;
+import model.Cores;
 import model.Mascara;
 import view.JFramePrincipal;
 import view.JPanelPrincipal;
@@ -39,6 +39,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	private JPanelVendasNovo jPanelVendasNovo;
 	private ControlJPanelVendasNovo controlJPanelVendasNovo;
 	private DaoJPanelVendas daoJPanelVendas;
+	
+	private String data1;
+	private String data2;
 	
 	//** Fim declaração de variáveis **	
 	
@@ -69,10 +72,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		getjPanelVendas().getjButtonFiltrar().addMouseListener(this);
 		getjPanelVendas().getjButtonPesquisarTodos().addMouseListener(this);
 		getjPanelVendas().getjTFieldDTInicial().addFocusListener(this);
+		getjPanelVendas().getjTFieldFormPesquisa().addKeyListener(this);
 		getjPanelVendas().getjTFieldDTFinal().addFocusListener(this);
 		getjPanelVendas().getChoiceFormPesquisa().addItemListener(this);
-		getjPanelVendas().getChoiceFormPesquisa().addMouseListener(this);
-		getjPanelVendas().getChoiceFormPesquisa().addFocusListener(this);
 		
 	}
 
@@ -96,7 +98,19 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Quando for digitado em pesquisar como
+		if(e.getSource() == getjPanelVendas().getjTFieldFormPesquisa()) {
+			// Verificar seleção no choice			
+			switch(getjPanelVendas().getChoiceFormPesquisa().getSelectedItem().replace(" ", "")) {
+			case "Vendedor":
+				getDaoJPanelVendas().consultaVendasVendedor(getjPanelVendas().getjTFieldFormPesquisa().getText());
+				break;
+				
+			case "Cliente":
+				getDaoJPanelVendas().consultaVendasCliente(getjPanelVendas().getjTFieldFormPesquisa().getText());
+				break;
+			}
+		}
 		
 	}
 	
@@ -109,6 +123,41 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 			controlJPanelVendasNovo = null;
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
 			getControlJPanelVendasNovo();
+		}
+		
+		
+		// Quando o botão pesquisar todos for clicado
+		else if(e.getSource() == getjPanelVendas().getjButtonPesquisarTodos()) {
+			// Realizar buscas de todos as vendas
+			getjPanelVendas().getjTFieldFormPesquisa().setText("");
+			getDaoJPanelVendas().consultarVendas();
+		}
+		
+		
+		// Quando o botão filtrar for clicado
+		else if(e.getSource() == getjPanelVendas().getjButtonFiltrar()) {
+			// Colocar foco no jtfild
+			getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
+			// Verificar se o campo data1 está preenchido
+			if(getData1() == null || getData1().replace("/", "").isEmpty()) {
+				// Colocar o foco no campo data1
+				getjPanelVendas().getjTFieldDTInicial().setBorder(BorderFactory.
+						createLineBorder(Cores.vermelho, 1, false));
+				getjPanelVendas().getjTFieldDTInicial().requestFocus();
+				
+			}
+			// Verificar se o campo data2 está preenchido
+			else if(getData2() == null || getData2().replace("/", "").isEmpty()) {
+				// Colocar o foco no campo data2
+				getjPanelVendas().getjTFieldDTFinal().setBorder(BorderFactory.
+						createLineBorder(Cores.vermelho, 1, false));	
+				getjPanelVendas().getjTFieldDTFinal().requestFocus();			
+				
+			}
+			// Verificar  se a data1 é menor ou igual a data2
+			else {
+				getDaoJPanelVendas().consultaVendasData(getData1(), getData2());
+			}
 		}
 	}
 	
@@ -137,7 +186,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 			if(!dataInicial.isEmpty()) {
 				// Verifica se está faltando números
 				if(dataInicial.length() < 8) {					
-					getjPanelVendas().getjTFieldDTInicial().setText("");				
+					Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraNula());
 				}
 				// Verifica se é válido
 				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTInicial().getText())){
@@ -151,6 +200,12 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 					getjPanelVendas().getjTFieldDTInicial().setText("");
 					getjPanelVendas().getjTFieldDTInicial().requestFocus();					
 				}
+				// se for válida
+				else {
+					setData1(getjPanelVendas().getjTFieldDTInicial().getText());
+					getjPanelVendas().getjTFieldDTInicial().setBorder(BorderFactory.
+							createLineBorder(Cores.cinza2, 1, false));		
+				}
 			}	
 				
 		}
@@ -162,8 +217,8 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 			String dataFinal = getjPanelVendas().getjTFieldDTFinal().getText().replace(" ", "").replace("/", "");
 			if(!dataFinal.isEmpty()) {
 				// Verifica se está faltando números
-				if(dataFinal.length() < 8) {					
-					getjPanelVendas().getjTFieldDTFinal().setText("");				
+				if(dataFinal.length() < 8) {				
+					Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraNula());				
 				}
 				// Verifica se é válido
 				else if(!Mascara.validandoData(getjPanelVendas().getjTFieldDTFinal().getText())){
@@ -174,8 +229,14 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 						JOptionPane.DEFAULT_OPTION, // botões
 						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
 						);
-					getjPanelVendas().getjTFieldDTFinal().setText("");
+					getjPanelVendas().getjTFieldDTFinal().setText(null);
 					getjPanelVendas().getjTFieldDTFinal().requestFocus();					
+				}
+				// se for válida
+				else {
+					setData2(getjPanelVendas().getjTFieldDTFinal().getText());
+					getjPanelVendas().getjTFieldDTFinal().setBorder(BorderFactory.
+							createLineBorder(Cores.cinza2, 1, false));	
 				}
 			}		
 		}
@@ -213,26 +274,24 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		if(e.getSource() == getjPanelVendas().getChoiceFormPesquisa()) {
 			// Verificar qual ítem foi selecionado
 			switch(getjPanelVendas().getChoiceFormPesquisa().getSelectedItem().replace(" ", "")) {
-			case "Cliente":
-				// Realizar a buscas no banco de dados
-				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(true);
-				getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
-				break;
-				
-			case "Vendedor":
-				// Realizar a buscas no banco de dados
-				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(true);
-				getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
-				break;
-				
+											
 			case "Cartão":
 				// Realizar a buscas no banco de dados
+				System.out.println("pesquisa cartão");
+				getDaoJPanelVendas().consultaVendasCartao();
 				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(false);
 				break;
 				
 			case "Dinheiro":
 				// Realizar a buscas no banco de dados
+				getDaoJPanelVendas().consultaVendasDinheiro();
 				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(false);
+				break;
+				
+			default:
+				// Realizar a buscas no banco de dados
+				getjPanelVendas().getjTFieldFormPesquisa().setEnabled(true);
+				getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
 				break;
 			}
 		}
@@ -275,7 +334,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		if(e.getSource() == getjFramePricipal()) {
 			// Atualizar a tabela de vendas
 			System.out.println("Atualizou tabela vendas");
-			getdDaoJPanelVendas().consultarVendas();
+			getDaoJPanelVendas().consultarVendas();
 		}
 		
 	}
@@ -327,7 +386,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}	
 	
 		
-	public DaoJPanelVendas getdDaoJPanelVendas() {
+	public DaoJPanelVendas getDaoJPanelVendas() {
 		if(daoJPanelVendas == null){
 			daoJPanelVendas = new DaoJPanelVendas(getjPanelVendas());	
 		}
@@ -343,6 +402,37 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		}
 		return controlJPanelVendasNovo;
 	}
+
+
+
+
+	public String getData1() {
+		return data1;
+	}
+
+
+
+
+	public void setData1(String data1) {
+		this.data1 = data1.replace(" ", "");
+	}
+
+
+
+
+	public String getData2() {
+		return data2;
+	}
+
+
+
+
+	public void setData2(String data2) {
+		this.data2 = data2.replace(" ", "");
+	}
+	
+	
+	
 	//** Fim métodos da classe **	
 
 

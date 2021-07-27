@@ -20,7 +20,7 @@ public class  Mascara {
 	public static final Locale BRAZIL = new Locale("pt","BR"); //define o local que ele vai usar como parametro a moeda	
 	public static final DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);	
 	public static final DecimalFormat DINHEIRO_REAL = new DecimalFormat("¤ ###,###,##0.00",REAL);
-	
+	private static JFormattedTextField jFormatted;
 	
 	/**
 	 * O método setMascara(JFormattedTextField {@code jFormattedTextField}, MaskFormatter {@code mask}),
@@ -29,7 +29,7 @@ public class  Mascara {
 	 * @param mask void
 	 */
 	public static void setMascara(JFormattedTextField jFormattedTextField, MaskFormatter mask) {	
-		
+		jFormatted = jFormattedTextField;
 		jFormattedTextField.setFormatterFactory(new DefaultFormatterFactory(mask));
 		
 	}
@@ -238,6 +238,7 @@ public class  Mascara {
 		
 		try {
 			MaskFormatter mask = new MaskFormatter("");		
+			jFormatted.setFormatterFactory(null);
 			return mask;
 			
 		} catch (ParseException e) {

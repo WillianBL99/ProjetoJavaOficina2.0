@@ -13,8 +13,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.BorderFactory;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 import dao.DaoJPanelVendas;
@@ -139,26 +139,11 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		else if(e.getSource() == getjPanelVendas().getjButtonFiltrar()) {
 			// Colocar foco no jtfild
 			getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
-			// Verificar se o campo data1 está preenchido
-			if(getData1() == null || getData1().replace("/", "").isEmpty()) {
-				// Colocar o foco no campo data1
-				getjPanelVendas().getjTFieldDTInicial().setBorder(BorderFactory.
-						createLineBorder(Cores.vermelho, 1, false));
-				getjPanelVendas().getjTFieldDTInicial().requestFocus();
-				
-			}
-			// Verificar se o campo data2 está preenchido
-			else if(getData2() == null || getData2().replace("/", "").isEmpty()) {
-				// Colocar o foco no campo data2
-				getjPanelVendas().getjTFieldDTFinal().setBorder(BorderFactory.
-						createLineBorder(Cores.vermelho, 1, false));	
-				getjPanelVendas().getjTFieldDTFinal().requestFocus();			
-				
-			}
-			// Verificar  se a data1 é menor ou igual a data2
-			else {
+			
+			// Validar os campos de data
+			if (verificarCamposData())
 				getDaoJPanelVendas().consultaVendasData(getData1(), getData2());
-			}
+			
 		}
 	}
 	
@@ -182,64 +167,17 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	public void focusLost(FocusEvent e) {
 		// Quando o campo dataInicial perder o foco
 		if(e.getSource() == getjPanelVendas().getjTFieldDTInicial()) {
-			// Verificar se não está vazio
-			String dataInicial = getjPanelVendas().getjTFieldDTInicial().getText().replace(" ", "").replace("/", "");
-			if(!dataInicial.isEmpty()) {
-				// Verifica se está faltando números
-				if(dataInicial.length() < 8) {					
-					Mascara.setMascara(getjPanelVendas().getjTFieldDTInicial(), Mascara.mascaraNula());
-				}
-				// Verifica se é válido
-				else if(!Validar.validarData(getjPanelVendas().getjTFieldDTInicial().getText())){
-					JOptionPane.showConfirmDialog(
-						getjPanelVendas(), // componente
-						"Data inválida, digite novamente", // texto
-						"Data inválida", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-						);
-					getjPanelVendas().getjTFieldDTInicial().setText("");
-					getjPanelVendas().getjTFieldDTInicial().requestFocus();					
-				}
-				// se for válida
-				else {
-					setData1(getjPanelVendas().getjTFieldDTInicial().getText());
-					getjPanelVendas().getjTFieldDTInicial().setBorder(BorderFactory.
-							createLineBorder(Cores.cinza2, 1, false));		
-				}
-			}	
-				
+			// Verifica e formata o campo de acordo com a validade da data passada
+			if(verificarCampoData(getjPanelVendas().getjTFieldDTInicial()));
+				setData1(getjPanelVendas().getjTFieldDTInicial().getText());
 		}
 		
 		
 		// Quando o campo dataFinal perder o foco
 		else if(e.getSource() == getjPanelVendas().getjTFieldDTFinal()) {
-			// Verificar se não está vazio
-			String dataFinal = getjPanelVendas().getjTFieldDTFinal().getText().replace(" ", "").replace("/", "");
-			if(!dataFinal.isEmpty()) {
-				// Verifica se está faltando números
-				if(dataFinal.length() < 8) {				
-					Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraNula());				
-				}
-				// Verifica se é válido
-				else if(!Validar.validarData(getjPanelVendas().getjTFieldDTFinal().getText())){
-					JOptionPane.showConfirmDialog(
-						getjPanelVendas(), // componente
-						"Data inválida, digite novamente", // texto
-						"Data inválida", // titulo
-						JOptionPane.DEFAULT_OPTION, // botões
-						JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
-						);
-					getjPanelVendas().getjTFieldDTFinal().setText(null);
-					getjPanelVendas().getjTFieldDTFinal().requestFocus();					
-				}
-				// se for válida
-				else {
-					setData2(getjPanelVendas().getjTFieldDTFinal().getText());
-					getjPanelVendas().getjTFieldDTFinal().setBorder(BorderFactory.
-							createLineBorder(Cores.cinza2, 1, false));	
-				}
-			}		
+			// Verifica e formata o campo de acordo com a validade da data passada
+			if(verificarCampoData(getjPanelVendas().getjTFieldDTFinal()));
+				setData2(getjPanelVendas().getjTFieldDTFinal().getText());		
 		}
 	}
 	
@@ -433,6 +371,68 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}
 	
 	
+	private boolean verificarCampoData(JFormattedTextField campo) {// Verificar se não está vazio
+		String dataInicial = campo.getText().replace(" ", "").replace("/", "");
+		if(!dataInicial.isEmpty()) {
+			// Verifica se está faltando números
+			if(dataInicial.length() < 8) {			
+				Mascara.setMascara(campo, Mascara.mascaraNula());
+				return false;
+			}
+			// Verifica se é válido
+			else if(!Validar.validarData(campo.getText())){
+				JOptionPane.showConfirmDialog(
+					getjPanelVendas(), // componente
+					"Data inválida, digite novamente", // texto
+					"Data inválida", // titulo
+					JOptionPane.DEFAULT_OPTION, // botões
+					JOptionPane.INFORMATION_MESSAGE // tipo de mensagem
+					);
+				campo.setText("");
+				campo.requestFocus();					
+			}
+			// se for válida
+			else {
+				campo.setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));	
+				return true;
+			}
+		}	
+		return false;		
+	}
+	
+	
+	private boolean verificarCamposData() {
+		// Verificar se o campo data1 está preenchido
+		if(getData1() == null) {
+			// Colocar o foco no campo data1
+			getjPanelVendas().getjTFieldDTInicial().setBorder(BorderFactory.
+					createLineBorder(Cores.vermelho, 1, false));
+			getjPanelVendas().getjTFieldDTInicial().requestFocus();
+			return false;
+		}
+		// Verificar se o campo data2 está preenchido
+		else if(getData2() == null) {
+			// Colocar o foco no campo data2
+			getjPanelVendas().getjTFieldDTFinal().setBorder(BorderFactory.
+					createLineBorder(Cores.vermelho, 1, false));	
+			getjPanelVendas().getjTFieldDTFinal().requestFocus();			
+			return false;
+		}
+		// Verificar se data1 é menor ou igual a data2
+		else if(Validar.compareDateTo(data1, data2)) return true;
+		// Se a data1 for mairo que a data2
+		else {
+			JOptionPane.showConfirmDialog(
+				getjPanelVendas(), // componente
+				"A data inicial é maior que a data final", // texto
+				"Erro ao passar datas", // titulo
+				JOptionPane.DEFAULT_OPTION, // botões
+				JOptionPane.ERROR_MESSAGE // tipo de mensagem
+			);
+		}
+		return false;
+	}
 	
 	//** Fim métodos da classe **	
 

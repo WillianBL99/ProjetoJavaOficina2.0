@@ -8,8 +8,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author Paulo Uilian
- *
+ * @author Paulo Uilian, Josimar
+ * @date 2021/07/27
+ * @version 1.0
  */
 public class Validar {
 	

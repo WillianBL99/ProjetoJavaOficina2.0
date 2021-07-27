@@ -3,10 +3,13 @@
  */
 package model;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -21,11 +24,11 @@ import javax.swing.text.MaskFormatter;
  */
 public class  Mascara {
 
-	public static MaskFormatter mascaraCPF() {
+	public static MaskFormatter mascaraCPF() {//mascara para cpf
 	
 		
 		try {
-			MaskFormatter mask = new MaskFormatter("###.###.###-##");
+			MaskFormatter mask = new MaskFormatter("###.###.###-##");//serve para limitar o tamanho do cpf e tambem deixa ja no formato
 			return mask;
 			
 		} catch (ParseException e) {
@@ -54,11 +57,11 @@ public class  Mascara {
 	}
 		
 	
-	public static MaskFormatter mascaraTelefone() {//cria outra mascra para adicionar telefone e para celular
+	public static MaskFormatter mascaraCelular() {//mascara para usar quando o numero for de celular
 		
 	
 		try {
-			MaskFormatter mask = new MaskFormatter("(##) #####-####");
+			MaskFormatter mask = new MaskFormatter("(##) #####-####");//limitando o tamanho e o formato do celular
 		
 			return mask;
 				
@@ -74,7 +77,7 @@ public class  Mascara {
 		
 		//JFormattedTextField data;
 		try {
-			MaskFormatter mask = new MaskFormatter("##/##/####");
+			MaskFormatter mask = new MaskFormatter("##/##/####");//serve para colocar no formato da data os acaracter e ja deixa com as barras
 			//data = new JFormattedTextField(mask);
 			return mask;
 			
@@ -89,8 +92,8 @@ public class  Mascara {
 	public static MaskFormatter mascaraChassi() {
 		
 		try {
-			MaskFormatter mask = new MaskFormatter("A AA AAAAAA A AAAAAAA");
-			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+			MaskFormatter mask = new MaskFormatter("A AA AAAAAA A AAAAAAA");//deixa no formato do chassi
+			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");//serve para limitar os valores que podem ser adicionados
 
 			return mask;
 			
@@ -106,8 +109,8 @@ public class  Mascara {
 		
 
 		try {
-			MaskFormatter mask = new MaskFormatter("##########");
-			mask.setPlaceholderCharacter(' ');
+			MaskFormatter mask = new MaskFormatter("##########");//limitador de tamanho e tambem para receber apenas numeros
+			mask.setPlaceholderCharacter(' ');//serve para se não usar o tamanho todo da mascara o que fica vazio ele colocar espaço vazio no lugar
 		
 			return mask;
 			
@@ -122,11 +125,69 @@ public class  Mascara {
 		
 
 		try {
-			MaskFormatter mask = new MaskFormatter("####");
+			MaskFormatter mask = new MaskFormatter("####");//para colocar apenas anos de veiculos 
 		
 			return mask;
 			
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static MaskFormatter mascaraCode() {//mascara para codigo de barra no formato EAN que o tamanho maximo é 13 digitos, so não aceita os formato Databar, ITF-14, Código 128,
+
+		
+		try {
+			MaskFormatter mask = new MaskFormatter("############");
+		
+			return mask;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static MaskFormatter mascaraTelefone() {//mascara para telefone fixo
+		
+		try {
+			MaskFormatter mask = new MaskFormatter("(##) ####-####");
+		
+			return mask;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	final static Locale BRAZIL = new Locale("pt","BR"); //define o local que ele vai usar como parametro a moeda
+	
+	final static DecimalFormatSymbols REAL = new DecimalFormatSymbols(BRAZIL);
+	
+	static final DecimalFormat DINHEIRO_REAL = new DecimalFormat("¤ ###,###,##0.00",REAL);
+	
+	
+	/**{@code}
+	 * 
+	 * O método mascaraDinheiro(@{code: })
+	 * @param valor deve ser passado o numero double que sera convertido 
+	 * @param moeda é a que o pais usa você pode definir ela com uso do locale e do decimalformatsimbolo e o decimal format
+	 * @return ele devolve a string formatada que devera ser setada novamente no campo que a mascara sera adicionada
+	 */
+	
+	public static String mascaraDinheiro(double valor, DecimalFormat moeda) {//essa mascara deve ser aplicada quando o campo perde o foco e setar o retorno dela novamente no campo para o usuario visualizar
+		
+		try {//MASCARA NÃO TESTADA
+					
+			return moeda.format(valor);
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -146,6 +207,8 @@ public class  Mascara {
 			return null;
 		}
 	}
+	
+	
 	
 	public static void setMascara(JFormattedTextField campo, MaskFormatter mask) {
 		

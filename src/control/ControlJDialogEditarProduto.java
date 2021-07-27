@@ -148,6 +148,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 												JOptionPane.DEFAULT_OPTION, // botões
 												JOptionPane.PLAIN_MESSAGE // tipo de mensagem
 										);
+										getcontrolJPanelEstoque().atualizarTabela();
 									}
 								}
 
@@ -162,6 +163,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 												JOptionPane.DEFAULT_OPTION, // botões
 												JOptionPane.PLAIN_MESSAGE // tipo de mensagem
 										);
+										getcontrolJPanelEstoque().atualizarTabela();
 									}
 								}
 								atualizarVariaveis();
@@ -215,6 +217,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 													JOptionPane.PLAIN_MESSAGE // tipo de mensagem
 											);
 											getjDialogEditarProduto().getjTFieldNovaQuantidade().setText("");
+											getcontrolJPanelEstoque().atualizarTabela();
 										}
 									}
 									
@@ -272,6 +275,7 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 													JOptionPane.PLAIN_MESSAGE // tipo de mensagem
 											);
 											getjDialogEditarProduto().getjTFieldNovoValor().setText("");
+											getcontrolJPanelEstoque().atualizarTabela();
 										}
 									}
 									

@@ -266,7 +266,6 @@ public class DaoJPanelVendas {
 				
 				configuraTabela();				
 				next = true;
-				getModuloConexao().getConnection().close();
 				moduloConexao = null;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	

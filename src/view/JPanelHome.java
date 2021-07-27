@@ -61,11 +61,11 @@ public class JPanelHome extends JPanel{
 		if(jLabelHoras == null) {
 			jLabelHoras = new JLabel();
 			jLabelHoras.setFont(Fontes.fontJLabelBold4);
-			jLabelHoras.setText("20:40");
+			jLabelHoras.setText("");
 			jLabelHoras.setForeground(Cores.azul1);
 			jLabelHoras.setHorizontalAlignment(SwingConstants.LEFT);
 			jLabelHoras.setBorder(null);
-			jLabelHoras.setSize(200,98);
+			jLabelHoras.setSize(210,98);
 		}
 		return jLabelHoras;
 	}
@@ -89,7 +89,7 @@ public class JPanelHome extends JPanel{
 		this.getjLabelLogo().setLocation(112, 163);
 
 		this.getJPanelHome().add(getjLabelHoras());
-		this.getjLabelHoras().setLocation(815, 1);
+		this.getjLabelHoras().setLocation(805, 1);
 	}
 	
 	

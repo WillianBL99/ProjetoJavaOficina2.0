@@ -41,7 +41,7 @@ public class DaoJDialogCadastrarCliente {
 			if (getjDialogCadastrarCliente().getjRadioButtonCpf().isSelected()) {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
-						ComandosSQL.getcadastrarClientesCpf(),
+						ComandosSQL.cadastrarClientesCpf(),
 						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
 						getjDialogCadastrarCliente().getjTFieldNome().getText(),
 						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
@@ -57,7 +57,7 @@ public class DaoJDialogCadastrarCliente {
 			} else {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
-						ComandosSQL.getcadastrarClientesCnpj(),
+						ComandosSQL.cadastrarClientesCnpj(),
 						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
 						getjDialogCadastrarCliente().getjLabelNome().getText(),
 						getjDialogCadastrarCliente().getjTFieldEmail().getText(),

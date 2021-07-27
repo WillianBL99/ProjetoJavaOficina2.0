@@ -6,7 +6,6 @@ package view;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -229,7 +228,7 @@ public class JPanelEstoque  extends JPanel{
 	public JTable getjTableEstoque() {
 		if(jTableEstoque == null){
 			jTableEstoque = new JTable();
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutos());
 			jTableEstoque.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), 
 	                "Código",
 	                "Descrição",

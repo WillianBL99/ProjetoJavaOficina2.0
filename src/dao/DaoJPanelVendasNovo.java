@@ -5,7 +5,6 @@ package dao;
 
 import view.JPanelVendasNovo;
 import view.JFramePrincipal;
-import view.JPanelVendasNovo;
 
 /**
  * @author Paulo Uilian
@@ -38,7 +37,7 @@ public class DaoJPanelVendasNovo {
 			// Recebe o codigo do produto
 			String marca_produto = getjPanelVendasNovo().getjTFieldInserirProdutoDesc().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutosMarca(), marca_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {
@@ -81,7 +80,7 @@ public class DaoJPanelVendasNovo {
 			// Recebe o codigo do produto
 			String cod_produto = getjPanelVendasNovo().getjTFieldInserirProdutoDesc().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), cod_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutoID(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {
@@ -124,7 +123,7 @@ public class DaoJPanelVendasNovo {
 			// Recebe a descrição do produto
 			String desc_produto = getjPanelVendasNovo().getjTFieldInserirProdutoDesc().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutosDescricao(), desc_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {

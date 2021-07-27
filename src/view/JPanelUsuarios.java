@@ -262,7 +262,7 @@ public class JPanelUsuarios  extends JPanel{
 			jTableUsuarios = new JTable();
 			
 			// Metodo que executa a query sql
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarUsuarios());
+			getModuloConexao().executeQuery(ComandosSQL.consultarUsuarios());
 						
 			jTableUsuarios.setModel(new PreencherTabela().preencher(getModuloConexao().getResultSet(), "CPF",
 					"Nome",

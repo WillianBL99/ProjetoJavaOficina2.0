@@ -33,7 +33,7 @@ public class DaoJDialogProcurarVeiculo {
 		try {
 			String idCliente = getjPanelPreOrcamentoNovo().getidCliente();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoTodosByCliente(), idCliente);
+			getModuloConexao().executeQuery(ComandosSQL.consultarVeiculoTodosByCliente(), idCliente);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -78,7 +78,7 @@ public class DaoJDialogProcurarVeiculo {
 		try {
 			String idCliente = getjPanelPreOrcamentoNovo().getidCliente();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoPlacaByCliente(), idCliente, placa);
+			getModuloConexao().executeQuery(ComandosSQL.consultarVeiculoPlacaByCliente(), idCliente, placa);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -123,7 +123,7 @@ public class DaoJDialogProcurarVeiculo {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarVeiculoChassiByCliente(),idCliente, chassi);
+			getModuloConexao().executeQuery(ComandosSQL.consultarVeiculoChassiByCliente(),idCliente, chassi);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -156,6 +156,11 @@ public class DaoJDialogProcurarVeiculo {
 		return next;
 	}
 	
+	
+	public void bucarVeiculo(String id) {
+		getModuloConexao().executeQuery(
+				ComandosSQL.consultarVeiculoID(), id);
+	}
 	
 	// Metodos getters e setters
 	

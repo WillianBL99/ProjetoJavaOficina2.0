@@ -63,14 +63,6 @@ public class PreencherTabela extends AbstractTableModel{
 		return this;
 	}
 	
-		
-	/*
-	 *  
-	 *  - @resultSet -
-	 *  
-	 *  - 
-	 *  
-	 */
 	/**
 	 * Método sobrescrito preencher(@resultSet)
 	 * Realiza o preencimento da tabela de acordo com os 
@@ -87,11 +79,7 @@ public class PreencherTabela extends AbstractTableModel{
 	}
 	
 	
-	/*
-	 *  
-	 *  - 
-	 *  
-	 */
+	
 	/**
 	 * Método int receberTabelaDB()
 	 * Realiza obtenão dos dados para insersão na tabela.
@@ -114,13 +102,15 @@ public class PreencherTabela extends AbstractTableModel{
 				// A linha abaixo cria um new Object[quantidade de colunas da tabela]
 				Object object[] = new Object[qtdColunas];
 				
-				// Preenche os "espaços" do vetor object
+				// Preenche os "espaços" do vetor object com todas as linhas de cada coluna
 				for(int i = 0; i < qtdColunas; i++) {					
 					// Baseado nos estudo da pagina "https://www.guj.com.br/t/resultset-obter-o-nome-da-coluna/216872/2"
+					// Preenche o object[i] com a linha atual de uma coluna
 					object[i] = getModuloConexao().getResultSet().getString(getResultSetMetaData().getColumnName(i + 1));
 					
-					// A variável nomeColunas recebe o nome de cada uma das colunas da tabela
+					// A variável nomeColunas recebe o nome de cada uma das colunas da tabela do banco de dados
 					nomeColunas[i] = getResultSetMetaData().getColumnName(i + 1);
+					
 				}
 				
 				// Passa o nome das colunas para uma variável local atraves do metodo set

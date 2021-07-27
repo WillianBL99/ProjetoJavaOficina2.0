@@ -175,9 +175,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 			choiceResponsavelPreOrcamento.setFont(Fontes.fontJTFieldPlain1);
 			choiceResponsavelPreOrcamento.setVisible(true);
 			choiceResponsavelPreOrcamento.setFocusable(false);
-			choiceResponsavelPreOrcamento.add("                                                    ");
+			choiceResponsavelPreOrcamento.add(String.format("%150s", ""));
 			// Executa a query que retorna os nomes dos usuarios
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarNomesUsuarios());
+			getModuloConexao().executeQuery(ComandosSQL.consultarNomesUsuarios());
 			// Seta os itens do Choice com os valores da consulta sql
 			getPreencherChoice(getModuloConexao().getResultSet());
 		}

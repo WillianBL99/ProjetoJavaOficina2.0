@@ -40,7 +40,7 @@ public class DaoJDialogEditarProduto {
 			String desc_produto = getjDialogEditarProduto().getjTFieldDescricao().getText();		
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(new Cadastrar().executeUpdate(ComandosSQL.getalterarProdutoDescricao(), desc_produto, id_produto)) {				
+			if(new Cadastrar().executeUpdate(ComandosSQL.alterarProdutoDescricao(), desc_produto, id_produto)) {				
 				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -74,7 +74,7 @@ public class DaoJDialogEditarProduto {
 			String marca_produto = getjDialogEditarProduto().getjTFieldMarca().getText();		
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(new Cadastrar().executeUpdate(ComandosSQL.getalterarProdutoMarca(), marca_produto, id_produto)) {				
+			if(new Cadastrar().executeUpdate(ComandosSQL.alterarProdutoMarca(), marca_produto, id_produto)) {				
 				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -108,7 +108,7 @@ public class DaoJDialogEditarProduto {
 			String valor_produto = getjDialogEditarProduto().getjTFieldNovoValor().getText();		
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(new Cadastrar().executeUpdate(ComandosSQL.getalterarProdutoPreco(), valor_produto, id_produto)) {				
+			if(new Cadastrar().executeUpdate(ComandosSQL.alterarProdutoPreco(), valor_produto, id_produto)) {				
 				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -142,7 +142,7 @@ public class DaoJDialogEditarProduto {
 			String qtd_produto = getjDialogEditarProduto().getjTFieldNovaQuantidade().getText();		
 			
 			// Verifica se foi retornado algum valor do banco de dados
-			if(new Cadastrar().executeUpdate(ComandosSQL.getalterarProdutoQtd(), qtd_produto, id_produto)) {				
+			if(new Cadastrar().executeUpdate(ComandosSQL.alterarProdutoQtd(), qtd_produto, id_produto)) {				
 				next = true;
 			
 			// Se não retornou nenhum valor exibe um caixa de alerta	
@@ -173,7 +173,7 @@ public class DaoJDialogEditarProduto {
 			// Recebe o id do produto
 			String id_produto = getjDialogEditarProduto().getjTFieldCodigo().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutoID(), id_produto);
+			getmoduloConexao().executeQuery(ComandosSQL.consultarProdutoID(), id_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getmoduloConexao().resultSetIsEmpty()) {

@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 /**
  * 
@@ -18,6 +21,7 @@ public class ModuloConexao {
 	private static Connection connection;
 	private  PreparedStatement preparedStatement;
 	private  ResultSet resultSet;
+	private ResultSetMetaData resultSetMetaData;
 	
 	// Construtor
 	public ModuloConexao() {
@@ -36,7 +40,7 @@ public class ModuloConexao {
 		String dataBase = "controle_estoque_02"; // nome do banco de dados
 		String url = "jdbc:mysql://localhost:3306/" + dataBase; // caminho do conecector jdbc
 		String user = "root"; // usuário
-		String password = "admin"; // senha
+		String password = "root"; // senha
 		
 		try {
 			// Seta Connection com os dados de conexão com o banco de dados
@@ -54,8 +58,8 @@ public class ModuloConexao {
 	 * Método executeQuery(sql) uitilizada para execução de uma query
 	 * @param sql
 	 */
-	public void executeQuery(String sql) {
-		this.executeQuery(sql, null);
+	public boolean executeQuery(String sql) {
+		return this.executeQuery(sql, null);
 	}
 		
 		
@@ -65,7 +69,7 @@ public class ModuloConexao {
 	 * @param sql
 	 * @param campos
 	 */
-	public void executeQuery(String sql, String... campos) {
+	public boolean executeQuery(String sql, String... campos) {
 		int countConnection = 5; // define a quantidade de tentativas de conexão
 		
 		/* laço de repetição que tenta realizar uma conexão
@@ -119,6 +123,7 @@ public class ModuloConexao {
 					
 				} catch (Exception e) {
 					System.out.println("Erro-Class:ModuloConexao-executeQuery: " + e.getMessage());
+					return false;
 				}				
 				
 			} else {
@@ -126,6 +131,7 @@ public class ModuloConexao {
 			}
 			
 		}
+		return true;
 	}
 	
 	/**
@@ -156,28 +162,42 @@ public class ModuloConexao {
 		return connection;
 	}
 
+	
 	public static void setConnection(Connection connection) {
 		ModuloConexao.connection = connection;
 	}
+	
 
 	public PreparedStatement getPreparedStatement() {
 		return preparedStatement;
 	}
+	
 
 	public void setPreparedStatement(PreparedStatement preparedStatement) {
 		this.preparedStatement = preparedStatement;
 	}
 
+	
 	public ResultSet getResultSet() {
 		if(resultSet == null) {
 			System.out.println("resultset está vazio");
 		}
 		return resultSet;
 	}
+	
 
 	public void setResultSet(ResultSet resultSet) {
 		this.resultSet = resultSet;
 	}
+	
+	
+	public ResultSetMetaData getResultSetMetaData() throws SQLException {
+		if(resultSetMetaData == null) {
+			resultSetMetaData = (ResultSetMetaData) getResultSet().getMetaData();
+		}
+		return resultSetMetaData;
+	}
+	
 	
 	public boolean resultSetIsEmpty(){
 		// Verificar se a consulta retornou algum valor
@@ -193,6 +213,76 @@ public class ModuloConexao {
 			e.printStackTrace();
 			return true;
 		}
+	}
+	
+	
+	/**
+	 * Método String valueAtLine(int index)
+	 * @return retorna um campo de uma linha consultada.
+	 * @throws SQLException 
+	 */
+	public String valueAt(int row, int column) throws SQLException {
+		// Caso tenha inserido um row incorreto
+		if(row > getResultSetMetaData().getColumnCount() - 1)
+			throw new ArrayIndexOutOfBoundsException();
+		
+		// Recebe a quantidade de colunas da tabela
+		int qtdColunas = getResultSetMetaData().getColumnCount();
+		
+		ArrayList<String[]> tabela = new ArrayList<>();	
+		
+		
+		try {
+			getResultSet().first();
+			do {			
+				String[] linha = new String[qtdColunas];
+				// Itera pelos campos da linha consultada
+				for(int i = 0; i < qtdColunas; i++) {
+					// Preenche o object[i] com a linha atual de uma coluna
+					linha[i] = getResultSet().getString(getResultSetMetaData().getColumnName(i + 1));
+				}	
+				tabela.add(linha);
+			} while(getResultSet().next());			
+			
+		} catch (SQLException e) {
+			System.err.println("Class-ModuloConexao: valueAt() - erro: " + e.getMessage());
+		}
+				
+		return tabela.get(row)[column];
+	}
+	
+	
+	/**
+	 * Método String valueAtLine(int index)
+	 * @return retorna um campo de uma linha consultada.
+	 * @throws SQLException 
+	 */
+	public String valueAtLine(int index) throws SQLException {
+		// Caso tenha inserido um index incorreto
+		if(index > getResultSetMetaData().getColumnCount() - 1)
+			throw new ArrayIndexOutOfBoundsException();
+		
+		// Recebe a quantidade de colunas da tabela
+		int qtdColunas = getResultSetMetaData().getColumnCount();
+		// A linha abaixo cria um new Object[quantidade de colunas da tabela]
+		String linha[] = new String[qtdColunas];	
+		
+		try {
+			// Posiciona o resultSet na primera linha da consulta
+			getResultSet().first();				
+			// Itera pelos campos da linha consultada
+			for(int i = 0; i < qtdColunas; i++) {
+				// Preenche o object[i] com a linha atual de uma coluna
+				linha[i] = getResultSet().getString(getResultSetMetaData().getColumnName(i + 1));
+			}
+			
+			
+		} catch (SQLException e) {
+			System.err.println("Class-ModuloConexao: valueAtLine() - erro: " + e.getMessage());
+		}	
+		
+		// retorna o index desejado da String linha
+		return linha[index];
 	}
 
 	// Métodos getters e setters

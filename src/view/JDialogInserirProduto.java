@@ -35,6 +35,7 @@ public class JDialogInserirProduto extends JDialog{
 	//** Início declaração de variáveis **
 	private ModuloConexao moduloConexao;
 	private boolean modalTela;
+	
 	private JButton jButtonCancelar;
 	private JButton jButtonInserirPeca;
 	
@@ -497,7 +498,7 @@ public class JDialogInserirProduto extends JDialog{
 		public JTable getjTablePecas() {
 			if(jTablePecas == null){
 				jTablePecas = new JTable();
-				getmoduloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+				getmoduloConexao().executeQuery(ComandosSQL.consultarProdutos());
 				jTablePecas.setModel(new PreencherTabela().preencher(getmoduloConexao().getResultSet(), 
 								 "Código",
 								 "Descrição",

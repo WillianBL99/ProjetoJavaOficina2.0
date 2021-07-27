@@ -34,7 +34,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesTodaLinhas());
+			getModuloConexao().executeQuery(ComandosSQL.consultarClientesTodaLinhas());
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -79,7 +79,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesNome(), nome);
+			getModuloConexao().executeQuery(ComandosSQL.consultarClientesNome(), nome);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -124,7 +124,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCpf(), cpf);
+			getModuloConexao().executeQuery(ComandosSQL.consultarClientesCpf(), cpf);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -169,7 +169,7 @@ public class DaoJDialogProcurarCliente {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarClientesCnpj(), cnpj);
+			getModuloConexao().executeQuery(ComandosSQL.consultarClientesCnpj(), cnpj);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {

@@ -101,7 +101,13 @@ public class TabelaTemporaria {
 	 * @param campos Recebe um número variável de argumentos do tipo String.
 	 * @return boolean
 	 */	
-	private boolean insereLinhaTabela(int idex, String... campos) {
+	private boolean insereLinhaTabela(int index, String... campos) {
+		/*
+		 * Variável que auxilia na na comparação entre dois arrays. Caso index seja 0
+		 * será comparado os primeiros campos dos arrays (linha[0] == campos[0].
+		 * Caso seja diferente de 0, será comparado da seguinte forma (linha[index + 1] == campos[index])
+		 */
+		int k = (index == 0 ? 0 : 1); 
 		// recebe false caso tenha alguma linha com o mesmo id inserido
 		boolean insert = true;
 		// Itera toda o ArrayList getTabela()
@@ -109,15 +115,15 @@ public class TabelaTemporaria {
 			// Recebe a linha atual
 			String[] linha = getTabela().get(i);
 			// Copara o primeiro campo da linha com o primerio parametro
-			System.out.println(linha[idex + 1].replace(" ", "") + " = " + campos[idex].replace(" ", ""));
-			if(linha[idex + 1].replace(" ", "").equals(campos[idex].replace(" ", "")))
+			System.out.println(linha[index + k].replace(" ", "") + " = " + campos[index].replace(" ", ""));
+			if(linha[index + k].replace(" ", "").equals(campos[index].replace(" ", "")))
 				insert = false;
 		}
 		
 		// Insere os campos no ArrayList
 		if(insert) {
 			// Se idex for maior que 0 insere um novo campo no início do array e, em seguida, para o ArrayList<String[]>
-			if(idex > 0) {
+			if(index > 0) {
 				String[] linha = new String[campos.length + 1];
 				for(int i = 1; i <= campos.length; i++) {
 					linha[i] = campos[i - 1];
@@ -310,7 +316,7 @@ public class TabelaTemporaria {
 	}
 	
 	
-	private ArrayList<String[]> getTabela() {
+	public final ArrayList<String[]> getTabela() {
 		if(tabela == null){	
 			tabela = new ArrayList<>();	
 		}

@@ -41,23 +41,32 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	
 	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente,
 			JPanelPreOrcamentoNovo jPanelPreOrcamentoNovo, ControlJpanelPreOrcamentoNovo controlJpanelPreOrcamentoNovo) {	
-		this.jFramePrincipal = jFramePricipal;	
+		this(jFramePricipal, jDialogProcurarCliente);
 		this.jPanelPreOrcamentoNovo = jPanelPreOrcamentoNovo;
-		this.jDialogProcurarCliente = jDialogProcurarCliente;
 		this.controlJpanelPreOrcamentoNovo = controlJpanelPreOrcamentoNovo;
-		AddEvent();
+	}
+	
+	
+	/**
+	 * Construtor usado para buscar clientes através da tela de VendasProsseguir.
+	 * @param jFramePricipal
+	 * @param jDialogProcurarCliente
+	 */
+	public ControlJDialogProcurarCliente(JFramePrincipal jFramePricipal, JDialogProcurarCliente jDialogProcurarCliente) {
+		this.jFramePrincipal = jFramePricipal;	
+		this.jDialogProcurarCliente = jDialogProcurarCliente;
 		setmodal(getjDialogProcurarCliente().ismodalTela());
+		AddEvent();
 	}
 
 
-	private void AddEvent() {
+	public void AddEvent() {
 		getjDialogProcurarCliente().addWindowListener(this);
 		getjDialogProcurarCliente().getjButtonPesquisar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonNovoCliente().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonCancelar().addMouseListener(this);
 		getjDialogProcurarCliente().getjButtonSelecionar().addMouseListener(this);
-		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);
-		
+		getjDialogProcurarCliente().getjTextFieldCampoPesquisa().addKeyListener(this);		
 	}
 		
 		
@@ -220,17 +229,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				);
 
 			} else {
-				preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
-						getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
-						0).toString());
-				limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
-				getcontrolControlJpanelPreOrcamentoNovo().setClienteInserido(true);
-				getjFramePricipal().setEnabled(true);
-				getjDialogProcurarCliente().dispose();
+				// Seleciona o cliente fecha a tela e realizar os procedimentos necessários
+				selecionarCliente();
 			}
+		}
 			
+		
 		// Quando o botão cancelar na tela procurar clientes for clicado
-		} else if(e.getSource() == getjDialogProcurarCliente().getjButtonCancelar()) {
+		else if(e.getSource() == getjDialogProcurarCliente().getjButtonCancelar()) {
 			/*
 			 * Quando o botão cancelar da tela procurar cliente for clicado ele ira fechar a tela
 			 * e perguntar se quer realmente que feche sem selecionar um cliente.
@@ -335,14 +341,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		// TODO Auto-generated method stub
 		// verifica se a caixa foi ou não exibida anteriormente
 		if(getcountWindowAtivated() == 3) {
-			setcouWindowAtivated(0);
+			setcountWindowAtivated(0);
 		}
 		if(getcountWindowAtivated() < 1) {
 			/*
 			 * adiciona um à countwindowativated para evitar que a caixa de texto seja exibida
 			 * novamente assim que essa for fechada
 			 */
-			setcouWindowAtivated(1); 
+			setcountWindowAtivated(1); 
 			/*
 			 * O método getdaoJDialogProcurarCliente() retorna falso caso a consulta no banco de
 			 * dados não retorne nenhuma linha
@@ -382,7 +388,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				}
 			}
 		} else {
-			setcouWindowAtivated(1);
+			setcountWindowAtivated(1);
 		}
 		getdaoJDialogProcurarCliente().getClienteTodos();
 	}
@@ -401,7 +407,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	
 	private void preencherPreOrcamentoNovoCliente(String id_cli) {
 		getdaoJDialogProcurarCliente().getModuloConexao().
-			executeQuery(ComandosSQL.getconsultarClientesTodosCampos(), id_cli);
+			executeQuery(ComandosSQL.consultarClientesTodosCampos(), id_cli);
 		try {
 			getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().next();
 			System.out.println("nome = " + getdaoJDialogProcurarCliente().getModuloConexao().getResultSet().getString(4));
@@ -457,6 +463,20 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		getjPanelPreOrcamentoNovo().getjTFieldAno().setText("");
 	}
 	
+	/**
+	 * Metodo insere um produto na tela PreOrcamentoNovo e realiza modificações necessárias.
+	 */
+	public void selecionarCliente() {
+		System.out.println("selecionar cliente em classe pai");
+		preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
+				getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
+				0).toString());
+		limparCamposVeiculo(); // limpar dados do veiculo selecionado anteriormente.
+		getcontrolControlJpanelPreOrcamentoNovo().setClienteInserido(true);
+		getjFramePricipal().setEnabled(true);
+		getjDialogProcurarCliente().dispose();
+	}
+	
 
 	public JFramePrincipal getjFramePricipal() {
 		if(jFramePrincipal == null){
@@ -474,14 +494,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	}
 	
 	
-	public JPanelPreOrcamentoNovo getjPanelPreOrcamentoNovo() {
-		if(jPanelPreOrcamentoNovo == null){
-			jPanelPreOrcamentoNovo = new JPanelPreOrcamentoNovo();
-		}
-		return jPanelPreOrcamentoNovo;
-	}
-	
-	
 	public DaoJDialogProcurarCliente getdaoJDialogProcurarCliente() {
 		if(daoJDialogProcurarCliente == null){
 			daoJDialogProcurarCliente = new DaoJDialogProcurarCliente(getjDialogProcurarCliente());
@@ -494,9 +506,14 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 		if(jDialogCadastrarCliente == null){
 			jDialogCadastrarCliente = new JDialogCadastrarCliente(getjDialogProcurarCliente(), true);
 			// quando a tela cadastrar cliente for chamada a mensagem de nenhum cliente cadastrado pode ser exibida novamente
-			setcouWindowAtivated(1);
+			setcountWindowAtivated(1);
 		}
 		return jDialogCadastrarCliente;
+	}
+	
+	
+	public void setjDialogCadastrarCliente(JDialogCadastrarCliente jDialogCadastrarCliente) {
+		this.jDialogCadastrarCliente = jDialogCadastrarCliente;
 	}
 	
 	
@@ -508,7 +525,20 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	}
 	
 	
-	public ControlJpanelPreOrcamentoNovo getcontrolControlJpanelPreOrcamentoNovo() {
+	public void setControlJDialogCadastrarCliente(ControlJDialogCadastrarCliente controlJDialogCadastrarCliente) {
+		this.controlJDialogCadastrarCliente = controlJDialogCadastrarCliente;
+	}
+	
+	
+	private JPanelPreOrcamentoNovo getjPanelPreOrcamentoNovo() {
+		if(jPanelPreOrcamentoNovo == null){
+			jPanelPreOrcamentoNovo = new JPanelPreOrcamentoNovo();
+		}
+		return jPanelPreOrcamentoNovo;
+	}
+	
+	
+	private ControlJpanelPreOrcamentoNovo getcontrolControlJpanelPreOrcamentoNovo() {
 		if(controlJpanelPreOrcamentoNovo == null){
 			controlJpanelPreOrcamentoNovo = new ControlJpanelPreOrcamentoNovo(getjFramePricipal(), null, null, getjPanelPreOrcamentoNovo());
 		}
@@ -531,7 +561,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	}
 	
 	
-	public void setcouWindowAtivated(int coutWindowAtivated) {
+	public void setcountWindowAtivated(int coutWindowAtivated) {
 		if(coutWindowAtivated == 0) {
 			this.coutWindowAtivated = 0;
 		} else {

@@ -33,7 +33,7 @@ public class DaoJPanelEstoque {
 			// Recebe o codigo do produto
 			String marca_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosMarca(), marca_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosMarca(), marca_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -77,7 +77,7 @@ public class DaoJPanelEstoque {
 			// Recebe o codigo do produto
 			String cod_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosCodigo(), cod_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosCodigo(), cod_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -121,7 +121,7 @@ public class DaoJPanelEstoque {
 			// Recebe a descrição do produto
 			String desc_produto = getjPanelEstoque().getjTFieldBuscarPor().getText();
 			// As linhas abaixo realizam a consulta de dados do banco de dados
-			getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutosDescricao(), desc_produto);
+			getModuloConexao().executeQuery(ComandosSQL.consultarProdutosDescricao(), desc_produto);
 			
 			// Verifica se foi retornado algum valor do banco de dados
 			if(!getModuloConexao().resultSetIsEmpty()) {
@@ -164,7 +164,7 @@ public class DaoJPanelEstoque {
 			// Tratamento de exceções no momento de consulta do banco de dados
 			try {
 				// As linhas abaixo realizam a consulta de dados do banco de dados
-				getModuloConexao().executeQuery(ComandosSQL.getconsultarProdutos());
+				getModuloConexao().executeQuery(ComandosSQL.consultarProdutos());
 				
 				// Verifica se foi retornado algum valor do banco de dados
 				if(!getModuloConexao().resultSetIsEmpty()) {
@@ -207,7 +207,7 @@ public class DaoJPanelEstoque {
 		// Tratamento de exceções no momento de consulta do banco de dados
 		try {
 			// usando o método executeUpdate da classe Cadastrar para excluir linha de tabela
-			if(new Cadastrar().executeUpdate(ComandosSQL.getdeletarProduto(), id)) {
+			if(new Cadastrar().executeUpdate(ComandosSQL.deletarProduto(), id)) {
 				configurarJTable();
 				status = true;
 			} else {

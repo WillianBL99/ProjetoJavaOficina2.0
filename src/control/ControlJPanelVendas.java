@@ -54,16 +54,16 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	 */
 	public ControlJPanelVendas(JFramePrincipal jFramePricipal, JPanelVendas jPanelVendas,
 			JPanelPrincipal jPanelPrincipal) {
-		super();
 		this.jFramePricipal = jFramePricipal;
 		this.jPanelVendas = jPanelVendas;
 		this.jPanelPrincipal = jPanelPrincipal;
 		this.AddEvent();
 	}
-	
 
 
-
+	/**
+	 * O método AddEvent() addiciona as as ações para os componentes.
+	 */
 	private void AddEvent() {
 		getjFramePricipal().addWindowListener(this);
 		getjPanelVendasNovo().addFocusListener(this);
@@ -77,13 +77,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		getjPanelVendas().getjTFieldDTFinal().addFocusListener(this);
 		getjPanelVendas().getChoiceFormPesquisa().addItemListener(this);
 		
-	}
-
-	
+	}		
 		
-		
-	//** Início métodos sobrescritos **
-	
+	//** Início métodos sobrescritos **	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -161,7 +157,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 			Mascara.setMascara(getjPanelVendas().getjTFieldDTFinal(), Mascara.mascaraData());		
 		}
 	}
-
 	
 	@Override
 	public void focusLost(FocusEvent e) {
@@ -204,8 +199,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-	
+	}	
 	
 	@Override
 	public void itemStateChanged(ItemEvent e) {
@@ -284,13 +278,12 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		
 	}
 	
-
-
 		
 	//** Fim métodos sobrescritos **
 	
 	//** Início métodos da classe **
 
+	
 	public JFramePrincipal getjFramePricipal() {
 		if(jFramePricipal == null) {
 			jFramePricipal = new JFramePrincipal();
@@ -343,13 +336,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}
 
 
-
-
 	public String getData1() {
 		return data1;
 	}
-
-
 
 
 	public void setData1(String data1) {
@@ -357,13 +346,9 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}
 
 
-
-
 	public String getData2() {
 		return data2;
 	}
-
-
 
 
 	public void setData2(String data2) {
@@ -371,6 +356,12 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}
 	
 	
+	/**
+	 * O método verificarCampoData(JFormatterdTextField @{code: campo}), Verica se o campo passado como parametro tem a data
+	 * setada corretamente.
+	 * @param campo recebe um JFormattedTextField contendo uma data.
+	 * @return boolean retorna falso caso a data não tenha sido setada corretamente.
+	 */
 	private boolean verificarCampoData(JFormattedTextField campo) {// Verificar se não está vazio
 		String dataInicial = campo.getText().replace(" ", "").replace("/", "");
 		if(!dataInicial.isEmpty()) {
@@ -402,6 +393,10 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	}
 	
 	
+	/**
+	 * O método verificarCamposData(), Verifica se os dois campos de datas estão setados corretamente.
+	 * @return boolean retorna falso caso o campo data1 e/ou data2 tenha sido setado incorretamente.
+	 */
 	private boolean verificarCamposData() {
 		// Verificar se o campo data1 está preenchido
 		if(getData1() == null) {
@@ -434,13 +429,6 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 		return false;
 	}
 	
-	//** Fim métodos da classe **	
-
-
-
-
-
-
-
+	//** Fim métodos da classe **
 
 }

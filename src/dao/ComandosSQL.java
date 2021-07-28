@@ -143,7 +143,7 @@ public class ComandosSQL {
 			consultarVendasEntreData = (
 					"select \r\n"
 							+ "vendas.id_venda,\r\n"
-							+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+							+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 							+ "usuarios.nome,\r\n"
 							+ "clientes.nome_cliente,\r\n"
 							+ "vendas.forma_pagamento,\r\n"
@@ -191,7 +191,7 @@ public class ComandosSQL {
 			consultarVendasCliente = (
 					"select \r\n"
 							+ "vendas.id_venda,\r\n"
-							+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+							+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 							+ "usuarios.nome,\r\n"
 							+ "clientes.nome_cliente,\r\n"
 							+ "vendas.forma_pagamento,\r\n"
@@ -238,7 +238,7 @@ public class ComandosSQL {
 			consultarVendasVendedor = (
 					"select \r\n"
 							+ "vendas.id_venda,\r\n"
-							+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+							+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 							+ "usuarios.nome,\r\n"
 							+ "clientes.nome_cliente,\r\n"
 							+ "vendas.forma_pagamento,\r\n"
@@ -285,7 +285,7 @@ public class ComandosSQL {
 			consultarVendasCartão = (
 					"select \r\n"
 							+ "vendas.id_venda,\r\n"
-							+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+							+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 							+ "usuarios.nome,\r\n"
 							+ "clientes.nome_cliente,\r\n"
 							+ "vendas.forma_pagamento,\r\n"
@@ -332,7 +332,7 @@ public class ComandosSQL {
 			consultarVendasDinheiro = (
 					"select \r\n"
 							+ "vendas.id_venda,\r\n"
-							+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+							+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 							+ "usuarios.nome,\r\n"
 							+ "clientes.nome_cliente,\r\n"
 							+ "vendas.forma_pagamento,\r\n"
@@ -379,7 +379,7 @@ public class ComandosSQL {
 			consultarVendasTodas = (
 				"select \r\n"
 				+ "vendas.id_venda,\r\n"
-				+ "date_format(vendas.data, '%d-%m-%Y %h:%i:%s'),\r\n"
+				+ "date_format(vendas.data, '%d-%m-%Y %H:%i'),\r\n"
 				+ "usuarios.nome,\r\n"
 				+ "clientes.nome_cliente,\r\n"
 				+ "vendas.forma_pagamento,\r\n"

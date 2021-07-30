@@ -97,7 +97,7 @@ public class JPanelConsultarOS extends JPanel {
 	private JFormattedTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
 	private JFormattedTextField jTFieldAno;
-	private JFormattedTextField jTFieldPlaca;
+	private JTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
 	private JFormattedTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
@@ -761,10 +761,9 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldAno;
 	}
-	public JFormattedTextField getjTFieldPlaca() {
-		if(jTFieldPlaca == null){
-	
-			jTFieldPlaca = new JFormattedTextField(Mascara.mascaraPlaca());
+	public JTextField getjTFieldPlaca() {
+		if(jTFieldPlaca == null){	
+			jTFieldPlaca = new JTextField();
 			jTFieldPlaca.setSize(125, 21);
 			jTFieldPlaca.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));

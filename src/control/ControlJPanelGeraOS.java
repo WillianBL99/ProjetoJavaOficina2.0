@@ -64,7 +64,7 @@ public class ControlJPanelGeraOS implements FocusListener {
 		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldPlaca() ) {
-			Mascara.setMascara(getjPanelGeraOS().getjTFieldPlaca(), Mascara.mascaraPlaca());
+			//Mascara.setMascara(getjPanelGeraOS().getjTFieldPlaca(), Mascara.mascaraPlaca());
 		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldTelefone() ) {

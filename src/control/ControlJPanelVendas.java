@@ -362,7 +362,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 	 * @param campo recebe um JFormattedTextField contendo uma data.
 	 * @return boolean retorna falso caso a data não tenha sido setada corretamente.
 	 */
-	private boolean verificarCampoData(JFormattedTextField campo) {// Verificar se não está vazio
+	private boolean verificarCampoData(JFormattedTextField campo) {
 		String dataInicial = campo.getText().replace(" ", "").replace("/", "");
 		if(!dataInicial.isEmpty()) {
 			// Verifica se está faltando números

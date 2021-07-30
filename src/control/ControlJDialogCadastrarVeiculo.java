@@ -56,6 +56,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		getjDialogCadastrarVeiculo().getjTFieldChassi().addFocusListener(null);
 		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addFocusListener(null);
 		getjDialogCadastrarVeiculo().getjTFieldPlaca().addFocusListener(null);
+		getjDialogCadastrarVeiculo().getjTFieldPlaca().addKeyListener(this);
 	}
 		
 		
@@ -77,8 +78,11 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-			
+		if(e.getSource() == getjDialogCadastrarVeiculo().getjTFieldPlaca()) {
+			Mascara.mascaraPlaca(getjDialogCadastrarVeiculo().getjTFieldPlaca());
+		}
 	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -192,7 +196,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldChassi()) {
+		/*if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldChassi()) {
 			
 			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldChassi(), Mascara.mascaraChassi());
 		
@@ -214,7 +218,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 			
 			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldPlaca(), Mascara.mascaraPlaca());
 		
-		}
+		}*/
 		
 	}
 

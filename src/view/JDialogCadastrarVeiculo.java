@@ -46,7 +46,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	private JFormattedTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
 	private JFormattedTextField jTFieldAno;
-	private JFormattedTextField jTFieldPlaca;
+	private JTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
 	private JFormattedTextField jTFieldKMAtual;
 	
@@ -319,7 +319,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JFormattedTextField getjTFieldPlaca() {
+	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){
 			jTFieldPlaca = new JFormattedTextField();
 			jTFieldPlaca.setSize(122, 21);

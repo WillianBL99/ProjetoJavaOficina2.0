@@ -3,11 +3,13 @@
  */
 package model;
 
+import java.awt.TextField;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.Locale;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -36,6 +38,33 @@ public class  Mascara {
 	
 	
 	/**
+	 * O método verificarCarcter(String[] @{code regEx}, String {@code entrada}) recebe um array de expressões regulares
+	 * e verifica se cada caracter de {@code entrada} corresponde ao respectivo índice de {@code regEx[]}.
+	 * @param regEx recebe um array de expressão regular
+	 * @param entrada recebe o texto que será verificado e selecionado
+	 * @return String retorna uma String com os caracteres válidos de {@code entrada}.
+	 */
+	private static String verificarCarcter(String[] regEx, String entrada) {		
+		// Será a saida de texto formatada
+		String saida = "";				
+		// Transformar a entrada em um array de String contendo cada caracter individualmente
+		String[] conteudo = entrada.split("");		
+		// Compara cada índice de placa[] com o índice equivalente de regEx[]
+		for(int i = 0; (i < conteudo.length) && (i < regEx.length); i++) {
+			// Verifica se o caracter é válido, caso não seja o for é enterrompido e retorna só os caracteres validados até o momento
+			if(!conteudo[i].matches(regEx[i])) {
+				break;
+			}
+			// Adiciona o caracter validado ao texto de saída
+			saida += conteudo[i];
+		}		
+		// Retorna a saída formatada
+		return saida;
+	}
+	
+	
+	
+	/**
 	 * O método mascaraCPF() formata o campo para CPF.
 	 * @return MaskFormatter
 	 */
@@ -54,22 +83,36 @@ public class  Mascara {
 	
 	
 	/**
-	 * O método mascaraPlaca() formata o campo para placa.
-	 * @return MaskFormatter
+	 * O método mascaraPlaca(TextField placa) recebe uma string e retorna somente a sequencia valida.
+	 * Inicia no primeiro caracter e para no caracter que não for válido ou quando atingir o tamanho máximo permitido
+	 * para o campo.
+	 * @param placa recebe o campo que será formatado para placa ex.: ABC-1234/DE... ABC-1D23...
 	 */
-	public static MaskFormatter mascaraPlaca() {		
+	public static void mascaraPlaca(JTextField placa) {	
+		// Coloca tudo em maiúsculo e retira qualquer caracter que não seja números ou letras
+		String saida = placa.getText().toUpperCase().replaceAll("\\W", "");
 		
-		try {
-			MaskFormatter mask = new MaskFormatter("UUU-#A##/UU");
-			mask.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"); // inserido para testes, apagar depois
-		
-			return mask;
+		String laz = "[A-Z]"; // Regex para letras maiúsculas
+		String laj = "[A-J]"; // RegEx para letras maiúsculas de A a J
+		String n = "\\d"; // ReGex para números
 			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
+		// Regex de uma placa;
+		String[] regEx = {laz, laz, laz, n, String.format("(%s|%s)", n, laj), n, n, laz, laz};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+		
+		//Verificar se a saída de placa tem UF
+		if(saida.matches(String.format(".{7}(%s{1,2})$", laz))){
+			// Formata a placa com uf
+			saida = saida.replaceAll("([A-Z]{3})(\\d)(\\d|[A-J])(\\d{2})([A-Z]{1,2})", "$1-$2$3$4/$5");
 		}
+		else {		
+			// Formata a placa sem uf
+			saida = saida.replaceAll("([A-Z]{3})(\\d?)(\\d?|[A-J]?)(\\d{0,2})", "$1-$2$3$4");
+		}
+		// Seta o texto no jtextfield
+		placa.setText(saida);
 	}
 		
 	

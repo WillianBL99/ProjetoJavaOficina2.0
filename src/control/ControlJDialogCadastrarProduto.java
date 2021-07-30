@@ -249,8 +249,8 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		getcontrolJPanelEstoque().atualizarTabela();
-		getjFramePricipal().setEnabled(true);		
+		getjFramePricipal().setEnabled(true);	
+		getcontrolJPanelEstoque().atualizarTabela();	
 	}
 
 

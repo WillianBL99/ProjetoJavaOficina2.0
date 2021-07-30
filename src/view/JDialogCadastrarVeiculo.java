@@ -9,7 +9,7 @@ import java.awt.Frame;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Cores;
@@ -43,12 +43,12 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
-	private JFormattedTextField jTFieldChassi;
+	private JTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
-	private JFormattedTextField jTFieldAno;
+	private JTextField jTFieldAno;
 	private JTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
-	private JFormattedTextField jTFieldKMAtual;
+	private JTextField jTFieldKMAtual;
 	
 	
 	private Choice choiceCombustivel;
@@ -277,9 +277,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JFormattedTextField getjTFieldChassi() {
+	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){
-			jTFieldChassi = new JFormattedTextField();
+			jTFieldChassi = new JTextField();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -305,9 +305,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JFormattedTextField getjTFieldAno() {
+	public JTextField getjTFieldAno() {
 		if(jTFieldAno == null){
-			jTFieldAno = new JFormattedTextField();
+			jTFieldAno = new JTextField();
 			jTFieldAno.setSize(107, 21);
 			jTFieldAno.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -321,7 +321,7 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 
 	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){
-			jTFieldPlaca = new JFormattedTextField();
+			jTFieldPlaca = new JTextField();
 			jTFieldPlaca.setSize(122, 21);
 			jTFieldPlaca.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -347,9 +347,9 @@ public class JDialogCadastrarVeiculo  extends JDialog{
 	}
 
 
-	public JFormattedTextField getjTFieldKMAtual() {
+	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
-			jTFieldKMAtual = new JFormattedTextField();
+			jTFieldKMAtual = new JTextField();
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));

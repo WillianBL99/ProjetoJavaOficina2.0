@@ -5,6 +5,8 @@ package control;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import model.Mascara;
 import view.JPanelGeraOS;
@@ -13,7 +15,7 @@ import view.JPanelGeraOS;
  * @author Perseu
  *
  */
-public class ControlJPanelGeraOS implements FocusListener {
+public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 
 	
 	//** Início declaração de variáveis **
@@ -53,10 +55,6 @@ public class ControlJPanelGeraOS implements FocusListener {
 			Mascara.setMascara(getjPanelGeraOS().getjTFieldChassi(), Mascara.mascaraChassi());
 		}
 		
-		if(e.getSource() == getjPanelGeraOS().getjTFieldCpf() ) {
-			Mascara.setMascara(getjPanelGeraOS().getjTFieldCpf(), Mascara.mascaraCPF());
-		}
-		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldKMAtual() ) {
 			
 			Mascara.setMascara(getjPanelGeraOS().getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
@@ -82,6 +80,26 @@ public class ControlJPanelGeraOS implements FocusListener {
 		
 	}
 	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// Quando for digitado algo no campo de cpf
+		if(e.getSource() == getjPanelGeraOS().getjTFieldCpf()) {
+			Mascara.mascaraCPF(getjPanelGeraOS().getjTFieldCpf());
+		}
+	}
+	
 	//** Fim métodos sobrescritos **
 	
 	
@@ -97,6 +115,8 @@ public class ControlJPanelGeraOS implements FocusListener {
 		return jPanelGeraOS;
 	}
 	//** Fim métodos da classe **
+
+	
 	
 	
 

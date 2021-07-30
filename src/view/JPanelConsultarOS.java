@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -81,7 +81,7 @@ public class JPanelConsultarOS extends JPanel {
 	private JLabel jLabelMotorista;
 	private JLabel jLabelResponsavel;
 	
-	private JFormattedTextField jTFieldCpf;
+	private JTextField jTFieldCpf;
 	private JTextField jTFieldEmail;
 	private JTextField jTFieldRua;
 	private JTextField jTFieldNome;
@@ -89,17 +89,17 @@ public class JPanelConsultarOS extends JPanel {
 	private JTextField jTFieldNumeroCasa;
 	private JTextField jTFieldTipo;
 	private JTextField jTFieldBairro;
-	private JFormattedTextField jTFieldTelefone;
+	private JTextField jTFieldTelefone;
 	
 	private JTextField jTFieldNumeroVeiculo;
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
-	private JFormattedTextField jTFieldChassi;
+	private JTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
-	private JFormattedTextField jTFieldAno;
+	private JTextField jTFieldAno;
 	private JTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
-	private JFormattedTextField jTFieldKMAtual;
+	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
 	private JTextField jTFieldNumeroOS;
@@ -548,9 +548,9 @@ public class JPanelConsultarOS extends JPanel {
 	
 	
 	//** Início getters JTextField **
-	public JFormattedTextField getjTFieldCpf() {
+	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){
-			jTFieldCpf = new JFormattedTextField(Mascara.mascaraCPF());
+			jTFieldCpf = new JTextField();
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -661,10 +661,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldBairro;
 	}
-	public JFormattedTextField getjTFieldTelefone() {
+	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){
 	
-			jTFieldTelefone = new JFormattedTextField(Mascara.mascaraTelefone());
+			jTFieldTelefone = new JTextField();
 			jTFieldTelefone.setSize(115, 21);
 			jTFieldTelefone.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -719,10 +719,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldCor;
 	}
-	public JFormattedTextField getjTFieldChassi() {
+	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){
 	
-			jTFieldChassi = new JFormattedTextField(Mascara.mascaraChassi());
+			jTFieldChassi = new JTextField();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -747,10 +747,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldModelo;
 	}
-	public JFormattedTextField getjTFieldAno() {
+	public JTextField getjTFieldAno() {
 		if(jTFieldAno == null){
 	
-			jTFieldAno = new JFormattedTextField(Mascara.mascaraAno());
+			jTFieldAno = new JTextField();
 			jTFieldAno.setSize(105, 21);
 			jTFieldAno.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));
@@ -788,10 +788,10 @@ public class JPanelConsultarOS extends JPanel {
 		}
 		return jTFieldMotor;
 	}
-	public JFormattedTextField getjTFieldKMAtual() {
+	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){
 	
-			jTFieldKMAtual = new JFormattedTextField();
+			jTFieldKMAtual = new JTextField();
 			jTFieldKMAtual.setSize(120, 21);
 			jTFieldKMAtual.setBorder(BorderFactory.
 				createLineBorder(Cores.cinza2, 1, false));

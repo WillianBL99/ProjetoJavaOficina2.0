@@ -196,30 +196,7 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
-		/*if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldChassi()) {
 			
-			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldChassi(), Mascara.mascaraChassi());
-		
-		}
-		
-		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldAno()) {
-					
-			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldAno(), Mascara.mascaraAno());
-				
-		}
-		
-		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldKMAtual()) {
-			
-			
-		
-		}
-		
-		if(e.getSource() == jDialogCadastrarVeiculo.getjTFieldPlaca()) {
-			
-			Mascara.setMascara(jDialogCadastrarVeiculo.getjTFieldPlaca(), Mascara.mascaraPlaca());
-		
-		}*/
-		
 	}
 
 

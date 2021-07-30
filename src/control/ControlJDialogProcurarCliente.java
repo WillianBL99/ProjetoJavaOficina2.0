@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import dao.ComandosSQL;
 import dao.DaoJDialogProcurarCliente;
+import model.Mascara;
 import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -433,10 +434,15 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			}
 			
 			getjPanelPreOrcamentoNovo().setidCliente(id);
+			
 			getjPanelPreOrcamentoNovo().getjTFieldCpf().setText(cpf);
-			getjPanelPreOrcamentoNovo().getjTFieldNome().setText(nome);
-			getjPanelPreOrcamentoNovo().getjTFieldTipo().setText(tipo);
+			Mascara.mascaraCPF(getjPanelPreOrcamentoNovo().getjTFieldCpf());
+			
+			getjPanelPreOrcamentoNovo().getjTFieldNome().setText(nome);			
+			getjPanelPreOrcamentoNovo().getjTFieldTipo().setText(tipo);			
+			
 			getjPanelPreOrcamentoNovo().getjTFieldTelefone().setText(telefone);
+			
 			getjPanelPreOrcamentoNovo().getjTFieldEmail().setText(email);
 			getjPanelPreOrcamentoNovo().getjTFieldCidade().setText(cidade);
 			getjPanelPreOrcamentoNovo().getjTFieldBairro().setText(bairro);
@@ -467,7 +473,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 	 * Metodo insere um produto na tela PreOrcamentoNovo e realiza modificações necessárias.
 	 */
 	public void selecionarCliente() {
-		System.out.println("selecionar cliente em classe pai");
 		preencherPreOrcamentoNovoCliente(getjDialogProcurarCliente().getjTableCliente().getValueAt(
 				getjDialogProcurarCliente().getjTableCliente().getSelectedRow(),
 				0).toString());

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -96,10 +96,10 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	
 
 	private JTextField jTFieldNumeroPreOrcamento;
-	private JFormattedTextField jTFieldDataPreOrcamento;
+	private JTextField jTFieldDataPreOrcamento;
 	private JTextField jTFieldHorarioPreOrcamento;
 	
-	private JFormattedTextField jTFieldCpf;
+	private JTextField jTFieldCpf;
 	private JTextField jTFieldEmail;
 	private JTextField jTFieldRua;
 	private JTextField jTFieldNome;
@@ -107,17 +107,17 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	private JTextField jTFieldNumeroCasa;
 	private JTextField jTFieldTipo;
 	private JTextField jTFieldBairro;
-	private JFormattedTextField jTFieldTelefone;
+	private JTextField jTFieldTelefone;
 	
 	private JTextField jTFieldNumeroVeiculo;
 	private JTextField jTFieldMarca;
 	private JTextField jTFieldCor;
-	private JFormattedTextField jTFieldChassi;
+	private JTextField jTFieldChassi;
 	private JTextField jTFieldModelo;
-	private JFormattedTextField jTFieldAno;
-	private JFormattedTextField jTFieldPlaca;
+	private JTextField jTFieldAno;
+	private JTextField jTFieldPlaca;
 	private JTextField jTFieldMotor;
-	private JFormattedTextField jTFieldKMAtual;
+	private JTextField jTFieldKMAtual;
 	private JTextField jTFieldCombustivel;
 	
 	private JScrollPane jSPjPanelCentro; // tela de rolagem para o jPanelCentral.
@@ -708,9 +708,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 
 
-	public JFormattedTextField getjTFieldDataPreOrcamento() {
+	public JTextField getjTFieldDataPreOrcamento() {
 		if(jTFieldDataPreOrcamento == null){
-			jTFieldDataPreOrcamento = new JFormattedTextField();
+			jTFieldDataPreOrcamento = new JTextField();
 			jTFieldDataPreOrcamento.setSize(94, 21);
 			jTFieldDataPreOrcamento.setBorder(BorderFactory.
 					createLineBorder(Cores.cinza2, 1, false));
@@ -738,9 +738,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldCpf() {
+	public JTextField getjTFieldCpf() {
 		if(jTFieldCpf == null){	
-			jTFieldCpf = new JFormattedTextField();
+			jTFieldCpf = new JTextField();
 			jTFieldCpf.setSize(165, 21);
 			jTFieldCpf.setBackground(Cores.cinza4);
 			jTFieldCpf.setBorder(null);
@@ -860,9 +860,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldTelefone() {
+	public JTextField getjTFieldTelefone() {
 		if(jTFieldTelefone == null){	
-			jTFieldTelefone = new JFormattedTextField();
+			jTFieldTelefone = new JTextField();
 			jTFieldTelefone.setSize(125, 21);
 			jTFieldTelefone.setBackground(Cores.cinza4);
 			jTFieldTelefone.setBorder(null);
@@ -920,9 +920,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldChassi() {
+	public JTextField getjTFieldChassi() {
 		if(jTFieldChassi == null){	
-			jTFieldChassi = new JFormattedTextField();
+			jTFieldChassi = new JTextField();
 			jTFieldChassi.setSize(219, 21);
 			jTFieldChassi.setBackground(Cores.cinza4);
 			jTFieldChassi.setBorder(null);
@@ -950,9 +950,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldAno() {
+	public JTextField getjTFieldAno() {
 		if(jTFieldAno == null){	
-			jTFieldAno = new JFormattedTextField();
+			jTFieldAno = new JTextField();
 			jTFieldAno.setSize(105, 21);
 			jTFieldAno.setBackground(Cores.cinza4);
 			jTFieldAno.setBorder(null);
@@ -965,9 +965,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldPlaca() {
+	public JTextField getjTFieldPlaca() {
 		if(jTFieldPlaca == null){	
-			jTFieldPlaca = new JFormattedTextField();
+			jTFieldPlaca = new JTextField();
 			jTFieldPlaca.setSize(125, 21);
 			jTFieldPlaca.setBackground(Cores.cinza4);
 			jTFieldPlaca.setBorder(null);
@@ -995,9 +995,9 @@ public class JPanelPreOrcamentoNovo extends JPanel {
 	}
 	
 	
-	public JFormattedTextField getjTFieldKMAtual() {
+	public JTextField getjTFieldKMAtual() {
 		if(jTFieldKMAtual == null){	
-			jTFieldKMAtual = new JFormattedTextField();
+			jTFieldKMAtual = new JTextField();
 			jTFieldKMAtual.setSize(125, 21);
 			jTFieldKMAtual.setBackground(Cores.cinza4);
 			jTFieldKMAtual.setBorder(null);

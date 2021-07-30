@@ -3,7 +3,6 @@
  */
 package model;
 
-import java.awt.TextField;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -68,17 +67,29 @@ public class  Mascara {
 	 * O método mascaraCPF() formata o campo para CPF.
 	 * @return MaskFormatter
 	 */
-	public static MaskFormatter mascaraCPF() {
+	public static void mascaraCPF(JTextField cpf) {
+		// Coloca em em caixa alta e retira tudo que não for número
+		String saida = cpf.getText().toUpperCase().replaceAll("\\D", "");
 		
-		try {
-			MaskFormatter mask = new MaskFormatter("###.###.###-##");//serve para limitar o tamanho do cpf e tambem deixa ja no formato
-			return mask;
-			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		String n = "\\d"; // RegEx para números
+		
+		// RegEx de um cpf
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+		
+		if(saida.length() >= 4 && saida.length() <= 6)
+			saida = saida.replaceAll("(\\d{3})(\\d{1,3})", "$1.$2");
+		
+		else if(saida.length() >= 7 && saida.length() <= 9)
+			saida = saida.replaceAll("(\\d{3})(\\d{3})(\\d{1,3})", "$1.$2.$3");
+		
+		else if(saida.length() >= 10 && saida.length() <= 11)
+			saida = saida.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{1,2})", "$1.$2.$3-$4");
+		
+		// Seta o texto no jTextField
+		cpf.setText(saida);
 	}
 	
 	

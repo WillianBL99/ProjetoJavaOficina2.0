@@ -46,14 +46,11 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	private void AddEvent() {
 		getjDialogCadastrarCliente().addWindowListener(this);
 		getjDialogCadastrarCliente().getjButtonCadastrarCliente().addMouseListener(this);
-		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);
-		
+		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);		
 		getjDialogCadastrarCliente().getjTFieldCpf().addFocusListener(this);
 		getjDialogCadastrarCliente().getjTFieldTelefone().addFocusListener(this);
 		
-		
-		
-		
+		getjDialogCadastrarCliente().getjTFieldCpf().addKeyListener(this);	
 	}
 		
 		
@@ -74,10 +71,13 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-			
+		// Quando for digitado algo em cpf
+		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {
+			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
+		}			
 	}
 
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Quando o botão cadastrar cliente for clicado
@@ -190,19 +190,10 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == jDialogCadastrarCliente.getjTFieldCpf() ) {
-			
-			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldCpf(), Mascara.mascaraCPF());
-		
-		}
-		
-		if(e.getSource() == jDialogCadastrarCliente.getjTFieldTelefone() ) {
-			
-			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldTelefone(), Mascara.mascaraTelefone());
-		
-		}
-		
+		// TODO Auto-generated method stub		
+		if(e.getSource() == jDialogCadastrarCliente.getjTFieldTelefone() ) {			
+			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldTelefone(), Mascara.mascaraTelefone());		
+		}		
 	}
 
 
@@ -302,9 +293,9 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	private boolean camposIsEmpty() {
 				
 		if(
-			getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", "").replace(" ", "").isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldCpf().getText().replace("(\\.|\\-|\\s)", "").isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldNome().getText().isEmpty() &&
-			getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", "").isEmpty() &&
+			getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(\\(|\\)|\\.|\\-|\\s)", "").isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldEmail().getText().isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldCidade().getText().isEmpty() &&
 			getjDialogCadastrarCliente().getjTFieldBairro().getText().isEmpty() &&

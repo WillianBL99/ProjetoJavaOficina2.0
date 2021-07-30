@@ -317,51 +317,7 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
 		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldAno()) {
-			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldAno(), Mascara.mascaraAno());
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldChassi()) {
-			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldChassi(), Mascara.mascaraChassi());
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldCpf()) {
-			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldCpf(), Mascara.mascaraCPF());
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento()) {
-			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldDataPreOrcamento(), Mascara.mascaraData());
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldKMAtual()) {
-			
-
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldPlaca()) {
-			
-			//Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldPlaca(), Mascara.mascaraPlaca());
-			
-		}
-		
-		if(e.getSource() == getjPanelPreOrcamentoNovo().getjTFieldTelefone()) {
-			
-			Mascara.setMascara(getjPanelPreOrcamentoNovo().getjTFieldTelefone(), Mascara.mascaraTelefone());
-			
-		}
-		
-
 		
 	}
 

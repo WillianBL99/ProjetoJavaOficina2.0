@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import dao.ComandosSQL;
 import dao.DaoJDialogProcurarVeiculo;
 import dao.PreencherTabela;
+import model.Mascara;
 import view.JDialogCadastrarVeiculo;
 import view.JDialogProcurarVeiculo;
 import view.JFramePrincipal;
@@ -207,8 +208,11 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 				);
 
 			} else {
-				int row =getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
+				// Recebe o número da linha selecionada
+				int row = getjDialogProcurarVeiculo().getjTableVeiculos().getSelectedRow();
+				// Passa o número do id do veículo para realizar pesquisa no banco de dados
 				preencherPreOrcamentoNovoVeiculo(getjDialogProcurarVeiculo().getjTableVeiculos().getValueAt(row, 0).toString());
+				// Informar à classe controladora de preOrçamentoNovo que foi inserido um veículo
 				getcontrolControlJpanelPreOrcamentoNovo().setVeiculoInserido(true);
 				getjFramePricipal().setEnabled(true);
 				getjDialogProcurarVeiculo().dispose();
@@ -449,7 +453,13 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 	
 	// Início métodos da classe
 	
+	
+	/**
+	 * O método preencherPreOrcamentoNovoVeiculo(String @{code id_veiculo})
+	 * @param id_veiculo void
+	 */
 	private void preencherPreOrcamentoNovoVeiculo(String id_veiculo) {
+		// Realizar pesquisa do veículo no banco de dados
 		getdaoJDialogProcurarVeiculo().bucarVeiculo(id_veiculo);;
 
 		String id = null;
@@ -483,7 +493,10 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 		
 		
 		getjPanelPreOrcamentoNovo().getjTFieldNumeroVeiculo().setText(id);
+		
 		getjPanelPreOrcamentoNovo().getjTFieldPlaca().setText(placa);
+		Mascara.mascaraPlaca(getjPanelPreOrcamentoNovo().getjTFieldPlaca());
+		
 		getjPanelPreOrcamentoNovo().getjTFieldChassi().setText(chassi);
 		getjPanelPreOrcamentoNovo().getjTFieldKMAtual().setText(kmAtual);
 		getjPanelPreOrcamentoNovo().getjTFieldMarca().setText(marca);

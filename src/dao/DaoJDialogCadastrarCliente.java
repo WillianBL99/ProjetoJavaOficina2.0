@@ -42,10 +42,10 @@ public class DaoJDialogCadastrarCliente {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
 						ComandosSQL.cadastrarClientesCpf(),
-						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
+						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace("(\\.|\\-|\\s)", ""), // retira os "." e "-" da string
 						getjDialogCadastrarCliente().getjTFieldNome().getText(),
 						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
-						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(\\(|\\)|\\.|\\-|\\s)", ""), // retira os "(", ")", " " e "-" da string
 						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
 						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
 						getjDialogCadastrarCliente().getjTFieldRua().getText(),
@@ -58,10 +58,10 @@ public class DaoJDialogCadastrarCliente {
 				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
 				if(getModuloConexao().executeUpdate(
 						ComandosSQL.cadastrarClientesCnpj(),
-						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace(".", "").replace("-", ""), // retira os "." e "-" da string
+						getjDialogCadastrarCliente().getjTFieldCpf().getText().replace("(\\.|\\-|\\s)", ""), // retira os "." e "-" da string
 						getjDialogCadastrarCliente().getjLabelNome().getText(),
 						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
-						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(", "").replace(")", "").replace(".", "").replace(" ", "").replace("-", ""), // retira os "(", ")", " " e "-" da string
+						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replace("(\\(|\\)|\\.|\\-|\\s)", ""), // retira os "(", ")", " " e "-" da string
 						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
 						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
 						getjDialogCadastrarCliente().getjTFieldRua().getText(),

@@ -442,6 +442,7 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 			getjPanelPreOrcamentoNovo().getjTFieldTipo().setText(tipo);			
 			
 			getjPanelPreOrcamentoNovo().getjTFieldTelefone().setText(telefone);
+			Mascara.mascaraTelefone(getjPanelPreOrcamentoNovo().getjTFieldTelefone());
 			
 			getjPanelPreOrcamentoNovo().getjTFieldEmail().setText(email);
 			getjPanelPreOrcamentoNovo().getjTFieldCidade().setText(cidade);

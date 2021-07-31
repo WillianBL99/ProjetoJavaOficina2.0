@@ -51,6 +51,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		getjDialogCadastrarCliente().getjTFieldTelefone().addFocusListener(this);
 		
 		getjDialogCadastrarCliente().getjTFieldCpf().addKeyListener(this);	
+		getjDialogCadastrarCliente().getjTFieldTelefone().addKeyListener(this);	
 	}
 		
 		
@@ -74,7 +75,12 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		// Quando for digitado algo em cpf
 		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {
 			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
-		}			
+		}	
+		
+		// Quando for digitado algo em cpf
+		else if(e.getSource() == getjDialogCadastrarCliente().getjTFieldTelefone()) {
+			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldTelefone());
+		}	
 	}
 
 	
@@ -190,10 +196,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub		
-		if(e.getSource() == jDialogCadastrarCliente.getjTFieldTelefone() ) {			
-			Mascara.setMascara(jDialogCadastrarCliente.getjTFieldTelefone(), Mascara.mascaraTelefone());		
-		}		
+		// TODO Auto-generated method stub			
 	}
 
 

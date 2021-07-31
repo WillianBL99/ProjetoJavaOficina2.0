@@ -65,10 +65,6 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 			//Mascara.setMascara(getjPanelGeraOS().getjTFieldPlaca(), Mascara.mascaraPlaca());
 		}
 		
-		if(e.getSource() == getjPanelGeraOS().getjTFieldTelefone() ) {
-			Mascara.setMascara(getjPanelGeraOS().getjTFieldTelefone(), Mascara.mascaraTelefone());
-		}
-		
 	}
 
 	@Override
@@ -97,6 +93,11 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 		// Quando for digitado algo no campo de cpf
 		if(e.getSource() == getjPanelGeraOS().getjTFieldCpf()) {
 			Mascara.mascaraCPF(getjPanelGeraOS().getjTFieldCpf());
+		}
+		
+		// Quando for digitado algo no campo de telefone
+		else if(e.getSource() == getjPanelGeraOS().getjTFieldTelefone()) {
+			Mascara.mascaraTelefone(getjPanelGeraOS().getjTFieldTelefone());
 		}
 	}
 	

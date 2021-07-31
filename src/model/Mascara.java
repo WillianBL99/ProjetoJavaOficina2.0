@@ -131,17 +131,29 @@ public class  Mascara {
 	 * O método mascaraCelular() formata o campo para celular.
 	 * @return MaskFormatter
 	 */
-	public static MaskFormatter mascaraCelular() {	
+	public static void mascaraTelefone(JTextField fone) {	
+		// Coloca tudo em maiúsculo e retira qualquer caracter que não seja números
+		String saida = fone.getText().toUpperCase().replaceAll("\\D", "");
 	
-		try {
-			MaskFormatter mask = new MaskFormatter("(##) #####-####");		
-			return mask;
-				
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		String n = "\\d"; // ReGex para números
+			
+		// Regex de uma placa;
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+		
+		if(saida.length() >= 5 && saida.length() <= 8)
+			saida = saida.replaceAll("(\\d{4})(\\d{1,4})", "$1-$2");
+		
+		else if(saida.length() >= 9 && saida.length() <= 10)
+			saida = saida.replaceAll("(\\d{2})(\\d{4})(\\d{2,4})", "($1) $2-$3");
+		
+		else if(saida.length() >= 10 && saida.length() <= 11)
+			saida = saida.replaceAll("(\\d{2})(\\d{5})(\\d{2,4})", "($1) $2-$3");
+		
+		// Seta o texto no jtextfield
+		fone.setText(saida);
 	}
 	
 	
@@ -243,27 +255,7 @@ public class  Mascara {
 			return null;
 		}
 	}
-	
-	
-	/**
-	 * O método mascaraTelefone() formata o campo para telefone.
-	 * @return MaskFormatter
-	 */
-	public static MaskFormatter mascaraTelefone() {
 		
-		try {
-			MaskFormatter mask = new MaskFormatter("(##) ####-####");
-		
-			return mask;
-			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
-	}
-	
-	
 	
 	/**
 	 * O método mascaraDinheiro(double @{code valor}, DecimalFormat {@code moeda}

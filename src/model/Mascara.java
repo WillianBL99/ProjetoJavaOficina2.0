@@ -246,17 +246,20 @@ public class  Mascara {
 	 * 13 digitos, so não aceita os formato Databar, ITF-14, Código 128.
 	 * @return MaskFormatter
 	 */
-	public static MaskFormatter mascaraCode() {
-		
-		try {
-			MaskFormatter mask = new MaskFormatter("############");		
-			return mask;
+	public static void mascaraCode(JTextField code) {	
+		// Coloca tudo em maiúsculo e retira qualquer caracter que não seja números
+		String saida = code.getText().toUpperCase().replaceAll("\\D", "");
+	
+		String n = "\\d"; // ReGex para números
 			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		// Regex codigo;
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n, n, n};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+				
+		// Seta o texto no jtextfield
+		code.setText(saida);
 	}
 		
 	

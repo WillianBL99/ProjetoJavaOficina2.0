@@ -13,6 +13,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 import dao.DaoJDialogCadastrarProduto;
+import model.Mascara;
 import view.JDialogCadastrarProduto;
 import view.JFramePrincipal;
 
@@ -43,6 +44,9 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		getjDialogCadastrarProduto().addWindowListener(this);
 		getjDialogCadastrarProduto().getjButtonCadastrarCliente().addMouseListener(this);
 		getjDialogCadastrarProduto().getjButtonCancelar().addMouseListener(this);
+		
+		getjDialogCadastrarProduto().getjTFieldCodigo().addKeyListener(this);
+		getjDialogCadastrarProduto().getjTFieldPreco().addKeyListener(this);
 	}
 		
 		
@@ -63,7 +67,15 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Quando for digitado algo em codigo
+		if(e.getSource() == getjDialogCadastrarProduto().getjTFieldCodigo()) {
+			Mascara.mascaraCode(getjDialogCadastrarProduto().getjTFieldCodigo());
+		}
+		
+		// Quando for digitador algo em dinheiro
+		else if(e.getSource() == getjDialogCadastrarProduto().getjTFieldPreco()) {
+			
+		}
 			
 	}
 

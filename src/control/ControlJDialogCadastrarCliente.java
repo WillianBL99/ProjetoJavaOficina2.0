@@ -79,7 +79,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		
 		// Quando for digitado algo em cpf
 		else if(e.getSource() == getjDialogCadastrarCliente().getjTFieldTelefone()) {
-			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldTelefone());
+			Mascara.mascaraTelefone(getjDialogCadastrarCliente().getjTFieldTelefone());
 		}	
 	}
 

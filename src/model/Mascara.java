@@ -223,17 +223,20 @@ public class  Mascara {
 	 * O método mascaraAno() formata o campo para receber ano.
 	 * @return MaskFormatter
 	 */
-	public static MaskFormatter mascaraAno() {	
-
-		try {
-			MaskFormatter mask = new MaskFormatter("####");//para colocar apenas anos de veiculos 		
-			return mask;
+	public static void mascaraAno(JTextField ano) {	
+		// Coloca tudo em maiúsculo e retira qualquer caracter que não seja números
+		String saida = ano.getText().toUpperCase().replaceAll("\\D", "");
+	
+		String n = "\\d"; // ReGex para números
 			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		// Regex ano;
+		String[] regEx = {n, n, n, n};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+				
+		// Seta o texto no jtextfield
+		ano.setText(saida);
 	}
 	
 	

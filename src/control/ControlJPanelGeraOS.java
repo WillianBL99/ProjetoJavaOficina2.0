@@ -37,6 +37,8 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 		getjPanelGeraOS().getjTFieldKMAtual().addFocusListener(this);
 		getjPanelGeraOS().getjTFieldPlaca().addFocusListener(this);
 		getjPanelGeraOS().getjTFieldTelefone().addFocusListener(this);
+		
+		getjPanelGeraOS().getjTFieldAno().addKeyListener(this);
 	}
 	
 	
@@ -46,10 +48,6 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 	@Override
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
-		
-		if(e.getSource() == getjPanelGeraOS().getjTFieldAno() ) {
-			Mascara.setMascara(getjPanelGeraOS().getjTFieldAno(), Mascara.mascaraAno());
-		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldChassi() ) {
 			Mascara.setMascara(getjPanelGeraOS().getjTFieldChassi(), Mascara.mascaraChassi());
@@ -98,6 +96,11 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 		// Quando for digitado algo no campo de telefone
 		else if(e.getSource() == getjPanelGeraOS().getjTFieldTelefone()) {
 			Mascara.mascaraTelefone(getjPanelGeraOS().getjTFieldTelefone());
+		}
+		
+		// Quando for digitado algo no campo de ano do veículo
+		else if(e.getSource() == getjPanelGeraOS().getjTFieldAno()) {
+			Mascara.mascaraAno(getjPanelGeraOS().getjTFieldAno());
 		}
 	}
 	

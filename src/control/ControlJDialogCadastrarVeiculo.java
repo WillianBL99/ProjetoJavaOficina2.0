@@ -56,7 +56,9 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		getjDialogCadastrarVeiculo().getjTFieldChassi().addFocusListener(null);
 		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addFocusListener(null);
 		getjDialogCadastrarVeiculo().getjTFieldPlaca().addFocusListener(null);
+		
 		getjDialogCadastrarVeiculo().getjTFieldPlaca().addKeyListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldAno().addKeyListener(this);
 	}
 		
 		
@@ -77,9 +79,14 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Quando for digitado algo em placa
 		if(e.getSource() == getjDialogCadastrarVeiculo().getjTFieldPlaca()) {
 			Mascara.mascaraPlaca(getjDialogCadastrarVeiculo().getjTFieldPlaca());
+		}
+		
+		// Quando for digitado algo no campo ano veículo
+		else if(e.getSource() == getjDialogCadastrarVeiculo().getjTFieldAno()) {
+			Mascara.mascaraAno(getjDialogCadastrarVeiculo().getjTFieldAno());
 		}
 	}
 	

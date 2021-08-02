@@ -21,6 +21,7 @@ import dao.ModuloConexao;
 import icons.Icones;
 import model.Cores;
 import model.Fontes;
+import model.Mascara;
 import model.TabelaTemporaria;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -49,6 +50,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	private JDialogProcurarCliente jDialogProcurarCliente;
 	private ControlJDialogProcurarCliente_Venda controlJDialogProcurarCliente_Venda;
 	private DaoJPanelVendasProsseguir daoJPanelVendasProsseguir;
+	
 	private FormaPagamento formaPagamento;
 	private Float valorTotal;
 	private Float desconto;
@@ -95,6 +97,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		getjPanelVendasProsseguir().getjTFieldDesconto().addFocusListener(this);
 		getjPanelVendasProsseguir().getjTFieldValorPago().addFocusListener(this);
 		
+		getjPanelVendasProsseguir().getjTFieldDesconto().addKeyListener(this);
+		getjPanelVendasProsseguir().getjTFieldValorPago().addKeyListener(this);
 	}
 
 	
@@ -118,8 +122,15 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Quando for digitado algo no campo desconto
+		if(e.getSource() == getjPanelVendasProsseguir().getjTFieldDesconto()) {
+			Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldDesconto(), false);
+		}
 		
+		// Quando for digitado algo no campo valor pago
+		if(e.getSource() == getjPanelVendasProsseguir().getjTFieldValorPago()) {
+			Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldValorPago(), false);
+		}
 	}
 
 	@Override
@@ -198,6 +209,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			// Verifica se o valor atual é nullo
 			if(valorPagoValido()) {
 				getjPanelVendasProsseguir().getjTFieldValorPago().setText(String.format("%.2f", getValorPago()));
+				Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldValorPago(), false);
 			}
 			// caso o valor apgo não seja valido
 			else {
@@ -211,6 +223,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			// Verifica se o desconto atual é nullo
 			if(valorDescontoValido()) {
 				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format("%.2f", getDesconto()));
+				Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldDesconto(), false);
 			}
 			// caso o desconto não seja valido
 			else {
@@ -232,8 +245,9 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 				if(valorDescontoValido()) {
 					// atualizar valores da tela e variável
 					setValorPagar(getValorTotal() - getDesconto());
-					getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format(" R$ %.2f", getDesconto()));
-					getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format(" R$ %.2f", getValorPagar()));
+					Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldDesconto(), true);
+					getjPanelVendasProsseguir().getjTFieldValorPagar().setText(String.format("%.2f", getValorPagar()));
+					Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldValorPagar(), true);
 					getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
 					// verifica se está clicado em dinheiro e se o valor não está vazio
 					if(getFormaPagamento() == FormaPagamento.DINHEIRO
@@ -250,7 +264,8 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 			// se não digitou nada
 			else {
 				setDesconto(0f);
-				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format(" R$ %.2f", getDesconto()));
+				getjPanelVendasProsseguir().getjTFieldDesconto().setText(String.format("%.2f", getDesconto()));
+				Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldDesconto(), true);
 				getjPanelVendasProsseguir().getjTFieldValorPago().requestFocus();
 			}
 		}
@@ -265,6 +280,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 				if(valorPagoValido()){
 					// formata o campo valor pago
 					getjPanelVendasProsseguir().getjTFieldValorPago().setText(String.format(" R$ %.2f", getValorPago()));
+					Mascara.mascaraDinheiro(getjPanelVendasProsseguir().getjTFieldValorPago(), true);
 					atualizaTroco();
 				}
 				// Caso não seja válido
@@ -388,7 +404,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	
 	public void setValorTotal(String valorTotal) {
-		String valor = valorTotal.replace(" ", "").replace(",", ".").replace("R$", "");
+		String valor = valorTotal.replaceAll("[\\D&&[^,]]", "").replace(",", ".");
 		this.valorTotal = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
 	}
 	
@@ -406,7 +422,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	
 	public void setDesconto(String desconto) {
-		String valor = desconto.replace(" ", "").replace(",", ".").replace("R$", "");
+		String valor = desconto.replaceAll("[\\D&&[^,]]", "").replace(",", ".");
 		this.desconto = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
 	}
 	
@@ -422,7 +438,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	
 	public void setValorPagar(String valorPagar) {
-		String valor = valorPagar.replace(" ", "").replace(",", ".").replace("R$", "");
+		String valor = valorPagar.replaceAll("[\\D&&[^,]]", "").replace(",", ".");
 		this.valorPagar = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
 	}
 	
@@ -440,7 +456,7 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 	
 	
 	public void setValorPago(String valorPago) {
-		String valor = valorPago.replace(" ", "").replace(",", ".").replace("R$", "");
+		String valor = valorPago.replaceAll("[\\D&&[^,]]", "").replace(",", ".");
 		this.valorPago = (valor.isEmpty() ? -1352 : Float.parseFloat(valor));
 	}
 

@@ -35,10 +35,10 @@ public class DaoJDialogCadastrarProduto {
 			if(new Cadastrar().executeUpdate(
 					ComandosSQL.cadastrarProduto(),
 					getjDialogCadastrarProduto().getjTFieldCodigo().getText(),
-					getjDialogCadastrarProduto().getjTFieldDescricao().getText(),
-					getjDialogCadastrarProduto().getjTFieldMarca().getText(),
+					getjDialogCadastrarProduto().getjTFieldDescricao().getText().toUpperCase(),
+					getjDialogCadastrarProduto().getjTFieldMarca().getText().toUpperCase(),
 					getjDialogCadastrarProduto().getjTFieldQuantidade().getText(),
-					getjDialogCadastrarProduto().getjTFieldPreco().getText().replace(",", "").replace(" ", "")))
+					getjDialogCadastrarProduto().getjTFieldPreco().getText().replace(",", ".").replace("R$", "").replace(" ", "")))
 			{
 				insert = true;
 			} else {

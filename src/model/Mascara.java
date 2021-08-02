@@ -269,16 +269,34 @@ public class  Mascara {
 	 * @param moeda é a que o pais usa você pode definir ela com uso do locale e do decimalformatsimbolo e o decimal format
 	 * @return ele devolve a string formatada que devera ser setada novamente no campo que a mascara sera adicionada
 	 */	
-	public static String mascaraDinheiro(double valor, DecimalFormat moeda) {
+	public static void mascaraDinheiro(JTextField campo, boolean sifrao) {		
+		String saida = campo.getText().replaceAll("\\D", "");	
+		if(saida.isEmpty())
+			saida = "0";
 		
-		try {					
-			return moeda.format(valor);
-			
-		} catch (Exception e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		// ReGex para números
+		String n = "\\d";			
+		// Regex codigo;
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n};	
+		// Limita a quantidade de caracteres
+		saida = verificarCarcter(regEx, saida);	
+		// Retira os zeros antes do número
+		saida = String.format("%d", Long.parseLong(saida));
+		// Formata como '00#'.. '0##'.. '###'
+		if(saida.length() < 3) saida = String.format("%03d", Integer.parseInt(saida));	
+		
+		// Fomata como float
+		if(saida.length() < 6)
+			saida = saida.replaceAll("(\\d{1,3})(\\d{2}$)", "$1,$2");
+		else if(saida.length() < 9)
+			saida = saida.replaceAll("(\\d{1,3})(\\d{3})(\\d{2}$)", "$1.$2,$3");
+		else if(saida.length() < 12)
+			saida = saida.replaceAll("(\\d{1,3})(\\d{3})(\\d{3})(\\d{2}$)", "$1.$2.$3,$4");
+		
+		// formata como real
+		if(sifrao) saida = "R$ " + saida;
+		// passa o valor formatado para o campo
+		campo.setText(saida);
 	}
 	
 	

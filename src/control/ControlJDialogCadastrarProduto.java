@@ -3,6 +3,8 @@
  */
 package control;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +23,7 @@ import view.JFramePrincipal;
  * @author Paulo Uilian
  *
  */
-public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListener, WindowListener{
+public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListener, WindowListener, FocusListener{
 	
 	//** Início declaração de variáveis **
 	private JFramePrincipal jFramePrincipal;
@@ -30,6 +32,11 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	private ControlJPanelEstoque controlJPanelEstoque;
 	private boolean modalTela;
 	
+	private Integer codigo;
+	private Integer qtd;
+	private Float preco;
+	
+
 	//** Fim declaração de variáveis **	
 	public ControlJDialogCadastrarProduto(JFramePrincipal jFramePricipal, JDialogCadastrarProduto jDialogCadastrarVeiculo, ControlJPanelEstoque controlJPanelEstoque) {	
 		this.jFramePrincipal = jFramePricipal;
@@ -47,6 +54,8 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		
 		getjDialogCadastrarProduto().getjTFieldCodigo().addKeyListener(this);
 		getjDialogCadastrarProduto().getjTFieldPreco().addKeyListener(this);
+		
+		getjDialogCadastrarProduto().getjTFieldPreco().addFocusListener(this);
 	}
 		
 		
@@ -74,7 +83,7 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		
 		// Quando for digitador algo em dinheiro
 		else if(e.getSource() == getjDialogCadastrarProduto().getjTFieldPreco()) {
-			
+			Mascara.mascaraDinheiro(getjDialogCadastrarProduto().getjTFieldPreco(), false);
 		}
 			
 	}
@@ -89,12 +98,13 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 			 *  o preço do produto for maior que 0
 			 */
 			if(isCamposPreenchidos()) {
-				float preco = Float.parseFloat(getjDialogCadastrarProduto().getjTFieldPreco().getText().isEmpty() ? "0" : getjDialogCadastrarProduto().getjTFieldPreco().getText());
+				// Setar os métodos acessores
+				setAcessor();
 				// Se o preço não for menor ou igual a zero
-				if(preco > 0) {
+				if(getPreco() > 0) {
 					
 					// Verifica se é o único id no banco de dados
-					if(getdaoJDialogCadastrarProduto().idUnico(getjDialogCadastrarProduto().getjTFieldCodigo().getText())) {
+					if(getdaoJDialogCadastrarProduto().idUnico(getCodigo().toString())) {
 						// Caso a inserção seja realizada com sucesso será retornado o valor verdadeiro.
 						if(getdaoJDialogCadastrarProduto().cadastrarProduto()) {						
 
@@ -216,6 +226,16 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	}
 
 
+	/**
+	 * O método setAcessor() seta os métodos acessores 
+	 */
+	private void setAcessor() {
+		setCodigo(getjDialogCadastrarProduto().getjTFieldCodigo().getText());
+		setQtd(getjDialogCadastrarProduto().getjTFieldQuantidade().getText());
+		setPreco(getjDialogCadastrarProduto().getjTFieldPreco().getText());
+	}
+
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -243,6 +263,24 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 			
 	}	
 	
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		// Quando o campo preco ganhar o foco
+		if(e.getSource() == getjDialogCadastrarProduto().getjTFieldPreco()) {
+			Mascara.mascaraDinheiro(getjDialogCadastrarProduto().getjTFieldPreco(), false);
+		}		
+	}
+
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// Quando o campo preco perder o foco
+		if(e.getSource() == getjDialogCadastrarProduto().getjTFieldPreco()) {
+			Mascara.mascaraDinheiro(getjDialogCadastrarProduto().getjTFieldPreco(), true);
+		}
+		
+	}
 	
 	@Override
 	public void windowOpened(WindowEvent e) {
@@ -255,14 +293,14 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
+		getcontrolJPanelEstoque().atualizarTabela();	
+		getjFramePricipal().setEnabled(true);	
 	}
 
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		getjFramePricipal().setEnabled(true);	
-		getcontrolJPanelEstoque().atualizarTabela();	
 	}
 
 
@@ -296,8 +334,39 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 	//** Fim métodos sobrescritos **
 	
 	//** Início métodos da classe **
-	
+	public Integer getCodigo() {
+		return codigo;
+	}
 
+
+	public void setCodigo(String codigo) {
+		String value = codigo.replaceAll("\\D", "");
+		this.codigo = Integer.parseInt(value.isEmpty() ? "0" : value);
+	}
+
+
+	public Integer getQtd() {
+		return qtd;
+	}
+
+
+	public void setQtd(String qtd) {
+		String value = qtd.replaceAll("\\D", "");
+		this.qtd = Integer.parseInt(value.isEmpty() ? "0" : value);
+	}
+
+
+	public Float getPreco() {
+		return preco;
+	}
+
+
+	public void setPreco(String preco) {
+		String value = preco.replaceAll("[\\D&&[^,]]", "").replace(",", ".");
+		this.preco = Float.parseFloat(value.isEmpty() ? "0" : value);
+	}
+
+	
 	public JFramePrincipal getjFramePricipal() {
 		if(jFramePrincipal == null){
 			jFramePrincipal = new JFramePrincipal();
@@ -345,7 +414,7 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 				!getjDialogCadastrarProduto().getjTFieldDescricao().getText().isEmpty() &&
 				!getjDialogCadastrarProduto().getjTFieldMarca().getText().isEmpty() &&
 				!getjDialogCadastrarProduto().getjTFieldQuantidade().getText().isEmpty() &&
-				!getjDialogCadastrarProduto().getjTFieldPreco().getText().replace(",", "").replace(".", "").replace(" ", "").isEmpty()) 
+				!getjDialogCadastrarProduto().getjTFieldPreco().getText().replaceAll("\\D", "").isEmpty()) 
 		{
 			return true;
 		} else {
@@ -385,5 +454,6 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 		getjDialogCadastrarProduto().getjTFieldCodigo().requestFocus();
 	}
 	//** Fim métodos da classe **
+
 	
 }

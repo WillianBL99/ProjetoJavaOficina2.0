@@ -39,6 +39,7 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 		getjPanelGeraOS().getjTFieldTelefone().addFocusListener(this);
 		
 		getjPanelGeraOS().getjTFieldAno().addKeyListener(this);
+		getjPanelGeraOS().getjTFieldKMAtual().addKeyListener(this);
 	}
 	
 	
@@ -51,12 +52,6 @@ public class ControlJPanelGeraOS implements FocusListener, KeyListener{
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldChassi() ) {
 			Mascara.setMascara(getjPanelGeraOS().getjTFieldChassi(), Mascara.mascaraChassi());
-		}
-		
-		if(e.getSource() == getjPanelGeraOS().getjTFieldKMAtual() ) {
-			
-			Mascara.setMascara(getjPanelGeraOS().getjTFieldKMAtual(), Mascara.mascaraQuilometragem());
-
 		}
 		
 		if(e.getSource() == getjPanelGeraOS().getjTFieldPlaca() ) {

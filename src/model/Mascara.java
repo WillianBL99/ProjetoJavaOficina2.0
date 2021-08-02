@@ -201,21 +201,23 @@ public class  Mascara {
 	 * O método mascaraQuilometragem() formata o campo para quilometros.
 	 * @return MaskFormatter
 	 */
-	public static MaskFormatter mascaraQuilometragem() {		
-
-		try {
-			// Limitador de tamanho e tambem para receber apenas numeros
-			MaskFormatter mask = new MaskFormatter("##########");
-			// Serve para se não usar o tamanho todo da mascara o que fica vazio ele colocar espaço vazio no lugar
-			mask.setPlaceholderCharacter(' ');
-		
-			return mask;
+	public static void mascaraQuilometragem(JTextField campo) {	
+		// Coloca tudo em maiúsculo e retira qualquer caracter que não seja números
+		String saida = campo.getText().toUpperCase().replaceAll("\\D", "");
+	
+		String n = "\\d"; // ReGex para números
 			
-		} catch (ParseException e) {
-			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
-			return null;
-		}
+		// Regex de uma placa;
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n};
+		
+		// Fomata como float
+		if(saida.length() < 7)
+			saida = saida.replaceAll("(\\d{1,3})(\\d{3}$)", "$1.$2");
+		else if(saida.length() < 10)
+			saida = saida.replaceAll("(\\d{1,3})(\\d{3})(\\d{3}$)", "$1.$2.$3");
+		
+		// Seta o texto no jtextfield
+		campo.setText(saida);
 	}
 	
 	
@@ -264,11 +266,11 @@ public class  Mascara {
 		
 	
 	/**
-	 * O método mascaraDinheiro(double @{code valor}, DecimalFormat {@code moeda}
-	 * @param valor deve ser passado o numero double que sera convertido 
-	 * @param moeda é a que o pais usa você pode definir ela com uso do locale e do decimalformatsimbolo e o decimal format
-	 * @return ele devolve a string formatada que devera ser setada novamente no campo que a mascara sera adicionada
-	 */	
+	 * O método mascaraDinheiro(JTextField @{code campo}, boolena {@code sifrao}), formata o campo
+	 * no estilo de moeda brasileira.
+	 * @param campo rebe o JTextFielde que será formatado para moeda.
+	 * @param sifrao se for passado como {@code true} será inserido o 'R$' antes do número.
+	 */
 	public static void mascaraDinheiro(JTextField campo, boolean sifrao) {		
 		String saida = campo.getText().replaceAll("\\D", "");	
 		if(saida.isEmpty())
@@ -276,7 +278,7 @@ public class  Mascara {
 		
 		// ReGex para números
 		String n = "\\d";			
-		// Regex codigo;
+		// Regex dinheiro;
 		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n};	
 		// Limita a quantidade de caracteres
 		saida = verificarCarcter(regEx, saida);	
@@ -313,7 +315,7 @@ public class  Mascara {
 			
 		} catch (ParseException e) {
 			// Erro ao passar a mascara
-			System.err.println("Erro - mascaraCPF" + e.getMessage());
+			System.err.println("Erro - mascara nulla" + e.getMessage());
 			return null;
 		}
 	}	

@@ -52,13 +52,14 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		getjDialogCadastrarVeiculo().addWindowListener(this);
 		getjDialogCadastrarVeiculo().getjButtonCancelar().addMouseListener(this);
 		getjDialogCadastrarVeiculo().getjButtonCadastrarVeiculo().addMouseListener(this);
-		getjDialogCadastrarVeiculo().getjTFieldAno().addFocusListener(null);
-		getjDialogCadastrarVeiculo().getjTFieldChassi().addFocusListener(null);
-		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addFocusListener(null);
-		getjDialogCadastrarVeiculo().getjTFieldPlaca().addFocusListener(null);
+		getjDialogCadastrarVeiculo().getjTFieldAno().addFocusListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldChassi().addFocusListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addFocusListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldPlaca().addFocusListener(this);
 		
 		getjDialogCadastrarVeiculo().getjTFieldPlaca().addKeyListener(this);
 		getjDialogCadastrarVeiculo().getjTFieldAno().addKeyListener(this);
+		getjDialogCadastrarVeiculo().getjTFieldKMAtual().addKeyListener(this);
 	}
 		
 		
@@ -87,6 +88,12 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 		// Quando for digitado algo no campo ano veículo
 		else if(e.getSource() == getjDialogCadastrarVeiculo().getjTFieldAno()) {
 			Mascara.mascaraAno(getjDialogCadastrarVeiculo().getjTFieldAno());
+		}
+		
+		// Quando for digitado algo no campo kmAtual do veículo
+		else if(e.getSource() == getjDialogCadastrarVeiculo().getjTFieldKMAtual()) {
+			Mascara.mascaraQuilometragem(getjDialogCadastrarVeiculo().getjTFieldKMAtual());
+			System.out.println("chamou  kmatual");
 		}
 	}
 	

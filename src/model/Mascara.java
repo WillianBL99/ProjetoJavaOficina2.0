@@ -64,6 +64,40 @@ public class  Mascara {
 	
 	
 	/**
+	 * O método mascaraCNPj() formata o campo para CNPj.
+	 * @return MaskFormatter
+	 */
+	public static void mascaraCNPj(JTextField cnpj) {
+		// Coloca em em caixa alta e retira tudo que não for número
+		String saida = cnpj.getText().toUpperCase().replaceAll("\\D", "");
+		
+		String n = "\\d"; // RegEx para números
+		
+		// RegEx de um cnpj
+		String[] regEx = {n, n, n, n, n, n, n, n, n, n, n, n, n, n};
+		
+		// Retorna a sómente a parte válida da variável 'saida'
+		saida = verificarCarcter(regEx, saida);
+		
+		if(saida.length() >= 3 && saida.length() <= 5)
+			saida = saida.replaceAll("(\\d{2})(\\d{1,3})", "$1.$2");
+		
+		else if(saida.length() >= 6 && saida.length() <= 8)
+			saida = saida.replaceAll("(\\d{2})(\\d{3})(\\d{1,3})", "$1.$2.$3");
+		
+		else if(saida.length() >= 9 && saida.length() <= 12)
+			saida = saida.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{1,4})", "$1.$2.$3/$4");
+		
+		else if(saida.length() >= 13 && saida.length() <= 14)
+			saida = saida.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{1,2})", "$1.$2.$3/$4-$5");
+		
+		// Seta o texto no jTextField
+		cnpj.setText(saida);
+	}
+	
+	
+	
+	/**
 	 * O método mascaraCPF() formata o campo para CPF.
 	 * @return MaskFormatter
 	 */

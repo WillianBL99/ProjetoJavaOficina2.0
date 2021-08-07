@@ -27,6 +27,10 @@ import view.JFramePrincipal;
 public class ControlJDialogCadastrarCliente implements MouseListener, KeyListener, WindowListener, FocusListener{
 	
 	//** Início declaração de variáveis **
+	private enum TipoPessoa {fisica, juridica};
+	
+	private TipoPessoa tipoPessoa;
+	
 	private JFramePrincipal jFramePrincipal;
 	private DaoJDialogCadastrarCliente daoJDialogCadastrarCliente;
 	private JDialogProcurarCliente jDialogProcurarCliente;
@@ -39,6 +43,8 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		this.jDialogProcurarCliente = jDialogProcurarCliente;
 		this.jDialogCadastrarCliente = jDialogCadastrarCliente;
 		setmodal(this.jDialogProcurarCliente.ismodalTela());
+		// define o tipo de pessoa ao inicializar a tela
+		setTipoPessoa(TipoPessoa.fisica);
 		AddEvent();
 	}
 
@@ -46,7 +52,10 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	private void AddEvent() {
 		getjDialogCadastrarCliente().addWindowListener(this);
 		getjDialogCadastrarCliente().getjButtonCadastrarCliente().addMouseListener(this);
-		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);		
+		getjDialogCadastrarCliente().getjButtonCancelar().addMouseListener(this);
+		getjDialogCadastrarCliente().getjRadioButtonCnpj().addMouseListener(this);
+		getjDialogCadastrarCliente().getjRadioButtonCpf().addMouseListener(this);
+		
 		getjDialogCadastrarCliente().getjTFieldCpf().addFocusListener(this);
 		getjDialogCadastrarCliente().getjTFieldTelefone().addFocusListener(this);
 		
@@ -72,12 +81,24 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// Quando for digitado algo em cpf
+		// Quando for digitado algo em cpf/cnpj
 		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {
+			// Verificar o tipo de pessoa
+			switch(getTipoPessoa()) {
+			// Caso seja pessoa física a mascara será de cpf
+			case fisica:
+				Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
+				break;
+				
+			// Caso seja jurídica a mascara será de cnpj
+			case juridica:
+				Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
+				break;
+			}
 			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
 		}	
 		
-		// Quando for digitado algo em cpf
+		// Quando for digitado algo em telefone
 		else if(e.getSource() == getjDialogCadastrarCliente().getjTFieldTelefone()) {
 			Mascara.mascaraTelefone(getjDialogCadastrarCliente().getjTFieldTelefone());
 		}	
@@ -147,6 +168,20 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 					
 				}
 			}
+		}
+		
+		
+		// Quando for clicado no radio button cpf
+		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCpf()) {
+			setTipoPessoa(TipoPessoa.fisica);
+			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
+		}
+		
+		
+		// Quando for clicado no radio button cnpj
+		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCnpj()) {
+			setTipoPessoa(TipoPessoa.juridica);
+			Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
 		}
 		
 	}
@@ -244,6 +279,20 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	//** Fim métodos sobrescritos **
 	
 	//** Início métodos da classe **
+	
+	
+	/**
+	 * O método getTipoPessoa() Retorna se foi selecionado pessoa física ou jurídica
+	 * @return TipoPessoa
+	 */
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+	
+	
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
 	
 
 	public JFramePrincipal getjFramePricipal() {

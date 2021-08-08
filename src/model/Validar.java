@@ -110,11 +110,49 @@ public class Validar {
 	}
 	
 	
+	/**
+	 * O método cnpjValido(String @{code cnpj}), Verifica se o cnpj inserido é válido
+	 * @param cnpj
+	 * @return boolean Retorna verdadeiro caso o cnpj seja válido
+	 */
+	public static boolean cnpjValido(String cnpj) {
+		boolean retorno = false;
+		// Verifica se o tamanho do cnpj é válido
+		if(cnpj.length() == 14) {
+			// verifica se o cnpj inserido é válido
+			retorno = cnpj.equals(verificaCNPj(cnpj.substring(0, 12)));
+		}
+		// Retorna o resultado da verificação
+		return retorno;
+	}
 	
 	
-	
-	
-	
-	
-	
+	/**
+	 * O método verificaCNPj(String @{code cnpj}), recebe os 12 primeiros números do cnpj e retorna o cnpj completo.
+	 * @param cnpj
+	 * @return String
+	 */
+	private static String verificaCNPj(String cnpj) {
+		if(cnpj.length() == 14)
+			return cnpj;
+		// Base para multiplicação de cada número do cnpj
+		int[] base = {5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8, 9};
+		// variável auxiliar para a verificação do 10º dv
+		int j = 0;
+		// Caso seja a criação do 10º DV
+		if(cnpj.length() < 13) j = 1;
+		
+		// Utilizada para cálcular o dv
+		Integer number = 0;
+		
+		// itera o cnpj
+		for(int i = 0; i < cnpj.length(); i++) {
+			// recebe a soma de todas as multiplicações
+			number += Integer.parseInt(String.valueOf(cnpj.charAt(i))) * base[i+j];
+		}
+		// gera o código DV
+		number = number%11;
+		
+		return verificaCNPj(cnpj + number.toString());
+	}
 }

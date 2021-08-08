@@ -12,10 +12,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import dao.DaoJDialogCadastrarCliente;
+import model.Cores;
 import model.Mascara;
+import model.Validar;
 import view.JDialogCadastrarCliente;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
@@ -163,7 +166,7 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 				// Se foi confirmado o cancelamento (option == 0) a tela procurar cliente será fechada
 				if(option == 0) {
 					getjDialogProcurarCliente().setEnabled(true);
-					getjDialogProcurarCliente().dispose();
+					getjDialogCadastrarCliente().dispose();
 					
 				}
 			}
@@ -234,8 +237,16 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {		
+			if(validarCNPJ()) {
+				getjDialogCadastrarCliente().getjTFieldCpf().setBorder(BorderFactory.
+						createLineBorder(Cores.cinza2, 1, false));
+			}
+			else {
+				getjDialogCadastrarCliente().getjTFieldCpf().setBorder(BorderFactory.
+						createLineBorder(Cores.vermelho, 1, false));				
+			}
+		}
 	}
 
 
@@ -385,6 +396,17 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	//** Fim métodos da classe **
 
 
+	/**
+	 * O método validarCNPJ(), verifica se o cnpj está preenchido corretamente
+	 * @return boolean
+	 */
+	private boolean validarCNPJ() {
+		String cnpj = getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", "");
+		// se não estiver vazio
+		if(!cnpj.isEmpty())
+			return Validar.cnpjValido(cnpj);
+		return false;
+	}
 
 	
 

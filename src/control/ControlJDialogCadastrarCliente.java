@@ -237,15 +237,32 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {		
-			if(validarCNPJ()) {
+		// Quando o campo cpf/cnpj perder o foco
+		if(e.getSource() == getjDialogCadastrarCliente().getjTFieldCpf()) {	
+			// Caso o número inserido seja válido
+			boolean isValido = false;
+			// Verificar se foi escolhido cpf ou cnpj
+			switch(getTipoPessoa()) {
+			// Tipo de pessoa jurídica
+			case juridica:
+				// Se o cnpj for válido recebe true
+				isValido = validarCNPJ();
+				break;
+				
+			// Tipo de pessoa física
+			case fisica:
+				// Se o cpf for válido recebe true
+				isValido = validarCPF();
+				break;
+			}
+			// Se o cnpj/cpf for válido
+			if(isValido)
 				getjDialogCadastrarCliente().getjTFieldCpf().setBorder(BorderFactory.
 						createLineBorder(Cores.cinza2, 1, false));
-			}
-			else {
+			// Caso o cnpj/cpf não seja válido
+			else 
 				getjDialogCadastrarCliente().getjTFieldCpf().setBorder(BorderFactory.
 						createLineBorder(Cores.vermelho, 1, false));				
-			}
 		}
 	}
 
@@ -396,6 +413,19 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	//** Fim métodos da classe **
 
 
+	/**
+	 * O método validarCPF(), verifica se o cpf está preenchido corretamente
+	 * @return boolean
+	 */
+	private boolean validarCPF() {
+		String cpf = getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", "");
+		// se não estiver vazio
+		if(!cpf.isEmpty())
+			return Validar.cpfValido(cpf);
+		return false;
+	}
+	
+	
 	/**
 	 * O método validarCNPJ(), verifica se o cnpj está preenchido corretamente
 	 * @return boolean

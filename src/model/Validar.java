@@ -111,6 +111,53 @@ public class Validar {
 	
 	
 	/**
+	 * O método cpfValido(String @{code cpf}), Verifica se o cpf inserido é válido
+	 * @param cnpj
+	 * @return boolean Retorna verdadeiro caso o cpf seja válido
+	 */
+	public static boolean cpfValido(String cpf) {
+		boolean retorno = false;
+		// Verifica se o tamanho do cnpj é válido
+		if(cpf.length() == 11) {
+			// verifica se o cnpj inserido é válido
+			retorno = cpf.equals(verificarCPF(cpf.substring(0, 9)));
+		}
+		// Retorna o resultado da verificação
+		return retorno;
+	}
+	
+	
+	/**
+	 * O método verificarCPF(String @{code cpf}), recebe os 9 primeiros números do cpf e retorna o cpf completo.
+	 * @param cpf
+	 * @return String
+	 */
+	private static String verificarCPF(String cpf) {
+		if(cpf.length() == 11)
+			return cpf;
+		// Base para multiplicação de cada número do cnpj
+		int[] base = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+		// variável auxiliar para a verificação do 10º dv
+		int j = 0;
+		// Caso seja a criação do 10º DV
+		if(cpf.length() < 10) j = 1;
+		
+		// Utilizada para cálcular o dv
+		Integer number = 0;
+		
+		// itera o cpf
+		for(int i = 0; i < cpf.length(); i++) {
+			// recebe a soma de todas as multiplicações
+			number += Integer.parseInt(String.valueOf(cpf.charAt(i))) * base[i+j];
+		}
+		// gera o código DV
+		number = number%11;
+		
+		return verificarCPF(cpf + number.toString());
+	}
+	
+	
+	/**
 	 * O método cnpjValido(String @{code cnpj}), Verifica se o cnpj inserido é válido
 	 * @param cnpj
 	 * @return boolean Retorna verdadeiro caso o cnpj seja válido
@@ -139,7 +186,7 @@ public class Validar {
 		int[] base = {5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8, 9};
 		// variável auxiliar para a verificação do 10º dv
 		int j = 0;
-		// Caso seja a criação do 10º DV
+		// Caso seja a criação do 13º DV
 		if(cnpj.length() < 13) j = 1;
 		
 		// Utilizada para cálcular o dv

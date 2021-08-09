@@ -4,7 +4,6 @@
 package dao;
 
 import view.JPanelVendasNovo;
-import view.JFramePrincipal;
 
 /**
  * @author Paulo Uilian
@@ -15,10 +14,8 @@ public class DaoJPanelVendasNovo {
 	// Classe de consulta de dados no banco de dados
 	private JPanelVendasNovo jPanelVendasNovo;
 	private ModuloConexao moduloConexao;
-	private JFramePrincipal jFramePrincipal;
 	
-	public DaoJPanelVendasNovo(JFramePrincipal jFramePrincipal, JPanelVendasNovo jPanelVendasNovo) {
-		this.jFramePrincipal = jFramePrincipal;
+	public DaoJPanelVendasNovo(JPanelVendasNovo jPanelVendasNovo) {
 		this.jPanelVendasNovo = jPanelVendasNovo;
 	}
 	
@@ -155,13 +152,6 @@ public class DaoJPanelVendasNovo {
 	
 	
 	// Metodos getters e setters
-	
-	private JFramePrincipal getjFramePrincipal() {
-		if(jFramePrincipal == null) {
-			jFramePrincipal = new JFramePrincipal();
-		}
-		return jFramePrincipal;
-	}
 	
 	
 	private JPanelVendasNovo getjPanelVendasNovo() {

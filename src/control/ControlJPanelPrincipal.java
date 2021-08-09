@@ -116,7 +116,11 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 
 	
 	@Override
-	public void mouseClicked(MouseEvent e) { // Quando algum botão for clicado		
+	public void mouseClicked(MouseEvent e) {}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) { // Quando algum botão for clicado		
 
 		// Qando o botão Início for clicado		
 		if(e.getSource() == this.getjPanelPrincipal().getJButtonInicio()) {		
@@ -228,13 +232,6 @@ public class ControlJPanelPrincipal  implements MouseListener, KeyListener {
 			new JDialogInserirServico(getjFramePricipal(), true);
 		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

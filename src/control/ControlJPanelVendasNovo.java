@@ -415,7 +415,7 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 
 	public DaoJPanelVendasNovo getdaoJPanelPreOrcamentoNovo() {
 		if (daoJPanelVendasNovo == null) {
-			daoJPanelVendasNovo = new DaoJPanelVendasNovo(getjFramePricipal(), getjPanelVendasNovo());
+			daoJPanelVendasNovo = new DaoJPanelVendasNovo(getjPanelVendasNovo());
 		}
 		return daoJPanelVendasNovo;
 	}

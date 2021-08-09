@@ -123,7 +123,7 @@ public class Validar {
 			retorno = cpf.equals(verificarCPF(cpf.substring(0, 9)));
 		}
 		// Retorna o resultado da verificação
-		return retorno;
+		return retorno; 
 	}
 	
 	

@@ -181,12 +181,14 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		
 		// Quando for clicado no radio button cpf
 		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCpf()) {
+			System.out.println("cpfclicado");
 			setTipoPessoa(TipoPessoa.fisica);
 		}
 		
 		
 		// Quando for clicado no radio button cnpj
 		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCnpj()) {
+			System.out.println("npjclicado");
 			setTipoPessoa(TipoPessoa.juridica);
 		}
 		
@@ -315,18 +317,16 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	
 	public void setTipoPessoa(TipoPessoa tipoPessoa) {
-		if(this.tipoPessoa != tipoPessoa) {
+		if(getTipoPessoa() != tipoPessoa) {
 			this.tipoPessoa = tipoPessoa;
 			// se for selecionada máscara pessoa jurídica
-			if(tipoPessoa == TipoPessoa.juridica) {
-				getjDialogCadastrarCliente().getjRadioButtonCnpj().setSelected(true);
+			if(getTipoPessoa() == TipoPessoa.juridica) {
 				getjDialogCadastrarCliente().getjRadioButtonCpf().setSelected(false);
 				Mascara.mascaraCNPj(getjDialogCadastrarCliente().getjTFieldCpf());
 			}
 			// se for selecionada pessoa física
 			else {
 				getjDialogCadastrarCliente().getjRadioButtonCnpj().setSelected(false);
-				getjDialogCadastrarCliente().getjRadioButtonCpf().setSelected(true);
 				Mascara.mascaraCPF(getjDialogCadastrarCliente().getjTFieldCpf());
 				
 			}

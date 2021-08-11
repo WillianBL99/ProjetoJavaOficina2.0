@@ -59,7 +59,7 @@ public class DaoJDialogCadastrarCliente {
 				if(getModuloConexao().executeUpdate(
 						ComandosSQL.cadastrarClientesCnpj(),
 						getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", ""), // retira os "." e "-" da string
-						getjDialogCadastrarCliente().getjLabelNome().getText(),
+						getjDialogCadastrarCliente().getjTFieldNome().getText(),
 						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
 						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replaceAll("\\D", ""), // retira os "(", ")", " " e "-" da string
 						getjDialogCadastrarCliente().getjTFieldCidade().getText(),

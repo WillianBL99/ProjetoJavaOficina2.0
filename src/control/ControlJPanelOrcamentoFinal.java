@@ -92,11 +92,6 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getSource() == getjPanelOrcamentoFinal().getjButtonNovoOrcamentoFinal()) {
-			// quando o botão novo pré orçamento for clicado
-			this.gerarNovoOrcamentoFinal();
-		}
-		
 	}
 	
 	@Override
@@ -126,7 +121,11 @@ public class ControlJPanelOrcamentoFinal  implements MouseListener, KeyListener,
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == getjPanelOrcamentoFinal().getjButtonNovoOrcamentoFinal()) {
+			// quando o botão novo pré orçamento for clicado
+			this.gerarNovoOrcamentoFinal();
+		}
 		
 	}
 

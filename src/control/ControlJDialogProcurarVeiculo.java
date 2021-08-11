@@ -89,6 +89,12 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão procurar for clicado
 		if(e.getSource() == getjDialogProcurarVeiculo().getjButtonProcurar()) {
 			// ser for a caixa de texto estiver vazia exibe uma mensagem de alerta
@@ -218,13 +224,6 @@ public class ControlJDialogProcurarVeiculo implements MouseListener, KeyListener
 				getjDialogProcurarVeiculo().dispose();
 			}
 		}		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

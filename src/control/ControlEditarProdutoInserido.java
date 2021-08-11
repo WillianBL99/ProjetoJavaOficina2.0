@@ -50,7 +50,7 @@ public class ControlEditarProdutoInserido extends ControlJDialogInserirProduto {
 
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão AterarProduto for clicado
 		if(e.getSource() == super.getjDialogInserirProduto().getjButtonInserirPeca()) {
 			super.getjDialogInserirProduto().getjButtonInserirPeca().requestFocus();

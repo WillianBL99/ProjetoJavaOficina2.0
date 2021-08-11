@@ -78,18 +78,17 @@ public class ControlJPanelLogin implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == getjPanelLogin().getjButtonEntrar()) {			
-			validaLogin(); // método da classe
-			
-		}
+		
 	}
 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == getjPanelLogin().getjButtonEntrar()) {			
+			validaLogin(); // método da classe
 			
+		}
 	}
 
 

@@ -2,10 +2,6 @@
  * 
  */
 package control;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import model.Cores;
 import view.JDialogProcurarCliente;
 import view.JFramePrincipal;
 import view.JPanelVendasProsseguir;
@@ -49,7 +45,6 @@ public class ControlJDialogProcurarCliente_Venda extends ControlJDialogProcurarC
 	
 	
 	private void setarVariaveis() {
-		System.out.println("chamou");
 		int index = super.getjDialogProcurarCliente().getjTableCliente().getSelectedRow();
 		String id = super.getjDialogProcurarCliente().getjTableCliente().getValueAt(index, 0).toString();
 		String nome = super.getjDialogProcurarCliente().getjTableCliente().getValueAt(index, 3).toString();

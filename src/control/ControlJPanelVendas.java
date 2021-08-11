@@ -114,33 +114,7 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// Quando o botão nova venda for clicado
-		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
-			jPanelVendasNovo = null;
-			controlJPanelVendasNovo = null;
-			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
-			getControlJPanelVendasNovo();
-		}
 		
-		
-		// Quando o botão pesquisar todos for clicado
-		else if(e.getSource() == getjPanelVendas().getjButtonPesquisarTodos()) {
-			// Realizar buscas de todos as vendas
-			getjPanelVendas().getjTFieldFormPesquisa().setText("");
-			getDaoJPanelVendas().consultarVendas();
-		}
-		
-		
-		// Quando o botão filtrar for clicado
-		else if(e.getSource() == getjPanelVendas().getjButtonFiltrar()) {
-			// Colocar foco no jtfild
-			getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
-			
-			// Validar os campos de data
-			if (verificarCamposData())
-				getDaoJPanelVendas().consultaVendasData(getData1(), getData2());
-			
-		}
 	}
 	
 	
@@ -179,8 +153,33 @@ public class ControlJPanelVendas implements MouseListener, KeyListener, FocusLis
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// Quando o botão nova venda for clicado
+		if(e.getSource() == getjPanelVendas().getjButtonNovaVenda()) {
+			jPanelVendasNovo = null;
+			controlJPanelVendasNovo = null;
+			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
+			getControlJPanelVendasNovo();
+		}
 		
+		
+		// Quando o botão pesquisar todos for clicado
+		else if(e.getSource() == getjPanelVendas().getjButtonPesquisarTodos()) {
+			// Realizar buscas de todos as vendas
+			getjPanelVendas().getjTFieldFormPesquisa().setText("");
+			getDaoJPanelVendas().consultarVendas();
+		}
+		
+		
+		// Quando o botão filtrar for clicado
+		else if(e.getSource() == getjPanelVendas().getjButtonFiltrar()) {
+			// Colocar foco no jtfild
+			getjPanelVendas().getjTFieldFormPesquisa().requestFocus();
+			
+			// Validar os campos de data
+			if (verificarCamposData())
+				getDaoJPanelVendas().consultaVendasData(getData1(), getData2());
+			
+		}
 	}
 
 	@Override

@@ -135,6 +135,11 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando clicar no botão voltar
 		if(e.getSource() == getjPanelVendasProsseguir().getjButtonVoltar()) {
 			getjFramePricipal().alterarJPanel(getjPanelVendasNovo());
@@ -175,12 +180,6 @@ public class ControlJPanelVendasProsseguir implements MouseListener, KeyListener
 		else if(e.getSource() == getjPanelVendasProsseguir().getjButtonFinalizarCompra()) {						
 			validarVenda();
 		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

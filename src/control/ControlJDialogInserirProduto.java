@@ -131,6 +131,12 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
 		// Quando o botão inserir produto for clicado
 		if(e.getSource() == getjDialogInserirProduto().getjButtonInserirPeca()) {
 			//tira o foco do campo de quantidadeInserir
@@ -259,13 +265,6 @@ public class ControlJDialogInserirProduto implements MouseListener, KeyListener,
 			}
 		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

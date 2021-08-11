@@ -54,6 +54,12 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão adicionar produto for clicado
 		if(e.getSource() == getjPanelEstoque().getjButtonAdicionar()) {
 			// Vetor de String com os nomes das opções que apareceram no joptionpane.
@@ -200,13 +206,6 @@ public class ControlJPanelEstoque  implements MouseListener, KeyListener{
 			
 		}
 		*/
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

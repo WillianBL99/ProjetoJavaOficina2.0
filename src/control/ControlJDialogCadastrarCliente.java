@@ -109,6 +109,12 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão cadastrar cliente for clicado
 		if(e.getSource() == getjDialogCadastrarCliente().getjButtonCadastrarCliente()) {
 		
@@ -184,13 +190,6 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 			setTipoPessoa(TipoPessoa.juridica);
 		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

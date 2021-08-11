@@ -94,25 +94,20 @@ public class ControlJDialogInserirServico implements MouseListener, KeyListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		System.out.println("botão clicou");
-		// Quando for clicado no jbutton inserir serviço
-		if(e.getSource() == getjDialogInserirServico().getjButtonProcurarServico()) {
-			telaVisivel(BotaoClicado.INSERIR_SERVICO);
-			System.out.println("botão inserir serviço");
-		}
-		
-		// Quando for clicado no jbutton descrever serviço
-		else if(e.getSource() == getjDialogInserirServico().getjButtonDescreverServico()) {
-			telaVisivel(BotaoClicado.DESCREVER_SERVICO);
-			System.out.println("botão descrever serviço");
-		}
 	}
 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
+		// Quando for clicado no jbutton inserir serviço
+		if(e.getSource() == getjDialogInserirServico().getjButtonProcurarServico()) {
+			telaVisivel(BotaoClicado.INSERIR_SERVICO);
+		}
+		
+		// Quando for clicado no jbutton descrever serviço
+		else if(e.getSource() == getjDialogInserirServico().getjButtonDescreverServico()) {
+			telaVisivel(BotaoClicado.DESCREVER_SERVICO);
+		}
 	}
 
 

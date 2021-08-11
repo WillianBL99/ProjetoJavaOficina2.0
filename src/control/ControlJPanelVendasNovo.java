@@ -143,6 +143,11 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão cancelar for clicado
 		if (e.getSource() == getjPanelVendasNovo().getjButtonCancelar()) {
 			// Verificar se tem algum ítem na tabela de produtos
@@ -368,12 +373,6 @@ public class ControlJPanelVendasNovo implements MouseListener, KeyListener {
 			}
 			
 		}
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

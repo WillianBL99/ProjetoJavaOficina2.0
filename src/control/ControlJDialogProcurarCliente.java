@@ -94,6 +94,12 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// quando o botão de pesquisar for clicado na tela de proucar clientes
 		if(e.getSource() == getjDialogProcurarCliente().getjButtonPesquisar()) {
 			// ser a caixa de texto estiver vazia exibe uma mensagem de alerta
@@ -268,13 +274,6 @@ public class ControlJDialogProcurarCliente implements MouseListener, KeyListener
 				
 			}
 		}
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

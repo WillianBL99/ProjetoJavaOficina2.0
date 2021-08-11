@@ -117,6 +117,11 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener, F
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
 		if(e.getSource() == getjPanelPreOrcamento().getjButtonNovoPreOrcamento()) {
 			// quando o botão novo pré orçamento for clicado
 			this.controlJpanelPreOrcamentoNovo = null;
@@ -125,12 +130,6 @@ public class ControlJPanelPreOrcamento  implements MouseListener, KeyListener, F
 					getjPanelPreOrcamentoNovo().getTituloDescricaoTela());
 			this.getcontrolJpanelPreOrcamentoNovo();
 		}
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -90,6 +90,22 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	/**
+	 * O método setAcessor() seta os métodos acessores 
+	 */
+	private void setAcessor() {
+		setCodigo(getjDialogCadastrarProduto().getjTFieldCodigo().getText());
+		setQtd(getjDialogCadastrarProduto().getjTFieldQuantidade().getText());
+		setPreco(getjDialogCadastrarProduto().getjTFieldPreco().getText());
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão cadastrar produto for clicado
 		if(e.getSource() == getjDialogCadastrarProduto().getjButtonCadastrarCliente()) {
 			/*
@@ -223,23 +239,6 @@ public class ControlJDialogCadastrarProduto  implements MouseListener, KeyListen
 			}
 		}
 		
-	}
-
-
-	/**
-	 * O método setAcessor() seta os métodos acessores 
-	 */
-	private void setAcessor() {
-		setCodigo(getjDialogCadastrarProduto().getjTFieldCodigo().getText());
-		setQtd(getjDialogCadastrarProduto().getjTFieldQuantidade().getText());
-		setPreco(getjDialogCadastrarProduto().getjTFieldPreco().getText());
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

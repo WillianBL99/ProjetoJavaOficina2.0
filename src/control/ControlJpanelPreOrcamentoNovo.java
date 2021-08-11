@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import dao.DaoJPanelPreOrcamentoNovo;
 import model.Cores;
-import model.Mascara;
 import view.JDialogInserirProduto;
 import view.JDialogInserirServico;
 import view.JDialogProcurarCliente;
@@ -125,6 +124,24 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+	
+	@Override
+	public void focusGained(FocusEvent e) {
+		
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// quando o botão "cancelar pré orçamento" for clicado
 		if(e.getSource() == getjPanelPreOrcamentoNovo().getjButtonCancelar()) {
 			getjPanelPrincipal().alterarJPanel(getjPanelPreOrcamento(), this.point);
@@ -313,25 +330,6 @@ public class ControlJpanelPreOrcamentoNovo  implements MouseListener, KeyListene
 			}
 		}
 			
-	}
-	
-	@Override
-	public void focusGained(FocusEvent e) {
-		
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

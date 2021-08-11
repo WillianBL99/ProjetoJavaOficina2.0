@@ -79,6 +79,12 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão procurar produto for clicado
 		if(e.getSource() == getjDialogEditarProduto().getjButtonProcurarCodigo()) {
 			// Se não realizar a busca retorn false
@@ -331,13 +337,6 @@ public class ControlJDialogEditarProduto  implements MouseListener, KeyListener,
 			getjDialogEditarProduto().dispose();
 		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

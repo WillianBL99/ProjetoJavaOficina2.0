@@ -6,12 +6,7 @@ package control;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import model.Mascara;
-import view.JFramePrincipal;
 import view.JPanelConsultarOS;
-import view.JPanelPrincipal;
-import view.JPanelVendas;
-import view.JPanelVendasNovo;
 
 /**
  * @author Perseu

@@ -100,6 +100,12 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		// Quando o botão cadastrar veiculo for clicado
 		if(e.getSource() == getjDialogCadastrarVeiculo().getjButtonCadastrarVeiculo()) {
 			// Se o cadastro for bem sucedido o método cadastrarVeiculo() retorna true
@@ -162,13 +168,6 @@ public class ControlJDialogCadastrarVeiculo implements MouseListener, KeyListene
 			}
 		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
 	}
 
 

@@ -181,14 +181,12 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 		
 		// Quando for clicado no radio button cpf
 		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCpf()) {
-			System.out.println("cpfclicado");
 			setTipoPessoa(TipoPessoa.fisica);
 		}
 		
 		
 		// Quando for clicado no radio button cnpj
 		else if(e.getSource() == getjDialogCadastrarCliente().getjRadioButtonCnpj()) {
-			System.out.println("npjclicado");
 			setTipoPessoa(TipoPessoa.juridica);
 		}
 		
@@ -419,8 +417,10 @@ public class ControlJDialogCadastrarCliente implements MouseListener, KeyListene
 	private boolean validarCPF() {
 		String cpf = getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", "");
 		// se não estiver vazio
-		if(!cpf.isEmpty())
+		if(!cpf.isEmpty()) {
+			System.out.println("l-421 CPF enviado " + cpf);
 			return Validar.cpfValido(cpf);
+		}
 		return false;
 	}
 	

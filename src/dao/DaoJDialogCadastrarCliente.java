@@ -30,6 +30,9 @@ public class DaoJDialogCadastrarCliente {
 	 */
 	@SuppressWarnings("static-access")
 	public boolean cadastrarCliente() {
+		String cpf = null;
+		String cnpj = null;
+		
 		boolean insert = false;
 		try {
 			/*
@@ -38,39 +41,30 @@ public class DaoJDialogCadastrarCliente {
 			 * Caso contrario, será executada a query de inserção de cliente
 			 * utilizando o cnpj.
 			 */
-			if (getjDialogCadastrarCliente().getjRadioButtonCpf().isSelected()) {
-				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
-				if(getModuloConexao().executeUpdate(
-						ComandosSQL.cadastrarClientesCpf(),
-						getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", ""), // retira os "." e "-" da string
-						getjDialogCadastrarCliente().getjTFieldNome().getText(),
-						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
-						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replaceAll("\\D", ""), // retira os "(", ")", " " e "-" da string
-						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
-						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
-						getjDialogCadastrarCliente().getjTFieldRua().getText(),
-						getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText()
-				))
-				// define insert como true caso inserção tenha sido bem executada.
-				insert = true;
-				
-			} else {
-				// Método executeUpdate retorna verdadeiro caso a inserção seja bem sucedida
-				if(getModuloConexao().executeUpdate(
-						ComandosSQL.cadastrarClientesCnpj(),
-						getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", ""), // retira os "." e "-" da string
-						getjDialogCadastrarCliente().getjTFieldNome().getText(),
-						getjDialogCadastrarCliente().getjTFieldEmail().getText(),
-						getjDialogCadastrarCliente().getjTFieldTelefone().getText().replaceAll("\\D", ""), // retira os "(", ")", " " e "-" da string
-						getjDialogCadastrarCliente().getjTFieldCidade().getText(),
-						getjDialogCadastrarCliente().getjTFieldBairro().getText(),
-						getjDialogCadastrarCliente().getjTFieldRua().getText(),
-						getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText()
-				))
-				// define insert como true caso inserção tenha sido bem executada.
-				insert = true;
-			}
+			if (getjDialogCadastrarCliente().getjRadioButtonCpf().isSelected())
+				// Seta o cpf com seu respectivo valor
+				cpf = getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", ""); // Permite apenas números
+	
+			else
+				cnpj = getjDialogCadastrarCliente().getjTFieldCpf().getText().replaceAll("\\D", ""); // Permite apenas números
+			
+			if(getModuloConexao().executeUpdate(
+					ComandosSQL.cadastrarClientesCnpjCpf(),
+					cnpj,
+					cpf,
+					getjDialogCadastrarCliente().getjTFieldNome().getText(),
+					getjDialogCadastrarCliente().getjTFieldEmail().getText(),
+					getjDialogCadastrarCliente().getjTFieldTelefone().getText().replaceAll("\\D", ""), // retira os "(", ")", " " e "-" da string
+					getjDialogCadastrarCliente().getjTFieldCidade().getText(),
+					getjDialogCadastrarCliente().getjTFieldBairro().getText(),
+					getjDialogCadastrarCliente().getjTFieldRua().getText(),
+					getjDialogCadastrarCliente().getjTFieldNumeroCasa().getText()
+			))
+			// define insert como true caso inserção tenha sido bem executada.
+			insert = true;
+			
 			return insert;
+			
 		} catch (Exception e) {
 			System.err.println("Erro-Class:DaoJDialogCadastrarCliente: " + e.getMessage());
 			return insert;

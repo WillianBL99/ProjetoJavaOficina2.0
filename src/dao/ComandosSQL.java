@@ -54,8 +54,7 @@ public class ComandosSQL {
 	private static String consultarClientesCnpj;
 	private static String consultarClientesCpf;
 	
-	private static String cadastrarClientesCnpj;
-	private static String cadastrarClienteCpf;
+	private static String cadastrarClientesCnpjCpf;
 	
 	private static String consultarVeiculoID;
 	private static String consultarVeiculoTodos;
@@ -849,41 +848,21 @@ public class ComandosSQL {
 	
 	
 	/*
-	 * Método String getcadastrarClientesCnpj()
+	 * Método String getcadastrarClientesCnpjCpf()
 	 * Cadastrar um cliente com os dados inseridos
 	 */
-	public static String cadastrarClientesCpf() {
+	public static String cadastrarClientesCnpjCpf() {
 		/*
 		 * Lista dos nomes dos campos:
 		 * "CPF", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
 		 */
-		if(cadastrarClientesCnpj == null){
-			cadastrarClientesCnpj = (
-				"insert into tb_clientes(cpf, nome_cliente, email, telefone, cidade, bairro, rua, numero) values\n"
-				+ "(?, ?, ?, ?, ?, ?, ?, ?);"
+		if(cadastrarClientesCnpjCpf == null){
+			cadastrarClientesCnpjCpf = (
+				"insert into tb_clientes(cnpj, cpf, nome_cliente, email, telefone, cidade, bairro, rua, numero) values\n"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?);"
 			);
 		}
-		return cadastrarClientesCnpj;
-	}
-	
-	
-	/*
-	 * Método String getconsultarClientesCpf()
-	 * Retorna a query que tem a função de exibir todos os clientes
-	 */
-	public static String cadastrarClientesCnpj() {
-		/*
-		 * Lista dos nomes dos campos:
-		 * "CNPj", "Nome", "email", "Telefone", "Cidade", "Bairro", "Rua", "Nº Casa"
-		 */
-		if(cadastrarClienteCpf == null){
-			cadastrarClienteCpf = (
-				"insert into tb_clientes(cnpj, nome_cliente, email, telefone, cidade, bairro, rua, numero) values\n"
-				+ "(?, ?, ?, ?, ?, ?, ?, ?);"
-			);
-	
-		}
-		return cadastrarClienteCpf;
+		return cadastrarClientesCnpjCpf;
 	}
 	
 	

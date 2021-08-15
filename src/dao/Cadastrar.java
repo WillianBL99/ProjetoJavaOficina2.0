@@ -5,7 +5,11 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLType;
 import java.sql.Statement;
+import java.sql.Types;
+
+import com.mysql.cj.MysqlType;
 
 /**
  * @author Paulo Uilian
@@ -24,6 +28,7 @@ public class Cadastrar {
 	 */
 	@SuppressWarnings("static-access")
 	public boolean executeUpdate(String sql, String... campos) {
+		String a = null;
 		// Variável booleana recebe 'true' caso a inserção seja bem sucedida
 		boolean insert = false;
 		/*
@@ -43,7 +48,7 @@ public class Cadastrar {
 			 */
 			for(int i = 0; i < sizeCampos; i++) {
 				System.out.printf("SetString(%d, %s)%n", i + 1, campos[i]);
-				getModuloConexao().getPreparedStatement().setString(i + 1, campos[i]); // Substitui o (i + 1)enezimo "?" pelo valor de campos[i]
+				getModuloConexao().getPreparedStatement().setString(i + 1, (campos[i])); // Substitui o (i + 1)enezimo "?" pelo valor de campos[i]
 			}
 			
 			// Inteiro rowAffected recebe a quantidade de linhas afetadas pelo comando
